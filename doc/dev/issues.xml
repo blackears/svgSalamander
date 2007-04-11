@@ -1,0 +1,1554 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE issuezilla SYSTEM "https://svgsalamander.dev.java.net/issues/issuezilla.dtd">
+<issuezilla exporter="guest" charset="UTF-8" version="2.11" urlbase="https://svgsalamander.dev.java.net/issues/" maintainer="owner@svgsalamander.dev.java.net" project_domain="dev.java.net" project_name="svgsalamander" project_id="2059" dtd_version="Revision: 1.2">
+<issue status_code="200" status_message="OK">
+  <issue_id>3</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>kitfox</assigned_to>
+  <delta_ts>20050116092344</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2004-09-17 08:53:13</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Provide support for scripting</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2004-09-17 08:53:13</issue_when>
+   <thetext>Currently Salamander SVG does not allow the user to use scripting languages. 
+Provide hooks to allow one to allow the user to integrate the scripting language
+of their choice to augment the SVG.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2004-10-13 12:19:04</issue_when>
+   <thetext>This is something that should be added.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2005-01-16 09:23:44</issue_when>
+   <thetext>Listing of SVG routines that must be implemented by SVG can be found here:
+
+http://www.w3.org/TR/SVG11/ecmascript-binding.html</thetext>
+  </long_desc>
+  <activity>
+    <user>kitfox</user>
+    <when>2004-10-13 12:19:04</when>
+    <field_name>issue_type</field_name>
+    <field_desc>Issue type</field_desc>
+    <oldvalue>DEFECT</oldvalue>
+    <newvalue>ENHANCEMENT</newvalue>
+  </activity>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>4</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>kitfox</assigned_to>
+  <delta_ts>20040917091505</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2004-09-17 09:15:05</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Provide support for filters (blur, sharpen, etc)</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2004-09-17 09:15:05</issue_when>
+   <thetext>Filters are currently not implemented.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>5</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20041022175544</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>sat1196</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2004-10-22 17:55:44</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>relative positions not supported</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>sat1196</who>
+   <issue_when>2004-10-22 17:55:44</issue_when>
+   <thetext>things like &lt;text x=0.0 y=70.0%&gt; don&apos;t work.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>6</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20050106025123</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2005-01-06 02:51:23</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Cannot set fill on &lt;tspan&gt;</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2005-01-06 02:51:23</issue_when>
+   <thetext>This is due to the shapes of tspans being ored together and the fill element of
+the containing &lt;text&gt; element being used instead.  This behaviour should be
+changed so that tspans are rendered independantly.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>7</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>kitfox</assigned_to>
+  <delta_ts>20050106194826</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>animentor</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2005-01-06 19:48:26</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Animation of &lt;path&gt; element</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>animentor</who>
+   <issue_when>2005-01-06 19:48:26</issue_when>
+   <thetext>Support declarative animations for the path element as in the example below
+(wavy line that changes shape after 1 second):
+
+&lt;path
+  d=&quot;M68.4455 69.6056 C119.081 80.456 175.949 67.2012 227.378 64.9652
+  C252.256 63.8836 275.694 70.7657 300.464 70.7657&quot;
+  style=&quot;fill:none;stroke:rgb(0,0,0);stroke-width:1&quot;&gt;
+  &lt;set attributeName=&quot;d&quot; begin=&quot;1s&quot; dur=&quot;0s&quot; fill=&quot;freeze&quot;
+    to=&quot;M68.4455 69.6056 C119.081 80.456 181.949 188.201 233.378 185.965 
+    C258.256 184.884 275.694 70.7657 300.464 70.7657&quot;/&gt;
+&lt;/path&gt;</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>8</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20050111082536</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>sat1196</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2005-01-11 08:25:36</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Scrpting</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>sat1196</who>
+   <issue_when>2005-01-11 08:25:36</issue_when>
+   <thetext>Here is the site for scrpting implementation:
+http://www.w3.org/TR/SVG11/ecmascript-binding.html.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>9</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20050123140136</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>sat1196</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2005-01-23 14:01:36</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>x attribute with dy in Tspan</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>sat1196</who>
+   <issue_when>2005-01-23 14:01:36</issue_when>
+   <thetext>In my svg file I create a Tspan with an x=0 and dy=&quot;100&quot;. As a result Line 140
+in Tspan.java throws a NPE because y has not been set.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>10</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>Macintosh</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20050507101009</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter></reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2005-05-07 10:10:09</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Better Exception Handling</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who></who>
+   <issue_when>2005-05-07 10:10:09</issue_when>
+   <thetext>Exception handling (via throws clauses) should communicate to a developer what might go wrong in a 
+given method, and communicate what did go wrong (via messages and nested exceptions) to an operator 
+in a running system. If SVGSalamander develops a large user base, proper exception handling will help 
+focus bug reports and eliminate many repeated questions from developers.</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>12</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P5</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060330164158</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>heuermh</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2006-03-30 13:35:16</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>upload to ibiblio maven repository</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>heuermh</who>
+   <issue_when>2006-03-30 13:35:16</issue_when>
+   <thetext>Date: Wed, 29 Mar 2006 20:31:25 -0500 (EST)
+From: Michael Heuer
+To: dev at svgsalamander.dev.java.net
+Subject: upload to ibiblio maven repository
+
+Hello,
+
+I am considering replacing Apache Batik with SVG Salamander in my
+project (also LGPL, see below).  I was wondering if the SVG Salamander jar
+might be uploaded to the central maven repository so that projects like
+mine, projects that build with maven or with the maven ant tasks, might
+more reliably include SVG Salamander as a dependency.
+
+The process is as follows:
+
+Guide to uploading artifacts to Ibiblio
+&gt; http://maven.apache.org/guides/mini/guide-ibiblio-upload.html
+
+Starting with &quot;If you are not using maven as your build system...&quot;
+
+
+I can assist in any way necessary to make this happen.
+
+Regards,
+
+   michael
+
+
+&gt; http://dishevelled.org/iconbundle</thetext>
+  </long_desc>
+  <long_desc>
+   <who>heuermh</who>
+   <issue_when>2006-03-30 13:48:57</issue_when>
+   <thetext>Created an attachment (id=3)
+Example pom.xml, filled with dev.java.net defaults
+</thetext>
+  </long_desc>
+  <long_desc>
+   <who>heuermh</who>
+   <issue_when>2006-03-30 13:50:17</issue_when>
+   <thetext>Attached example pom.xml, filled with dev.java.net project defaults.  That and
+just guessing when it came to organization, developers, version, etc.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-03-30 16:41:58</issue_when>
+   <thetext>Maven information submitted, waiting for reponse.</thetext>
+  </long_desc>
+  <attachment encoding='Base64'>
+    <mimetype>text/xml</mimetype>
+    <attachid>3</attachid>
+    <date>2006-03-30 13:48:57</date>
+    <desc>Example pom.xml, filled with dev.java.net defaults</desc>
+    <ispatch></ispatch>
+    <filename>pom.xml</filename>
+    <submitter_id>13</submitter_id>
+    <submitting_username>heuermh</submitting_username>
+    <data>PHByb2plY3QNCiAgeG1sbnM9Imh0dHA6Ly9tYXZlbi5hcGFjaGUub3JnL1BPTS80LjAuMCINCiAg
+eG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSINCiAg
+eHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vbWF2ZW4uYXBhY2hlLm9yZy9QT00vNC4wLjAgaHR0
+cDovL21hdmVuLmFwYWNoZS5vcmcvbWF2ZW4tdjRfMF8wLnhzZCI+DQogIDxtb2RlbFZlcnNpb24+
+NC4wLjA8L21vZGVsVmVyc2lvbj4NCiAgPGdyb3VwSWQ+Y29tLmtpdGZveDwvZ3JvdXBJZD4NCiAg
+PGFydGlmYWN0SWQ+c3ZnLXNhbGFtYW5kZXI8L2FydGlmYWN0SWQ+DQogIDxwYWNrYWdpbmc+amFy
+PC9wYWNrYWdpbmc+DQogIDx2ZXJzaW9uPjEuMDwvdmVyc2lvbj4NCiAgPG5hbWU+U1ZHIFNhbGFt
+YW5kZXI8L25hbWU+DQogIDxkZXNjcmlwdGlvbj5TVkcgU2FsYW1hbmRlcjwvZGVzY3JpcHRpb24+
+DQogIDx1cmw+aHR0cDovL3N2Z3NhbGFtYW5kZXIuZGV2LmphdmEubmV0PC91cmw+DQogIDxvcmdh
+bml6YXRpb24+DQogICAgPG5hbWU+S2l0Zm94IFN0dWRpb3M8L25hbWU+DQogICAgPHVybD5odHRw
+Oi8vd3d3LmtpdGZveC5jb208L3VybD4NCiAgPC9vcmdhbml6YXRpb24+DQogIDxzY20+DQogICAg
+PGNvbm5lY3Rpb24+c2NtOmN2czpwc2VydmVyOmd1ZXN0QGN2cy5kZXYuamF2YS5uZXQ6L2N2czpz
+dmdzYWxhbWFuZGVyPC9jb25uZWN0aW9uPg0KICA8L3NjbT4NCiAgPGRldmVsb3BlcnM+DQogICAg
+PGRldmVsb3Blcj4NCiAgICAgIDxuYW1lPk1hcmsgTWNLYXk8L25hbWU+DQogICAgICA8ZW1haWw+
+bWFyayBhdCBraXRmb3guY29tPC9lbWFpbD4NCiAgICA8L2RldmVsb3Blcj4NCiAgPC9kZXZlbG9w
+ZXJzPg0KICA8bGljZW5zZXM+DQogICAgPGxpY2Vuc2U+DQogICAgICA8bmFtZT5HTlUgTGVzc2Vy
+IEdlbmVyYWwgUHVibGljIExpY2Vuc2UgKExHUEwpPC9uYW1lPg0KICAgICAgPHVybD5odHRwOi8v
+d3d3LmdudS5vcmcvY29weWxlZnQvbGVzc2VyLmh0bWw8L3VybD4NCiAgICAgIDxkaXN0cmlidXRp
+b24+cmVwbzwvZGlzdHJpYnV0aW9uPg0KICAgIDwvbGljZW5zZT4NCiAgPC9saWNlbnNlcz4NCiAg
+PG1haWxpbmdMaXN0cz4NCiAgICA8bWFpbGluZ0xpc3Q+DQogICAgICA8bmFtZT5Bbm5vdW5jZW1l
+bnQgTGlzdDwvbmFtZT4NCiAgICAgIDxzdWJzY3JpYmU+YW5ub3VuY2Utc3Vic2NyaWJlQHN2Z3Nh
+bGFtYW5kZXIuZGV2LmphdmEubmV0PC9zdWJzY3JpYmU+DQogICAgICA8dW5zdWJzY3JpYmU+YW5u
+b3VuY2UtdW5zdWJzY3JpYmVAc3Znc2FsYW1hbmRlci5kZXYuamF2YS5uZXQ8L3Vuc3Vic2NyaWJl
+Pg0KICAgICAgPGFyY2hpdmU+aHR0cHM6Ly9zdmdzYWxhbWFuZGVyLmRldi5qYXZhLm5ldC9zZXJ2
+bGV0cy9TdW1tYXJpemVMaXN0P2xpc3ROYW1lPWFubm91bmNlPC9hcmNoaXZlPg0KICAgIDwvbWFp
+bGluZ0xpc3Q+DQogICAgPG1haWxpbmdMaXN0Pg0KICAgICAgPG5hbWU+RGV2ZWxvcGVyIExpc3Q8
+L25hbWU+DQogICAgICA8c3Vic2NyaWJlPmRldi1zdWJzY3JpYmVAc3Znc2FsYW1hbmRlci5kZXYu
+amF2YS5uZXQ8L3N1YnNjcmliZT4NCiAgICAgIDx1bnN1YnNjcmliZT5kZXYtdW5zdWJzY3JpYmVA
+c3Znc2FsYW1hbmRlci5kZXYuamF2YS5uZXQ8L3Vuc3Vic2NyaWJlPg0KICAgICAgPGFyY2hpdmU+
+aHR0cHM6Ly9zdmdzYWxhbWFuZGVyLmRldi5qYXZhLm5ldC9zZXJ2bGV0cy9TdW1tYXJpemVMaXN0
+P2xpc3ROYW1lPWRldjwvYXJjaGl2ZT4NCiAgICA8L21haWxpbmdMaXN0Pg0KICAgIDxtYWlsaW5n
+TGlzdD4NCiAgICAgIDxuYW1lPlVzZXJzIExpc3Q8L25hbWU+DQogICAgICA8c3Vic2NyaWJlPnVz
+ZXJzLXN1YnNjcmliZUBzdmdzYWxhbWFuZGVyLmRldi5qYXZhLm5ldDwvc3Vic2NyaWJlPg0KICAg
+ICAgPHVuc3Vic2NyaWJlPnVzZXJzLXVuc3Vic2NyaWJlQHN2Z3NhbGFtYW5kZXIuZGV2LmphdmEu
+bmV0PC91bnN1YnNjcmliZT4NCiAgICAgIDxhcmNoaXZlPmh0dHBzOi8vc3Znc2FsYW1hbmRlci5k
+ZXYuamF2YS5uZXQvc2VydmxldHMvU3VtbWFyaXplTGlzdD9saXN0TmFtZT11c2VyczwvYXJjaGl2
+ZT4NCiAgICA8L21haWxpbmdMaXN0Pg0KICAgIDxtYWlsaW5nTGlzdD4NCiAgICAgIDxuYW1lPklz
+c3VlcyBMaXN0PC9uYW1lPg0KICAgICAgPHN1YnNjcmliZT5pc3N1ZXMtc3Vic2NyaWJlQHN2Z3Nh
+bGFtYW5kZXIuZGV2LmphdmEubmV0PC9zdWJzY3JpYmU+DQogICAgICA8dW5zdWJzY3JpYmU+aXNz
+dWVzLXVuc3Vic2NyaWJlQHN2Z3NhbGFtYW5kZXIuZGV2LmphdmEubmV0PC91bnN1YnNjcmliZT4N
+CiAgICAgIDxhcmNoaXZlPmh0dHBzOi8vc3Znc2FsYW1hbmRlci5kZXYuamF2YS5uZXQvc2Vydmxl
+dHMvU3VtbWFyaXplTGlzdD9saXN0TmFtZT1pc3N1ZXM8L2FyY2hpdmU+DQogICAgPC9tYWlsaW5n
+TGlzdD4NCiAgICA8bWFpbGluZ0xpc3Q+DQogICAgICA8bmFtZT5DVlMgTGlzdDwvbmFtZT4NCiAg
+ICAgIDxzdWJzY3JpYmU+Y3ZzLXN1YnNjcmliZUBzdmdzYWxhbWFuZGVyLmRldi5qYXZhLm5ldDwv
+c3Vic2NyaWJlPg0KICAgICAgPHVuc3Vic2NyaWJlPmN2cy11bnN1YnNjcmliZUBzdmdzYWxhbWFu
+ZGVyLmRldi5qYXZhLm5ldDwvdW5zdWJzY3JpYmU+DQogICAgICA8YXJjaGl2ZT5odHRwczovL3N2
+Z3NhbGFtYW5kZXIuZGV2LmphdmEubmV0L3NlcnZsZXRzL1N1bW1hcml6ZUxpc3Q/bGlzdE5hbWU9
+Y3ZzPC9hcmNoaXZlPg0KICAgIDwvbWFpbGluZ0xpc3Q+DQogIDwvbWFpbGluZ0xpc3RzPg0KPC9w
+cm9qZWN0Pg0K
+</data>
+  <attachment_iz_url>https://svgsalamander.dev.java.net/nonav/issues/showattachment.cgi/3/pom.xml</attachment_iz_url>
+  </attachment>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>15</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060831112715</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kirillcool</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2006-08-25 15:52:57</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>IllegalArgumentException on one of the Tango icons</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kirillcool</who>
+   <issue_when>2006-08-25 15:52:57</issue_when>
+   <thetext>On the apps/preferences-desktop-remote-desktop.svg svgsalamander throws the
+following exception:
+
+Exception in thread &quot;AWT-EventQueue-0&quot; java.lang.IllegalArgumentException: User
+must specify at least 2 colors
+	at
+com.kitfox.svg.batik.MultipleGradientPaint.&lt;init&gt;(MultipleGradientPaint.java:126)
+	at com.kitfox.svg.batik.LinearGradientPaint.&lt;init&gt;(LinearGradientPaint.java:256)
+	at com.kitfox.svg.LinearGradient.getPaint(LinearGradient.java:117)
+	at com.kitfox.svg.ShapeElement.renderShape(ShapeElement.java:122)
+	at com.kitfox.svg.Path.render(Path.java:94)
+	at com.kitfox.svg.Group.render(Group.java:152)
+	at com.kitfox.svg.Group.render(Group.java:152)
+	at com.kitfox.svg.Group.render(Group.java:152)
+	at com.kitfox.svg.SVGRoot.render(SVGRoot.java:214)
+	at com.kitfox.svg.SVGDiagram.render(SVGDiagram.java:83)
+	at com.kitfox.svg.app.beans.SVGIcon.paintIcon(SVGIcon.java:153)
+
+The Tango icon set can be downloaded from
+http://tango.freedesktop.org/Tango_Icon_Library#Download</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-08-26 01:05:38</issue_when>
+   <thetext>Which file is causing the problem?  If oyou could attach a specific SVG file
+causing an error to this report, I can investigate it.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kirillcool</who>
+   <issue_when>2006-08-28 09:00:04</issue_when>
+   <thetext>I gave the download link in the original report and included the filename:
+
+URL: http://tango.freedesktop.org/Tango_Icon_Library#Download
+Filename: apps/preferences-desktop-remote-desktop.svg
+
+In addition, i&apos;d advise you try running SvgIcon (or some other test app you
+have) on all icons in the Tango set - your library fails on quite a few other
+SVG files with different messages.
+
+Kirill</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-08-30 17:29:09</issue_when>
+   <thetext>Which link has the files?  The are four links to .tar.gz files, one archive of
+which contains only .pngs and the rest of which seem to have source code. 
+Please attach the exact svg file or zip archive that is causing the problem.  I
+can&apos;t hunt through web pages looking for the right one.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kirillcool</who>
+   <issue_when>2006-08-30 17:56:26</issue_when>
+   <thetext>The link to the icon archive is
+http://tango-project.org/releases/tango-icon-theme-0.7.2.tar.gz
+
+Open it and extract all contents. Under tango-icon-theme-0.7.2\scalable you will
+see all the SVG files grouped in subfolders. The reason i&apos;m not attaching a
+specific SVG file is that there&apos;s a whole bunch of other SVGs in this set that
+produce exceptions and / or System.err messages when used from SvgIcon.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kirillcool</who>
+   <issue_when>2006-08-31 11:27:15</issue_when>
+   <thetext>I&apos;ve been playing with SVG Salamander and other SVG icon sets, and there are
+quite a few problems that it&apos;s having on GNOME set [1]. 
+
+[1]
+http://ftp.gnome.org/pub/GNOME/sources/gnome-themes-extras/0.9/gnome-themes-extras-0.9.0.tar.gz</thetext>
+  </long_desc>
+  <activity>
+    <user>kitfox</user>
+    <when>2006-08-26 01:05:38</when>
+    <field_name>priority</field_name>
+    <field_desc>Priority</field_desc>
+    <oldvalue>P2</oldvalue>
+    <newvalue>P3</newvalue>
+  </activity>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>23</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060913142723</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>cmdickson</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>FEATURE</issue_type>
+  <creation_ts>2006-09-13 14:27:23</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>Windows XP</op_sys>
+  <short_desc>Icon &quot;Cloning&quot;</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>cmdickson</who>
+   <issue_when>2006-09-13 14:27:23</issue_when>
+   <thetext>I was wondering if it would possible to allow a way to create a new, &quot;cloned&quot;
+instance of SVGIcon based on an existing icon/diagram.  In my application I need
+to display instances of the same image/icon just with different text and/or
+preferred size for each.  Currently, the SVG XML is reread each time a new
+instance is loaded because I force each new SVGIcon to have a separate
+SVGUniverse.  If they use the same SVGUniverse the diagram cache is used and the
+text is just written over the previous text instead of starting with a clean image.
+
+I have tried a few things (like attempting to duplicate() the SVGUniverse), but
+with no luck.  Perhaps there is already a way to do this?
+
+Thank you,
+Cameron</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>24</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060913230852</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>miira</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2006-09-13 23:08:52</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>serialization - diagram problems (Java 5)</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>miira</who>
+   <issue_when>2006-09-13 23:08:52</issue_when>
+   <thetext>I did mark transient textShape in Text.
+transient Shape textShape;
+
+Then I rewrote writeObject and readObject. see at the end.
+Finally universe is duplicated properly. If I export it to XML, I see the same
+SVG as the original.
+
+BUT it fails, when repainting. ;(
+
+It is, because diagram is null. See this stacktrace (I&apos;m not sure, if the lines
+matches with cvs version, therefore I send also the few lines of code)
+
+If You could help me, would be great. The diagram should maybe set into the
+elements somehow, somewhere?
+Thanks Mirek
+
+Exception in thread &quot;AWT-EventQueue-2&quot; java.lang.NullPointerException
+   at com.kitfox.svg.Group.render(Group.java:118)
+   at com.kitfox.svg.SVGRoot.render(SVGRoot.java:246)
+   at com.kitfox.svg.SVGDiagram.render(SVGDiagram.java:86)
+   at com.kitfox.svg.app.beans.SVGPanel.paintComponent(SVGPanel.java:76)
+   at javax.swing.JComponent.paint(Unknown Source)
+
+group 118 is : boolean ignoreClip = diagram.ignoringClipHeuristic();
+
+SVGElement just calls defaultReadObject and defaultWriteObject.
+
+Text serialization code:
+
+private void writeObject(ObjectOutputStream out) throws IOException      {
+       out.defaultWriteObject();
+       if (textShape != null) {
+           out.writeBoolean(true);
+           // write general path
+                    PathIterator it = textShape.getPathIterator(null);
+           // count it (for easier reading)
+           int count = 0;
+           while (!it.isDone()) {
+               count++;
+               it.next();
+           }
+           out.writeInt(it.getWindingRule());
+           out.writeInt(count);
+                     // serialize general path
+           it = textShape.getPathIterator(null);
+           while (!it.isDone()) {
+                             float []cords = new float[6];
+               int type = it.currentSegment(cords);
+               out.writeInt(type);
+               switch (type) {
+                   case PathIterator.SEG_LINETO:
+                   case PathIterator.SEG_MOVETO:
+                       out.writeFloat(cords[0]);
+                       out.writeFloat(cords[1]);
+                       break;
+                   case PathIterator.SEG_QUADTO:
+                       out.writeFloat(cords[0]);
+                       out.writeFloat(cords[1]);
+                       out.writeFloat(cords[2]);
+                       out.writeFloat(cords[3]);
+                       break;
+                   case PathIterator.SEG_CUBICTO:
+                       out.writeFloat(cords[0]);
+                       out.writeFloat(cords[1]);
+                       out.writeFloat(cords[2]);
+                       out.writeFloat(cords[3]);
+                       out.writeFloat(cords[4]);
+                       out.writeFloat(cords[5]);
+                       break;
+                   case PathIterator.SEG_CLOSE:
+                       break;
+                   default:
+                       break;
+               }
+               it.next();
+                         }
+               } else {
+           out.writeBoolean(false);
+       }
+   }
+
+   private void readObject(ObjectInputStream in) throws IOException {
+       content = new LinkedList();
+       try {
+           in.defaultReadObject();
+       } catch (ClassNotFoundException ex) {
+           ex.printStackTrace();
+       }
+       boolean isThere = in.readBoolean();
+       if (isThere) {
+           // todo read general path
+           int rule = in.readInt();
+           textShape = new GeneralPath(rule);
+           GeneralPath gp = (GeneralPath)textShape;
+           int count = in.readInt();
+           float x1, y1, x2, y2, x3, y3;
+           for (int i = 0; i &lt; count; i++) {
+               int type = in.readInt();
+               switch (type) {
+                   case PathIterator.SEG_MOVETO:
+                       x1 = in.readFloat();
+                       y1 = in.readFloat();
+                       gp.moveTo(x1, y1);
+                       break;
+                   case PathIterator.SEG_LINETO:
+                       x1 = in.readFloat();
+                       y1 = in.readFloat();
+                       gp.lineTo(x1, y1);
+                       break;
+                   case PathIterator.SEG_QUADTO:
+                       x1 = in.readFloat();
+                       y1 = in.readFloat();
+                       x2 = in.readFloat();
+                       y2 = in.readFloat();
+                       gp.quadTo(x1, y1, x2, y2);
+                       break;
+                   case PathIterator.SEG_CUBICTO:
+                       x1 = in.readFloat();
+                       y1 = in.readFloat();
+                       x2 = in.readFloat();
+                       y2 = in.readFloat();
+                       x3 = in.readFloat();
+                       y3 = in.readFloat();
+                       gp.curveTo(x1, y1, x2, y2, x3, y3);
+                       break;
+                   case PathIterator.SEG_CLOSE:
+                       gp.closePath();
+                       break;
+                   default:
+                       break;
+               }
+           }
+       } else {
+           textShape = null;
+       }          }</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>25</issue_id>
+  <issue_status>STARTED</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060916183550</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>miira</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2006-09-16 02:15:19</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>use css</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>miira</who>
+   <issue_when>2006-09-16 02:15:19</issue_when>
+   <thetext>Hello,
+
+I think, svgSalamander doesn&apos;t use &lt;?xml-stylesheet..&gt; instruction. 
+Like this:
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet 
+        href=&quot;xchords-default.css&quot; type=&quot;text/css&quot;
+        ?&gt;
+&lt;svg ....
+
+Could it be enhanced to support that? Below is my sample file (see
+xchords.barad.cz). It&apos;s displayed empty, because all styling attributes are
+moved into the CSS. ;(
+
+Thanks Mirek
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet 
+        href=&quot;xchords-default.css&quot; type=&quot;text/css&quot;
+        ?&gt;
+
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;280&quot; height=&quot;420&quot; viewBox=&quot;0 0
+400 400&quot; fill=&quot;white&quot;&gt;
+&lt;title&gt;Chord C&lt;/title&gt;
+&lt;!--Generated by XChords utility, v.0.3--&gt;
+&lt;!--chord--&gt;
+&lt;g id=&quot;C&quot;&gt;
+&lt;!--begin basic guitar image--&gt;
+&lt;text class=&quot;note&quot; x=&quot;35&quot; y=&quot;5&quot;&gt;Generated by XChords utility, v 0.3&lt;/text&gt;
+&lt;!--chord label--&gt;
+&lt;text class=&quot;label&quot; x=&quot;192&quot; y=&quot;67&quot;&gt;C&lt;/text&gt;
+&lt;!--guitar end neck--&gt;
+&lt;line class=&quot;endneck&quot; x1=&quot;92&quot; y1=&quot;87&quot; x2=&quot;292&quot; y2=&quot;87&quot;/&gt;
+&lt;!--guitar neck--&gt;
+&lt;rect class=&quot;neck&quot; x=&quot;100&quot; y=&quot;100&quot; width=&quot;184&quot; height=&quot;200&quot;/&gt;
+&lt;!--plot - frets--&gt;
+&lt;line class=&quot;frets&quot; x1=&quot;102&quot; y1=&quot;152&quot; x2=&quot;282&quot; y2=&quot;152&quot;/&gt;
+&lt;line class=&quot;frets&quot; x1=&quot;102&quot; y1=&quot;202&quot; x2=&quot;282&quot; y2=&quot;202&quot;/&gt;
+&lt;line class=&quot;frets&quot; x1=&quot;102&quot; y1=&quot;252&quot; x2=&quot;282&quot; y2=&quot;252&quot;/&gt;
+&lt;!--plot - strings--&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;117&quot; y1=&quot;94&quot; x2=&quot;117&quot; y2=&quot;299&quot;/&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;147&quot; y1=&quot;94&quot; x2=&quot;147&quot; y2=&quot;299&quot;/&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;177&quot; y1=&quot;94&quot; x2=&quot;177&quot; y2=&quot;299&quot;/&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;207&quot; y1=&quot;94&quot; x2=&quot;207&quot; y2=&quot;299&quot;/&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;237&quot; y1=&quot;94&quot; x2=&quot;237&quot; y2=&quot;299&quot;/&gt;
+&lt;line class=&quot;strings&quot; x1=&quot;267&quot; y1=&quot;94&quot; x2=&quot;267&quot; y2=&quot;299&quot;/&gt;
+&lt;!--end basic guitar image--&gt;
+&lt;!--position--&gt;
+&lt;g id=&quot;C.Pos.1&quot;&gt;
+&lt;text class=&quot;barrenum&quot; x=&quot;85&quot; y=&quot;140&quot;&gt;I.&lt;/text&gt;
+&lt;!--endneck--&gt;
+&lt;path class=&quot;spacer&quot; d=&quot;M87,272 A100,40 0 0,0 192,272 A100,40 0 0,1 297,272
+L297,350 L87,350 Z&quot;/&gt;
+&lt;path class=&quot;spacerline&quot; d=&quot;M87,272 A100,40 0 0,0 192,272 A100,40 0 0,1 297,272&quot;/&gt;
+&lt;!--a--&gt;
+&lt;circle class=&quot;dot&quot; cx=&quot;147&quot; cy=&quot;227&quot; r=&quot;14&quot;/&gt;
+&lt;text class=&quot;finger&quot; x=&quot;141&quot; y=&quot;235&quot;&gt;3&lt;/text&gt;
+&lt;!--d--&gt;
+&lt;circle class=&quot;dot&quot; cx=&quot;177&quot; cy=&quot;177&quot; r=&quot;14&quot;/&gt;
+&lt;text class=&quot;finger&quot; x=&quot;171&quot; y=&quot;185&quot;&gt;2&lt;/text&gt;
+&lt;!--b--&gt;
+&lt;circle class=&quot;dot&quot; cx=&quot;237&quot; cy=&quot;127&quot; r=&quot;14&quot;/&gt;
+&lt;text class=&quot;finger&quot; x=&quot;230&quot; y=&quot;135&quot;&gt;1&lt;/text&gt;
+&lt;/g&gt;
+&lt;/g&gt;
+&lt;/svg&gt;</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-09-16 18:35:50</issue_when>
+   <thetext>CSS has not been implemented yet.  External and inlined css sheets should be
+implemented at the same time.</thetext>
+  </long_desc>
+  <activity>
+    <user>kitfox</user>
+    <when>2006-09-16 18:35:50</when>
+    <field_name>issue_status</field_name>
+    <field_desc>Status</field_desc>
+    <oldvalue>NEW</oldvalue>
+    <newvalue>STARTED</newvalue>
+  </activity>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>26</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20060916113516</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>miira</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2006-09-16 11:35:16</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>use attributes height and width are not working</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>miira</who>
+   <issue_when>2006-09-16 11:35:16</issue_when>
+   <thetext>Hello,
+
+It seems, that whatever I set in &lt;use&gt; element as width and height, doesn&apos;t
+matter, the referenced SVG is included asis, in it&apos;s original size. 
+
+That is very important feature to me, is there some quick way around it?
+Thanks Mirek</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>27</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20061003213623</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2006-10-03 21:35:18</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>putting SVG elements inside SVG elements</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-10-03 21:35:18</issue_when>
+   <thetext>Hi again Mark,
+
+Found another bug, this one involves putting SVG elements inside SVG elements.
+The attached file demonstrates the problem.
+
+Regards,
+Magnus</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2006-10-03 21:36:23</issue_when>
+   <thetext>Created an attachment (id=5)
+bad svg file
+</thetext>
+  </long_desc>
+  <attachment encoding='Base64'>
+    <mimetype>text/xml</mimetype>
+    <attachid>5</attachid>
+    <date>2006-10-03 21:36:21</date>
+    <desc>bad svg file</desc>
+    <ispatch></ispatch>
+    <filename>bishop.svg</filename>
+    <submitter_id>3</submitter_id>
+    <submitting_username>kitfox</submitting_username>
+    <data>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxz
+dmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAKCQlpZD0ic3ZnMSIKCQl3aWR0
+aD0iODciCgkJaGVpZ2h0PSI4NyI+CjxyZWN0IHg9IjAuNSIgeT0iMC41IiB3aWR0aD0iODYuNSIg
+aGVpZ2h0PSI4Ni41IiBmaWxsPSJub25lIiBzdHJva2U9ImJsdWUiIC8+CjxzdmcgeG1sbnM9Imh0
+dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAKCQkgdmVyc2lvbj0iMS4xIiAKCQkgdmlld0JveD0i
+MCAwIDY3IDg0IgoJCSBpZD0ic3ZnMiIKCQkgeD0iMTAlIgoJCSB5PSIxMCUiCgkJIHdpZHRoPSI4
+MCUiCgkJIGhlaWdodD0iODAlIgoJCSBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0
+Ij4KCTxnIGlkPSJnMSIgCgkJIHRyYW5zZm9ybT0ibWF0cml4KDAuMDkzLDAsMCwtMC4wOTMsNiw3
+OSkiIAoJCSBzdHlsZT0iZmlsbDojMDAwMDAwO3N0cm9rZTpub25lIj4KCQk8cGF0aAoJCQlpZD0i
+cGF0aDExIgoJCQlkPSJNIDE1Myw2MDggCgkJCSAgIEMgMTUwLDU5MyAxNzYsNjEwIDIxMyw2MjIg
+CgkJCQkgQyAyMjMsNTI1IDIwOSw1MjYgMTg3LDQ4NyAKCQkJCSBDIDExNiwzNjMgMTc2LDQyMSAy
+MDMsNDU2IAoJCQkJIEMgMjI1LDQ4NCAyMjUsNDg5IDI1NSw1MDYgCgkJCQkgQyAzMjEsNTA5IDMw
+OCw1MTcgMzIyLDUxNyAKCQkJCSBDIDMzOCw1MTggMzE3LDUwOSA0MTYsNTAyIAoJCQkJIEMgNDE2
+LDQ4MiA0MDgsNDQ0IDM4Miw0NTIgCgkJCQkgQyAzNDAsNDYzIDMzMCw0NDMgMzg0LDQxNSAKCQkJ
+CSBDIDQzMSwzOTAgNDQ0LDQxNSA0NDcsNTI2IAoJCQkJIEMgNDQ3LDU4MSA0NTksNjQ5IDQ2MSw2
+NzIgCgkJCQkgQyA0MDMsNjc5IDQzOCw2NjMgNDAwLDY2MiAKCQkJCSBDIDM3MCw2NjAgMzcwLDY2
+MCAzNDUsNjYwIAoJCQkJIEMgMzY1LDcyMCA0MTEsNzEwIDM3OCw3MjcgCgkJCQkgQyAzMzYsNzQ5
+IDM1Nyw3MjcgMzMyLDcyMSAKCQkJCSBDIDMwMiw3MTQgMjYyLDcxNSAyOTMsNzM2IAoJCQkJIEMg
+Mjk0LDc0OCAyNjYsNzcwIDI2MSw3NTggCgkJCQkgQyAyMzMsNjkxIDE2MCw2MzYgMTUzLDYwOCB6
+IAoJCQkJIE0gMzI0LDY2OSAKCQkJCSBDIDMwMSw2NTMgMjQwLDY1MyAyNDAsNjY5IAoJCQkJIEMg
+MjQwLDY4MiAyNjEsNjk1IDI5Nyw2OTQgCgkJCQkgQyAzMjEsNjkzIDM0Niw2OTYgMzI0LDY2OSB6
+IAoJCQkJIE0gMzA4LDYxOCAKCQkJCSBDIDMwOCw1OTYgMjk5LDYwMCAyODAsNTk5IAoJCQkJIEMg
+MjM1LDU5NiAyNDIsNTkyIDI0NCw2MTUgCgkJCQkgQyAyNDQsNjI2IDI0NSw2MzIgMjc2LDYzMyAK
+CQkJCSBDIDMwNyw2MzUgMzA3LDYyOSAzMDgsNjE4IHogCgkJCQkgTSA0MTcsNjE0IAoJCQkJIEMg
+NDE2LDU5OCA0MjAsNTkyIDM3NCw1OTUgCgkJCQkgQyAzMzAsNTk3IDM0MCw1OTUgMzQwLDYxNiAK
+CQkJCSBDIDMzOSw2MzEgMzM2LDYzNiAzNzYsNjM1IAoJCQkJIEMgNDIwLDYzNCA0MTcsNjMxIDQx
+Nyw2MTQgeiAKCQkJCSBNIDMxMCw1NTUgCgkJCQkgQyAzMTAsNTM5IDMwMyw1MzUgMjc1LDUzNSAK
+CQkJCSBDIDI0NCw1MzUgMjQwLDUzNiAyNDAsNTU1IAoJCQkJIEMgMjM5LDU3NyAyNTAsNTc1IDI4
+Miw1NzUgCgkJCQkgQyAzMDMsNTc1IDMxMCw1NzAgMzEwLDU1NSB6IAoJCQkJIE0gNDEyLDU1NSAK
+CQkJCSBDIDQxMiw1MzkgNDEzLDUzNSA0MDAsNTM1IAoJCQkJIEMgMzQ4LDUzMyAzNDUsNTM0IDM0
+Miw1NTMgCgkJCQkgQyAzMzksNTY2IDM1NCw1NjggMzc3LDU3MCAKCQkJCSBDIDQwNyw1NzEgNDEy
+LDU3MCA0MTIsNTU1IHoiLz4KCQk8cGF0aAoJCQlpZD0icGF0aDEyIgoJCQlkPSJNIDE2MCwzNTQg
+CgkJCSAgIEMgMTYwLDM0NSAxNTYsMzMyIDEzNywzMTUgCgkJCQkgQyA3MiwyNjYgNzEsMjU4IDEy
+MCwyNjAgCgkJCQkgQyAxNzMsMjYxIDEzOCwyMTMgNzMsMTY4IAoJCQkJIEMgNjAsMTU5IDQzLDEz
+OSA1MiwxMjYgCgkJCQkgQyA2MCwxMTIgOTQsMTQyIDExMywxMzIgCgkJCQkgQyAxMjUsMTI0IDEx
+NywxMTAgMTIwLDgxIAoJCQkJIEMgMTI1LDI4IDEzMiw4IDE0OSwzOSAKCQkJCSBDIDE2NCw2OCAx
+NjIsMTEyIDE0NCwxMzkgCgkJCQkgQyAxMjgsMTYxIDEyOSwxNjIgMTYxLDE5NiAKCQkJCSBDIDE4
+OSwyMjQgMTgwLDIxNiAxOTUsMjM4IAoJCQkJIEMgMTM5LDI3OSAxNTIsMjgyIDE3NCwzMDkgCgkJ
+CQkgQyAxOTIsMzMwIDE4OSwzMjkgMjAzLDM0OSAKCQkJCSBDIDE3OSwzNjkgMTYwLDM3NCAxNjAs
+MzU0IHoiLz4KCQk8cGF0aAoJCQlpZD0icGF0aDEzIgoJCQlkPSJNIDM3MCwzMzUgCgkJCSAgIEMg
+MzQxLDMyNiAzMTgsMzE2IDMwNSwzMjAgCgkJCQkgQyAyNjYsMzI4IDI2MywzMjcgMjk0LDMwNSAK
+CQkJCSBDIDMxNywyODYgMzUwLDI4NSA0MTUsMzAzIAoJCQkJIEMgNDQ3LDMxMSA0NjksMzIwIDQ2
+OCwzMzEgCgkJCQkgQyA0NjMsMzY0IDQyMywzNTAgMzcwLDMzNSB6Ii8+CgkJPHBhdGgKCQkJaWQ9
+InBhdGgxNCIKCQkJZD0iTSAzOTAsMjQ0IAoJCQkgICBDIDM1OCwyMzYgMzI1LDIyNyAzMDIsMjMx
+IAoJCQkJIEMgMjYwLDI0MCAyNDgsMjM3IDI1MiwyMjkgCgkJCQkgQyAyNjEsMTk5IDI4OCwxOTUg
+MzcyLDIwOCAKCQkJCSBDIDQxOCwyMTQgNDczLDIyMiA1MDksMjIwIAoJCQkJIEMgNTUzLDIxNiA1
+NTksMjIyIDU1OCwyMzggCgkJCQkgQyA1NTMsMjcwIDQ2NywyNjQgMzkwLDI0NCB6Ii8+CgkJPHBh
+dGgKCQkJaWQ9InBhdGgxNSIKCQkJZD0iTSA0NjAsMTcyIAoJCQkgICBDIDQ2MCwxNTcgNDc2LDg3
+IDQ3OCw2OCAKCQkJCSBDIDQ1Myw2MiA0MjksNjEgNDE2LDY2IAoJCQkJIEMgMzUxLDg2IDM4NCwz
+MyA0NjAsMjIgCgkJCQkgQyA1MTEsMTUgNTMyLDY0IDUwNCwxNjAgCgkJCQkgQyA0ODksMjA3IDQ2
+MCwyMTQgNDYwLDE3MiB6Ii8+CiAgPC9nPgogIDxnIGlkPSJnMiIgdHJhbnNmb3JtPSJtYXRyaXgo
+MSwwLDAsMSwwLDApIj4KICAgIDxwYXRoCiAgICAgIGlkPSJwYXRoMjEiCiAgICAgIGQ9Ik0gMSw4
+MyBsIDY3LDAgbCAtNiwtNzAgbCAtMjcsLTEyIGwgLTI5LDEyIHoiCgkJCXN0eWxlPSJmaWxsOm5v
+bmU7CgkJCSAgICAgICBmaWxsLW9wYWNpdHk6MTsKCQkJCQkJIGZpbGwtcnVsZTpldmVub2RkOwoJ
+CQkJCQkgc3Ryb2tlOiMwMDAwMDA7CgkJCQkJCSBzdHJva2Utd2lkdGg6MXB4OwoJCQkJCQkgc3Ry
+b2tlLWxpbmVjYXA6cm91bmQ7CgkJCQkJCSBzdHJva2UtbGluZWpvaW46cm91bmQ7CgkJCQkJCSBz
+dHJva2Utb3BhY2l0eToxIi8+CiAgPC9nPgo8L3N2Zz4KPC9zdmc+
+</data>
+  <attachment_iz_url>https://svgsalamander.dev.java.net/nonav/issues/showattachment.cgi/5/bishop.svg</attachment_iz_url>
+  </attachment>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>29</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20070223160556</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>ENHANCEMENT</issue_type>
+  <creation_ts>2007-02-23 16:05:56</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Provide webstart friendly opening of files on local disk</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2007-02-23 16:05:56</issue_when>
+   <thetext>Hi Mark
+
+At 03:42 20.02.2007, you wrote:
+&gt; &gt;Hi Peter,
+&gt; &gt;
+&gt; &gt;I understand your concern.  
+
+Great!
+
+&gt; &gt;Unfortunately, these permissions are necessary to allow the program to read
+files.  
+
+I may help here, see below.
+
+
+&gt; &gt;I&apos;ve created a restricted version that you can access on this webpage:
+&gt; &gt;
+&gt; &gt;https://svgsalamander.dev.java.net/secure.html
+
+Fine:-)
+
+
+&gt; &gt;For some reason, java.dev.net won&apos;t let me upload some corrections to this
+web page.  However, the listed URLs will work if you replace the http:// with
+https://
+
+        I found (as a visitor) _always_ sourceforge much better than java.net: 
+        more screenshots, browse source, better docs, no registration to just
+evaluate,
+        better webpage (on java.net project and java.net navigation is not
+clearly separated)
+        ...
+
+Now some info:
+
+1) Open local files
+2) Exception
+3) Still asks for full access in webstart 1.4.2
+
+
+1) Open local files
+===================
+To open files in an resticted app ( sun starts to learn:-)
+
+Index:
+   http://java.sun.com/j2se/1.5.0/docs/guide/javaws/developersguide/contents.html
+
+Straight to the solution:
+   http://java.sun.com/j2se/1.5.0/docs/guide/javaws/developersguide/examples.html
+
+Especially
+   FileOpenService Service -let user choose an arbitrary file
+
+   ExtendedService Service - ask for a special file (c:\winnt\passwords)
+                             and let the user grant/deny permission
+
+
+
+But i found no &apos;Net Connect Service&apos;.
+
+A solution would be (if you can install a reflection service on the server of
+the jnlp)
+to reflect/redirect a request: 
+   http://your.server.tld/download?url=ftp%3A%2F%2Fthe%2Fsvg%2Fhere.svg
+(and maybe restrict it since any criminal intent may download 
+ some ugly content - and your server ip is cought in the servers log)
+
+
+
+
+2) Exception
+=============
+
+I got an exception (opening the duck):
+i think you should pack the dtd etc. into the jar and use an entity resolver
+or an .. (forgot what it is named: a thingy that let you pack all those dtd in
+a pack and manages this for you)
+
+the first of your svg-links isn&apos;t there - got an 404(&apos;Sorry, this page not found
+on java.net.&apos;) 
+i haven&apos;t tested the others.
+
+-- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8 ---- &gt;&lt;8
+---- &gt;&lt;8 ---- &gt;&lt;8 --
+
+Java Web Start 1.5.0_10
+Verwendung der JRE-Version 1.5.0_10 Java HotSpot(TM) Client VM
+
+----------------------------------------------------
+java.security.AccessControlException: access denied (java.net.SocketPermission
+www.w3.org:80 connect,resolve)
+        at
+java.security.AccessControlContext.checkPermission(AccessControlContext.java:264)
+        at java.security.AccessController.checkPermission(AccessController.java:427)
+        at java.lang.SecurityManager.checkPermission(SecurityManager.java:532)
+        at java.lang.SecurityManager.checkConnect(SecurityManager.java:1034)
+        at sun.net.www.http.HttpClient.openServer(HttpClient.java:476)
+        at sun.net.www.http.HttpClient.&lt;init&gt;(HttpClient.java:231)
+        at sun.net.www.http.HttpClient.New(HttpClient.java:304)
+        at sun.net.www.http.HttpClient.New(HttpClient.java:316)
+        at
+sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:817)
+        at
+sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:769)
+        at
+sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:694)
+        at
+sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:938)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLEntityManager.setupCurrentEntity(XMLEntityManager.java:973)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startEntity(XMLEntityManager.java:905)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLEntityManager.startDTDEntity(XMLEntityManager.java:872)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLDTDScannerImpl.setInputSource(XMLDTDScannerImpl.java:282)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$DTDDispatcher.dispatch(XMLDocumentScannerImpl.java:1021)
+        at
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:368)
+        at
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:834)
+        at
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:764)
+        at
+com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:148)
+        at
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1242)
+        at javax.xml.parsers.SAXParser.parse(SAXParser.java:375)
+        at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:433)
+        at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:325)
+        at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:306)
+        at com.kitfox.svg.app.SVGPlayer.loadURL(SVGPlayer.java:185)
+        at
+com.kitfox.svg.app.SVGPlayer.cm_loadUrlActionPerformed(SVGPlayer.java:341)
+        at com.kitfox.svg.app.SVGPlayer.access$300(SVGPlayer.java:48)
+        at com.kitfox.svg.app.SVGPlayer$5.actionPerformed(SVGPlayer.java:265)
+        at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849)
+[snip]
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:157)
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149)
+        at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+java.lang.NullPointerException
+        at com.kitfox.svg.SVGDisplayPanel.setDiagram(SVGDisplayPanel.java:60)
+        at com.kitfox.svg.app.SVGPlayer.loadURL(SVGPlayer.java:209)
+        at
+com.kitfox.svg.app.SVGPlayer.cm_loadUrlActionPerformed(SVGPlayer.java:341)
+        at com.kitfox.svg.app.SVGPlayer.access$300(SVGPlayer.java:48)
+        at com.kitfox.svg.app.SVGPlayer$5.actionPerformed(SVGPlayer.java:265)
+        at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1849)
+[snip]
+        at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:149)
+        at java.awt.EventDispatchThread.run(EventDispatchThread.java:110)
+
+
+
+3) Still asks for full access in webstart 1.4.2
+===============================================
+This maybe only a loacal misconfiguration on my machine:
+When i use webstart 1.4.2 (that uses jre1.5 for your app) it still
+asks for full access. Don&apos;t know why, just to inform you
+
+
+Greeting
+Peter
+
+
+
+
+
+
+
+-- No virus found in this incoming message. Checked by AVG Free Edition.
+Version: 7.5.441 / Virus Database: 268.18.2/692 - Release Date: 18/02/2007 4:35 PM</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>30</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20070223160952</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2007-02-23 16:09:52</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Fix requirement to load DTDs when network down</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2007-02-23 16:09:52</issue_when>
+   <thetext>Hi Mark, again
+
+At 03:42 20.02.2007, you wrote:
+
+&gt; &gt;I understand your concern.  Unfortunately, these permissions are necessary to
+allow the program to read files.  I&apos;ve created a restricted version that you can
+access on this webpage:
+
+... i answered this ...
+
+and now remembered the &apos;utility&apos; to have dtd in a distribution 
+to work without networkaccess.
+
+You may look here:
+   http://ant.apache.org/manual/CoreTypes/xmlcatalog.html
+
+(probably you know this much better than me, but if not it may help)
+
+Greetings
+Peter</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>31</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20070227033022</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>sarxos</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2007-02-27 03:30:22</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>Windows XP</op_sys>
+  <short_desc>NPE in LinearGradientPaintContext on MacOS X</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>sarxos</who>
+   <issue_when>2007-02-27 03:30:22</issue_when>
+   <thetext>On XP, Fedora or Qubuntu it works perfectly, but on MacOS X this class generate
+NullPointerException.
+
+This is my stacktrace:
+
+Exception in thread &quot;AWT-EventQueue-0&quot; ...
+Caused by: java.lang.NullPointerException
+    at
+com.kitfox.svg.batik.LinearGradientPaintContext.&lt;init&gt;(LinearGradientPaintContext.java:132)
+    at
+com.kitfox.svg.batik.LinearGradientPaint.createContext(LinearGradientPaint.java:313)
+    at apple.awt.OSXSurfaceData.setupPaint(OSXSurfaceData.java:760)
+    at apple.awt.OSXSurfaceData.setupGraphicsState(OSXSurfaceData.java:1085)
+    at apple.awt.CPeerSurfaceData.setupGraphicsState(CPeerSurfaceData.java:133)
+    at apple.awt.OSXSurfaceData.setupGraphicsState(OSXSurfaceData.java:1013)
+    at apple.awt.OSXSurfaceData.drawfillShape(OSXSurfaceData.java:1346)
+    at apple.awt.CRenderer.drawfillShape(CRenderer.java:536)
+    at apple.awt.CRenderer.fill(CRenderer.java:574)
+    at apple.awt.CRenderer.fill(CRenderer.java:561)
+    at sun.java2d.pipe.ValidatePipe.fill(ValidatePipe.java:142)
+    at sun.java2d.SunGraphics2D.fill(SunGraphics2D.java:2571)
+    at com.kitfox.svg.ShapeElement.renderShape(ShapeElement.java:237)
+    at com.kitfox.svg.Path.render(Path.java:94)
+    at com.kitfox.svg.Group.render(Group.java:161)
+    at com.kitfox.svg.Group.render(Group.java:161)
+    at com.kitfox.svg.SVGRoot.render(SVGRoot.java:268)
+    at com.kitfox.svg.SVGDiagram.render(SVGDiagram.java:88)
+    at com.kitfox.svg.app.beans.SVGIcon.paintIcon(SVGIcon.java:135)
+    ... 16 more
+
+I propose this solution: 
+
+code from LinearGradientPaintContext in line 132:
+
+// ----------------------------------------------
+Object colorRend = hints.get(RenderingHints.KEY_COLOR_RENDERING);
+Object rend      = hints.get(RenderingHints.KEY_RENDERING);
+// ----------------------------------------------
+
+replace to new code:
+
+// ----------------------------------------------
+Object colorRend;
+Object rend;
+
+// here on MAcOsX NPE is generated when hins is null.
+if(hints == null) {
+    colorRend = RenderingHints.VALUE_COLOR_RENDER_DEFAULT;
+    rend = RenderingHints.VALUE_RENDER_DEFAULT;
+} else {
+    colorRend = hints.get(RenderingHints.KEY_COLOR_RENDERING);
+    rend = hints.get(RenderingHints.KEY_RENDERING);        	
+}
+// ----------------------------------------------
+
+and thats all folks ;P
+
+Below I put simple test program (of course for MacOsX):
+
+// -----------------------------------------
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.net.URI;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import com.kitfox.svg.SVGCache;
+import com.kitfox.svg.SVGUniverse;
+import com.kitfox.svg.app.beans.SVGIcon;
+
+/**
+ * Simple NPE generation.&lt;br&gt;
+ * @author Bartosz Firyn (SarXos)
+ * @version 0.1 2007-02-27
+ */
+public class TestNPEinLinearGradientPaintContext {
+
+	/**
+	 * for testing.&lt;br&gt;
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		StringReader reader = new StringReader(makeDynamicSVG());
+		SVGUniverse uni = SVGCache.getSVGUniverse();
+		URI svguri = uni.loadSVG(reader, &quot;mysvg&quot;);
+		SVGIcon icon = new SVGIcon();
+		icon.setAntiAlias(true);
+		icon.setSvgURI(svguri);
+		
+		// create simple frame with button with svg icon.
+		JFrame f = new JFrame();
+		JButton b = new JButton();
+		b.setIcon(icon);
+		f.add(b);
+		f.pack();
+		f.setVisible(true);
+	}
+	
+	private static String makeDynamicSVG() {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        pw.println(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot; standalone=\&quot;no\&quot;?&gt;&quot;);
+        pw.println(&quot;&lt;svg&quot;);
+        pw.println(&quot;   xmlns:svg=\&quot;http://www.w3.org/2000/svg\&quot;&quot;);
+        pw.println(&quot;   xmlns=\&quot;http://www.w3.org/2000/svg\&quot;&quot;);
+        pw.println(&quot;   xmlns:xlink=\&quot;http://www.w3.org/1999/xlink\&quot;&quot;);
+        pw.println(&quot;   version=\&quot;1.0\&quot;&quot;);
+        pw.println(&quot;   width=\&quot;70.226791\&quot;&quot;);
+        pw.println(&quot;   height=\&quot;49.543922\&quot;&quot;);
+        pw.println(&quot;   id=\&quot;svg5241\&quot;&gt;&quot;);
+        pw.println(&quot;  &lt;defs&quot;);
+        pw.println(&quot;     id=\&quot;defs5243\&quot;&gt;&quot;);
+        pw.println(&quot;    &lt;linearGradient&quot;);
+        pw.println(&quot;       id=\&quot;linearGradient14160\&quot;&gt;&quot;);
+        pw.println(&quot;      &lt;stop&quot;);
+        pw.println(&quot;         style=\&quot;stop-color:white;stop-opacity:1\&quot;&quot;);
+        pw.println(&quot;         offset=\&quot;0\&quot;&quot;);
+        pw.println(&quot;         id=\&quot;stop14162\&quot; /&gt;&quot;);
+        pw.println(&quot;      &lt;stop&quot;);
+        pw.println(&quot;         style=\&quot;stop-color:#006dff;stop-opacity:0\&quot;&quot;);
+        pw.println(&quot;         offset=\&quot;1\&quot;&quot;);
+        pw.println(&quot;         id=\&quot;stop14164\&quot; /&gt;&quot;);
+        pw.println(&quot;    &lt;/linearGradient&gt;&quot;);
+        pw.println(&quot;    &lt;linearGradient&quot;);
+        pw.println(&quot;       x1=\&quot;-5.4896049\&quot; y1=\&quot;24.897709\&quot;&quot;);
+        pw.println(&quot;       x2=\&quot;47.385681\&quot; y2=\&quot;13.053671\&quot;&quot;);
+        pw.println(&quot;       id=\&quot;linearGradient14166\&quot;&quot;);
+        pw.println(&quot;       xlink:href=\&quot;#linearGradient14160\&quot;&quot;);
+        pw.println(&quot;       gradientUnits=\&quot;userSpaceOnUse\&quot;&quot;);
+        pw.println(&quot;       gradientTransform=\&quot;translate(-0.2,0.125749)\&quot; /&gt;&quot;);
+        pw.println(&quot;    &lt;linearGradient&quot;);
+        pw.println(&quot;       x1=\&quot;72.292137\&quot;&quot;);
+        pw.println(&quot;       y1=\&quot;34.266876\&quot;&quot;);
+        pw.println(&quot;       x2=\&quot;29.531235\&quot;&quot;);
+        pw.println(&quot;       y2=\&quot;14.998215\&quot;&quot;);
+        pw.println(&quot;       id=\&quot;linearGradient14170\&quot;&quot;);
+        pw.println(&quot;       xlink:href=\&quot;#linearGradient14160\&quot;&quot;);
+        pw.println(&quot;       gradientUnits=\&quot;userSpaceOnUse\&quot;&quot;);
+        pw.println(&quot;       gradientTransform=\&quot;translate(-0.2,0.125749)\&quot; /&gt;&quot;);
+        pw.println(&quot;  &lt;/defs&gt;&quot;);
+        pw.println(&quot;  &lt;g&quot;);
+        pw.println(&quot;     transform=\&quot;translate(0.2,-0.125749)\&quot;&quot;);
+        pw.println(&quot;     id=\&quot;layer1\&quot;&gt;&quot;);
+        pw.println(&quot;    &lt;path&quot;);
+        pw.println(&quot;       d=\&quot;M 0,25.074486 L 34.648232,0.32574856 L
+69.826795,25.074486 L 34.648232,49.46967 L 0,25.074486 z \&quot;&quot;);
+        pw.println(&quot;      
+style=\&quot;fill:#006dff;fill-opacity:1;fill-rule:evenodd;stroke:black;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\&quot;&quot;);
+        pw.println(&quot;       id=\&quot;path5249\&quot; /&gt;&quot;);
+        pw.println(&quot;    &lt;path&quot;);
+        pw.println(&quot;       d=\&quot;M 1.9350162,25.065652 L 34.129913,1.9072114 L
+68.245332,25.065652 L 34.660243,47.888208 L 1.9350162,25.065652 z \&quot;&quot;);
+        pw.println(&quot;      
+style=\&quot;fill:url(#linearGradient14166);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.38094512;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\&quot;&quot;);
+        pw.println(&quot;       id=\&quot;path13273\&quot; /&gt;&quot;);
+        pw.println(&quot;    &lt;path&quot;);
+        pw.println(&quot;       d=\&quot;M 68.068556,25.171892 L 35.074807,47.711431 L
+1.5814628,24.640204 L 34.721254,1.3768813 L 68.068556,25.171892 z \&quot;&quot;);
+        pw.println(&quot;      
+style=\&quot;fill:url(#linearGradient14170);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.38094512;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1\&quot;&quot;);
+        pw.println(&quot;       id=\&quot;path14168\&quot; /&gt;&quot;);
+        pw.println(&quot;  &lt;/g&gt;&quot;);
+        pw.println(&quot;&lt;/svg&gt;&quot;);
+        pw.close();
+        return sw.toString();
+    }	
+}</thetext>
+  </long_desc>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>32</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20070401043732</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>kitfox</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2007-04-01 04:27:25</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>Handle zipped SVG files</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2007-04-01 04:27:25</issue_when>
+   <thetext>SVG files that end in .svgz are zipped SVG.  These files should be unizipped
+before interpretation.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2007-04-01 04:36:04</issue_when>
+   <thetext>http://www.xml.com/pub/a/2002/01/23/svg/index.html?page=2
+
+See the last example on this page.</thetext>
+  </long_desc>
+  <long_desc>
+   <who>kitfox</who>
+   <issue_when>2007-04-01 04:37:32</issue_when>
+   <thetext>Created an attachment (id=6)
+SVG file in zipped form
+</thetext>
+  </long_desc>
+  <attachment encoding='Base64'>
+    <mimetype>application/x-compressed</mimetype>
+    <attachid>6</attachid>
+    <date>2007-04-01 04:37:31</date>
+    <desc>SVG file in zipped form</desc>
+    <ispatch></ispatch>
+    <filename>cubes_final.svgz</filename>
+    <submitter_id>3</submitter_id>
+    <submitting_username>kitfox</submitting_username>
+    <data>H4sICFfFQTwCA2N1YmVzX2ZpbmFsLnN2ZwDtWFtv2zYUfg+Q/3DKYsMKWOJF1MUXuWidYCuQpkXr
+eSiGPSg2Y2uRJUOi7WS/foek5cbusAHb2yAC1uE5JM9HfvxI2R69flwXsFN1k1dlSrjPCKhyXi3y
+cpmSvKm8JAn7Hievx5cXlxejF1cfJtMvH6+h2S3h489vb95NgHiU/hJMKL2aXsHn2Y+AWSi9viWX
+F3AsZKX1ZkDpfr/394Ff1Us6/UQFY5x+up54OMwzDuszafJQzM+Zv9ALAr+aPKMX17fTd9MvsNjW
+QERDxifRXVZsVeOQ2NAYT4ZDB+184NGp78WnPgRn7eKsnQ+BncE+qKdpvrbABpb5IoyksSEXibER
+D60f9UVgbCyDyNq+7BubyEhY249tP+zGrZVJbG0sMc6/hf28KfISgQkDPw7BD8308MmAA84Cxxpj
+P88abNzU+H+snE1onhXz99VCAWnsvM6a79QyL4Gsq22jKhSbaf7NCcroCPb5Qq9SEkXh5pHASuXL
+lU6JCJlxd7nav60eU2KgsQtgnADKdtBssrlKyaZWjap3FtTC6lwXamyU+KbM15lGaYMHk+2dgiu1
+rspG1zY4oq7nYdhC3Tdjp9lR87S+qwrIFymZ4zgCjX4qEAuHVg9qAC+ZLUNwAc+uYGA2/hgyPPxe
+5eUAl79TxZCM2/Mw2mR61Wa8z4sC8wW2DAkg4nvmcy56IvJFzAsR+iwQPS58mYQz9Hgkb1wPjEXJ
+zPX7g9C/BYhscflNEil7QYLSiRxA4DmAn0JMLWboxCy5OXR0oDPX/5+A5rY4IJus55IVzGdh7OFT
+HBPjgREnizlZrbx5Pv4r7oi67XEio4d9s06t5rqVE2fsu69qct7pVPu2tDs2gLIqFW4BbbMtjwJo
+CKBoyua+qtcpsdUi0+qHgJkz3wMuA1+Grwi0U0SlwyNK4GGwqtV9Sl46Gf1lEtbzYvHqmT4yK1sF
+5rJLyff4xFm5Kw5dV8FIe/tgrK266OFycPGDMzy5jl3JtK7zu61Wt9kaWXki7qTiOGsxGR4tndVI
+336lyttKv5nrHE/a8cBj17Z6IM5tEC7/3zAhZM+LWEcFUiGTnieTjgqkwutk8fyu6FThVNGdkJN7
+M4g6KtrLouPCcRGLjosDFx0VJ18thOyoaF8iHRftV4uOiePrlHe/yI6v046LwwH5n/4GGdGl+zfO
+/O2KtT8BEeZyPhYWAAA=
+</data>
+  <attachment_iz_url>https://svgsalamander.dev.java.net/nonav/issues/showattachment.cgi/6/cubes_final.svgz</attachment_iz_url>
+  </attachment>
+</issue>
+<issue status_code="200" status_message="OK">
+  <issue_id>33</issue_id>
+  <issue_status>NEW</issue_status>
+  <priority>P3</priority>
+  <resolution></resolution>
+  <component>svgsalamander</component>
+  <version>current</version>
+  <rep_platform>All</rep_platform>
+  <assigned_to>issues@svgsalamander</assigned_to>
+  <delta_ts>20070410051751</delta_ts>
+  <subcomponent>www</subcomponent>
+  <reporter>barteo</reporter>
+  <target_milestone>milestone 1</target_milestone>
+  <issue_type>DEFECT</issue_type>
+  <creation_ts>2007-04-10 05:17:51</creation_ts>
+  <qa_contact>issues@svgsalamander</qa_contact>
+  <status_whiteboard></status_whiteboard>
+  <issue_file_loc></issue_file_loc>
+  <votes></votes>
+  <op_sys>All</op_sys>
+  <short_desc>NPE while loading SVG</short_desc>
+  <keywords></keywords>
+  <long_desc>
+   <who>barteo</who>
+   <issue_when>2007-04-10 05:17:51</issue_when>
+   <thetext>The following SVG produces NPE while parsing:
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1 Tiny//EN&quot; &quot;http://www.w3.org/Graphics/
+SVG/1.1/DTD/svg11-tiny-flat.dtd&quot;&gt;
+&lt;svg id=&quot;root&quot; version=&quot;1.1&quot; 
+     baseProfile=&quot;tiny&quot; 
+     xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+     xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; 
+     width=&quot;100%&quot; height=&quot;100%&quot; viewBox=&quot;0 0 100 100&quot; 
+	 xml:space=&quot;preserve&quot;&gt;
+    &lt;defs&gt;
+        &lt;set xlink:href=&quot;#root&quot; attributeName=&quot;viewBox&quot; attributeType=&quot;XML&quot; 
+to=&quot;5 5 95 95&quot; begin=&quot;0s&quot; dur=&quot;2s&quot; repeatCount=&quot;indefinite&quot; 
+end=&quot;showElement.end+1s&quot;/&gt;
+    &lt;/defs&gt;
+&lt;/svg&gt;
+
+Stack trace:
+java.lang.NullPointerException
+	at com.kitfox.svg.SVGLoader.endElement(SVGLoader.java:239)
+	at 
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.endElement(AbstractSAXParser.java:601)
+	at 
+com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:180)
+	at 
+com.sun.org.apache.xerces.internal.impl.dtd.XMLDTDValidator.emptyElement(XMLDTDValidator.java:788)
+	at 
+com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:377)
+	at 
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2740)
+	at 
+com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:645)
+	at 
+com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+	at 
+com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:508)
+	at 
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+	at 
+com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+	at 
+com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+	at 
+com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+	at 
+com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+	at javax.xml.parsers.SAXParser.parse(SAXParser.java:395)
+	at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:433)
+	at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:387)
+	at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:343)
+	at com.kitfox.svg.SVGUniverse.loadSVG(SVGUniverse.java:338)
+	at [application code]</thetext>
+  </long_desc>
+</issue>
+</issuezilla>
