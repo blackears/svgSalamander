@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NetBeans support tasks">
+	<!--description>
+	Collection of common tasks used by many other projects.
+	</description-->
+
+    <property name="jvm.debug" location="C:\bin\jdk1.6.0\fastdebug\bin\java.exe"/>
+
+    <taskdef resource="proguard/ant/task.properties" classpath="C:\java\proguard4.0beta\lib\proguard.jar" />
+
+    <target name="compile-selected-files" depends="init">
+        <fail unless="files">Must set property 'files'</fail>
+        <mkdir dir="${classes.main.dir}"/>
+        <javac debug="true" destdir="${classes.main.dir}" srcdir="${src.main.dir}" includes="${files}" source="1.5" fork="yes">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-selected-files-test" depends="jar">
+        <fail unless="files">Must set property 'files'</fail>
+        <mkdir dir="${classes.test.dir}"/>
+        <javac debug="true" destdir="${classes.test.dir}" srcdir="${src.test.dir}" includes="${files}" source="1.5" fork="yes">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run-selected-files" depends="compile" description="Run Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+
+        <java fork="true" classname="${classname}">
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Djogl.verbose"/>
+            <!--jvmarg value="-XX:+HeapDumpOnOutOfMemoryError"/-->
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-selected-files-test" depends="compile-test" description="Run Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+
+        <!--java fork="true" classname="${classname}" jvm="${project.run.jvm}"-->
+        <java fork="true" classname="${classname}">
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Djogl.verbose"/>
+            <!--jvmarg value="-agentlib:hprof=file=snapshot.hprof,format=b"/-->
+            <!--jvmarg value="-XX:+HeapDumpOnOutOfMemoryError"/-->
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="debug" depends="init,compile" if="netbeans.home" description="Debug Project">
+        <nbjpdastart name="${project.debug.name}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${project.debug.mainClass}" jvm="${jvm.debug}">
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-selected-files" depends="init,compile" if="netbeans.home" description="Debug a Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+        <nbjpdastart name="${classname}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${classname}" jvm="${jvm.debug}">
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-selected-files-test" depends="init,compile" if="netbeans.home" description="Debug a Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+        <nbjpdastart name="${classname}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${classname}" jvm="${jvm.debug}">
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-fix" depends="init" if="netbeans.home" description="Recompile a file during a debug session and reload it into the debugger without stopping it">
+        <javac destdir="${classes.main.dir}" srcdir="${src.main.dir}" debug="true" >
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+            <include name="${fix.file}.java"/>
+        </javac>
+        
+        <nbjpdareload>
+            <fileset dir="${classes.main.dir}">
+                <include name="${fix.file}.class"/>
+            </fileset>
+        </nbjpdareload>
+    </target>
+
+    <target name="test-selected-files" depends="init">
+        <fail unless="classname">Must set property 'classname'</fail>
+        <echo message="test selected files not implemented yet"/>
+    </target>
+
+    <target name="profile" depends="init,compile" description="Profile project">
+        <fail unless="netbeans.home">This target can only run inside the NetBeans IDE.</fail>
+        <nbprofiledirect>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbprofiledirect>
+
+        <java classname="${project.run.mainClass}" fork="true">
+            <jvmarg value="${profiler.info.jvmargs.agent}"/>
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xmx256M"/>
+            <jvmarg value="-Djogl.verbose"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="profile-single" depends="compile" description="Profile single file">
+        <fail unless="netbeans.home">This target can only run inside the NetBeans IDE.</fail>
+        <fail unless="profile.class">Class to profile must be specified.</fail>
+        <!--echo message="*************main*************"/-->
+        
+        <nbprofiledirect>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbprofiledirect>
+
+        <java classname="${profile.class}" fork="true">
+            <jvmarg value="${profiler.info.jvmargs.agent}"/>
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xmx256M"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="profile-single-test" depends="compile" description="Profile single file">
+        <fail unless="netbeans.home">This target can only run inside the NetBeans IDE.</fail>
+        <fail unless="profile.class">Class to profile must be specified.</fail>
+        <!--echo message="*************test*************"/-->
+        
+        <nbprofiledirect>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbprofiledirect>
+
+        <java classname="${profile.class}" fork="true">
+            <jvmarg value="${profiler.info.jvmargs.agent}"/>
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xmx256M"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="generateKey" depends="init" description="Create a key to sign our jar files with.">
+        <delete file="${key.location}"/>
+        <genkey alias="${key.user}" storepass="${key.password}" keystore="${key.location}" validity="1000" verbose="true">
+            <dname>
+                <param name="CN" value="Mark McKay, mark@kitfox.com"/>
+                <param name="OU" value="kitfox.com"/>
+                <param name="O"  value="kitfox"/>
+                <param name="L"  value="Toronto"/>
+                <param name="S"  value="Ontario"/>
+                <param name="C"  value="CA"/>
+            </dname>
+        </genkey>
+    </target>
+
+    <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpath="C:\dev\cvs.sourceforge.net\findbugs\lib\findbugs-ant.jar" />
+    <taskdef name="findbugs-viewer" classname="edu.umd.cs.findbugs.anttask.FindBugsViewerTask" classpath="C:\dev\cvs.sourceforge.net\findbugs\lib\findbugs-ant.jar" />
+
+    <property name="findbugs.home" location="C:\dev\cvs.sourceforge.net\findbugs" />
+    <property name="findbugs.bugReport" location="bcel-fb.xml" />
+
+    <target name="findbugs" depends="jar">
+        <findbugs home="${findbugs.home}" output="xml" outputFile="${findbugs.bugReport}" >
+            <auxClasspath>
+                <path refid="path.classpath"/>
+            </auxClasspath>
+            <sourcePath path="${src.dir}"/>
+            <class location="${project.jar}" />
+        </findbugs>
+    </target>
+
+    <target name="findbugs-viewer" depends="jar">
+        <findbugs-viewer home="${findbugs.home}" look="native" loadbugs="${findbugs.bugReport}"/>
+    </target>
+
+    <target name="javadoc" depends="init,compile" description="Javadoc for my API.">
+        <javadoc destdir="${javadoc.dir}" packagenames="*">
+            <sourcepath>
+                <path refid="path.sourcepath"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javadoc>
+
+        <zip destfile="${javadoc.zip}" basedir="${javadoc.dir}" compress="true">
+            <exclude name="${javadoc.zip}"/>
+        </zip>
+    </target>
+
+    <target name="javadoc-browse" if="netbeans.home" unless="no.javadoc.preview" depends="init">
+        <nbbrowse file="${javadoc.dir}/index.html"/>
+    </target>
+
+    <target name="-test" depends="init,compile" description="runs a series of tests on svgSalamander">
+        <junit printsummary="withOutAndErr" haltonfailure="true">
+            <formatter type="plain" usefile="false"/>
+            <test name="${test.suite}" />
+            <classpath>
+                <pathelement location="${classes.dir}"/>
+            	<path refid="path.classpath"/>
+            </classpath>
+
+        </junit>
+    </target>
+
+    <target name="smoketest" depends="init" description="runs smoke tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="SmokeTests"/>
+        </antcall>
+    </target>
+
+    <target name="checkintest" depends="init" description="runs check in tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="CheckInTests"/>
+        </antcall>
+    </target>
+
+    <target name="releasetest" depends="init" description="runs release tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="ReleaseTests"/>
+        </antcall>
+    </target>
+
+</project>
