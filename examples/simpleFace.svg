@@ -1,0 +1,6 @@
+<svg width="400" height="400" style="fill:none;stroke-width:4">
+    <circle cx="200" cy="200" r="200" style="stroke:blue"/>
+    <circle cx="140" cy="140" r="40" style="stroke:red"/>
+    <circle cx="260" cy="140" r="40" style="stroke:red"/>
+    <polyline points="100 300 150 340 250 240 300 300" style="stroke:red"/>
+</svg>

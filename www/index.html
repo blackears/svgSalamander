@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <title>Default Project Content</title>
+  </head>
+  <body>
+
+<h2>SVG Salamander</h2>
+  
+<p>SVG Salamander is an SVG engine for Java that's designed to be small, fast, and allow programmers to use it with a minimum of fuss.  It's in particular targeted for making it easy to integrate SVG into Java games and making it much easier for artists to design 2D game content - from rich interactive menus to charts and graphcs to complex animations.</p>
+
+
+<h3>Features</h3>
+
+<ul>
+<li/>Ant task to allow easy conversion from SVG to images from within Ant scripts
+<li/>SVGIcon class greatly simplifies loading and drawing images to screen
+<li/>A much smaller code foot print than Batik, and only one JAR file to include
+<li/>Direct access to the scene graph tree.  You can use Java commands to manipulate it directly.
+<li/>An index of all named shapes in the SVG graph is easily accessable.
+<li/>Picking shapes given (x, y) coorinates is possible, and can be used to implement graphical buttons
+selected by the mouse
+<li/>Clip region sensitivity makes for fast rendering when only updating part of the image.  This makes panning the camera quite efficient.
+<li/>Easy rendering to any Graphics2D or BufferedImage.  Unlike Batik, the SVG Salamander engine does not own the graphics context, so you can pass it whatever graphics context you like.
+<li/>Internal and external links are implemented as URIs, which allows the
+engine to automatically import linked documents - even if they're stored on a remote server.
+<li/>SVG can be read from an InputStream, so you can create documents dynamicly from
+an in-program XSLT transformation.
+</ul>
+
+<h3>Status</h3>
+
+<p><b>In Progress</b></p>
+
+<ul>
+<li/>Animation is mostly implemented.  You can use the player below to play SVG
+with animation elements.
+</ul>
+
+<p><b>Wish List</b></p>
+
+<ul>
+<li/>JavaScript support needs to be added.  This will likely dovetail with adding support for relative times.
+<li/>Filters need to be added.
+</ul>
+
+<h3>Current status</h3>
+
+<p>SalamanderSVG is part of the Salamander project hosted on kitfox.com.</p>
+
+<p><a href="http://www.kitfox.com">http://www.kitfox.com</a></p>
+
+<p>I can be contacted at mark at kitfox dot com.</p>
+
+<h3>Binaries</h3>
+
+<p>These programs provide the abiity to read SVG files from your hard drive or the internet.  If you're worried about security, <a href="secure.html">these restricted versions will not</a>.</p>
+
+<p><a href="binaries/svgViewer.jnlp">Run the SVG Viewer (no animation)</a></p>
+<p><a href="binaries/svgPlayer.jnlp">Run the SVG Player (animation)</a></p>
+
+
+<h3>Downloads</h3>
+
+<p>Complete: <a href="binaries/svgSalamander.jar">Download complete SVG Salamander JAR</a></p>
+<p>Tiny: <a href="binaries/svgSalamander-tiny.jar">Download unsigned JAR without resources</a></p>
+
+<h3>Documentation</h3>
+
+<p><a href="docs/svgSalamanderJavadoc.zip">Download Javadoc</a></p>
+
+<p><a href="docs/use.html">How to use SVG Salamander in your program</a></p>
+
+<!--
+<h3>Programs that use SVG Salamander!</h3>
+
+<p>None yet, but if you have a program that uses SVGSalamander and would like to let the world </p>
+
+<p><a href="http://www.vassalengine.org/community/index.php">VASSAL Game Engine</a></p>
+-->
+
+<h3>Participation</h3>
+
+<p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick"/>
+<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but21.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and
+secure!"/>
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+"/>
+</form>
+</p>
+<p>
+Please support the SVG Salamander project.  I'm maintaining this code on my own,
+and any support I receive helps me make the project even better.
+</p>
+
+<p>Currently, I'm not accepting any developers, but would be interested in any comments or questions about the code.  Please sign up as an observer and subscribe to one of the mailing lists!</p>
+
+  </body>
+</html>

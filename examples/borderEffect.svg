@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+        <circle id="myCircle" cx="0" cy="0" r="20"/>
+
+		<clipPath id="myCircleSymbol" viewbox="-20 -20 20 20">
+			<g transform="scale(1)">
+				<use xlink:href="#myCircle" style="fill:red;stroke:black"/>
+			</g>
+		</clipPath>
+
+    </defs>
+
+    <use xlink:href="#myCircle" x="30" y="30" style="fill:red;stroke:black"/>
+
+	<g transform="translate(120, 60)">
+		<g transform="scale(4)">
+			<use xlink:href="#myCircle" style="fill:red;stroke:black"/>
+		</g>
+	</g>
+
+	<use xlink:href="#myCircleSymbol" x="160" y="120" style="fill:red;stroke:black"/>
+
+</svg>
