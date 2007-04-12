@@ -43,7 +43,7 @@ import org.apache.tools.ant.types.resources.FileResource;
  *     &lt;service className="name.of.class.to.build.list.For2" toDir="location/to/save/generated.list2"&gt;
  * &lt;/servicesLister&gt;
  * </code>
- *
+ * 
  * @author kitfox
  */
 public class ServicesListerAntTask extends DefBase
