@@ -9,6 +9,8 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
+
 /**
  * 
  * The SVGAngle interface corresponds to the &lt;angle&gt; basic data type.
@@ -53,7 +55,7 @@ public interface SVGAngle extends SVGDataType
     /**
      * The angle value as a string value, in the units expressed by unitType. Setting this attribute will cause value and valueInSpecifiedUnits to be updated automatically to reflect this setting.
      */
-    public SVGString getValueAsString();
+    public DOMString getValueAsString();
     
     /**
      * Reset the value as a number with an associated unitType, thereby replacing the values for all of the attributes on the object.

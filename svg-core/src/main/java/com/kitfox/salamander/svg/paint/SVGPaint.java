@@ -11,7 +11,7 @@ package com.kitfox.salamander.svg.paint;
 
 import com.kitfox.salamander.svg.SVGException;
 import com.kitfox.salamander.svg.basic.SVGDataType;
-import com.kitfox.salamander.svg.basic.SVGString;
+import com.kitfox.salamander.svg.DOMString;
 
 /**
  * 
@@ -69,12 +69,12 @@ public interface SVGPaint extends SVGDataType
     /**
      * When the paintType specifies a URI, this attribute holds the URI string. When the paintType does not specify a URI, this attribute is null.
      */
-    public SVGString getUri();
+    public DOMString getUri();
     /**
      * Sets the paintType to SVG_PAINTTYPE_URI_NONE and sets uri to the specified value.
      * @param uri The URI for the desired paint server.
      */
-    public void setUri(SVGString uri);
+    public void setUri(DOMString uri);
     /**
      * Sets the paintType as specified by the parameters. If paintType requires a URI, then uri must be non-null and a valid string; otherwise, uri must be null. If paintType requires an RGBColor, then rgbColor must be a valid RGBColor object; otherwise, rgbColor must be null. If paintType requires an SVGICCColor, then iccColor must be a valid SVGICCColor object; otherwise, iccColor must be null.
      * @param paintType One of the defined constants for paintType.

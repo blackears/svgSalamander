@@ -9,6 +9,8 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
+
 /**
  * 
  * Interface SVGTests  defines an interface which applies to all elements which have attributes requiredFeatures, requiredExtensions and systemLanguage.
@@ -33,5 +35,5 @@ public interface SVGTests
      * @param extension The name of the extension, expressed as a URI.
      * @return True or false, depending on whether the given extension is supported.
      */
-    public boolean hasExtension(SVGString extension);
+    public boolean hasExtension(DOMString extension);
 }

@@ -9,6 +9,7 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
 import com.kitfox.salamander.svg.coordSystems.SVGTransformList;
 
 /**
@@ -29,17 +30,17 @@ public interface SVGViewSpec extends SVGZoomAndPan, SVGFitToViewBox
     /**
      * Corresponds to the viewBox setting on the SVG View Specification.
      */
-    public SVGString getViewBoxString();
+    public DOMString getViewBoxString();
     /**
      * Corresponds to the preserveAspectRatio setting on the SVG View Specification.
      */
-    public SVGString getPreserveAspectRatioString();
+    public DOMString getPreserveAspectRatioString();
     /**
      * Corresponds to the transform setting on the SVG View Specification.
      */
-    public SVGString getTransformString();
+    public DOMString getTransformString();
     /**
      * Corresponds to the viewTarget setting on the SVG View Specification.
      */
-    public SVGString getTargetString();
+    public DOMString getTargetString();
 }

@@ -9,11 +9,13 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
+
 /**
  * 
  * Used for attributes of type DOMString which can be animated.
  * @author kitfox
  */
-public interface SVGAnimatedString extends SVGAnimatedDataType<SVGString>
+public interface SVGAnimatedString extends SVGAnimatedDataType<DOMString>
 {
 }

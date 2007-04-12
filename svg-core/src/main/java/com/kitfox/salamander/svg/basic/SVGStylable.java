@@ -9,6 +9,7 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
 import org.w3c.dom.css.CSSStyleDeclaration;
 import org.w3c.dom.css.CSSValue;
 
@@ -31,5 +32,5 @@ public interface SVGStylable
      * @param name Retrieves a "presentation attribute" by name.
      * @return The static/base value of the given presentation attribute as a CSSValue, or NULL if the given attribute does not have a specified value.
      */
-    public CSSValue getPresentationAttribute(SVGString name);
+    public CSSValue getPresentationAttribute(DOMString name);
 }

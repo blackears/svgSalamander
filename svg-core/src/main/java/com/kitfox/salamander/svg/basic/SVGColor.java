@@ -9,6 +9,7 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
 import com.kitfox.salamander.svg.SVGException;
 import org.w3c.dom.css.CSSValue;
 import org.w3c.dom.css.RGBColor;
@@ -58,14 +59,14 @@ public interface SVGColor extends SVGDataType, CSSValue
      * @param rgbColor The new color value.
      * @throws com.kitfox.salamander.svg.SVGException SVG_INVALID_VALUE_ERR: Raised if one of the parameters has an invalid value.
      */
-    public void setRGBColor(SVGString rgbColor) throws SVGException;
+    public void setRGBColor(DOMString rgbColor) throws SVGException;
     /**
      * Modifies the color value to be the specified sRGB color with an alternate ICC color specification.
      * @param rgbColor The new color value.
      * @param iccColor The alternate ICC color specification.
      * @throws com.kitfox.salamander.svg.SVGException SVG_INVALID_VALUE_ERR: Raised if one of the parameters has an invalid value.
      */
-    public void setRGBColorICCCOlor(SVGString rgbColor, SVGString iccColor) throws SVGException;
+    public void setRGBColorICCCOlor(DOMString rgbColor, DOMString iccColor) throws SVGException;
     /**
      * Sets the colorType as specified by the parameters. If colorType requires an RGBColor, then rgbColor must be a valid RGBColor object; otherwise, rgbColor must be null. If colorType requires an SVGICCColor, then iccColor must be a valid SVGICCColor object; otherwise, iccColor must be null.
      * @param colorType One of the defined constants for colorType.
@@ -73,6 +74,6 @@ public interface SVGColor extends SVGDataType, CSSValue
      * @param iccColor The specification of an ICC color, or null.
      * @throws com.kitfox.salamander.svg.SVGException SVG_INVALID_VALUE_ERR: Raised if one of the parameters has an invalid value.
      */
-    public void setColor(Type colorType, SVGString rgbColor, SVGString iccColor) throws SVGException;
+    public void setColor(Type colorType, DOMString rgbColor, DOMString iccColor) throws SVGException;
     
 }

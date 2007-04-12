@@ -9,6 +9,8 @@
 
 package com.kitfox.salamander.svg.basic;
 
+import com.kitfox.salamander.svg.DOMString;
+
 /**
  * 
  * Interface SVGLangSpace  defines an interface which applies to all elements which have attributes xml:lang and xml:space.
@@ -19,9 +21,9 @@ public interface SVGLangSpace
     /**
      * Corresponds to attribute xml:lang on the given element.
      */
-    public SVGString getXmllang();
+    public DOMString getXmllang();
     /**
      * Corresponds to attribute xml:space on the given element.
      */
-    public SVGString getXmlspace();
+    public DOMString getXmlspace();
 }

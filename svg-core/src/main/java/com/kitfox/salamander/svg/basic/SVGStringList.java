@@ -10,6 +10,7 @@
 package com.kitfox.salamander.svg.basic;
 
 import com.kitfox.salamander.svg.DOMException;
+import com.kitfox.salamander.svg.DOMString;
 import com.kitfox.salamander.svg.SVGException;
 
 
@@ -19,6 +20,6 @@ import com.kitfox.salamander.svg.SVGException;
  * SVGStringList has the same attributes and methods as other SVGxxxList interfaces. Implementers may consider using a single base class to implement the various SVGxxxList interfaces.
  * @author kitfox
  */
-public interface SVGStringList extends SVGList<SVGString>
+public interface SVGStringList extends SVGList<DOMString>
 {
 }
