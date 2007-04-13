@@ -9,8 +9,8 @@
 
 package com.kitfox.salamander.svg.basic;
 
-import com.kitfox.salamander.svg.DOMException;
 import com.kitfox.salamander.svg.SVGException;
+import org.w3c.dom.DOMException;
 
 
 /**

@@ -9,12 +9,14 @@
 
 package com.kitfox.salamander.svg.paths;
 
+import com.kitfox.salamander.svg.basic.SVGAnimatedNumber;
 import com.kitfox.salamander.svg.basic.SVGElement;
 import com.kitfox.salamander.svg.basic.SVGExternalResourcesRequired;
 import com.kitfox.salamander.svg.basic.SVGLangSpace;
 import com.kitfox.salamander.svg.basic.SVGStylable;
 import com.kitfox.salamander.svg.basic.SVGTests;
 import com.kitfox.salamander.svg.basic.SVGTransformable;
+import com.kitfox.salamander.svg.coordSystems.SVGPoint;
 import org.w3c.dom.events.EventTarget;
 
 /**
@@ -131,7 +133,7 @@ public interface SVGPathElement extends SVGElement, SVGTests, SVGLangSpace,
      * @param sweepFlag The value for the sweep-flag parameter.
      * @return   	A stand-alone, parentless SVGPathSegArcAbs object.	A stand-alone, parentless SVGPathSegArcAbs object.
      */
-    public SVGPathSegArcAbs createSVGPathSegArcAbs(float x, float y, float r1, float r2, float angle, boolean largeArcFlag, boolean sweepFlag);
+    public SVGPathSegCurvetoArcAbs createSVGPathSegArcAbs(float x, float y, float r1, float r2, float angle, boolean largeArcFlag, boolean sweepFlag);
     /**
      * Returns a stand-alone, parentless SVGPathSegArcRel object.
      * @param x The relative X coordinate for the end point of this path segment.
@@ -143,7 +145,7 @@ public interface SVGPathElement extends SVGElement, SVGTests, SVGLangSpace,
      * @param sweepFlag The value for the sweep-flag parameter.
      * @return A stand-alone, parentless SVGPathSegArcRel object.
      */
-    public SVGPathSegArcRel createSVGPathSegArcRel(float x, float y, float r1, float r2, float angle, boolean largeArcFlag, boolean sweepFlag);
+    public SVGPathSegCurvetoArcRel createSVGPathSegArcRel(float x, float y, float r1, float r2, float angle, boolean largeArcFlag, boolean sweepFlag);
     /**
      * Returns a stand-alone, parentless SVGPathSegLinetoHorizontalAbs object.
      * @param x The absolute X coordinate for the end point of this path segment.

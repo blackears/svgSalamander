@@ -9,9 +9,6 @@
 
 package com.kitfox.salamander.svg.basic;
 
-import com.kitfox.salamander.svg.DOMException;
-import com.kitfox.salamander.svg.SVGException;
-
 
 /**
  * This interface defines a list of DOMSVGNumber objects.
