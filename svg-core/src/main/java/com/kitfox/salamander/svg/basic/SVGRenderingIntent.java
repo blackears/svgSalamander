@@ -10,34 +10,37 @@
 package com.kitfox.salamander.svg.basic;
 
 /**
- * 
+ *
  * The SVGRenderingIntent  interface defines the enumerated list of possible values for 'rendering-intent' attributes or descriptors.
  * @author kitfox
  */
-public enum SVGRenderingIntent
+public interface SVGRenderingIntent
 {
-    /**
-     *  	The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
-     */
-    UNKNOWN,
-    /**
-     * Corresponds to a value of auto.
-     */
-    AUTO, 
-    /**
-     * Corresponds to a value of perceptual.
-     */
-    PERCEPTUAL, 
-    /**
-     * Corresponds to a value of relative-colorimetric.
-     */
-    RELATIVE_COLORIMETRIC, 
-    /**
-     * Corresponds to a value of saturation.
-     */
-    SATURATION, 
-    /**
-     * Corresponds to a value of absolute-colorimetric.
-     */
-    ABSOLUTE_COLORIMETRIC
+    public static enum Intent
+    {
+        /**
+         *  	The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
+         */
+        UNKNOWN,
+        /**
+         * Corresponds to a value of auto.
+         */
+        AUTO,
+        /**
+         * Corresponds to a value of perceptual.
+         */
+        PERCEPTUAL,
+        /**
+         * Corresponds to a value of relative-colorimetric.
+         */
+        RELATIVE_COLORIMETRIC,
+        /**
+         * Corresponds to a value of saturation.
+         */
+        SATURATION,
+        /**
+         * Corresponds to a value of absolute-colorimetric.
+         */
+        ABSOLUTE_COLORIMETRIC
+    }
 }

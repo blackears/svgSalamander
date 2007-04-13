@@ -13,18 +13,21 @@ package com.kitfox.salamander.svg.basic;
  * The SVGUnitTypes  interface defines a commonly used set of constants and is a base interface used by SVGGradientElement, SVGPatternElement, SVGClipPathElement, SVGMaskElement, and SVGFilterElement.
  * @author kitfox
  */
-public enum SVGUnitTypes
+public interface SVGUnitTypes
 {
-    /**
-     * The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
-     */
-    UNKNOWN, 
-    /**
-     * Corresponds to value userSpaceOnUse.
-     */
-    USER_SPACE_ON_USE, 
-    /**
-     * Corresponds to value objectBoundingBox.
-     */
-    OBJECT_BOUNDING_BOX
+    public static enum Type
+    {
+        /**
+         * The type is not one of predefined types. It is invalid to attempt to define a new value of this type or to attempt to switch an existing value to this type.
+         */
+        UNKNOWN,
+        /**
+         * Corresponds to value userSpaceOnUse.
+         */
+        USER_SPACE_ON_USE,
+        /**
+         * Corresponds to value objectBoundingBox.
+         */
+        OBJECT_BOUNDING_BOX
+    };
 }
