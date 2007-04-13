@@ -1,0 +1,37 @@
+/* 
+    Document   : __NAME__
+    Created on : __DATE__, __TIME__
+    Author     : __USER__
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+p.alert {
+   background-color: #ffcccc;
+   background-position: center;
+   border-bottom-color: red;
+   border-bottom-style: solid;
+   border-left-color: red;
+   border-left-style: solid;
+   border-right-color: red;
+   border-right-style: solid;
+   border-top-color: red;
+   border-top-style: solid;
+   font-style: inherit;
+   padding-bottom: 4px;
+   padding-left: 4px;
+   padding-right: 4px;
+   padding-top: 4px
+}
+
+
+
