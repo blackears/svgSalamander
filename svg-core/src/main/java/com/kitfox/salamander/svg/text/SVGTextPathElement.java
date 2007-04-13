@@ -55,9 +55,9 @@ public interface SVGTextPathElement extends SVGTextContentElement, SVGURIReferen
     /**
      * Corresponds to attribute method on the given 'textPath' element. The value must be one of the method type constants specified above.
      */
-    public SVGAnimatedEnumeration getMethod();
+    public SVGAnimatedEnumeration<MethodType> getMethod();
     /**
      * Corresponds to attribute spacing on the given 'textPath' element. The value must be one of the spacing type constants specified above.
      */
-    public SVGAnimatedEnumeration getSpacing();
+    public SVGAnimatedEnumeration<SpacingType> getSpacing();
 }

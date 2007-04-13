@@ -32,11 +32,11 @@ public interface SVGMaskElement extends SVGElement,
     /**
      * Corresponds to attribute maskUnits on the given 'mask' element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getMaskUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getMaskUnits();
     /**
      * Corresponds to attribute maskContentUnits on the given 'mask' element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getMaskContentUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getMaskContentUnits();
     /**
      * Corresponds to attribute x on the given 'mask' element.
      */

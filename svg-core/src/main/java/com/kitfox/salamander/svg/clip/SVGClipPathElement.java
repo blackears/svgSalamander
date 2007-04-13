@@ -33,5 +33,5 @@ public interface SVGClipPathElement extends SVGElement,
     /**
      * Corresponds to attribute clipPathUnits on the given 'clipPath' element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getClipPathUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getClipPathUnits();
 }

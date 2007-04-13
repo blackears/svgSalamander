@@ -14,14 +14,14 @@ package com.kitfox.salamander.svg.basic;
  * Used for attributes of type DOMString which can be animated.
  * @author kitfox
  */
-public interface SVGAnimatedEnumeration
+public interface SVGAnimatedEnumeration<T extends Enum>
 {
     /**
      * The base value of the given attribute before applying any animations.
      */
-    public Enum getBaseVal();
+    public T getBaseVal();
     /**
      * If the given attribute or property is being animated, contains the current animated value of the attribute or property. If the given attribute or property is not currently being animated, contains the same value as 'baseVal'.
      */
-    public Enum getAnimVal();
+    public T getAnimVal();
 }

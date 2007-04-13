@@ -37,11 +37,11 @@ public interface SVGPatternElement extends SVGElement,
     /**
      * Corresponds to attribute patternUnits on the given 'pattern' element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getPatternUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getPatternUnits();
     /**
      * Corresponds to attribute patternContentUnits on the given 'pattern' element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getPatternContentUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getPatternContentUnits();
     /**
      * Corresponds to attribute patternTransform on the given 'pattern' element.
      */

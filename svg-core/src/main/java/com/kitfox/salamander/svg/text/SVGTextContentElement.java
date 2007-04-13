@@ -54,7 +54,7 @@ public interface SVGTextContentElement extends SVGElement,
     /**
      * Corresponds to attribute lengthAdjust on the given element. The value must be one of the length adjust constants specified above.
      */
-    public SVGAnimatedEnumeration getLengthAdjust();
+    public SVGAnimatedEnumeration<LengthAdjust> getLengthAdjust();
     
     /**
      * Returns the total number of characters to be rendered within the current element. Includes characters which are included via a 'tref' reference.

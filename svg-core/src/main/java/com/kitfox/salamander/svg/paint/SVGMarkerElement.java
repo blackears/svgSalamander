@@ -70,7 +70,7 @@ public interface SVGMarkerElement extends SVGElement,
     /**
      * Corresponds to attribute markerUnits on the given 'marker' element. One of the Marker Units Types defined above.
      */
-    public SVGAnimatedEnumeration getMarkerUnits();
+    public SVGAnimatedEnumeration<Units> getMarkerUnits();
     /**
      * Corresponds to attribute markerWidth on the given 'marker' element.
      */
@@ -82,7 +82,7 @@ public interface SVGMarkerElement extends SVGElement,
     /**
      * Corresponds to attribute orient on the given 'marker' element. One of the Marker Orientation Types defined above.
      */
-    public SVGAnimatedEnumeration getOrientType();
+    public SVGAnimatedEnumeration<Orient> getOrientType();
     /**
      * Corresponds to attribute orient on the given 'marker' element. If markerUnits is SVG_MARKER_ORIENT_ANGLE, the angle value for attribute orient; otherwise, it will be set to zero.
      */

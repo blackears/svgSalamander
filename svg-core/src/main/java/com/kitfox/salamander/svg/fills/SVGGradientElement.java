@@ -14,6 +14,7 @@ import com.kitfox.salamander.svg.basic.SVGElement;
 import com.kitfox.salamander.svg.basic.SVGExternalResourcesRequired;
 import com.kitfox.salamander.svg.basic.SVGStylable;
 import com.kitfox.salamander.svg.basic.SVGURIReference;
+import com.kitfox.salamander.svg.basic.SVGUnitTypes;
 import com.kitfox.salamander.svg.coordSystems.SVGAnimatedTransformList;
 
 /**
@@ -48,7 +49,7 @@ public interface SVGGradientElement extends SVGElement,
     /**
      * Corresponds to attribute gradientUnits on the given element. Takes one of the constants defined in SVGUnitTypes.
      */
-    public SVGAnimatedEnumeration getGradientUnits();
+    public SVGAnimatedEnumeration<SVGUnitTypes.Type> getGradientUnits();
     /**
      * Corresponds to attribute gradientTransform on the given element.
      */
@@ -56,6 +57,6 @@ public interface SVGGradientElement extends SVGElement,
     /**
      * Corresponds to attribute spreadMethod on the given element. One of the Spread Method Types.
      */
-    public SVGAnimatedEnumeration getSpreadMethod();
+    public SVGAnimatedEnumeration<SpreadMethod> getSpreadMethod();
     
 }
