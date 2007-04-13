@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for SVG Salamander Application -->
+<jnlp
+    spec="1.0+"
+    codebase="https://svgsalamander.dev.java.net/binaries/"
+    href="svgPlayer.jnlp">
+
+    <information>
+        <title>SVG Salamander Player</title>
+        <vendor>kitfox.com</vendor>
+        <homepage href="svgSalamander.html"/>
+        <description>SVG Player</description>
+        <description kind="short">Allows user to load, display and play animated SVG images.</description>
+        <!--icon href="images/swingset2.jpg"/-->
+        <!--icon kind="splash" href="images/splash.gif"/-->
+        <offline-allowed/>
+    </information>
+
+    <resources>
+        <j2se version="1.4+"/>
+        <jar href="svgSalamander.jar"/>
+    </resources>
+
+    <application-desc main-class="com.kitfox.svg.app.SVGPlayer"/>
+</jnlp>

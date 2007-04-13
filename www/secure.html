@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+    <head>
+        <title>Secure SVGSalamander binaries</title>
+        <link type="text/css" rel="stylesheet" href="salamanderStyle.css">
+    </head>
+    <body>
+        
+        <h2>Secure Binaries</h2>
+        
+        <p>Java Webstart can run with two different security levels: all-permissions and restricted.  
+            In all-permissions mode, programs are permitted to read and write files on disk, download content
+            from the internet, record from your microphone, and many other things.  While these abilities 
+            can make a program much more useful, they also provide the unscruplous programmer the ability 
+            to spy on or vandalize the user's computer.  Naturally, many users are cautious about granting 
+        all-permissions to an unknown program.</p>
+        
+        <p>As an alternative, you can run the program in restricted mode.  This causes the Java engine
+            to prevent a program from doing anything that could comprimise your system.  Unfortunately, it
+            also makes a program much less useful - particularly one which relies on loading documents from 
+        either the internet or disk in order to display them.</p>
+        
+        <p>Fortunately, the security model does allow you to download files from the internet that
+            originate on the same server as the web start program.  So if you wish to demo the
+            program without risking unkown software running on your system, you can use one of the
+        below links with one of the special SVG files listed below.</p>
+        
+        
+        <h2>Binaries</h2>
+        
+        <p><a href="binaries/svgViewerSecure.jnlp">Run the SVG Viewer (no animation)</a></p>
+        <p><a href="binaries/svgPlayerSecure.jnlp">Run the SVG Player (animation)</a></p>
+        
+        <b>SVG URLs that will work in secure mode</b>
+        <p>Just run the program, select File/Load URL, 
+        and then cut and paste one of these URLs into the input box.</p>
+        
+        <ul>
+            <li>https://svgsalamander.dev.java.net/examples/svg/ainominako.svg</li>
+            <li>https://svgsalamander.dev.java.net/examples/svg/duck.svg</li>
+            <li>https://svgsalamander.dev.java.net/examples/svg/hinorei.svg</li>
+            <li>https://svgsalamander.dev.java.net/examples/svg/pormouth_smith.svg</li>
+            <li>https://svgsalamander.dev.java.net/examples/svg/ship_mid_deck.svg</li>
+            <li>https://svgsalamander.dev.java.net/examples/svg/simba.svg</li>
+        </ul>
+        
+    </body>
+</html>

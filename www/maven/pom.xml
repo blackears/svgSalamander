@@ -1,0 +1,66 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.kitfox.svg</groupId>
+    <artifactId>svg-salamander</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+    <name>SVG Salamander</name>
+    <description>SVG Salamander - tools and components for SVG rendering, manipulation and animation</description>
+    <url>http://svgsalamander.dev.java.net</url>
+    <organization>
+        <name>Kitfox Studios</name>
+        <url>http://www.kitfox.com</url>
+    </organization>
+    <scm>
+        <connection>scm:cvs:pserver:guest@cvs.dev.java.net:/cvs:svgsalamander</connection>
+    </scm>
+    <developers>
+        <developer>
+            <name>Mark McKay</name>
+            <email>mark at kitfox.com</email>
+        </developer>
+    </developers>
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License (LGPL)</name>
+            <url>http://www.gnu.org/copyleft/lesser.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <mailingLists>
+        <mailingList>
+            <name>Announcement List</name>
+            <subscribe>announce-subscribe@svgsalamander.dev.java.net</subscribe>
+            <unsubscribe>announce-unsubscribe@svgsalamander.dev.java.net</unsubscribe>
+            <archive>https://svgsalamander.dev.java.net/servlets/SummarizeList?listName=announce</archive>
+        </mailingList>
+        <mailingList>
+            <name>Developer List</name>
+            <subscribe>dev-subscribe@svgsalamander.dev.java.net</subscribe>
+            <unsubscribe>dev-unsubscribe@svgsalamander.dev.java.net</unsubscribe>
+            <archive>https://svgsalamander.dev.java.net/servlets/SummarizeList?listName=dev</archive>
+        </mailingList>
+        <mailingList>
+            <name>Users List</name>
+            <subscribe>users-subscribe@svgsalamander.dev.java.net</subscribe>
+            <unsubscribe>users-unsubscribe@svgsalamander.dev.java.net</unsubscribe>
+            <archive>https://svgsalamander.dev.java.net/servlets/SummarizeList?listName=users</archive>
+        </mailingList>
+        <mailingList>
+            <name>Issues List</name>
+            <subscribe>issues-subscribe@svgsalamander.dev.java.net</subscribe>
+            <unsubscribe>issues-unsubscribe@svgsalamander.dev.java.net</unsubscribe>
+            <archive>https://svgsalamander.dev.java.net/servlets/SummarizeList?listName=issues</archive>
+        </mailingList>
+        <mailingList>
+            <name>CVS List</name>
+            <subscribe>cvs-subscribe@svgsalamander.dev.java.net</subscribe>
+            <unsubscribe>cvs-unsubscribe@svgsalamander.dev.java.net</unsubscribe>
+            <archive>https://svgsalamander.dev.java.net/servlets/SummarizeList?listName=cvs</archive>
+        </mailingList>
+    </mailingLists>
+</project>
