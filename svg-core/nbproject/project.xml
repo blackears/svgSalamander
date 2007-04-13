@@ -193,7 +193,7 @@
         <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/2">
             <compilation-unit>
                 <package-root>src/main/java</package-root>
-                <classpath mode="compile">lib/library/javacc.jar;lib/library/junit.jar;../../../../svn.apache.org/ant-core/lib/ant.jar</classpath>
+                <classpath mode="compile">lib/library/javacc.jar;lib/library/junit.jar</classpath>
                 <built-to>build/jar/svg-salamander-core.jar</built-to>
                 <source-level>1.5</source-level>
             </compilation-unit>
@@ -204,7 +204,7 @@
             <compilation-unit>
                 <package-root>src/test/java</package-root>
                 <unit-tests/>
-                <classpath mode="compile">lib/library/javacc.jar;lib/library/junit.jar;build/jar/svg-salamander-core.jar;../../../../svn.apache.org/ant-core/lib/ant.jar</classpath>
+                <classpath mode="compile">lib/library/javacc.jar;lib/library/junit.jar;build/jar/svg-salamander-core.jar</classpath>
                 <source-level>1.5</source-level>
             </compilation-unit>
             <compilation-unit>
