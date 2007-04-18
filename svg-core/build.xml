@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="all" name="svg-salamander-core">
     <description>
-	General 2D and 3D graphics routines
+	Java 2D graphics pipeline inspired by SVG
 	</description>
 
     <import file="../build-NBUtil.xml"/>
