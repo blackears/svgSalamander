@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.0Beta3
+Created-By: 1.6.0-b105 (Sun Microsystems Inc.)
+Main-Class: com.kitfox.svg.app.MainFrame
+Built-By: kitfox
+
+Name: common
+Specification-Title: SVG Salamander Utilities
+Specification-Version: 1.0
+Specification-Vendor: Kitfox - Mark McKay
+Implementation-Title: SVG Salamander
+Implementation-Version: Version 1.0, Date April 18 2007
+Implementation-Vendor: Kitfox - Mark McKay
+
+Name: com/kitfox/svg/SVGUniverse.class
+Java-Bean: true
+
+Name: com/kitfox/svg/app/beans/SVGIcon.class
+Java-Bean: true
+
+Name: com/kitfox/svg/app/beans/SVGPanel.class
+Java-Bean: true
+
+Name: com/kitfox/svg/app/beans/ProportionalLayoutPanel.class
+Java-Bean: true
+

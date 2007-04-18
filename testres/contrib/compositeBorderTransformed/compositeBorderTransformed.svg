@@ -1,0 +1,32 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+ <!ENTITY ns_svg "http://www.w3.org/2000/svg">
+ <!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="120" height="120"
+  viewBox="0 0 120 120" overflow="visible" enable-background="new 0 0 120 120" xml:space="preserve">
+ <defs> 
+  <linearGradient id="redBlueGradient" gradientUnits="userSpaceOnUse" x1="0" x2="120">
+   <stop style="stop-color:red;stop-opacity:1" offset="0" id="stopRed" />
+   <stop style="stop-color:blue;stop-opacity:1" offset="1" id="stopBlue" />
+  </linearGradient> 
+
+  <path id="topLeft" fill="none" d="M 0,10 C0,3,3,0, 10,0"/>
+  <path id="topRight" fill="none" d="M 0,0 C7,0,10,3, 10,10"/>
+  <path id="bottomRight" fill="none" d="M 10,0 C10,7 7,10 0,10"/>	
+  <path id="bottomLeft" fill="none" d="M0,0 C0,7,3,10,10,10"/>
+  <line id="top" fill="none" x1="0" y1="0" x2="100.0" y2="0"/>
+  <line id="bottom" fill="none" x1="0" y1="0" x2="100" y2="0"/>
+  <line id="left" fill="none" x1="0" y1="0" x2="0" y2="100"/>
+  <line id="right" fill="none" x1="0" y1="0" x2="0" y2="100"/>
+ </defs>
+ <g id="frame" stroke="url(#redBlueGradient)" stroke-width="10">
+  <use xlink:href="#topLeft" x="0" y="0" transform="scale(1,1)"/>
+  <use xlink:href="#topRight" x="110" y="0" />
+  <use xlink:href="#bottomRight" x="110" y="110"/>
+  <use xlink:href="#bottomLeft" x="0" y="110"/>
+  <use xlink:href="#top" transform="translate(10,0)"/>
+  <use xlink:href="#bottom" x="10" y="120"/>
+  <use xlink:href="#left" x="0" y="0" transform="translate(0,10)"/>
+  <use xlink:href="#right" transform="translate(120,10),scale(2,1)"/>
+ </g>
+</svg>

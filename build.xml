@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="svg-salamander-release-0_0">
+    <description>An SVG loader, renderer and player.</description>
+
+    <import file="build-NBUtil.xml"/>
+
+    <target name="all" depends="init,javadoc,jar" description="Build everything."/>
+    <target name="build" depends="init,jar" description="Build everything."/>
+    <target name="rebuild" depends="clean,all" description="Build everything."/>
+    
+    <target name="testAntTask">
+        <typedef name="SVGToImage" classname="com.kitfox.svg.app.ant.SVGToImageAntTask" classpath="www/binaries/svgSalamander.jar"/>
+    
+        <SVGToImage format="png" verbose="true">
+            <fileset dir="examples">
+                <include name="hinorei.svg"/>
+            </fileset>
+        </SVGToImage>
+    </target>
+    
+    <target name="init">
+        <tstamp/>
+
+        <!--property name="javacc.home" location="C:/java/javacc-3.2/bin/lib"/-->
+        <property name="javacc.home" location="lib"/>
+        <!--property name="junit.jar" location="C:\java\junit3.8.1\junit3.8.1\junit.jar"/-->
+        <property name="junit.jar" location="lib\junit.jar"/>
+        
+        
+        <property name="version" value="1.0"/>
+        
+        <property name="build.dir" location="build"/>
+        <property name="classes.main.dir" location="${build.dir}/classes/main"/>
+        <property name="classes.test.dir" location="${build.dir}/classes/test"/>
+        <property name="jar.dir" location="${build.dir}/jar"/>
+        <property name="src.main.dir" location="src"/>
+        <property name="gen.dir" location="gen"/>
+        <property name="lib.dir" location="lib"/>
+        <property name="data.dir" location="data"/>
+        <property name="res.main.dir" location="res"/>
+        <property name="res.test.dir" location="testres"/>
+        <property name="www.dir" location="www"/>
+        <property name="src.test.dir" location="test"/>
+        <property name="maven.dir" location="${www.dir}/maven"/>
+        
+        <property name="manifest.file" location="manifest.mf"/>
+        <property name="archive.src" location="${jar.dir}/svgSalamander_src_${DSTAMP}.zip"/>
+        
+        <property name="project.run.mainClass" value="com.kitfox.svg.app.MainFrame"/>
+        <property name="project.debug.mainClass" value="com.kitfox.svg.app.MainFrame"/>
+        <property name="project.name" value="${ant.project.name}"/>
+        <property name="project.debug.name" value="${ant.project.name}Debug"/>
+        <property name="project.complete.jar" value="${jar.dir}/svgSalamander.jar"/>
+        <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
+        <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
+
+        <property name="project.maven.pom" value="${maven.dir}/pom.xml"/>
+        <property name="project.maven.jar.bundle" value="${maven.dir}/svgSalamander-${version}-bundle.jar"/>
+        <property name="project.maven.jar.classes" value="${maven.dir}/svgSalamander-${version}.jar"/>
+        <property name="project.maven.jar.sources" value="${maven.dir}/svgSalamander-${version}-sources.jar"/>
+        <property name="project.maven.jar.javadoc" value="${maven.dir}/svgSalamander-${version}-javadoc.jar"/>
+
+        <property name="animtime.jjtree" location="${data.dir}/AnimTimeParser.jjt"/>
+        <property name="animtime.outdir" location="${gen.dir}/com/kitfox/svg/animation/parser"/>
+        <property name="javadoc.dir" location="${build.dir}/javadoc"/>
+        <property name="javadoc.zip" location="${javadoc.dir}/javadoc_${project.name}_${DSTAMP}.zip"/>
+        <property name="javadoc.www.zip" location="${www.dir}/docs/svgSalamanderJavadoc.zip"/>
+        
+
+        <property name="key.user" value="kitfox"/>
+        <property name="key.password" value="anonymous"/>
+        <property name="key.location" location="tempKeystore"/>
+
+        <!--
+        <condition property="key.defaultKeystore.generate">
+            <not>
+                <available file="${key.location}"/>
+            </not>
+        </condition>
+        
+        <antcall target="generateKey"/>
+        -->
+        
+        <path id="path.sourcepath">
+            <pathelement path="${src.main.dir}"/>
+            <pathelement path="${gen.dir}"/>
+            <!--pathelement path="${test.main.dir}"/-->
+        </path>
+
+        <path id="path.sourcepath.debug">
+            <path refid="path.sourcepath"/>
+        </path>
+        
+        <path id="path.classpath">
+            <!--pathelement path="."/>   Include resource directory -->
+            <pathelement path="${test.dir}"/>
+            <pathelement path="${res.main.dir}"/>
+            <pathelement path="${res.test.dir}"/>
+            <pathelement path="${res.main.dir}/res"/>
+            <pathelement path="${junit.jar}"/>
+            <fileset dir="${lib.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+        
+    </target>
+
+    <target name="prepareBuild" depends="init" description="Create empty directories necessary for building">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.main.dir}"/>
+        <mkdir dir="${classes.test.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${javadoc.dir}"/>
+        <mkdir dir="${maven.dir}"/>
+        <mkdir dir="${animtime.outdir}"/>
+    </target>
+
+    <target name="clean" depends="init" description="Clean all build products.">
+        <delete dir="${build.dir}"/>
+        <delete dir="${gen.dir}"/>
+        <delete dir="${javadoc.dir}"/>
+        <delete file="${project.complete.jar}"/>
+        <delete file="${project.www.jar}"/>
+
+        <antcall target="prepareBuild"/>
+    </target>
+
+    <target name="genData" depends="init,prepareBuild" description="Generate parsers from javacc files.">
+        <mkdir dir="${animtime.outdir}"/>
+        <!--jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}" outputfile="${animtime.outfile}"/-->
+        <jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
+        <javacc target="${animtime.outdir}/AnimTimeParser.jj" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
+    </target>
+    
+    <target name="compile" depends="init,prepareBuild,genData">
+        <!--javac debug="true" deprecation="true" destdir="${classes.dir}" source="1.4" bootclasspath="classes.zip"-->
+        <javac debug="true" deprecation="true" destdir="${classes.main.dir}" source="1.4">
+            <compilerarg value="-Xlint"/>
+            <src>
+                <pathelement path="${src.main.dir}"/>
+                <pathelement path="${gen.dir}"/>
+                <!--path refid="path.sourcepath"/-->
+            </src>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+        
+        <javac debug="true" deprecation="true" destdir="${classes.test.dir}" source="1.4">
+            <compilerarg value="-Xlint"/>
+            <src>
+                <pathelement path="${src.test.dir}"/>
+            </src>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="runViewer" depends="init,compile">
+        <java classname="com.kitfox.svg.app.SVGViewer" fork="true">
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="runPlayer" depends="init,compile">
+        <java classname="com.kitfox.svg.app.SVGPlayer" fork="true">
+            <arg value="-Xint"/>
+            <arg value="-Xserver"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="zipSrcRelease" depends="init">
+        <zip destfile="${archive.src}" compress="true">
+            <fileset dir=".">
+                <include name="src/**/*.java"/>
+                <include name="data/**"/>
+                <include name="www/**"/>
+                <include name="lib/**"/>
+                <include name="res/**"/>
+                <include name="examples/**"/>
+                <include name="build.xml"/>
+                <include name="lgpl.txt"/>
+                <include name="readme.txt"/>
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="jar" depends="init,compile" description="JARs the core SVG and XML files for use with other programs.">
+        <manifest file="${manifest.file}">
+            <attribute name="Main-Class" value="${project.run.mainClass}"/>
+            <!--attribute name="Class-Path" value="kitfoxUtilities.jar"/-->
+            <attribute name="Built-By" value="${user.name}"/>
+            <section name="common">
+                <attribute name="Specification-Title" value="SVG Salamander Utilities"/>
+                <attribute name="Specification-Version" value="${version}"/>
+                <attribute name="Specification-Vendor" value="Kitfox - Mark McKay"/>
+                <attribute name="Implementation-Title" value="SVG Salamander"/>
+                <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
+                <attribute name="Implementation-Vendor" value="Kitfox - Mark McKay"/>
+            </section>
+            <section name="com/kitfox/svg/SVGUniverse.class">
+                <attribute name="Java-Bean" value="true"/>
+            </section>
+            <section name="com/kitfox/svg/app/beans/SVGIcon.class">
+                <attribute name="Java-Bean" value="true"/>
+            </section>
+            <section name="com/kitfox/svg/app/beans/SVGPanel.class">
+                <attribute name="Java-Bean" value="true"/>
+            </section>
+            <section name="com/kitfox/svg/app/beans/ProportionalLayoutPanel.class">
+                <attribute name="Java-Bean" value="true"/>
+            </section>
+        </manifest>
+
+        <xslt in="${res.main.dir}/xml/about.xml" style="${res.main.dir}/xml/about.xsl" out="${res.main.dir}/res/help/about/about.html" force="true"/>
+        <!--
+        <replace file="${res.dir}/res/help/about/about.html" token="&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;"/>
+        -->
+        <replace file="${res.main.dir}/res/help/about/about.html" token="; charset=ISO-8859-1"/>
+        
+        <jar compress="true" jarfile="${project.complete.jar}" manifest="${manifest.file}">
+            <fileset dir="${classes.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="lgpl.txt"/>
+                <include name="readme.txt"/>
+            </fileset>
+            <fileset dir="${res.main.dir}">
+                <include name="res/**"/>
+            </fileset>
+        </jar>
+
+        <jar compress="true" jarfile="${project.tiny.jar}" manifest="${manifest.file}">
+            <fileset dir="${classes.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="lgpl.txt"/>
+                <include name="readme.txt"/>
+            </fileset>
+        </jar>
+
+        <!-- 
+        Signing a jar depends upon you having a keystore to sign the jar 
+        with.  If you have an existing keystore, update the key.user, 
+        key.password and key.location properties to reflect your key entry.  
+        If you don't have a keystore, you can create a default keystore for 
+        the purposes for signing this file by running the generateKey task 
+        in this ant file. 
+        -->
+        <antcall target="generateKey"/>
+        <signjar jar="${project.complete.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
+        
+        <copy file="${project.complete.jar}" toFile="${project.www.jar}"/>
+        <antcall target="archiveJar"/>
+        
+        <copy file="${javadoc.zip}" toFile="${javadoc.www.zip}" failonerror="false"/>
+    </target>
+
+    <target name="archiveJar" if="commonLib.dir">
+        <echo message="Copying SVGSalander jar to ${commonLib.dir}"/>
+        <copy file="${project.complete.jar}" toFile="${commonLib.dir}/svgSalamander.jar"/>
+    </target>
+    
+    
+    <target name="makeAboutHtml" depends="init">
+        <copy file="res/help/about/about_tmplt.html" tofile="res/help/about/about.html" overwrite="true"/>
+        <tstamp>
+            <format property="TODAY_BUILD" pattern="MMMM d yyyy, hh:mm:ss" locale="en"/>
+        </tstamp>
+        
+        <replace file="res/help/about/about.html" token="_buildtime_" value="${TODAY_BUILD}"/>
+    </target>
+
+    <target name="maven-generate" depends="jar,javadoc">
+        <property name="pomFile" value="${project.maven.pom}"/>
+        
+        <!--
+        <script language="beanshell">
+        System.out.println("message is " + pomFile);
+            
+        File file = new File(pomFile);
+        FileWriter fw = new FileWriter(file);
+        PrintWriter pw = new PrintWriter(fw);
+            
+        pw.println("&lt;project&gt;");
+
+        pw.println("  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;");
+        pw.println("  &lt;groupId&gt;com.kitfox.svg&lt;/groupId&gt;");
+        pw.println("  &lt;artifactId&gt;svgSalamander&lt;/artifactId&gt;");
+        pw.println("  &lt;version&gt;" + version + "&lt;/version&gt;");
+        pw.println("  &lt;packaging&gt;jar&lt;/packaging&gt;");
+        pw.println("  &lt;name&gt;SVG Salamander&lt;/name&gt;");
+        pw.println("  &lt;url&gt;http://svgsalamander.dev.java.net&lt;/url&gt;");
+        pw.println("  &lt;description&gt;SVG Salamander - SVG tools, viewers and players&lt;/description&gt;");
+        pw.println("  &lt;licenses&gt;");
+        pw.println("    &lt;license&gt;");
+        pw.println("      &lt;name&gt;GNU Lesser General Public License&lt;/name&gt;");
+        pw.println("      &lt;url&gt;http://www.gnu.org/copyleft/lesser.html&lt;/url&gt;");
+        pw.println("      &lt;distribution&gt;repo&lt;/distribution&gt;");
+        pw.println("    &lt;/license&gt;");
+        pw.println("  &lt;/licenses&gt;");
+        pw.println("  &lt;scm&gt;");
+        pw.println("    &lt;url&gt;https://svgsalamander.dev.java.net/source/browse/svgsalamander/&lt;/url&gt;");
+        pw.println("  &lt;/scm&gt;");
+
+        pw.println("&lt;/project&gt;");
+            
+        pw.close();
+        </script>
+        -->
+    
+        <copy file="${res.dir}/maven/pom.xml" tofile="${project.maven.pom}"/>
+        
+        <copy file="${project.complete.jar}" tofile="${project.maven.jar.classes}"/>
+        
+        <jar destfile="${project.maven.jar.javadoc}" basedir="${javadoc.dir}" compress="true">
+            <exclude name="${javadoc.zip}"/>
+            <manifest>
+                <attribute name="Built-By" value="kitfox"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value="SVG Salamander - Javadoc"/>
+                    <attribute name="Specification-Version" value="Version ${version}, ${TSTAMP}"/>
+                    <attribute name="Specification-Vendor" value="Mark Mckay, kitfox.com"/>
+                </section>
+            </manifest>
+        </jar>
+        
+        <jar destfile="${project.maven.jar.sources}" compress="true">
+            <fileset dir="." includes="src/**/*.class"/>
+            <fileset dir="." includes="res/**/*.class"/>
+            
+            <manifest>
+                <attribute name="Built-By" value="kitfox"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value="SVG Salamander - Sources"/>
+                    <attribute name="Specification-Version" value="Version ${version}, ${TSTAMP}"/>
+                    <attribute name="Specification-Vendor" value="Mark Mckay, kitfox.com"/>
+                </section>
+            </manifest>
+        </jar>
+        
+        <script language="beanshell">
+            //            System.out.println(myFile + " exists: " + new File(myFile).exists());
+        </script>
+        
+        <jar destfile="${project.maven.jar.bundle}" compress="true">
+            <fileset dir="${maven.dir}">
+                <include name="pom.xml"/>
+                <include name="*.jar"/>
+                <exclude name="*-bundle.jar"/>
+            </fileset>
+            
+            <manifest>
+                <attribute name="Built-By" value="kitfox"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value="SVG Salamander - Bundle"/>
+                    <attribute name="Specification-Version" value="Version ${version}, ${TSTAMP}"/>
+                    <attribute name="Specification-Vendor" value="Mark Mckay, kitfox.com"/>
+                </section>
+            </manifest>
+        </jar>
+        
+        
+    </target>
+    
+    <target name="-test" depends="init,compile" description="runs a series of tests on svgSalamander">
+        <junit printsummary="withOutAndErr" haltonfailure="true">
+            <formatter type="plain" usefile="false"/>
+            <test name="${test.suite}" />
+            <classpath>
+                <pathelement location="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+                <!--                <pathelement location="${project.www.jar}"/>
+                <pathelement location="${project.main.jar}"/>
+                <pathelement location="${project.main.test.jar}"/>
+                -->
+            </classpath>
+
+        </junit>
+    </target>
+
+    <target name="smoketest" depends="init" description="runs smoke tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="com.kitfox.svg.SmokeTests"/>
+        </antcall>
+    </target>
+    
+    <target name="checkintest" depends="init" description="runs check in tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="com.kitfox.svg.CheckInTests"/>
+        </antcall>
+    </target>
+    
+    <target name="releasetest" depends="init" description="runs release tests on svgSalamander">
+        <antcall target="-test">
+            <param name="test.suite" value="com.kitfox.svg.ReleaseTests"/>
+        </antcall>
+    </target>
+
+        
+</project>

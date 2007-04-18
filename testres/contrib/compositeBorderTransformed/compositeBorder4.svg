@@ -1,0 +1,41 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+ <!ENTITY ns_svg "http://www.w3.org/2000/svg">
+ <!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="200" height="100"
+  viewBox="0 0 200 100" overflow="visible" enable-background="new 0 0 200 100" xml:space="preserve">
+ <defs> 
+  <path id="topLeft" fill="none" d="M0,20 C0,10,10,0,20,0"/>
+  <path id="topRight" fill="none" d="M0,0 c10,0,20,10,20,20"/>
+  <path id="bottomRight" fill="none" d="M0,0 c0,10-10,20-20,20"/>
+  <path id="bottomLeft" fill="none" d="M20,20 C10,20,0,10,0,0"/>
+  <line id="top" fill="none" x1="0" y1="0" x2="160" y2="0"/>
+  <line id="bottom" fill="none" x1="0" y1="0" x2="160" y2="0"/>
+  <line id="left" fill="none" x1="0" y1="0" x2="0" y2="60"/>
+  <line id="right" fill="none" x1="0" y1="0" x2="0" y2="60"/>
+
+  <linearGradient id="basicGradient" gradientUnits="userSpaceOnUse" x1="0" x2="200" y1="0" y2="0">
+   <stop style="stop-color:red;stop-opacity:1" offset="0" id="redStop" />
+   <stop style="stop-color:blue;stop-opacity:1" offset="1" id="blueStop" />
+  </linearGradient> 
+
+  <linearGradient id="gradientTopRight" x1="-180" x2="20" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientBottomRight" x1="-200" x2="0" y1="-80" y2="-80" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientBottomLeft" x1="0" x2="200" y1="-80" y2="-80" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientTop" x1="-20" x2="120" y1="0" y2="0" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientBottom" x1="-20" x2="160" y1="-100" y2="-100" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientLeft" x1="0" x2="200" y1="0" y2="0" xlink:href="#basicGradient"/>
+  <linearGradient id="gradientRight" x1="-200" x2="0" y1="-20" y2="-20" xlink:href="#basicGradient"/>
+ </defs>
+
+ <g id="frame" stroke-width="10">
+  <use id="useTopLeft" xlink:href="#topLeft" stroke="url(#basicGradient)"  />
+  <use id="useTopRight" xlink:href="#topRight" stroke="url(#gradientTopRight)" transform="translate(180,0) scale(1.0,1.0) " />
+  <use id="useBottomRight" xlink:href="#bottomRight" stroke="url(#gradientBottomRight)" transform="translate(200,80) scale(1.0,1.0) "/>
+  <use id="useBottomLeft" xlink:href="#bottomLeft" stroke="url(#gradientBottomLeft)" transform="translate(0,80) scale(1.0,1.0) "/>
+  <use id="useTop" xlink:href="#top" stroke="url(#gradientTop)" transform="translate(20,0) scale(1.0,1.0) " />
+  <use id="useBottom" xlink:href="#bottom" stroke="url(#gradientBottom)"  transform="translate(20,100) scale(1.0,1.0) "/>
+  <use id="useLeft" xlink:href="#left" stroke="url(#gradientLeft)"  transform="translate(0,20) scale(1.0,1.0) "/>
+  <use id="useRight" xlink:href="#right" stroke="url(#gradientRight)" transform="translate(200,20) scale(1.0,1.0) "/>
+ </g>
+</svg>

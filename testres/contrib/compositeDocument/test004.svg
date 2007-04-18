@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="text/ecmascript" width="600" zoomAndPan="magnify" contentStyleType="text/css" height="600" preserveAspectRatio="xMidYMid meet" version="1.0">
+	<g id="bitmap">
+		<image xlink:href="test-pattern.jpg" width="600" x="0" height="600" y="0"/>
+	</g>
+	<g id="layer1">
+		<g transform="translate(498 458)">
+			<g transform="scale(1.00)">
+				<image xlink:href="asf-logo.svg" width="200" x="0" height="200" y="0"/>
+			</g>
+		</g>
+	</g>
+	<g id="layer2">
+		<g transform="translate(88 441)">
+			<g transform="scale(1.00)">
+				<image xlink:href="asf-logo.svg" width="200" x="0" height="200" y="0"/>
+			</g>
+		</g>
+	</g>
+	<g id="layer3">
+		<g transform="translate(473 439)">
+			<g transform="scale(1.00)">
+				<image xlink:href="asf-logo.svg" width="200" x="0" height="200" y="0"/>
+			</g>
+		</g>
+	</g>
+</svg>

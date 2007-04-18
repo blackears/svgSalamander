@@ -42,6 +42,7 @@ import java.io.*;
 import org.xml.sax.*;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.SAXParser;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
  * Many SVG files can be loaded at one time.  These files will quite likely
@@ -429,8 +430,22 @@ public class SVGUniverse implements Serializable
         try
         {
             // Parse the input
-            SAXParser saxParser = factory.newSAXParser();
-            saxParser.parse(new InputSource(new BufferedReader(is)), handler);
+            XMLReader reader = XMLReaderFactory.createXMLReader();
+            reader.setEntityResolver(
+                new EntityResolver()
+                {
+                    public InputSource resolveEntity(String publicId, String systemId)
+                    {
+                        //Ignore all DTDs
+                        return new InputSource(new ByteArrayInputStream(new byte[0]));
+                    }
+                }
+            );
+            reader.setContentHandler(handler);
+            reader.parse(new InputSource(new BufferedReader(is)));
+            
+//            SAXParser saxParser = factory.newSAXParser();
+//            saxParser.parse(new InputSource(new BufferedReader(is)), handler);
             return xmlBase;
         }
         catch (SAXParseException sex)

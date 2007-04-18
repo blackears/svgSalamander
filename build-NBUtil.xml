@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="NetBeans support tasks">
+
+    <target name="compile-selected-files" depends="init">
+        <fail unless="files">Must set property 'files'</fail>
+        <echo message="${files}"/>
+        <mkdir dir="${classes.main.dir}"/>
+        <javac debug="true" deprecation="true" destdir="${classes.main.dir}" includes="${files}">
+            <src>
+                <path refid="path.sourcepath"/>
+            </src>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-selected-files-test" depends="init">
+        <fail unless="files">Must set property 'files'</fail>
+        <echo message="${files}"/>
+        <mkdir dir="${classes.test.dir}"/>
+        <javac debug="true" deprecation="true" destdir="${classes.test.dir}" includes="${files}">
+            <src>
+                <path refid="path.sourcepath"/>
+            </src>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run-selected-files" depends="init,compile" description="Run Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+
+        <java fork="true" classname="${classname}">
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="run-selected-files-test" depends="init,compile" description="Run Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+
+        <java fork="true" classname="${classname}">
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug" depends="init,compile" if="netbeans.home" description="Debug Project">
+        <nbjpdastart name="${project.debug.name}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${project.debug.mainClass}">
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-selected-files" depends="init,compile" if="netbeans.home" description="Debug a Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+        <nbjpdastart name="${classname}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${classname}">
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-selected-files-test" depends="init,compile" if="netbeans.home" description="Debug a Single File">
+        <fail unless="classname">Must set property 'classname'</fail>
+        <nbjpdastart name="${classname}" addressproperty="jpda.address" transport="dt_socket">
+            <sourcepath>
+                <path refid="path.sourcepath.debug"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </nbjpdastart>
+
+        <java fork="true" classname="${classname}">
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xnoagent"/>
+            <jvmarg value="-Djava.compiler=none"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+            <classpath>
+                <pathelement path="${classes.main.dir}"/>
+                <pathelement path="${classes.test.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="debug-fix" depends="init" if="netbeans.home" description="Recompile a file during a debug session and reload it into the debugger without stopping it">
+        <javac destdir="${classes.dir}" debug="true" >
+            <src>
+                <path refid="path.sourcepath"/>
+            </src>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+
+            <include name="${fix.file}.java"/>
+        </javac>
+        <nbjpdareload>
+            <fileset dir="${classes.dir}">
+                <include name="${fix.file}.class"/>
+            </fileset>
+        </nbjpdareload>
+    </target>
+
+    <target name="javadoc" depends="init,compile" description="Javadoc for my API.">
+        <javadoc destdir="${javadoc.dir}" packagenames="*">
+            <sourcepath>
+                <path refid="path.sourcepath"/>
+            </sourcepath>
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javadoc>
+
+        <!--
+        <zip destfile="${javadoc.zip}" basedir="${javadoc.dir}" compress="true">
+            <exclude name="${javadoc.zip}"/>
+        </zip>
+        -->
+    </target>
+
+    <target name="javadoc-browse" if="netbeans.home" unless="no.javadoc.preview" depends="init">
+        <nbbrowse file="${javadoc.dir}/index.html"/>
+    </target>
+
+    <!--target name="generateKey" if="key.defaultKeystore.generate" description="Create a key to sign our jar files with."-->
+    <target name="generateKey" description="Create a key to sign our jar files with.">
+        <echo message="***Superstar***"/>
+        <echo message="${key.location}"/>
+        <delete file="${key.location}"/>
+        <genkey alias="${key.user}" storepass="${key.password}" keystore="${key.location}" validity="1000" verbose="true">
+            <dname>
+                <param name="CN" value="Mark McKay, mark@kitfox.com"/>
+                <param name="OU" value="kitfox.com"/>
+                <param name="O"  value="kitfox"/>
+                <param name="L"  value="Toronto"/>
+                <param name="S"  value="Ontario"/>
+                <param name="C"  value="CA"/>
+            </dname>
+        </genkey>
+    </target>
+   
+</project>

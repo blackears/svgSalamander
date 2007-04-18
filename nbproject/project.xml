@@ -4,11 +4,11 @@
     <configuration>
         <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
             <!--Do not use Project Properties customizer when editing this file manually.-->
-            <name>svgSalamander</name>
+            <name>SVGSalamander-release-0.0</name>
             <properties>
-                <property name="src.main.dir">C:/dev/cvs.dev.java.net/svgsalamander/src</property>
-                <property name="src.test.dir">C:/dev/cvs.dev.java.net/svgsalamander/test</property>
-                <property name="gen.dir">C:/dev/cvs.dev.java.net/svgsalamander/gen</property>
+                <property name="src.main.dir">src</property>
+                <property name="src.test.dir">test</property>
+                <property name="gen.dir">gen</property>
             </properties>
             <folders>
                 <source-folder>
@@ -205,7 +205,7 @@
             </compilation-unit>
             <compilation-unit>
                 <package-root>gen</package-root>
-                <classpath mode="compile">C:\dev\lib\kitfoxUtilities.jar</classpath>
+                <classpath mode="compile"></classpath>
                 <source-level>1.4</source-level>
             </compilation-unit>
             <compilation-unit>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 665 250" xml:space="preserve">
+
+  <title>SVG Animation - Cube Demonstration</title>
+
+  <defs>
+    <symbol id="cube" style="stroke: #000000; stroke-width: 0.5; stroke-linejoin: bevel">
+      <path style="fill: #333333;" d="M0.112,26.271l25.032,12.485V25.164L0.112,12.68V26.271z"/>
+      <path style="fill: #666666" d="M25.144,38.756l25.033-12.485H50.12V12.708L25.144,25.164V38.756z"/>
+      <path style="fill: #cccccc" d="M50.12,12.708l0.057-0.028L25.144,0.224L0.112,12.68l25.032,12.484L50.12,12.708z"/>
+    </symbol>
+  </defs>
+
+  <rect width="100%" height="100%" style="fill: #999999; stroke: none;" />
+
+  <use xlink:href="#cube" transform="translate(307.5, 105.75)">
+    <animate attributeName="y" begin="mouseover" restart="whenNotActive" dur="2s" calcMode="spline"
+             keySplines="0 .75 .5 1; .5 0 1 .25; 0 .25 .25 1; .5 0 1 .5; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1"
+             values="  0;    -45;      0;     16;      0;     -7;      0;      3;      0;     -2;      0;      1; 0"
+             keyTimes="0; 0.2564; 0.5128; 0.6154; 0.6923; 0.7436; 0.7949; 0.8462; 0.8974; 0.9231; 0.9487; 0.9744; 1" />
+  </use>
+
+</svg>

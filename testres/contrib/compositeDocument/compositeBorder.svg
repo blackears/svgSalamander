@@ -1,0 +1,34 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+ <!ENTITY ns_svg "http://www.w3.org/2000/svg">
+ <!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="157.42" height="97.08"
+  viewBox="0 0 157.42 97.08" overflow="visible" enable-background="new 0 0 157.42 97.08" xml:space="preserve">
+ <defs>
+  <path id="topLeft" fill="none" d="M0,16.67 C0,7.45,7.45,0,16.67,0"/>
+  <path id="topRight" fill="none" d="M140.75,0 c9.21,0,16.67,7.46,16.67,16.67"/>
+  <path id="bottomRight" fill="none" d="M157.42,80.42 c0,9.21-7.45,16.67-16.67,16.67"/>
+  <path id="bottomLeft" fill="none" d="M16.67,97.08 C7.46,97.08,0,89.63,0,80.42"/>
+  <line id="top" fill="none" x1="16.67" y1="0" x2="140.75" y2="0"/>
+  <line id="bottom" fill="none" x1="16.67" y1="97.08" x2="141" y2="97.08"/>
+  <line id="left" fill="none" x1="0" y1="16.52" x2="0" y2="80.42"/>
+  <line id="right" fill="none" x1="157.42" y1="16.42" x2="157.42" y2="81.08"/>
+
+  <linearGradient id="linearGradient9003" gradientUnits="userSpaceOnUse" x1="0" x2="200">
+  <!--linearGradient id="linearGradient9003"-->
+   <stop style="stop-color:red;stop-opacity:1" offset="0" id="stop9005" />
+   <stop style="stop-color:blue;stop-opacity:1" offset="1" id="stop9007" />
+  </linearGradient>
+ </defs>
+ <!--g id="frame" stroke="url(#linearGradient9003)" stroke-width="10"-->
+ <g id="frame" stroke="url(#linearGradient9003)" stroke-width="10">
+  <use xlink:href="#topLeft" x="0" y="0" />
+  <use xlink:href="#topRight" x="0" y="0" />
+  <use xlink:href="#bottomRight" x="0" y="0"/>
+  <use xlink:href="#bottomLeft" x="0" y="0"/>
+  <use xlink:href="#top" x="0" y="0" />
+  <use xlink:href="#bottom" x="0" y="0" />
+  <use xlink:href="#left" x="0" y="0" />
+  <use xlink:href="#right" x="0" y="0"/>
+ </g>
+</svg>

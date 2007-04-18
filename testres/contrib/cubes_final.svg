@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+          "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" [
+  <!ENTITY dur "2s">
+  <!ENTITY values     "0;    -45;      0;     16;      0;     -7;      0;      3;      0;     -2;      0;      1; 0">
+  <!ENTITY keyTimes   "0; 0.2564; 0.5128; 0.6154; 0.6923; 0.7436; 0.7949; 0.8462; 0.8974; 0.9231; 0.9487; 0.9744; 1">
+  <!ENTITY keySplines "0 .75 .5 1; .5 0 1 .25; 0 .25 .25 1; .5 0 1 .5; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1; 0 0 1 1">
+  <!ENTITY calcMode "spline">
+  <!ENTITY begin "mouseover">
+]>
+
+<svg  width="665px" height="250px" viewBox="0 0 665 250" xml:space="preserve">
+
+  <title>SVG Animation - Cube Demonstration</title>
+
+  <defs>
+    <symbol id="cube" style="stroke: #000000; stroke-width: 0.5; stroke-linejoin: bevel;">
+      <path style="fill: #333333;" d="M0.112,26.271l25.032,12.485V25.164L0.112,12.68V26.271z"/>
+      <path style="fill: #666666" d="M25.144,38.756l25.033-12.485H50.12V12.708L25.144,25.164V38.756z"/>
+      <path style="fill: #cccccc" d="M50.12,12.708l0.057-0.028L25.144,0.224L0.112,12.68l25.032,12.484L50.12,12.708z"/>
+    </symbol>
+  </defs>
+
+  <rect width="100%" height="100%" style="fill: #999999; stroke: none;" />
+
+  <g id="cubes" transform="translate(300.25, 143.45)" >
+    <use xlink:href="#cube" transform="translate(0,-72)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(24,-60)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(48,-48)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-24,-60)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(0,-48)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-48,-48)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(24,-36)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-24,-36)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-72,-36)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(72,-36)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(48,-24)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-48,-24)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(0,-24)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(24,-12)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(-24,-12)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+    <use xlink:href="#cube" transform="translate(0,0)">
+      <animate  dur="&dur;" values="&values;" keyTimes="&keyTimes;" keySplines="&keySplines;"
+                attributeName="y" begin="&begin;" restart="whenNotActive" calcMode="&calcMode;" />
+    </use>
+  </g>
+
+</svg>

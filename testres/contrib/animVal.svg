@@ -1,0 +1,11 @@
+<svg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' >
+   <title>Animated Values Test</title>
+
+<circle id='Mary' cx='0' cy='50' r='20' style='fill:orange;'>
+   <animate attributeName='cx' attributeType='XML' begin='0s' dur='10s' repeatCount='indefinite' values='10; 200; 10'/>
+</circle>
+
+<rect id='littleLamb' x='10' y='30' width='40' height='40' rx='5' ry='5' style='fill:blue;'>
+   <animate attributeName='y' attributeType='XML' begin='0s' dur='10s' repeatCount='indefinite' values='10; 200; 10'/>
+</rect>
+</svg>
