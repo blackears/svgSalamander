@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="java-one-2007">
+    <description>
+	Demos for JavaOne 2007 talk
+	</description>
+
+    <import file="../build-NBUtil.xml"/>
+
+    <target name="all" depends="build,release" description="Build jars, obfuscate and sign."/>
+    <target name="build" depends="compile-test" description="Build jars."/>
+
+    <target name="init">
+        <tstamp/>
+
+        <property name="build.dir" location="build"/>
+        <property name="gen.main.src.dir" location="${build.dir}/gen/src/main/java"/>
+        <property name="gen.main.res.dir" location="${build.dir}/gen/src/main/res"/>
+        <property name="classes.main.dir" location="${build.dir}/classes/main"/>
+        <property name="classes.test.dir" location="${build.dir}/classes/test"/>
+        <property name="src.main.dir" location="src/main/java"/>
+        <property name="src.test.dir" location="src/test/java"/>
+
+        <property name="res.main.dir" location="src/main/res"/>
+        <property name="res.test.dir" location="src/test/res"/>
+        <property name="jar.dir" location="${build.dir}/jar"/>
+        <property name="manifest.file" location="manifest.mf"/>
+        <property name="project.name" value="${ant.project.name}"/>
+        <property name="project.title" value="JavaOne Demos - Mark Mckay"/>
+        <property name="version" value="1"/>
+        <property name="project.jar" location="${jar.dir}/${project.name}.jar"/>
+
+        <property name="project.debug.mainClass" value="com.kitfox.Main"/>
+        <property name="project.debug.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
+        <property name="project.run.mainClass" value="com.kitfox.Main"/>
+        <property name="project.run.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
+
+        <property name="javadoc.dir" location="${build.dir}/javadoc"/>
+        <property name="javadoc.zip" location="${www.localDir}/doc/javadoc.zip"/>
+
+    	<path id="lib.include">
+            <pathelement path="${netbeans.home}/modules/org-jdesktop-layout.jar"/>
+            <fileset dir="lib/include">
+                <include name="**/*.jar"/>
+            </fileset>
+    	</path>
+
+    	<path id="lib.library">
+            <!--pathelement path="C:\Program Files\Java\jdk1.6.0\lib\tools.jar"/-->
+            <fileset dir="lib/library">
+                <include name="**/*.jar"/>
+            </fileset>
+    	</path>
+
+        <path id="path.sourcepath">
+            <pathelement path="${src.main.dir}"/>
+            <pathelement path="${src.test.dir}"/>
+        </path>
+
+        <path id="path.sourcepath.debug">
+            <path refid="path.sourcepath"/>
+        </path>
+
+        <path id="path.classpath">
+            <path refid="lib.include"/>
+            <path refid="lib.library"/>
+
+            <pathelement path="${gen.main.res.dir}"/>
+            <pathelement path="${res.main.dir}"/>
+            <pathelement path="${res.test.dir}"/>
+        </path>
+    </target>
+
+    <target name="prepareBuild" depends="init" description="Create empty directories necessary for building">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.main.dir}"/>
+        <mkdir dir="${classes.test.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${gen.main.src.dir}"/>
+        <mkdir dir="${gen.main.res.dir}"/>
+    </target>
+
+    <target name="compile" depends="init,prepareBuild" description="Compile source">
+        <javac debug="true" destdir="${classes.main.dir}" srcdir="${src.main.dir}">
+            <compilerarg value="-Xlint:all,-unchecked,-serial"/>
+            <classpath>
+                <path refid="path.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-test" depends="jar">
+        <javac debug="true" destdir="${classes.test.dir}" srcdir="${src.test.dir}">
+            <compilerarg value="-Xlint:all,-unchecked,-serial"/>
+            <classpath>
+                <path refid="path.classpath"/>
+                <pathelement path="${classes.main.dir}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${project.run.mainClass}" fork="true">
+            <jvmarg value="-ea"/>
+            <!--jvmarg value="-Djogl.verbose"/-->
+            <!--jvmarg value="-Xmx256M"/-->
+            <jvmarg value="-XX:+HeapDumpOnOutOfMemoryError"/>
+            <classpath>
+                <pathelement location="${classes.main.dir}"/>
+                <path refid="path.classpath"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="runJar" depends="init">
+        <java jar="${project.jar}" fork="true">
+        </java>
+    </target>
+
+    <target name="jar" depends="init,compile">
+        <manifest file="${manifest.file}">
+            <attribute name="Main-Class" value="${project.run.mainClass}"/>
+            <attribute name="Built-By" value="${user.name}"/>
+            <section name="common">
+              <attribute name="Specification-Title" value="${project.title}"/>
+              <attribute name="Specification-Version" value="${version}"/>
+              <attribute name="Specification-Vendor" value="Kitfox"/>
+              <attribute name="Implementation-Title" value="${project.name}"/>
+              <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
+              <attribute name="Implementation-Vendor" value="Mark McKay, mark@kitfox.com"/>
+            </section>
+        </manifest>
+
+        <jar compress="true" jarfile="${project.jar}" manifest="${manifest.file}">
+            <fileset dir="${classes.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir="${res.main.dir}">
+                <include name="**/*"/>
+            </fileset>
+            <fileset dir="${gen.main.res.dir}">
+                <include name="**/*"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="release" depends="init,jar,generateKey" description="Obfuscates and sign jar, copies result to binaries directory.">
+        <proguard
+            defaultpackage=""
+            printmapping="${project.obfuscated.names}"
+            overloadaggressively="false"
+            usemixedcaseclassnames="false"
+            verbose="true"
+            shrink="false"
+            optimize="false"
+            obfuscate="false"
+            ignorewarnings="true">
+
+            <libraryjar>
+                <pathelement path="${java.home}/lib/rt.jar"/>
+                <!--pathelement path="C:\Program Files\Java\jdk1.6.0\jre\lib/rt.jar"/-->
+                <path refid="lib.library"/>
+            </libraryjar>
+
+            <injar file="${project.jar}"/>
+            <injar filter="!META-INF/MANIFEST.MF">
+                <path refid="lib.include"/>
+            </injar>
+
+            <outjar file="${project.obfuscated.jar}"/>
+
+            <keep access="public" type="class" name="${project.run.mainClass}">
+                <method name="main"/>
+            </keep>
+        </proguard>
+
+        <signjar jar="${project.obfuscated.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
+    </target>
+
+    <target name="clean" depends="init" description="Clean all build products.">
+        <delete dir="${build.dir}"/>
+        <delete dir="${javadoc.dir}"/>
+        <delete file="${project.obfuscated.jar}"/>
+
+        <!--
+        <delete>
+            <fileset dir="${src.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+        -->
+    </target>
+
+</project>
