@@ -9,6 +9,6 @@ Specification-Title: SVG Salamander
 Specification-Version: 1
 Specification-Vendor: Kitfox
 Implementation-Title: svg-salamander-core
-Implementation-Version: Version 1, Date April 16 2007
+Implementation-Version: Version 1, Date May 29 2007
 Implementation-Vendor: Mark McKay, mark@kitfox.com
 

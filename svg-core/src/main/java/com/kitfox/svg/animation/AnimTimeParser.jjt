@@ -1,0 +1,316 @@
+/**
+ */
+
+
+options {
+   MULTI=true;
+   STATIC=false;
+}
+
+PARSER_BEGIN(AnimTimeParser)
+
+package com.kitfox.svg.animation.parser;
+
+import java.util.*;
+import java.io.*;
+import com.kitfox.svg.animation.*;
+
+public class AnimTimeParser 
+{
+    /**
+     * Test the parser
+     */
+    public static void main(String args[]) throws ParseException 
+    {
+//        AnimTimeParser parser = new AnimTimeParser(System.in);
+        StringReader reader;
+
+        reader = new StringReader("1:30 + 5ms");
+        AnimTimeParser parser = new AnimTimeParser(reader);
+        TimeBase tc;
+
+        tc = parser.Expr();
+        System.err.println("AnimTimeParser eval to " + tc.evalTime());
+
+        reader = new StringReader("19");
+        parser.ReInit(reader);
+        tc = parser.Expr();
+        System.err.println("AnimTimeParser eval to " + tc.evalTime());
+    }
+  
+}
+
+PARSER_END(AnimTimeParser)
+
+
+
+
+/**
+ * Tokens
+ */
+
+SKIP : /* WHITE SPACE */
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| "\f"
+}
+
+TOKEN :
+{
+  < #LETTER: [ "a"-"z", "A"-"Z" ] >
+|
+  < #DIGIT: [ "0"-"9"] >
+|
+  < INTEGER: (<DIGIT>)+ >
+|
+  < FLOAT: (["+", "-"])? (((<DIGIT>)* "." (<DIGIT>)+) | ((<DIGIT>)+)) (["E", "e"] (["+", "-"])? (<DIGIT>)+)? >
+|
+  < INDEFINITE: "indefinite" >
+|
+  < MOUSE_OVER: "mouseover" >
+|
+  < WHEN_NOT_ACTIVE: "whenNotActive" >
+|
+  < UNITS: "ms" | "s" | "min" | "h" >
+|
+  < IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>|"_"|"-")* >
+  
+}
+
+
+
+
+
+
+
+/**
+ * Expression structure
+ */
+
+
+TimeBase Expr() :
+{
+    TimeBase term;
+    Vector list = new Vector();
+}
+{
+    ( term = Sum() 
+        {
+            list.add(term);
+        }
+    )?
+    ( LOOKAHEAD(2) ";" term = Sum() 
+        {
+            list.add(term);
+        }
+    ) *
+    (";")?
+
+    {
+        switch (list.size())
+        {
+            case 0:
+                return new TimeIndefinite();
+            case 1:
+                return (TimeBase)list.get(0);
+            default:
+                return new TimeCompound(list);
+        }
+    }
+}
+
+TimeBase Sum() :
+{
+    Token t = null;
+    TimeBase t1;
+    TimeBase t2 = null;
+}
+{
+    t1=Term() ( (t="+" | t="-") t2 = Term() )?
+        {
+            if (t2 == null) return t1;
+
+            if (t.image.equals("-"))
+            {
+                return new TimeSum(t1, t2, false);
+            }
+            else
+            {
+                return new TimeSum(t1, t2, true);
+            }
+        }
+}
+
+
+/*
+{
+    TimeBase base;
+    Vector timeList = new Vector();
+    Token t;
+}
+{
+    base=Term()
+        {
+            timeList.add(base);
+        }
+    ( (t="+" | t="-") base=Term()
+        {
+            if (t.image.equals"-")
+                timeList.sub(base);
+            else
+                timeList.add(base);
+        }
+    )*
+        {
+            switch (timeList.size())
+            {
+                case 0:
+                    return new TimeIndefinite();
+                case 1:
+                    return (TimeBase)timeList.get(0);
+                default:
+                    return new TimeCompound(timeList);
+            }
+        }
+    
+}
+*/
+
+TimeBase Term() :
+{
+    TimeBase base;
+}
+{
+    base=IndefiniteTime() 
+        { return base; }
+    | base=LiteralTime() 
+        { return base; }
+    | base=LookupTime()
+        { return base; }
+    | base=EventTime()
+        { return base; }
+}
+
+TimeIndefinite IndefiniteTime() :
+{}
+{
+    <INDEFINITE>
+    {
+        return new TimeIndefinite();
+    }
+}
+
+TimeDiscrete EventTime() :
+{}
+{
+    (<MOUSE_OVER> | <WHEN_NOT_ACTIVE>)
+        {
+            //For now, map all events to the zero time
+            return new TimeDiscrete(0);
+        }
+}
+
+TimeDiscrete LiteralTime() :
+{
+    double t1, t2, t3 = Double.NaN, value;
+    Token t;
+}
+{
+    t1=Number() 
+        {
+            value = t1;
+        }
+    (
+    
+    (":" t2=Number() (":" t3=Number())?
+        {
+            //Return clock time format (convert to seconds)
+            if (Double.isNaN(t3))
+            {
+                value = t1 * 60 + t2;
+            }
+            else
+            {
+                value = t1 * 3600 + t2 * 60 + t3;
+            }
+        }
+    )
+    
+    | 
+    
+    (t=<UNITS>
+        {
+            //Return units format (convert to seconds)
+            if (t.image.equals("ms")) value = t1 / 1000;
+            if (t.image.equals("min")) value = t1 * 60;
+            if (t.image.equals("h")) value = t1 * 3600;
+        }
+    )
+    )?
+    {
+        return new TimeDiscrete(value);
+    }
+}
+
+
+TimeLookup LookupTime() :
+{
+    double paramNum = 0.0;
+    Token node, event;
+}
+{
+    node=<IDENTIFIER> "." event=<IDENTIFIER> (paramNum=ParamList())?
+    {
+        return new TimeLookup(null, node.image, event.image, "" + paramNum);
+    }
+}
+
+double ParamList() :
+{
+    double num;
+}
+{
+    "(" num=Number() ")"
+    {
+        return num;
+    }
+}
+
+double Number() :
+{
+    Token t;
+}
+{
+    t=<FLOAT> 
+    {
+        try { return Double.parseDouble(t.image); }
+        catch (Exception e) { e.printStackTrace(); }
+        
+        return 0.0;
+    }
+    | t=<INTEGER>
+    {
+        try { return Double.parseDouble(t.image); }
+        catch (Exception e) { e.printStackTrace(); }
+        
+        return 0.0;
+    }
+}
+
+int Integer() :
+{
+    Token t;
+}
+{
+    t=<INTEGER>
+    {
+        try { return Integer.parseInt(t.image); }
+        catch (Exception e) { e.printStackTrace(); }
+        
+        return 0;
+    }
+}
+

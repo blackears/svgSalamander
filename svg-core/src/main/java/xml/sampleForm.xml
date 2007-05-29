@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : sampleForm.xml
+    Created on : October 21, 2004, 7:21 PM
+    Author     : kitfox
+    Description:
+        Purpose of the document follows.
+-->
+
+<form x="0" y="0" width="640" height="480">
+    <radio-group name="stoplight"/>
+
+    <panel>
+        <border-layout>
+            <north>
+                <label text="My Window"/>
+            </north>
+            <center>
+                <panel>
+                    <box-layout axis="y-axis">
+                        <panel>
+                            <flow-layout>
+                                <label text="Press this button: "/>
+                                <button text="Click Me!" onClick="alert('Hello there')"/>
+                            </flow-layout>
+                        </panel>
+                        <panel>
+                            <flow-layout>
+                                <radio-button name="red" button-group="stoplight" text="red" selected="true"/>
+                                <radio-button name="yellow" button-group="stoplight" text="yellow"/>
+                                <radio-button name="green" button-group="stoplight" text="green"/>
+                            </flow-layout>
+                        </panel>
+                    </box-layout>
+                </panel>
+            </center>
+        </border-layout>
+    </panel>
+
+</form>

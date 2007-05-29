@@ -1,0 +1,142 @@
+<!--
+<svg onload="moveLabel('label1', 50, 50, 200, 24)">
+    <script type="text/ecmascript" src="formControls.js"/>
+    -->
+<!--svg onload="moveLabel('label1', 50, 50, 200, 24)"-->
+<!--svg onload="zzz.doIt(); m_label1.moveLabel(50, 50, 200, 24)"-->
+<svg onload="m_label1.setSize(200, 24);m_label1.setLocation(50, 50)">
+<!--svg-->
+
+
+    <script type="text/javascript">
+    <![CDATA[
+
+/**
+ * Fake inheritance in JS
+ */
+Object.prototype.inheritFrom=inheritFrom;
+Object.prototype.callSuper=callSuper;
+
+function inheritFrom(ancestor)
+{
+    this.ancestor=ancestor;
+    for (x in ancestor)
+    {
+        if (!(this [x])) this[x] = ancestor[x];
+    }
+}
+
+function callSuper(func)
+{
+    if (!this.ancestor) return;
+
+    var old = eval(this[func]);
+    this[func] = this.ancestor[func];
+    var temp = arguments;
+    var callString = (arguments.length == 1) ? "this[func]()" : "this[func](";
+    
+    for (x=1; x<temp.length; x++)
+    {
+        callString += "temp[" + x + "]";
+        callString += (x == temp.length - 1) ? ")" : ",";
+    }
+    
+    eval(callString);
+    this[func] = old;
+}
+
+
+
+function aaa()
+{
+    this.doIt = function() { alert("aaa"); }
+}
+
+function bbb()
+{
+    this.inheritFrom(new aaa());
+    this.doIt = function() { alert("bbb"); }
+}
+
+var zzz = new bbb();
+
+
+var m_label1 = new label("label1");
+
+/**
+ * Layout a form control.  Must be called to initialize and whenever the
+ * form''s dimensions change.
+ */
+function pack()
+{
+}
+
+function container(name, x, y, width, height)
+{
+    this.name = name;
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+
+    this.getWidth = function() { return this.width; }
+    this.getHeight = function() { return this.height; }
+    this.getX = function() { return this.x; }
+    this.getY = function() { return this.y; }
+
+//    this.setWidth = function(width) { this.width = width; }
+//    this.setHeight = function(height) { this.height = height; }
+//    this.setX = function(x) { this.x = x; }
+//    this.setY = function(y) { this.y = y; }
+
+    this.setSize = function(width, height)
+    {
+        this.width = width;
+        this.height = height;
+
+        var rect = svgDocument.getElementById(this.name + "-rect");
+        rect.setAttribute("width", width);
+        rect.setAttribute("height", height);
+    }
+    
+    this.setLocation = function(x, y)
+    {
+        this.x = x;
+        this.y = y;
+
+        var rect = svgDocument.getElementById(this.name + "-rect");
+        rect.setAttribute("x", x);
+        rect.setAttribute("y", y);
+    }
+}
+
+
+function label(name)
+{
+    this.inheritFrom(new container(name));
+
+    this.setLocation = function(x, y)
+    {
+        this.callSuper("setLocation", x, y);
+        
+        var text = svgDocument.getElementById(this.name + "-text");
+        text.setAttribute("x", x);
+        text.setAttribute("y", y + this.getHeight());
+    }
+
+//http://www.javascriptkit.com/javatutors/object4.shtml
+}
+
+    // ]]>
+    </script>
+
+
+    <g name="label1">
+        <clipPath id="label1-clip">
+            <rect id="label1-rect" x="20" y="50" width="100" height="24" style="fill:lightGray;stroke:black;"/>
+        </clipPath>
+        <use xlink:href="#label1-rect"/>
+        <text id="label1-text" x="30" y="10" style="fill:black; font-size: 20;clip-path:url(#label1-clip)">Hello good day</text>
+        <!--text id="label1-text" x="30" y="10" style="fill:black; font-size: 20;">Hello good day</text-->
+    </g>
+</svg>

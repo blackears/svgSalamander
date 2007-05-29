@@ -16,15 +16,15 @@ root {
 }
 
 p.alert {
-   background-color: #ffcccc;
+   background-color: #ccffcc;
    background-position: center;
-   border-bottom-color: red;
+   border-bottom-color: green;
    border-bottom-style: solid;
-   border-left-color: red;
+   border-left-color: green;
    border-left-style: solid;
-   border-right-color: red;
+   border-right-color: green;
    border-right-style: solid;
-   border-top-color: red;
+   border-top-color: green;
    border-top-style: solid;
    font-style: inherit;
    padding-bottom: 4px;

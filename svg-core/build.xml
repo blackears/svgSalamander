@@ -29,14 +29,18 @@
         <property name="version" value="1"/>
         <property name="project.jar" location="${jar.dir}/${project.name}.jar"/>
 
-        <property name="project.debug.mainClass" value="com.kitfox.Main"/>
+        <property name="project.debug.mainClass" value="com.kitfox.svg.app.MainFrame"/>
         <property name="project.debug.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
-        <property name="project.run.mainClass" value="com.kitfox.Main"/>
+        <property name="project.run.mainClass" value="com.kitfox.svg.app.MainFrame"/>
         <property name="project.run.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
 
         <property name="javadoc.dir" location="${build.dir}/javadoc"/>
         <property name="javadoc.zip" location="${www.localDir}/doc/javadoc.zip"/>
 
+        <property name="javacc.home" location="lib/library"/>
+        <property name="animtime.jjtree" location="${src.main.dir}/com/kitfox/svg/animation/AnimTimeParser.jjt"/>
+        <property name="animtime.outdir" location="${gen.main.src.dir}/com/kitfox/svg/animation/parser"/>
+        
     	<path id="lib.include">
             <pathelement path="${netbeans.home}/modules/org-jdesktop-layout.jar"/>
             <fileset dir="lib/include">
@@ -52,8 +56,9 @@
     	</path>
 
         <path id="path.sourcepath">
+            <pathelement path="${gen.main.src.dir}"/>
             <pathelement path="${src.main.dir}"/>
-            <pathelement path="${src.test.dir}"/>
+            <!--pathelement path="${src.test.dir}"/-->
         </path>
 
         <path id="path.sourcepath.debug">
@@ -79,9 +84,18 @@
         <mkdir dir="${gen.main.res.dir}"/>
     </target>
 
-    <target name="compile" depends="init,prepareBuild" description="Compile source">
-        <javac debug="true" destdir="${classes.main.dir}" srcdir="${src.main.dir}">
+    <target name="genData" depends="init,prepareBuild" description="Generate parsers from javacc files.">
+        <mkdir dir="${animtime.outdir}"/>
+        <!--jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}" outputfile="${animtime.outfile}"/-->
+        <jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
+        <javacc target="${animtime.outdir}/AnimTimeParser.jj" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
+    </target>
+    
+    <target name="compile" depends="init,prepareBuild,genData" description="Compile source">
+        <javac debug="true" destdir="${classes.main.dir}">
             <compilerarg value="-Xlint:all,-unchecked,-serial"/>
+            <src path="${src.main.dir}"/>
+            <src path="${gen.main.src.dir}"/>
             <classpath>
                 <path refid="path.classpath"/>
             </classpath>
@@ -117,20 +131,21 @@
     </target>
 
     <target name="jar" depends="init,compile">
-        <manifest file="${manifest.file}">
-            <attribute name="Main-Class" value="${project.run.mainClass}"/>
-            <attribute name="Built-By" value="${user.name}"/>
-            <section name="common">
-              <attribute name="Specification-Title" value="${project.title}"/>
-              <attribute name="Specification-Version" value="${version}"/>
-              <attribute name="Specification-Vendor" value="Kitfox"/>
-              <attribute name="Implementation-Title" value="${project.name}"/>
-              <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
-              <attribute name="Implementation-Vendor" value="Mark McKay, mark@kitfox.com"/>
-            </section>
-        </manifest>
 
-        <jar compress="true" jarfile="${project.jar}" manifest="${manifest.file}">
+        <jar compress="true" jarfile="${project.jar}">
+            <manifest>
+                <attribute name="Main-Class" value="${project.run.mainClass}"/>
+                <attribute name="Built-By" value="${user.name}"/>
+                <section name="common">
+                  <attribute name="Specification-Title" value="${project.title}"/>
+                  <attribute name="Specification-Version" value="${version}"/>
+                  <attribute name="Specification-Vendor" value="Kitfox"/>
+                  <attribute name="Implementation-Title" value="${project.name}"/>
+                  <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
+                  <attribute name="Implementation-Vendor" value="Mark McKay, mark@kitfox.com"/>
+                </section>
+            </manifest>
+
             <fileset dir="${classes.main.dir}">
                 <include name="**/*.class"/>
             </fileset>
