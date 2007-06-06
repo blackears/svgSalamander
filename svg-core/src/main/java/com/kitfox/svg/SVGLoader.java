@@ -29,13 +29,9 @@ package com.kitfox.svg;
 
 
 import java.util.*;
-import java.io.*;
 import java.net.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
-import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
 
 import com.kitfox.svg.animation.*;
 
@@ -80,6 +76,7 @@ public class SVGLoader extends DefaultHandler
         diagram = new SVGDiagram(xmlBase, universe);
 
         //Compile a list of important builder classes
+        nodeClasses.put("a", A.class);
         nodeClasses.put("animate", Animate.class);
         nodeClasses.put("animatecolor", AnimateColor.class);
         nodeClasses.put("animatemotion", AnimateMotion.class);

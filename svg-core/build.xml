@@ -13,6 +13,7 @@
         <tstamp/>
 
         <property name="build.dir" location="build"/>
+        <property name="www.dir" location="../www"/>
         <property name="gen.main.src.dir" location="${build.dir}/gen/src/main/java"/>
         <property name="gen.main.res.dir" location="${build.dir}/gen/src/main/res"/>
         <property name="classes.main.dir" location="${build.dir}/classes/main"/>
@@ -28,6 +29,9 @@
         <property name="project.title" value="SVG Salamander"/>
         <property name="version" value="1"/>
         <property name="project.jar" location="${jar.dir}/${project.name}.jar"/>
+        <property name="project.complete.jar" value="${jar.dir}/svgSalamander.jar"/>
+        <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
+        <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
 
         <property name="project.debug.mainClass" value="com.kitfox.svg.app.MainFrame"/>
         <property name="project.debug.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
@@ -40,6 +44,10 @@
         <property name="javacc.home" location="lib/library"/>
         <property name="animtime.jjtree" location="${src.main.dir}/com/kitfox/svg/animation/AnimTimeParser.jjt"/>
         <property name="animtime.outdir" location="${gen.main.src.dir}/com/kitfox/svg/animation/parser"/>
+        
+        <property name="key.user" value="kitfox"/>
+        <property name="key.password" value="anonymous"/>
+        <property name="key.location" location="tempKeystore"/>
         
     	<path id="lib.include">
             <pathelement path="${netbeans.home}/modules/org-jdesktop-layout.jar"/>
@@ -159,36 +167,101 @@
     </target>
 
     <target name="release" depends="init,jar,generateKey" description="Obfuscates and sign jar, copies result to binaries directory.">
-        <proguard
-            defaultpackage=""
-            printmapping="${project.obfuscated.names}"
-            overloadaggressively="false"
-            usemixedcaseclassnames="false"
-            verbose="true"
-            shrink="false"
-            optimize="false"
-            obfuscate="false"
-            ignorewarnings="true">
+        <xslt in="${res.main.dir}/xml/about.xml" style="${res.main.dir}/xml/about.xsl" out="${res.main.dir}/res/help/about/about.html" force="true"/>
+        <!--
+        <replace file="${res.dir}/res/help/about/about.html" token="&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;"/>
+        -->
+        <replace file="${res.main.dir}/res/help/about/about.html" token="; charset=ISO-8859-1"/>
+        
+        <jar compress="true" jarfile="${project.complete.jar}" manifest="${manifest.file}">
+            <manifest>
+                <attribute name="Main-Class" value="${project.run.mainClass}"/>
+                <!--attribute name="Class-Path" value="kitfoxUtilities.jar"/-->
+                <attribute name="Built-By" value="${user.name}"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value="SVG Salamander Utilities"/>
+                    <attribute name="Specification-Version" value="${version}"/>
+                    <attribute name="Specification-Vendor" value="Kitfox - Mark McKay"/>
+                    <attribute name="Implementation-Title" value="SVG Salamander"/>
+                    <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
+                    <attribute name="Implementation-Vendor" value="Kitfox - Mark McKay"/>
+                </section>
+                <section name="com/kitfox/svg/SVGUniverse.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/SVGIcon.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/SVGPanel.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/ProportionalLayoutPanel.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+            </manifest>
+        
+            <fileset dir="${classes.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="lgpl.txt"/>
+                <include name="readme.txt"/>
+            </fileset>
+            <fileset dir="${res.main.dir}">
+                <include name="res/**"/>
+            </fileset>
+        </jar>
 
-            <libraryjar>
-                <pathelement path="${java.home}/lib/rt.jar"/>
-                <!--pathelement path="C:\Program Files\Java\jdk1.6.0\jre\lib/rt.jar"/-->
-                <path refid="lib.library"/>
-            </libraryjar>
+        <jar compress="true" jarfile="${project.tiny.jar}">
+            <manifest>
+                <attribute name="Main-Class" value="${project.run.mainClass}"/>
+                <!--attribute name="Class-Path" value="kitfoxUtilities.jar"/-->
+                <attribute name="Built-By" value="${user.name}"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value="SVG Salamander Utilities"/>
+                    <attribute name="Specification-Version" value="${version}"/>
+                    <attribute name="Specification-Vendor" value="Kitfox - Mark McKay"/>
+                    <attribute name="Implementation-Title" value="SVG Salamander"/>
+                    <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
+                    <attribute name="Implementation-Vendor" value="Kitfox - Mark McKay"/>
+                </section>
+                <section name="com/kitfox/svg/SVGUniverse.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/SVGIcon.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/SVGPanel.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+                <section name="com/kitfox/svg/app/beans/ProportionalLayoutPanel.class">
+                    <attribute name="Java-Bean" value="true"/>
+                </section>
+            </manifest>
+        
+            <fileset dir="${classes.main.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir=".">
+                <include name="lgpl.txt"/>
+                <include name="readme.txt"/>
+            </fileset>
+        </jar>
 
-            <injar file="${project.jar}"/>
-            <injar filter="!META-INF/MANIFEST.MF">
-                <path refid="lib.include"/>
-            </injar>
-
-            <outjar file="${project.obfuscated.jar}"/>
-
-            <keep access="public" type="class" name="${project.run.mainClass}">
-                <method name="main"/>
-            </keep>
-        </proguard>
-
-        <signjar jar="${project.obfuscated.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
+        <!-- 
+        Signing a jar depends upon you having a keystore to sign the jar 
+        with.  If you have an existing keystore, update the key.user, 
+        key.password and key.location properties to reflect your key entry.  
+        If you don't have a keystore, you can create a default keystore for 
+        the purposes for signing this file by running the generateKey task 
+        in this ant file. 
+        -->
+        <antcall target="generateKey"/>
+        <signjar jar="${project.complete.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
+        
+        <copy file="${project.complete.jar}" toFile="${project.www.jar}"/>
+        
+        <copy file="${javadoc.zip}" toFile="${javadoc.www.zip}" failonerror="false"/>
     </target>
 
     <target name="clean" depends="init" description="Clean all build products.">

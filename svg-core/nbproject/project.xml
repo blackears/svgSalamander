@@ -6,8 +6,8 @@
             <!-- Do not use Project Properties customizer when editing this file manually. -->
             <name>svg-salamander-core</name>
             <properties>
-                <property name="src.main.dir">C:/dev/svn.dev.java.net/svgsalamander/trunk/svg-core/src/main/java</property>
-                <property name="src.test.dir">C:/dev/svn.dev.java.net/svgsalamander/trunk/svg-core/src/test/java</property>
+                <property name="src.main.dir">src/main/java</property>
+                <property name="src.test.dir">src/test/java</property>
             </properties>
             <folders>
                 <source-folder>
