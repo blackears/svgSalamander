@@ -100,7 +100,7 @@
     </target>
     
     <target name="compile" depends="init,prepareBuild,genData" description="Compile source">
-        <javac debug="true" destdir="${classes.main.dir}">
+        <javac debug="true" destdir="${classes.main.dir}" source="1.4" target="1.4">
             <compilerarg value="-Xlint:all,-unchecked,-serial"/>
             <src path="${src.main.dir}"/>
             <src path="${gen.main.src.dir}"/>
