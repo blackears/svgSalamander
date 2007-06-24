@@ -35,7 +35,7 @@ import java.net.URI;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class A extends SVGElement {
+public class A extends Group {
 
     URI href;
     String title;
@@ -81,11 +81,11 @@ public class A extends SVGElement {
      */
     public boolean updateTime(double curTime) throws SVGException
     {
+        boolean changeState = super.updateTime(curTime);
 //        if (trackManager.getNumTracks() == 0) return false;
 
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
-        boolean shapeChange = false;
         
         if (getPres(sty.setName("xlink:href")))
         {
@@ -97,6 +97,6 @@ public class A extends SVGElement {
             title = sty.getStringValue();
         }
         
-        return shapeChange;
+        return changeState;
     }
 }
