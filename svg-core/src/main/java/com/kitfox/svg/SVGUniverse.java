@@ -29,19 +29,35 @@ package com.kitfox.svg;
 
 import com.kitfox.svg.app.beans.SVGIcon;
 import java.awt.Graphics2D;
-import java.net.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.beans.*;
-import java.lang.ref.*;
-//import java.util.*;
-//import java.util.regex.*;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Reader;
+import java.io.Serializable;
+import java.lang.ref.SoftReference;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
+import java.util.HashMap;
+import java.util.Iterator;
 
-import java.util.*;
-import java.io.*;
-import org.xml.sax.*;
+import java.util.zip.InflaterInputStream;
+import javax.imageio.ImageIO;
 import javax.xml.parsers.SAXParserFactory;
-import javax.xml.parsers.SAXParser;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
@@ -302,6 +318,34 @@ public class SVGUniverse implements Serializable
         return null;
     }
     
+    
+    private InputStreamReader createDocumentReader(InputStream is)
+    {
+        BufferedInputStream bin = new BufferedInputStream(is);
+        bin.mark(4);
+        
+        byte[] buf = new byte[4];
+        try
+        {
+            bin.read(buf, 0, buf.length);
+            bin.reset();
+        } catch (IOException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        
+        if (buf[0] == 0x1f)
+        {
+            InflaterInputStream iis = new InflaterInputStream(bin);
+            return new InputStreamReader(iis);
+        }
+        else
+        {
+            return new InputStreamReader(bin);
+        }
+    }
+    
     public URI loadSVG(URL docRoot)
     {
         return loadSVG(docRoot, false);
@@ -323,7 +367,7 @@ public class SVGUniverse implements Serializable
             if (loadedDocs.containsKey(uri) && !forceLoad) return uri;
             
             InputStream is = docRoot.openStream();
-            return loadSVG(uri, new InputStreamReader(is));
+            return loadSVG(uri, createDocumentReader(is));
         }
         catch (Throwable t)
         {
@@ -341,7 +385,7 @@ public class SVGUniverse implements Serializable
     
     public URI loadSVG(InputStream is, String name, boolean forceLoad)
     {
-        return loadSVG(new InputStreamReader(is), name, forceLoad);
+        return loadSVG(createDocumentReader(is), name, forceLoad);
     }
     
     public URI loadSVG(Reader reader, String name)

@@ -65,7 +65,7 @@ public class SVGPlayer extends javax.swing.JFrame
             fc = new JFileChooser();
             fc.setFileFilter(
                 new javax.swing.filechooser.FileFilter() {
-                    final Matcher matchLevelFile = Pattern.compile(".*\\.svg").matcher("");
+                    final Matcher matchLevelFile = Pattern.compile(".*\\.svg[z]?").matcher("");
 
                     public boolean accept(File file)
                     {
@@ -75,7 +75,7 @@ public class SVGPlayer extends javax.swing.JFrame
                         return matchLevelFile.matches();
                     }
 
-                    public String getDescription() { return "SVG file (*.svg)"; }
+                    public String getDescription() { return "SVG file (*.svg, *.svgz)"; }
                 }
             );
         }
