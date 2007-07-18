@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hotspot_log version='160 1' process='3344' time_ms='1184734480014'>
+<vm_version>
+<name>
+Java HotSpot(TM) Client VM
+</name>
+<release>
+1.6.0-rc-fastdebug-b99-debug
+</release>
+<info>
+Java HotSpot(TM) Client VM (1.6.0-rc-fastdebug-b99) for windows-x86, built on Sep 15 2006 02:26:51 by &quot;java_re&quot; with unknown MS VC++:1310
+</info>
+</vm_version>
+<vm_arguments>
+<args>
+-Xdebug -Xnoagent -Djava.compiler=none -Xrunjdwp:transport=dt_socket,address=localhost:4663
+</args>
+<command>
+com.kitfox.svg.zip.ZipTestMain
+</command>
+<launcher>
+SUN_STANDARD
+</launcher>
+</vm_arguments>
+<tty>

@@ -50,8 +50,7 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import java.util.zip.InflaterInputStream;
+import java.util.zip.GZIPInputStream;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.EntityResolver;
@@ -319,29 +318,23 @@ public class SVGUniverse implements Serializable
     }
     
     
-    private InputStreamReader createDocumentReader(InputStream is)
+    private InputStreamReader createDocumentReader(InputStream is) throws IOException
     {
         BufferedInputStream bin = new BufferedInputStream(is);
-        bin.mark(4);
-        
-        byte[] buf = new byte[4];
-        try
+        bin.mark(2);
+        int b0 = bin.read();
+        int b1 = bin.read();
+        bin.reset();
+
+        //Check for gzip magic number
+        if ((b1 << 8 | b0) == GZIPInputStream.GZIP_MAGIC)
         {
-            bin.read(buf, 0, buf.length);
-            bin.reset();
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
-        
-        
-        if (buf[0] == 0x1f)
-        {
-            InflaterInputStream iis = new InflaterInputStream(bin);
+            GZIPInputStream iis = new GZIPInputStream(bin);
             return new InputStreamReader(iis);
         }
         else
         {
+            //Plain text
             return new InputStreamReader(bin);
         }
     }
@@ -378,12 +371,12 @@ public class SVGUniverse implements Serializable
     }
     
     
-    public URI loadSVG(InputStream is, String name)
+    public URI loadSVG(InputStream is, String name) throws IOException
     {
         return loadSVG(is, name, false);
     }
     
-    public URI loadSVG(InputStream is, String name, boolean forceLoad)
+    public URI loadSVG(InputStream is, String name, boolean forceLoad) throws IOException
     {
         return loadSVG(createDocumentReader(is), name, forceLoad);
     }
