@@ -114,6 +114,7 @@ public class SVGDisplayPanel extends javax.swing.JPanel implements Scrollable
         }
 
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         if (diagram != null) 
         {
             try

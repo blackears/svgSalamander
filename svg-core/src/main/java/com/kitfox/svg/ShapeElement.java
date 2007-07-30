@@ -178,16 +178,28 @@ abstract public class ShapeElement extends RenderableElement
         if (getStyle(styleAttrib.setName("stroke-linecap")))
         {
             String val = styleAttrib.getStringValue();
-            if (val.equals("round")) strokeLinecap = BasicStroke.CAP_ROUND;
-            else if (val.equals("square")) strokeLinecap = BasicStroke.CAP_SQUARE;
+            if (val.equals("round"))
+            {
+                strokeLinecap = BasicStroke.CAP_ROUND;
+            }
+            else if (val.equals("square"))
+            {
+                strokeLinecap = BasicStroke.CAP_SQUARE;
+            }
         }
 
         int strokeLinejoin = BasicStroke.JOIN_MITER;
         if (getStyle(styleAttrib.setName("stroke-linejoin")))
         {
             String val = styleAttrib.getStringValue();
-            if (val.equals("round")) strokeLinecap = BasicStroke.JOIN_ROUND;
-            else if (val.equals("bevel")) strokeLinecap = BasicStroke.JOIN_BEVEL;
+            if (val.equals("round"))
+            {
+                strokeLinejoin = BasicStroke.JOIN_ROUND;
+            }
+            else if (val.equals("bevel"))
+            {
+                strokeLinejoin = BasicStroke.JOIN_BEVEL;
+            }
         }
 
         float strokeMiterLimit = 4f;

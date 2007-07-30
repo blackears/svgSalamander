@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;">
+
+	 <!--
+<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="612.3" height="433.2"
+	 viewBox="0 0 612.3 433.2" overflow="visible" enable-background="new 0 0 612.3 433.2" xml:space="preserve">
+<g>
+
+		<path fill="none" stroke="#000000" stroke-width="0.7078" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="500" d="
+		M410.8,67"/>
+</g>
+<path fill="none" stroke="#000000" stroke-width="0.7078" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="500" d="
+	M405,59.9"/>
+	-->
+<path fill="none"
+	stroke="#000000"
+	stroke-width="0.7078"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	d="M408.1,61.4c-0.3-0.3,0.1,0.1-0.2-0.2c-0.3,0.8,0.1-0.3-0.2,0.5"/>
+
+	 <!--
+E:\dev\svn.dev.java.net\svgsalamander\trunk\svg-core\src\test\res\bad_alias.svg
+
+
+<path fill="none"
+	stroke="#000000"
+	stroke-width="0.7078"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	stroke-miterlimit="500"
+	d="M408.1,61.4c-0.3-0.3,0.1,0.1-0.2-0.2c-0.3,0.8,0.1-0.3-0.2,0.5"/>
+
+
+<path fill="none" stroke="#000000" stroke-width="0.7078" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="500" d="
+	M408.1,61.4c-0.3-0.3,0.1,0.1-0.2-0.2c-0.7-0.8,0.3,0.2-0.5-0.5c-0.8-0.6,0.3,0.2-0.5-0.4c-0.8-0.4,0.3,0.1-0.5-0.3
+	c-0.8-0.2,0.3,0-0.6-0.1c-0.8,0,0.3,0-0.6,0c-0.8,0.2,0.3-0.1-0.6,0.1c-0.8,0.4,0.3-0.2-0.5,0.3c-0.8,0.6,0.2-0.2-0.5,0.4
+	c-0.7,0.8,0.2-0.3-0.5,0.5c-0.7,0.9,0.2-0.3-0.4,0.6c-0.6,1.1,0.2-0.4-0.4,0.7c-0.3,0.8,0.1-0.3-0.2,0.5"/>
+
+
+<g id="XSEC_x5F_DATUMS">
+</g>
+<g id="SURFACES">
+</g>
+<g id="SFIN">
+</g>
+<g id="REPERES">
+</g>
+<g id="POINTS">
+</g>
+<g id="PLANS">
+</g>
+<g id="PARAMETER_x5F_DIM">
+</g>
+<g id="NOTES">
+</g>
+<g id="NOTE">
+</g>
+<g id="GTOL">
+</g>
+<g id="DRIVEN_x5F_DIM">
+</g>
+<g id="DRAFT_x5F_GEOM">
+</g>
+<g id="COURBES">
+</g>
+<g id="COSM_x5F_SKETCH">
+</g>
+<g id="COSMETIQUES">
+</g>
+<g id="COSM">
+</g>
+<g id="AXES">
+</g>
+<g id="_x30_7_x5F__x5F_ASM_x5F_ALL_x5F_SKELETONS">
+</g>
+<g id="_x30_6_x5F__x5F__x5F_PRT_x5F_ALL_x5F_SURFS">
+</g>
+<g id="_x30_6_x5F__x5F_ASM_x5F_ALL_x5F_SURFS">
+</g>
+<g id="_x30_6_x5F_ALL_x5F_SURFS">
+</g>
+<g id="_x30_5_x5F__x5F__x5F_PRT_x5F_DEF_x5F_DTM_x5F_CSYS">
+</g>
+<g id="_x30_5_x5F__x5F__x5F_PRT_x5F_ALL_x5F_DTM_x5F_CSYS">
+</g>
+<g id="_x30_5_x5F__x5F_ASM_x5F_DEF_x5F_DTM_x5F_CSYS">
+</g>
+<g id="_x30_5_x5F__x5F_ASM_x5F_ALL_x5F_DTM_x5F_CSYS">
+</g>
+<g id="_x30_5_x5F_ALL_x5F_DTM_x5F_CSYS">
+</g>
+<g id="_x30_4_x5F__x5F__x5F_PRT_x5F_ALL_x5F_DTM_x5F_PNT">
+</g>
+<g id="_x30_4_x5F__x5F_ASM_x5F_ALL_x5F_DTM_x5F_PNT">
+</g>
+<g id="_x30_4_x5F_ALL_x5F_DTM_x5F_PNT">
+</g>
+<g id="_x30_3_x5F__x5F__x5F_PRT_x5F_ALL_x5F_CURVES">
+</g>
+<g id="_x30_3_x5F__x5F_ASM_x5F_ALL_x5F_CURVES">
+</g>
+<g id="_x30_3_x5F_ALL_x5F_CURVES">
+</g>
+<g id="_x30_2_x5F__x5F__x5F_PRT_x5F_ALL_x5F_AXES">
+</g>
+<g id="_x30_2_x5F__x5F_ASM_x5F_ALL_x5F_AXES">
+</g>
+<g id="_x30_2_x5F_ALL_x5F_AXES">
+</g>
+<g id="_x30_1_x5F__x5F__x5F_PRT_x5F_DEF_x5F_DTM_x5F_PLN">
+</g>
+<g id="_x30_1_x5F__x5F__x5F_PRT_x5F_ALL_x5F_DTM_x5F_PLN">
+</g>
+<g id="_x30_1_x5F__x5F_ASM_x5F_DEF_x5F_DTM_x5F_PLN">
+</g>
+<g id="_x30_1_x5F__x5F_ASM_x5F_ALL_x5F_DTM_x5F_PLN">
+</g>
+<g id="_x30_1_x5F_ALL_x5F_DTM_x5F_PLN">
+</g>
+<g id="_x5F_BLACK_x5F_HOLE">
+</g>
+<g id="DEFAULT_x5F_3">
+</g>
+-->
+</svg>
