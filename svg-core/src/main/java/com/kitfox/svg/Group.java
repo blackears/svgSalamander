@@ -121,6 +121,27 @@ public class Group extends ShapeElement {
         }
     }
 
+    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    {
+        if (xform != null)
+        {
+            ltw = new AffineTransform(ltw);
+            ltw.concatenate(xform);
+        }
+        
+        
+        for (Iterator it = children.iterator(); it.hasNext();)
+        {
+            SVGElement ele = (SVGElement)it.next();
+            if (ele instanceof RenderableElement)
+            {
+                RenderableElement rendEle = (RenderableElement)ele;
+                
+                rendEle.pick(pickArea, ltw, retVec);
+            }
+        }
+    }
+
     public void render(Graphics2D g) throws SVGException
     {
         //Don't process if not visible

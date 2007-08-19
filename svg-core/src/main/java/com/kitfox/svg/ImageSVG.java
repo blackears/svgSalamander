@@ -122,20 +122,15 @@ public class ImageSVG extends RenderableElement
 
     void pick(Point2D point, Vector retVec) throws SVGException
     {
-        /*
-        Point2D xPoint = new Point2D.Double();
-        try
-        {
-            xform.inverseTransform(point, xPoint);
-        } 
-        catch (NoninvertibleTransformException ex)
-        {
-            throw new SVGException(ex);
-        }
-        */
-        
-//        if (bounds.contains(xPoint))
         if (getBoundingBox().contains(point))
+        {
+            retVec.add(getPath(null));
+        }
+    }
+
+    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    {
+        if (ltw.createTransformedShape(getBoundingBox()).intersects(pickArea))
         {
             retVec.add(getPath(null));
         }

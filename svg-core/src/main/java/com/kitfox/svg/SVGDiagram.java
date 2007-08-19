@@ -110,6 +110,18 @@ public class SVGDiagram implements Serializable
         return retVec;
     }
 
+    public Vector pick(Rectangle2D pickArea, Vector retVec) throws SVGException
+    {
+        if (retVec == null)
+        {
+            retVec = new Vector();
+        }
+        
+        root.pick(pickArea, new AffineTransform(), retVec);
+        
+        return retVec;
+    }
+
     public SVGUniverse getUniverse()
     {
         return universe;

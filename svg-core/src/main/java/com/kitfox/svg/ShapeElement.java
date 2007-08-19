@@ -66,20 +66,19 @@ abstract public class ShapeElement extends RenderableElement
 
     void pick(Point2D point, Vector retVec) throws SVGException
     {
-        /*
-        Point2D xPoint = new Point2D.Double();
-        try
-        {
-            xform.inverseTransform(point, xPoint);
-        } 
-        catch (NoninvertibleTransformException ex)
-        {
-            throw new SVGException(ex);
-        }
-         */
-        
         StyleAttribute styleAttrib = new StyleAttribute();
-        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
+//        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
+        if (getShape().contains(point))
+        {
+            retVec.add(getPath(null));
+        }
+    }
+
+    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    {
+        StyleAttribute styleAttrib = new StyleAttribute();
+//        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
+        if (ltw.createTransformedShape(getShape()).intersects(pickArea))
         {
             retVec.add(getPath(null));
         }

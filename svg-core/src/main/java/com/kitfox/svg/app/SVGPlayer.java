@@ -337,7 +337,7 @@ public class SVGPlayer extends javax.swing.JFrame
         
         try
         {
-            URL url = new URL(urlStrn);
+            URL url = new URL(URLEncoder.encode(urlStrn, "UTF-8"));
             loadURL(url);
         }
         catch (Exception e)

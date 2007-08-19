@@ -290,7 +290,7 @@ is.close();
         
         try
         {
-            URL url = new URL(urlStrn);
+            URL url = new URL(URLEncoder.encode(urlStrn, "UTF-8"));
             loadURL(url);
         }
         catch (Exception e)

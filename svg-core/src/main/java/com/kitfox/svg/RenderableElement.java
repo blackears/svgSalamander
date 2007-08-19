@@ -87,6 +87,8 @@ abstract public class RenderableElement extends TransformableElement
     
     abstract void pick(Point2D point, Vector retVec) throws SVGException;
     
+    abstract void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException;
+    
     abstract public Rectangle2D getBoundingBox() throws SVGException;
 /*
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
