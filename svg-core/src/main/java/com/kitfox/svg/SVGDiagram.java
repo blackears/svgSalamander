@@ -100,24 +100,34 @@ public class SVGDiagram implements Serializable
      */
     public Vector pick(Point2D point, Vector retVec) throws SVGException
     {
-        if (retVec == null)
-        {
-            retVec = new Vector();
-        }
-        
-        root.pick(point, retVec);
-        
-        return retVec;
+        return pick(point, false, retVec);
     }
-
-    public Vector pick(Rectangle2D pickArea, Vector retVec) throws SVGException
+    
+    public Vector pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
     {
         if (retVec == null)
         {
             retVec = new Vector();
         }
         
-        root.pick(pickArea, new AffineTransform(), retVec);
+        root.pick(point, boundingBox, retVec);
+        
+        return retVec;
+    }
+
+    public Vector pick(Rectangle2D pickArea, Vector retVec) throws SVGException
+    {
+        return pick(pickArea, false, retVec);
+    }
+    
+    public Vector pick(Rectangle2D pickArea, boolean boundingBox, Vector retVec) throws SVGException
+    {
+        if (retVec == null)
+        {
+            retVec = new Vector();
+        }
+        
+        root.pick(pickArea, new AffineTransform(), boundingBox, retVec);
         
         return retVec;
     }

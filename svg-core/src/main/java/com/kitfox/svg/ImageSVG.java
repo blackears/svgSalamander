@@ -120,7 +120,7 @@ public class ImageSVG extends RenderableElement
     public float getWidth() { return width; }
     public float getHeight() { return height; }
 
-    void pick(Point2D point, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
     {
         if (getBoundingBox().contains(point))
         {
@@ -128,7 +128,7 @@ public class ImageSVG extends RenderableElement
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
     {
         if (ltw.createTransformedShape(getBoundingBox()).intersects(pickArea))
         {

@@ -64,21 +64,21 @@ abstract public class ShapeElement extends RenderableElement
     }
      */
 
-    void pick(Point2D point, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
 //        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
-        if (getShape().contains(point))
+        if ((boundingBox ? getBoundingBox() : getShape()).contains(point))
         {
             retVec.add(getPath(null));
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
 //        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
-        if (ltw.createTransformedShape(getShape()).intersects(pickArea))
+        if (ltw.createTransformedShape((boundingBox ? getBoundingBox() : getShape())).intersects(pickArea))
         {
             retVec.add(getPath(null));
         }

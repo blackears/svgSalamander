@@ -93,7 +93,7 @@ public class Group extends ShapeElement {
         return true;
     }
 
-    void pick(Point2D point, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
     {
         Point2D xPoint = new Point2D.Double(point.getX(), point.getY());
         if (xform != null)
@@ -116,12 +116,12 @@ public class Group extends ShapeElement {
             {
                 RenderableElement rendEle = (RenderableElement)ele;
                 
-                rendEle.pick(xPoint, retVec);
+                rendEle.pick(xPoint, boundingBox, retVec);
             }
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
     {
         if (xform != null)
         {
@@ -137,7 +137,7 @@ public class Group extends ShapeElement {
             {
                 RenderableElement rendEle = (RenderableElement)ele;
                 
-                rendEle.pick(pickArea, ltw, retVec);
+                rendEle.pick(pickArea, ltw, boundingBox, retVec);
             }
         }
     }
