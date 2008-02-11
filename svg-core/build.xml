@@ -1,281 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." default="all" name="svg-salamander-core">
-    <description>
-	Java 2D graphics pipeline inspired by SVG
-	</description>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<project name="svg-salamander-core" default="default" basedir=".">
+    <description>Builds, tests, and runs the project svg-salamander-core.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <!--
 
-    <import file="../build-NBUtil.xml"/>
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
 
-    <target name="all" depends="build,release" description="Build jars, obfuscate and sign."/>
-    <target name="build" depends="compile-test" description="Build jars."/>
+      -pre-init:                 called before initialization of project properties
+      -post-init:                called after initialization of project properties
+      -pre-compile:              called before javac compilation
+      -post-compile:             called after javac compilation
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-jar:                  called before JAR building
+      -post-jar:                 called after JAR building
+      -post-clean:               called after cleaning build products
 
-    <target name="init">
-        <tstamp/>
+    (Targets beginning with '-' are not intended to be called on their own.)
 
-        <property name="build.dir" location="build"/>
-        <property name="www.dir" location="../www"/>
-        <property name="gen.main.src.dir" location="${build.dir}/gen/src/main/java"/>
-        <property name="gen.main.res.dir" location="${build.dir}/gen/src/main/res"/>
-        <property name="classes.main.dir" location="${build.dir}/classes/main"/>
-        <property name="classes.test.dir" location="${build.dir}/classes/test"/>
-        <property name="src.main.dir" location="src/main/java"/>
-        <property name="src.test.dir" location="src/test/java"/>
+    Example of inserting an obfuscator after compilation could look like this:
 
-        <property name="res.main.dir" location="src/main/res"/>
-        <property name="res.test.dir" location="src/test/res"/>
-        <property name="jar.dir" location="${build.dir}/jar"/>
-        <property name="manifest.file" location="manifest.mf"/>
-        <property name="project.name" value="${ant.project.name}"/>
-        <property name="project.title" value="SVG Salamander"/>
-        <property name="version" value="1"/>
-        <property name="project.jar" location="${jar.dir}/${project.name}.jar"/>
-        <property name="project.complete.jar" value="${jar.dir}/svgSalamander.jar"/>
-        <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
-        <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
 
-        <property name="project.debug.mainClass" value="com.kitfox.svg.app.MainFrame"/>
-        <property name="project.debug.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
-        <property name="project.run.mainClass" value="com.kitfox.svg.app.MainFrame"/>
-        <property name="project.run.jvm" location="C:\bin\jdk1.6.0\fastdebug/bin/java"/>
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
 
-        <property name="javadoc.dir" location="${build.dir}/javadoc"/>
-        <property name="javadoc.zip" location="${www.localDir}/doc/javadoc.zip"/>
 
-        <property name="javacc.home" location="lib/library"/>
-        <property name="animtime.jjtree" location="${src.main.dir}/com/kitfox/svg/animation/AnimTimeParser.jjt"/>
-        <property name="animtime.outdir" location="${gen.main.src.dir}/com/kitfox/svg/animation/parser"/>
+    Another way to customize the build is by overriding existing main targets.
+    The targets of interest are: 
+
+      -init-macrodef-javac:     defines macro for javac compilation
+      -init-macrodef-junit:     defines macro for junit execution
+      -init-macrodef-debug:     defines macro for class debugging
+      -init-macrodef-java:      defines macro for class execution
+      -do-jar-with-manifest:    JAR building (if you are using a manifest)
+      -do-jar-without-manifest: JAR building (if you are not using a manifest)
+      run:                      execution of project 
+      -javadoc-build:           Javadoc generation
+      test-report:              JUnit report generation
+
+    An example of overriding the target for project execution could look like this:
+
+        <target name="run" depends="svg-salamander-core-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that the overridden target depends on the jar target and not only on 
+    the compile target as the regular run target does. Again, for a list of available 
+    properties which you can use, check the target you are overriding in the
+    nbproject/build-impl.xml file. 
+
+    -->
+
+    <property name="javacc.home" location="../libraries"/>
+    <property name="gen.main.src.dir" location="src/gen/java"/>
+    <property name="gen.main.res.dir" location="src/gen/res"/>
+    <property name="animtime.jjtree" location="src/main/java/com/kitfox/svg/animation/AnimTimeParser.jjt"/>
+    <property name="animtime.outdir" location="${gen.main.src.dir}/com/kitfox/svg/animation/parser"/>
+    <property name="key.user" value="kitfox"/>
+    <property name="key.password" value="anonymous"/>
+    <property name="key.location" location="tempKeystore"/>
+    <property name="www.dir" location="../www"/>
+    <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
+    <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
         
-        <property name="key.user" value="kitfox"/>
-        <property name="key.password" value="anonymous"/>
-        <property name="key.location" location="tempKeystore"/>
-        
-    	<path id="lib.include">
-            <pathelement path="${netbeans.home}/modules/org-jdesktop-layout.jar"/>
-            <fileset dir="lib/include">
-                <include name="**/*.jar"/>
-            </fileset>
-    	</path>
-
-    	<path id="lib.library">
-            <!--pathelement path="C:\Program Files\Java\jdk1.6.0\lib\tools.jar"/-->
-            <fileset dir="lib/library">
-                <include name="**/*.jar"/>
-            </fileset>
-    	</path>
-
-        <path id="path.sourcepath">
-            <pathelement path="${gen.main.src.dir}"/>
-            <pathelement path="${src.main.dir}"/>
-            <!--pathelement path="${src.test.dir}"/-->
-        </path>
-
-        <path id="path.sourcepath.debug">
-            <path refid="path.sourcepath"/>
-        </path>
-
-        <path id="path.classpath">
-            <path refid="lib.include"/>
-            <path refid="lib.library"/>
-
-            <pathelement path="${gen.main.res.dir}"/>
-            <pathelement path="${res.main.dir}"/>
-            <pathelement path="${res.test.dir}"/>
-        </path>
-    </target>
-
-    <target name="prepareBuild" depends="init" description="Create empty directories necessary for building">
-        <mkdir dir="${build.dir}"/>
-        <mkdir dir="${classes.main.dir}"/>
-        <mkdir dir="${classes.test.dir}"/>
-        <mkdir dir="${jar.dir}"/>
-        <mkdir dir="${gen.main.src.dir}"/>
-        <mkdir dir="${gen.main.res.dir}"/>
-    </target>
-
-    <target name="genData" depends="init,prepareBuild" description="Generate parsers from javacc files.">
+    <target name="-pre-compile">
         <mkdir dir="${animtime.outdir}"/>
         <!--jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}" outputfile="${animtime.outfile}"/-->
         <jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
         <javacc target="${animtime.outdir}/AnimTimeParser.jj" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
     </target>
     
-    <target name="compile" depends="init,prepareBuild,genData" description="Compile source">
-        <javac debug="true" destdir="${classes.main.dir}" source="1.4" target="1.4">
-            <compilerarg value="-Xlint:all,-unchecked,-serial"/>
-            <src path="${src.main.dir}"/>
-            <src path="${gen.main.src.dir}"/>
-            <classpath>
-                <path refid="path.classpath"/>
-            </classpath>
-        </javac>
-    </target>
-
-    <target name="compile-test" depends="jar">
-        <javac debug="true" destdir="${classes.test.dir}" srcdir="${src.test.dir}">
-            <compilerarg value="-Xlint:all,-unchecked,-serial"/>
-            <classpath>
-                <path refid="path.classpath"/>
-                <pathelement path="${classes.main.dir}"/>
-            </classpath>
-        </javac>
-    </target>
-
-    <target name="run" depends="compile">
-        <java classname="${project.run.mainClass}" fork="true">
-            <jvmarg value="-ea"/>
-            <!--jvmarg value="-Djogl.verbose"/-->
-            <!--jvmarg value="-Xmx256M"/-->
-            <jvmarg value="-XX:+HeapDumpOnOutOfMemoryError"/>
-            <classpath>
-                <pathelement location="${classes.main.dir}"/>
-                <path refid="path.classpath"/>
-            </classpath>
-        </java>
-    </target>
-
-    <target name="runJar" depends="init">
-        <java jar="${project.jar}" fork="true">
-        </java>
-    </target>
-
-    <target name="jar" depends="init,compile">
-
-        <jar compress="true" jarfile="${project.jar}">
-            <manifest>
-                <attribute name="Main-Class" value="${project.run.mainClass}"/>
-                <attribute name="Built-By" value="${user.name}"/>
-                <section name="common">
-                  <attribute name="Specification-Title" value="${project.title}"/>
-                  <attribute name="Specification-Version" value="${version}"/>
-                  <attribute name="Specification-Vendor" value="Kitfox"/>
-                  <attribute name="Implementation-Title" value="${project.name}"/>
-                  <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
-                  <attribute name="Implementation-Vendor" value="Mark McKay, mark@kitfox.com"/>
-                </section>
-            </manifest>
-
-            <fileset dir="${classes.main.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-            <fileset dir="${res.main.dir}">
-                <include name="**/*"/>
-            </fileset>
-            <fileset dir="${gen.main.res.dir}">
-                <include name="**/*"/>
-            </fileset>
-        </jar>
-    </target>
-
-    <target name="release" depends="init,jar,generateKey" description="Obfuscates and sign jar, copies result to binaries directory.">
-        <xslt in="${res.main.dir}/xml/about.xml" style="${res.main.dir}/xml/about.xsl" out="${res.main.dir}/res/help/about/about.html" force="true"/>
-        <!--
-        <replace file="${res.dir}/res/help/about/about.html" token="&lt;META http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;"/>
-        -->
-        <replace file="${res.main.dir}/res/help/about/about.html" token="; charset=ISO-8859-1"/>
-        
-        <jar compress="true" jarfile="${project.complete.jar}" manifest="${manifest.file}">
-            <manifest>
-                <attribute name="Main-Class" value="${project.run.mainClass}"/>
-                <!--attribute name="Class-Path" value="kitfoxUtilities.jar"/-->
-                <attribute name="Built-By" value="${user.name}"/>
-                <section name="common">
-                    <attribute name="Specification-Title" value="SVG Salamander Utilities"/>
-                    <attribute name="Specification-Version" value="${version}"/>
-                    <attribute name="Specification-Vendor" value="Kitfox - Mark McKay"/>
-                    <attribute name="Implementation-Title" value="SVG Salamander"/>
-                    <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
-                    <attribute name="Implementation-Vendor" value="Kitfox - Mark McKay"/>
-                </section>
-                <section name="com/kitfox/svg/SVGUniverse.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/SVGIcon.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/SVGPanel.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/ProportionalLayoutPanel.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-            </manifest>
-        
-            <fileset dir="${classes.main.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-            <fileset dir=".">
-                <include name="lgpl.txt"/>
-                <include name="readme.txt"/>
-            </fileset>
-            <fileset dir="${res.main.dir}">
-                <include name="res/**"/>
-            </fileset>
-        </jar>
-
-        <jar compress="true" jarfile="${project.tiny.jar}">
-            <manifest>
-                <attribute name="Main-Class" value="${project.run.mainClass}"/>
-                <!--attribute name="Class-Path" value="kitfoxUtilities.jar"/-->
-                <attribute name="Built-By" value="${user.name}"/>
-                <section name="common">
-                    <attribute name="Specification-Title" value="SVG Salamander Utilities"/>
-                    <attribute name="Specification-Version" value="${version}"/>
-                    <attribute name="Specification-Vendor" value="Kitfox - Mark McKay"/>
-                    <attribute name="Implementation-Title" value="SVG Salamander"/>
-                    <attribute name="Implementation-Version" value="Version ${version}, Date ${TODAY}"/>
-                    <attribute name="Implementation-Vendor" value="Kitfox - Mark McKay"/>
-                </section>
-                <section name="com/kitfox/svg/SVGUniverse.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/SVGIcon.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/SVGPanel.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-                <section name="com/kitfox/svg/app/beans/ProportionalLayoutPanel.class">
-                    <attribute name="Java-Bean" value="true"/>
-                </section>
-            </manifest>
-        
-            <fileset dir="${classes.main.dir}">
-                <include name="**/*.class"/>
-            </fileset>
-            <fileset dir=".">
-                <include name="lgpl.txt"/>
-                <include name="readme.txt"/>
-            </fileset>
-        </jar>
-
-        <!-- 
-        Signing a jar depends upon you having a keystore to sign the jar 
-        with.  If you have an existing keystore, update the key.user, 
-        key.password and key.location properties to reflect your key entry.  
-        If you don't have a keystore, you can create a default keystore for 
-        the purposes for signing this file by running the generateKey task 
-        in this ant file. 
-        -->
-        <antcall target="generateKey"/>
-        <signjar jar="${project.complete.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
-        
-        <copy file="${project.complete.jar}" toFile="${project.www.jar}"/>
-        
-        <copy file="${javadoc.zip}" toFile="${javadoc.www.zip}" failonerror="false"/>
-    </target>
-
-    <target name="clean" depends="init" description="Clean all build products.">
-        <delete dir="${build.dir}"/>
-        <delete dir="${javadoc.dir}"/>
-        <delete file="${project.obfuscated.jar}"/>
-
-        <!--
-        <delete>
-            <fileset dir="${src.main.dir}">
-                <include name="**/*.class"/>
-            </fileset>
+    <target name="-post-clean">
+        <delete includeEmptyDirs="true">
+            <fileset dir="${gen.main.src.dir}" includes="**/*"/>
         </delete>
-        -->
     </target>
-
+    
+    <target name="-post-jar">
+        <delete file="${key.location}"/>
+        <genkey alias="${key.user}" storepass="${key.password}" keystore="${key.location}" validity="1000" verbose="true">
+            <dname>
+                <param name="CN" value="Mark McKay, mark@kitfox.com"/>
+                <param name="OU" value="kitfox.com"/>
+                <param name="O"  value="kitfox"/>
+                <param name="L"  value="Toronto"/>
+                <param name="S"  value="Ontario"/>
+                <param name="C"  value="CA"/>
+            </dname>
+        </genkey>
+        
+        <signjar jar="${dist.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
+        
+        <copy file="${dist.jar}" toFile="${project.www.jar}"/>
+        <copy file="${dist.jar}" toFile="${project.tiny.jar}"/>
+        <!-- Empty placeholder for easier customization. -->
+        <!-- You can override this target in the ../build.xml file. -->
+    </target>
+    
 </project>

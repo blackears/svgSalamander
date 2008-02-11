@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
-"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"
-[
- <!ATTLIST svg
-  xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
-]>
 <!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
 <svg
    xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +50,7 @@
        x="61.378899"
        y="4.202620"
        id="tspan542">
-愛野美奈�?</tspan>
+愛野美奈</tspan>
   </text>
   <rect
      width="104.177"
@@ -74,7 +68,7 @@
        x="590.632019"
        y="588.424011"
        id="tspan334">
-愛野美奈�?</tspan>
+愛野美奈</tspan>
   </text>
   <g
      style="font-size:12;"

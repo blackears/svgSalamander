@@ -317,8 +317,15 @@ public class SVGUniverse implements Serializable
         return null;
     }
     
-    
-    private InputStreamReader createDocumentReader(InputStream is) throws IOException
+    /**
+     * Wraps input stream in a BufferedInputStream.  If it is detected that this
+     * input stream is GZIPped, also wraps in a GZIPInputStream for inflation.
+     * 
+     * @param is Raw input stream
+     * @return Uncompressed stream of SVG data
+     * @throws java.io.IOException
+     */
+    private InputStream createDocumentInputStream(InputStream is) throws IOException
     {
         BufferedInputStream bin = new BufferedInputStream(is);
         bin.mark(2);
@@ -330,12 +337,12 @@ public class SVGUniverse implements Serializable
         if ((b1 << 8 | b0) == GZIPInputStream.GZIP_MAGIC)
         {
             GZIPInputStream iis = new GZIPInputStream(bin);
-            return new InputStreamReader(iis);
+            return iis;
         }
         else
         {
             //Plain text
-            return new InputStreamReader(bin);
+            return bin;
         }
     }
     
@@ -360,7 +367,7 @@ public class SVGUniverse implements Serializable
             if (loadedDocs.containsKey(uri) && !forceLoad) return uri;
             
             InputStream is = docRoot.openStream();
-            return loadSVG(uri, createDocumentReader(is));
+            return loadSVG(uri, new InputSource(createDocumentInputStream(is)));
         }
         catch (Throwable t)
         {
@@ -378,7 +385,7 @@ public class SVGUniverse implements Serializable
     
     public URI loadSVG(InputStream is, String name, boolean forceLoad) throws IOException
     {
-        return loadSVG(createDocumentReader(is), name, forceLoad);
+        return loadSVG(createDocumentInputStream(is), name, forceLoad);
     }
     
     public URI loadSVG(Reader reader, String name)
@@ -422,7 +429,7 @@ public class SVGUniverse implements Serializable
         if (uri == null) return null;
         if (loadedDocs.containsKey(uri) && !forceLoad) return uri;
         
-        return loadSVG(uri, reader);
+        return loadSVG(uri, new InputSource(reader));
     }
     
     /**
@@ -448,7 +455,8 @@ public class SVGUniverse implements Serializable
     }
     
     
-    protected URI loadSVG(URI xmlBase, Reader is)
+//    protected URI loadSVG(URI xmlBase, InputStream is)
+    protected URI loadSVG(URI xmlBase, InputSource is)
     {
         // Use an instance of ourselves as the SAX event handler
         SVGLoader handler = new SVGLoader(xmlBase, this, verbose);
@@ -479,7 +487,7 @@ public class SVGUniverse implements Serializable
                 }
             );
             reader.setContentHandler(handler);
-            reader.parse(new InputSource(new BufferedReader(is)));
+            reader.parse(is);
             
 //            SAXParser saxParser = factory.newSAXParser();
 //            saxParser.parse(new InputSource(new BufferedReader(is)), handler);
