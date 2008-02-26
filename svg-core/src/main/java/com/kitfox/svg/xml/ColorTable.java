@@ -229,15 +229,19 @@ public class ColorTable
         }
         else
         {
-            final Matcher rgbMatch = Pattern.compile("rgb\\((\\d+),(\\d+),(\\d+)\\)", Pattern.CASE_INSENSITIVE).matcher("");
+            final String number = "\\s*(((\\d+)(\\.\\d*)?)|(\\.\\d+))(%)?\\s*";
+            final Matcher rgbMatch = Pattern.compile("rgb\\(" + number + "," + number + "," + number + "\\)", Pattern.CASE_INSENSITIVE).matcher("");
 
             rgbMatch.reset(val);
             if (rgbMatch.matches())
             {
-                int r = Integer.parseInt(rgbMatch.group(1));
-                int g = Integer.parseInt(rgbMatch.group(2));
-                int b = Integer.parseInt(rgbMatch.group(3));
-                retVal = new Color(r, g, b);
+                float rr = Float.parseFloat(rgbMatch.group(1));
+                float gg = Float.parseFloat(rgbMatch.group(7));
+                float bb = Float.parseFloat(rgbMatch.group(13));
+                rr /= "%".equals(rgbMatch.group(6)) ? 100 : 255;
+                gg /= "%".equals(rgbMatch.group(12)) ? 100 : 255;
+                bb /= "%".equals(rgbMatch.group(18)) ? 100 : 255;
+                retVal = new Color(rr, gg, bb);
             }
             else
             {
