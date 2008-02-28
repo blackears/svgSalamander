@@ -80,7 +80,14 @@ public class ImageSVG extends RenderableElement
             if (getPres(sty.setName("xlink:href")))
             {
                 URI src = sty.getURIValue(getXMLBase());
-                imageSrc = src.toURL();
+                try {
+                    imageSrc = src.toURL();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    imageSrc = null;
+                }
             }
         }
         catch (Exception e)

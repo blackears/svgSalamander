@@ -6,6 +6,7 @@
             <name>svg-salamander-core</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <source-roots>
+                <root id="src.www.dir" name="www"/>
                 <root id="src.dir"/>
                 <root id="src.java.dir" name="Generated Source"/>
                 <root id="src.res.dir"/>

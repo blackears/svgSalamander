@@ -226,7 +226,7 @@ public class StyleAttribute implements Serializable
     {
         try {
             String fragment = parseURLFn();
-            if (fragment == null) fragment = stringValue;
+            if (fragment == null) fragment = stringValue.replaceAll("\\s+", "");
             if (fragment == null) return null;
             
             //======================

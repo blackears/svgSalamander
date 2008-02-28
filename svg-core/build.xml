@@ -93,6 +93,12 @@
     </target>
     
     <target name="-post-jar">
+        <jar destfile="${dist.jar}" update="true">
+            <manifest>
+                <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
+            </manifest>
+        </jar>
+        
         <delete file="${key.location}"/>
         <genkey alias="${key.user}" storepass="${key.password}" keystore="${key.location}" validity="1000" verbose="true">
             <dname>
