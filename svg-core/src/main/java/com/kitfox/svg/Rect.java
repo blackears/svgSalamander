@@ -79,7 +79,7 @@ public class Rect extends ShapeElement {
         }
         else
         {
-            rect = new RoundRectangle2D.Float(x, y, width, height, rx, ry);
+            rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
         }
     }
     
@@ -153,7 +153,7 @@ public class Rect extends ShapeElement {
         }
         else
         {
-            rect = new RoundRectangle2D.Float(x, y, width, height, rx, ry);
+            rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
         }
     }
 
@@ -257,7 +257,7 @@ public class Rect extends ShapeElement {
             }
             else
             {
-                rect = new RoundRectangle2D.Float(x, y, width, height, rx, ry);
+                rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
             }
             return true;
         }
