@@ -385,7 +385,11 @@ public class SVGUniverse implements Serializable
     
     public URI loadSVG(InputStream is, String name, boolean forceLoad) throws IOException
     {
-        return loadSVG(createDocumentInputStream(is), name, forceLoad);
+        URI uri = getStreamBuiltURI(name);
+        if (uri == null) return null;
+        if (loadedDocs.containsKey(uri) && !forceLoad) return uri;
+        
+        return loadSVG(uri, new InputSource(createDocumentInputStream(is)));
     }
     
     public URI loadSVG(Reader reader, String name)
