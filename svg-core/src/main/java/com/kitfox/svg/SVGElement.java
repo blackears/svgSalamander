@@ -486,7 +486,7 @@ abstract public class SVGElement implements Serializable
         }
         
         //Alter layout for relevant attributes
-        if ("id".equals(styAttr.getStringValue()))
+        if ("id".equals(styAttr.getName()))
         {
             diagram.removeElement(this.id);
             this.id = name;

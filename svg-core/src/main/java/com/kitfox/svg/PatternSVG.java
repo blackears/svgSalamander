@@ -239,7 +239,12 @@ public class PatternSVG extends FillElement {
             tileHeight *= stretchY;
         }
 
-
+        if (tileWidth == 0 || tileHeight == 0) 
+        {
+            //Use defaults if tile has degenerate size
+            return;
+        }
+        
         BufferedImage buf = new BufferedImage(tileWidth, tileHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = buf.createGraphics();
         g.setClip(0, 0, tileWidth, tileHeight);
