@@ -151,7 +151,15 @@ public class XMLParseUtil
         { 
             retVal = Double.parseDouble(val); 
             
-            float pixPerInch = (float)Toolkit.getDefaultToolkit().getScreenResolution();
+            float pixPerInch;
+            try {
+                pixPerInch = (float)Toolkit.getDefaultToolkit().getScreenResolution();
+            }
+            catch (NoClassDefFoundError err)
+            {
+                //Default value for headless X servers
+                pixPerInch = 72;
+            }
             final float inchesPerCm = .3936f;
             final String units = fpMatch.group(6);
             
