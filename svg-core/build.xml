@@ -93,10 +93,16 @@
     </target>
     
     <target name="-post-jar">
-        <jar destfile="${dist.jar}" update="true">
+        <jar destfile="${dist.jar}" update="false">
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
             </manifest>
+
+            <fileset dir="build/classes">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir="build/classes/res">
+            </fileset>
         </jar>
         
         <delete file="${key.location}"/>
