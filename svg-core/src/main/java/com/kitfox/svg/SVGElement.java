@@ -273,7 +273,7 @@ abstract public class SVGElement implements Serializable
         if (hasAttribute(name, attribType)) throw new SVGElementException(this, "Attribute " + name + "(" + AnimationElement.animationElementToString(attribType) + ") already exists");
         
         //Alter layout for id attribute
-        if ("id".equals(name))
+        if ("id".equals(name) && diagram != null)
         {
             diagram.removeElement(this.id);
             this.id = name;
@@ -344,6 +344,7 @@ abstract public class SVGElement implements Serializable
     private void setDiagram(SVGDiagram diagram)
     {
         this.diagram = diagram;
+        diagram.setElement(id, this);
         for (Iterator it = children.iterator(); it.hasNext();)
         {
             SVGElement ele = (SVGElement)it.next();
