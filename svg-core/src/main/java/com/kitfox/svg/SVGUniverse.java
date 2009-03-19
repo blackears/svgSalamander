@@ -33,17 +33,16 @@ import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Reader;
 import java.io.Serializable;
 import java.lang.ref.SoftReference;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
@@ -296,14 +295,25 @@ public class SVGUniverse implements Serializable
     public SVGDiagram getDiagram(URI xmlBase, boolean loadIfAbsent)
     {
         if (xmlBase == null) return null;
-        
+
         SVGDiagram dia = (SVGDiagram)loadedDocs.get(xmlBase);
         if (dia != null || !loadIfAbsent) return dia;
         
         //Load missing diagram
         try
         {
-            URL url = xmlBase.toURL();
+            URL url;
+            if ("jar".equals(xmlBase.getScheme()) && !xmlBase.getPath().contains("!/"))
+            {
+                //Workaround for resources stored in jars loaded by Webstart.
+                //http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6753651
+                url = SVGUniverse.class.getResource("xmlBase.getPath()");
+            }
+            else
+            {
+                url = xmlBase.toURL();
+            }
+
             
             loadSVG(url, false);
             dia = (SVGDiagram)loadedDocs.get(xmlBase);
