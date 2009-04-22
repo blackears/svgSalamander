@@ -57,7 +57,8 @@ abstract public class Gradient extends FillElement
     //Either this gradient contains a list of stops, or it will take it's
     // stops from the referenced gradient
     Vector stops = new Vector();
-    Gradient stopRef = null;
+    URI stopRef = null;
+//    Gradient stopRef = null;
 
     protected AffineTransform gradientTransform = null;
 
@@ -112,10 +113,10 @@ abstract public class Gradient extends FillElement
         if (getPres(sty.setName("xlink:href")))
         {
             try {
-                URI src = sty.getURIValue(getXMLBase());
+                stopRef = sty.getURIValue(getXMLBase());
 //System.err.println("Gradient: " + sty.getStringValue() + ", " + getXMLBase() + ", " + src);
 //                URI src = getXMLBase().resolve(href);
-                stopRef = (Gradient)diagram.getUniverse().getElement(src);
+//                stopRef = (Gradient)diagram.getUniverse().getElement(src);
             }
             catch (Exception e)
             {
@@ -126,7 +127,11 @@ abstract public class Gradient extends FillElement
     
     public float[] getStopFractions()
     {
-        if (stopRef != null) return stopRef.getStopFractions();
+        if (stopRef != null)
+        {
+            Gradient grad = (Gradient)diagram.getUniverse().getElement(stopRef);
+            return grad.getStopFractions();
+        }
 
         if (stopFractions != null) return stopFractions;
 
@@ -145,7 +150,11 @@ abstract public class Gradient extends FillElement
 
     public Color[] getStopColors()
     {
-        if (stopRef != null) return stopRef.getStopColors();
+        if (stopRef != null)
+        {
+            Gradient grad = (Gradient)diagram.getUniverse().getElement(stopRef);
+            return grad.getStopColors();
+        }
 
         if (stopColors != null) return stopColors;
 
@@ -181,7 +190,7 @@ abstract public class Gradient extends FillElement
         return val;
     }
     
-    public void setStopRef(Gradient grad)
+    public void setStopRef(URI grad)
     {
         stopRef = grad;
     }
@@ -250,9 +259,8 @@ abstract public class Gradient extends FillElement
         if (getPres(sty.setName("xlink:href")))
         {
             try {
-                URI src = sty.getURIValue(getXMLBase());
-                Gradient newVal = (Gradient)diagram.getUniverse().getElement(src);
-                if (newVal != stopRef)
+                URI newVal = sty.getURIValue(getXMLBase());
+                if ((newVal == null && stopRef != null) || !newVal.equals(stopRef))
                 {
                     stopRef = newVal;
                     stateChange = true;
