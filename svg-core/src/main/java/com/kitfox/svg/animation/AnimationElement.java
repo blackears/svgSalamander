@@ -26,10 +26,16 @@
 
 package com.kitfox.svg.animation;
 
-import java.io.*;
-import org.xml.sax.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.animation.parser.ParseException;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.io.StringReader;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.*;
 
 /**
  * @author Mark McKay
@@ -333,4 +339,76 @@ public abstract class AnimationElement extends SVGElement
     {
         //Animation elements to not change with time
         return false;
-    }}
+    }
+
+    public void rebuild() throws SVGException
+    {
+        AnimTimeParser animTimeParser = new AnimTimeParser(new StringReader(""));
+
+        rebuild(animTimeParser);
+    }
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("begin")))
+        {
+            String newVal = sty.getStringValue();
+            animTimeParser.ReInit(new StringReader(newVal));
+            try {
+                this.beginTime = animTimeParser.Expr();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if (getPres(sty.setName("dur")))
+        {
+            String newVal = sty.getStringValue();
+            animTimeParser.ReInit(new StringReader(newVal));
+            try {
+                this.durTime = animTimeParser.Expr();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if (getPres(sty.setName("end")))
+        {
+            String newVal = sty.getStringValue();
+            animTimeParser.ReInit(new StringReader(newVal));
+            try {
+                this.endTime = animTimeParser.Expr();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if (getPres(sty.setName("fill")))
+        {
+            String newVal = sty.getStringValue();
+            if (newVal.equals("remove")) this.fillType = FT_REMOVE;
+            if (newVal.equals("freeze")) this.fillType = FT_FREEZE;
+            if (newVal.equals("hold")) this.fillType = FT_HOLD;
+            if (newVal.equals("transiton")) this.fillType = FT_TRANSITION;
+            if (newVal.equals("auto")) this.fillType = FT_AUTO;
+            if (newVal.equals("default")) this.fillType = FT_DEFAULT;
+        }
+
+        if (getPres(sty.setName("additive")))
+        {
+            String newVal = sty.getStringValue();
+            if (newVal.equals("replace")) this.additiveType = AD_REPLACE;
+            if (newVal.equals("sum")) this.additiveType = AD_SUM;
+        }
+
+        if (getPres(sty.setName("accumulate")))
+        {
+            String newVal = sty.getStringValue();
+            if (newVal.equals("replace")) this.accumulateType = AC_REPLACE;
+            if (newVal.equals("sum")) this.accumulateType = AC_SUM;
+        }
+
+    }
+}

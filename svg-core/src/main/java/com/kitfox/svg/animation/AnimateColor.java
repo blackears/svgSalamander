@@ -26,11 +26,16 @@
 
 package com.kitfox.svg.animation;
 
-import org.xml.sax.*;
-import java.awt.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.xml.ColorTable;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.Color;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
 
 /**
  * @author Mark McKay
@@ -77,5 +82,24 @@ public class AnimateColor extends AnimateBase implements AnimateColorIface
         return new Color((int)(r1 * invInterp + r2 * interp), 
             (int)(g1 * invInterp + g2 * interp), 
             (int)(b1 * invInterp + b2 * interp));
+    }
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("from")))
+        {
+            String strn = sty.getStringValue();
+            fromValue = ColorTable.parseColor(strn);
+        }
+
+        if (getPres(sty.setName("to")))
+        {
+            String strn = sty.getStringValue();
+            toValue = ColorTable.parseColor(strn);
+        }
     }
 }

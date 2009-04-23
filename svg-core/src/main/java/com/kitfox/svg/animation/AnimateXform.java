@@ -26,11 +26,13 @@
 
 package com.kitfox.svg.animation;
 
-import org.xml.sax.*;
-import java.awt.geom.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGLoaderHelper;
+import java.awt.geom.AffineTransform;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.xml.*;
-import com.kitfox.svg.*;
+
 
 /**
  *

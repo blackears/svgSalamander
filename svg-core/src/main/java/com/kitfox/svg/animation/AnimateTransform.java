@@ -26,13 +26,17 @@
 
 package com.kitfox.svg.animation;
 
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.XMLParseUtil;
-import org.xml.sax.*;
-import java.awt.geom.*;
-
-import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
+import java.awt.geom.AffineTransform;
 import java.util.regex.Pattern;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+
 
 /**
  * @author Mark McKay
@@ -221,5 +225,78 @@ public class AnimateTransform extends AnimateXform
         }
 
         return xform;
+    }
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("type")))
+        {
+            String strn = sty.getStringValue().toLowerCase();
+            if (strn.equals("translate")) xformType = TR_TRANSLATE;
+            if (strn.equals("rotate")) xformType = TR_ROTATE;
+            if (strn.equals("scale")) xformType = TR_SCALE;
+            if (strn.equals("skewx")) xformType = TR_SKEWX;
+            if (strn.equals("skewy")) xformType = TR_SKEWY;
+        }
+
+        String fromStrn = null;
+        if (getPres(sty.setName("from")))
+        {
+            fromStrn = sty.getStringValue();
+        }
+
+        String toStrn = null;
+        if (getPres(sty.setName("to")))
+        {
+            toStrn = sty.getStringValue();
+        }
+
+        if (fromStrn != null && toStrn != null)
+        {
+            double[] fromValue = XMLParseUtil.parseDoubleList(fromStrn);
+            fromValue = validate(fromValue);
+
+            double[] toValue = XMLParseUtil.parseDoubleList(toStrn);
+            toValue = validate(toValue);
+
+            values = new double[][]{fromValue, toValue};
+        }
+
+        String keyTimeStrn = null;
+        if (getPres(sty.setName("keyTimes")))
+        {
+            keyTimeStrn = sty.getStringValue();
+        }
+
+        String valuesStrn = null;
+        if (getPres(sty.setName("values")))
+        {
+            valuesStrn = sty.getStringValue();
+        }
+
+        if (keyTimeStrn != null && valuesStrn != null)
+        {
+            keyTimes = XMLParseUtil.parseDoubleList(keyTimeStrn);
+
+            String[] valueList = Pattern.compile(";").split(valuesStrn);
+            values = new double[valueList.length][];
+            for (int i = 0; i < valueList.length; i++)
+            {
+                double[] list = XMLParseUtil.parseDoubleList(valueList[i]);
+                values[i] = validate(list);
+            }
+        }
+
+        //Check our additive state
+
+        if (getPres(sty.setName("additive")))
+        {
+            String strn = sty.getStringValue().toLowerCase();
+            if (strn.equals("sum")) this.additive = AT_SUM;
+        }
     }
 }

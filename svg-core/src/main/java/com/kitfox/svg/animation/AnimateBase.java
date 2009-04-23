@@ -26,10 +26,15 @@
 
 package com.kitfox.svg.animation;
 
-import java.io.*;
-import org.xml.sax.*;
-
-import com.kitfox.svg.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.animation.parser.ParseException;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.io.StringReader;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
 /**
  * @author Mark McKay
@@ -71,8 +76,6 @@ abstract public class AnimateBase extends AnimationElement
             throw new SAXException(e);
         }
         
-//        this.repeatDur = TimeBase.parseTime(repeatDurTime);
-
         String strn = attrs.getValue("repeatCount");
         if (strn == null)
         {
@@ -89,4 +92,42 @@ abstract public class AnimateBase extends AnimationElement
         }
     }
 
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("repeatDur")))
+        {
+            String strn = sty.getStringValue();
+            if (strn != null)
+            {
+                animTimeParser.ReInit(new StringReader(strn));
+                try {
+                    this.repeatDur = animTimeParser.Expr();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
+        if (getPres(sty.setName("repeatCount")))
+        {
+            String strn = sty.getStringValue();
+            if (strn == null)
+            {
+                repeatCount = 1;
+            }
+            else if ("indefinite".equals(strn))
+            {
+                repeatCount = Double.POSITIVE_INFINITY;
+            }
+            else
+            {
+                try { repeatCount = Double.parseDouble(strn); }
+                catch (Exception e) { repeatCount = Double.NaN; }
+            }
+        }
+    }
 }

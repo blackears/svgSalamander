@@ -26,13 +26,22 @@
 
 package com.kitfox.svg.animation;
 
-import org.xml.sax.*;
-import java.util.regex.*;
-import java.awt.geom.*;
-import java.awt.*;
-import java.util.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
+import java.util.Iterator;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.*;
 
 /**
  * @author Mark McKay
@@ -73,33 +82,6 @@ public class AnimateMotion extends AnimateXform
         }
         
 
-        //Determine path
-        String from = attrs.getValue("from");
-        String to = attrs.getValue("to");
-        if (from != null && to != null)
-        {
-            Point2D.Float ptFrom = new Point2D.Float(), ptTo = new Point2D.Float();
-            
-            matchPoint.reset(from);
-            if (matchPoint.matches())
-            {
-                setPoint(ptFrom, matchPoint.group(1), matchPoint.group(2));
-            }
-            
-            matchPoint.reset(to);
-            if (matchPoint.matches())
-            {
-                setPoint(ptFrom, matchPoint.group(1), matchPoint.group(2));
-            }
-            
-            if (ptFrom != null && ptTo != null)
-            {
-                path = new GeneralPath();
-                path.moveTo(ptFrom.x, ptFrom.y);
-                path.lineTo(ptTo.x, ptTo.y);
-            }
-        }
-
         String path = attrs.getValue("path");
         if (path != null)
         {
@@ -119,8 +101,12 @@ public class AnimateMotion extends AnimateXform
                 try { this.rotate = Math.toRadians(Float.parseFloat(rotate)); } catch (Exception e) {}
             }
         }
-        
-        paramaterizePath();
+
+        //Determine path
+        String from = attrs.getValue("from");
+        String to = attrs.getValue("to");
+
+        buildPath(from, to);
     }
     
     protected static void setPoint(Point2D.Float pt, String x, String y)
@@ -130,6 +116,34 @@ public class AnimateMotion extends AnimateXform
         try { pt.y = Float.parseFloat(y); } catch (Exception e) {};
     }
 
+    private void buildPath(String from, String to)
+    {
+        if (from != null && to != null)
+        {
+            Point2D.Float ptFrom = new Point2D.Float(), ptTo = new Point2D.Float();
+
+            matchPoint.reset(from);
+            if (matchPoint.matches())
+            {
+                setPoint(ptFrom, matchPoint.group(1), matchPoint.group(2));
+            }
+
+            matchPoint.reset(to);
+            if (matchPoint.matches())
+            {
+                setPoint(ptFrom, matchPoint.group(1), matchPoint.group(2));
+            }
+
+            if (ptFrom != null && ptTo != null)
+            {
+                path = new GeneralPath();
+                path.moveTo(ptFrom.x, ptFrom.y);
+                path.lineTo(ptTo.x, ptTo.y);
+            }
+        }
+
+        paramaterizePath();
+    }
     
     private void paramaterizePath()
     {
@@ -225,10 +239,44 @@ public class AnimateMotion extends AnimateXform
         return xform;
     }
     
-    public static void main(String[] argv)
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
-        AnimateMotion a = new AnimateMotion();
-        a.path = buildPath("M0 0 L-400, 0", GeneralPath.WIND_NON_ZERO);
-        a.paramaterizePath();
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("path")))
+        {
+            String strn = sty.getStringValue();
+            this.path = buildPath(strn, GeneralPath.WIND_NON_ZERO);
+        }
+
+        if (getPres(sty.setName("rotate")))
+        {
+            String strn = sty.getStringValue();
+            if (strn.equals("auto"))
+            {
+                this.rotateType = RT_AUTO;
+            }
+            else
+            {
+                try { this.rotate = Math.toRadians(Float.parseFloat(strn)); } catch (Exception e) {}
+            }
+        }
+
+        String from = null;
+        if (getPres(sty.setName("from")))
+        {
+            from = sty.getStringValue();
+        }
+
+        String to = null;
+        if (getPres(sty.setName("to")))
+        {
+            to = sty.getStringValue();
+        }
+        
+        buildPath(from, to);
     }
 }

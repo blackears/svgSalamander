@@ -26,9 +26,14 @@
 
 package com.kitfox.svg.animation;
 
-import org.xml.sax.*;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.xml.StyleAttribute;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.*;
 
 /**
  * Set is used to set a textual value; most likely for a style element.
@@ -51,5 +56,18 @@ public class SetSmil extends AnimationElement
         super.loaderStartElement(helper, attrs, parent);
 
         toValue = attrs.getValue("to");
+    }
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("to")))
+        {
+            String newVal = sty.getStringValue();
+            toValue = newVal;
+        }
     }
 }

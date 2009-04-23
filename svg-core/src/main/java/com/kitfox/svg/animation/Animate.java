@@ -26,14 +26,20 @@
 
 package com.kitfox.svg.animation;
 
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGLoaderHelper;
+import com.kitfox.svg.animation.parser.AnimTimeParser;
+import com.kitfox.svg.xml.ColorTable;
+import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.XMLParseUtil;
-import org.xml.sax.*;
+import java.awt.Color;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.PathIterator;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 
-import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
-
-import java.awt.*;
-import java.awt.geom.*;
 
 /**
  * Animate is a really annoying morphic tag that could represent a real value,
@@ -349,6 +355,65 @@ public class Animate extends AnimateBase implements AnimateColorIface
 
         //Should not reach this line
         return 0;
+    }
+
+    protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
+    {
+        super.rebuild(animTimeParser);
+
+        StyleAttribute sty = new StyleAttribute();
+
+        if (getPres(sty.setName("from")))
+        {
+            String strn = sty.getStringValue();
+            if (XMLParseUtil.isDouble(strn))
+            {
+                fromValue = XMLParseUtil.parseDouble(strn);
+            }
+            else
+            {
+                fromColor = ColorTable.parseColor(strn);
+                if (fromColor == null)
+                {
+                    //Try path
+                    fromPath = this.buildPath(strn, GeneralPath.WIND_EVEN_ODD);
+                    dataType = DT_PATH;
+                }
+                else dataType = DT_COLOR;
+            }
+        }
+
+        if (getPres(sty.setName("to")))
+        {
+            String strn = sty.getStringValue();
+            if (XMLParseUtil.isDouble(strn))
+            {
+                toValue = XMLParseUtil.parseDouble(strn);
+            }
+            else
+            {
+                toColor = ColorTable.parseColor(strn);
+                if (toColor == null)
+                {
+                    //Try path
+                    toPath = this.buildPath(strn, GeneralPath.WIND_EVEN_ODD);
+                    dataType = DT_PATH;
+                }
+                else dataType = DT_COLOR;
+            }
+        }
+
+        if (getPres(sty.setName("by")))
+        {
+            String strn = sty.getStringValue();
+            if (strn != null) byValue = XMLParseUtil.parseDouble(strn);
+        }
+
+        if (getPres(sty.setName("values")))
+        {
+            String strn = sty.getStringValue();
+            if (strn != null) valuesValue = XMLParseUtil.parseDoubleList(strn);
+        }
     }
     
 }
