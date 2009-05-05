@@ -44,9 +44,9 @@ public class ColorTable
         HashMap table = new HashMap();
 
 	//We really should be interpreting the currentColor keyword as 
-        // a reference to the referrring node's color, but this quick hack 
+        // a reference to the referring node's color, but this quick hack 
         // will stop the program from crashing.
-        table.put("currentColor", new Color(0x0)); 
+        table.put("currentcolor", new Color(0x0));
 
         table.put("aliceblue", new Color(0xf0f8ff));
         table.put("antiquewhite", new Color(0xfaebd7));
