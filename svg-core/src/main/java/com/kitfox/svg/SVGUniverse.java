@@ -303,7 +303,7 @@ public class SVGUniverse implements Serializable
         try
         {
             URL url;
-            if ("jar".equals(xmlBase.getScheme()) && !xmlBase.getPath().contains("!/"))
+            if ("jar".equals(xmlBase.getScheme()) && xmlBase.getPath() != null && !xmlBase.getPath().contains("!/"))
             {
                 //Workaround for resources stored in jars loaded by Webstart.
                 //http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6753651
