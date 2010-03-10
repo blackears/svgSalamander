@@ -27,11 +27,17 @@
 
 package com.kitfox.svg;
 
-import java.util.*;
-import java.net.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * Top level structure in an SVG tree.
@@ -92,22 +98,22 @@ public class SVGDiagram implements Serializable
      * Searches thorough the scene graph for all RenderableElements that have
      * shapes that contain the passed point.
      * 
-     * For every shape which contains the pick point, a Vector containing the
-     * path to the node is added to the return vector.  That is, the result of
+     * For every shape which contains the pick point, a List containing the
+     * path to the node is added to the return list.  That is, the result of
      * SVGElement.getPath() is added for each entry.
      *
-     * @return the passed in vector
+     * @return the passed in list
      */
-    public Vector pick(Point2D point, Vector retVec) throws SVGException
+    public List pick(Point2D point, List retVec) throws SVGException
     {
         return pick(point, false, retVec);
     }
     
-    public Vector pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
+    public List pick(Point2D point, boolean boundingBox, List retVec) throws SVGException
     {
         if (retVec == null)
         {
-            retVec = new Vector();
+            retVec = new ArrayList();
         }
         
         root.pick(point, boundingBox, retVec);
@@ -115,16 +121,16 @@ public class SVGDiagram implements Serializable
         return retVec;
     }
 
-    public Vector pick(Rectangle2D pickArea, Vector retVec) throws SVGException
+    public List pick(Rectangle2D pickArea, List retVec) throws SVGException
     {
         return pick(pickArea, false, retVec);
     }
     
-    public Vector pick(Rectangle2D pickArea, boolean boundingBox, Vector retVec) throws SVGException
+    public List pick(Rectangle2D pickArea, boolean boundingBox, List retVec) throws SVGException
     {
         if (retVec == null)
         {
-            retVec = new Vector();
+            retVec = new ArrayList();
         }
         
         root.pick(pickArea, new AffineTransform(), boundingBox, retVec);

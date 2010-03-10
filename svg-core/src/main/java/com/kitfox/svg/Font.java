@@ -50,8 +50,6 @@ public class Font extends SVGElement
     int vertOriginY = -1;  //Defaults to font's ascent
     int vertAdvY = -1;  //Defaults to one 'em'.  See font-face
 
-    //Vector members = null;
-
     FontFace fontFace = null;
     MissingGlyph missingGlyph = null;
     final HashMap glyphs = new HashMap();

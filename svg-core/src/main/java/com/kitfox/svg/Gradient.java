@@ -27,14 +27,12 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import java.net.*;
 import java.util.*;
 import java.awt.geom.*;
 import java.awt.*;
 
 import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 /**
  * @author Mark McKay
@@ -56,7 +54,7 @@ abstract public class Gradient extends FillElement
 
     //Either this gradient contains a list of stops, or it will take it's
     // stops from the referenced gradient
-    Vector stops = new Vector();
+    ArrayList stops = new ArrayList();
     URI stopRef = null;
 //    Gradient stopRef = null;
 

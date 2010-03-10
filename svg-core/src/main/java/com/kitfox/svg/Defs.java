@@ -38,9 +38,8 @@ import org.xml.sax.*;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Defs extends TransformableElement {
-
-//    final Vector members = new Vector();
+public class Defs extends TransformableElement
+{
 
     /** Creates a new instance of Stop */
     public Defs() {

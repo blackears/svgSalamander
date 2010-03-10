@@ -27,20 +27,25 @@
 
 package com.kitfox.svg;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.List;
 
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Group extends ShapeElement {
-
-//    final Vector members = new Vector();
+public class Group extends ShapeElement
+{
 
     //Cache bounding box for faster clip testing
     Rectangle2D boundingBox;
@@ -93,7 +98,7 @@ public class Group extends ShapeElement {
         return true;
     }
 
-    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, List retVec) throws SVGException
     {
         Point2D xPoint = new Point2D.Double(point.getX(), point.getY());
         if (xform != null)
@@ -121,7 +126,7 @@ public class Group extends ShapeElement {
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List retVec) throws SVGException
     {
         if (xform != null)
         {

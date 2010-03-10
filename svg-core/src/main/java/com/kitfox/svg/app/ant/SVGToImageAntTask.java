@@ -70,7 +70,7 @@ import com.kitfox.svg.xml.ColorTable;
  */
 public class SVGToImageAntTask extends Task
 {
-    private Vector filesets = new Vector();
+    private ArrayList filesets = new ArrayList();
     boolean verbose = false;
     File destDir;
     private String format = "png";

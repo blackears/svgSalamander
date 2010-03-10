@@ -35,8 +35,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.xml.sax.Attributes;
@@ -60,7 +60,7 @@ public class AnimateMotion extends AnimateXform
     public static final int RT_ANGLE = 0;  //Rotate by constant 'rotate' degrees
     public static final int RT_AUTO = 1;  //Rotate to reflect tangent of position on path
     
-    final Vector bezierSegs = new Vector();
+    final ArrayList bezierSegs = new ArrayList();
     double curveLength;
     
     /** Creates a new instance of Animate */

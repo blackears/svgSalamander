@@ -57,8 +57,6 @@ public class PatternSVG extends FillElement {
     AffineTransform patternXform = new AffineTransform();
     Rectangle2D.Float viewBox;
 
-//    final Vector members = new Vector();
-
     Paint texPaint;
 
     /** Creates a new instance of Gradient */

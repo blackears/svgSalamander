@@ -42,8 +42,6 @@ import org.xml.sax.*;
 public class ClipPath extends SVGElement 
 {
 
-//    final Vector members = new Vector();
-
     public static final int CP_USER_SPACE_ON_USE = 0;
     public static final int CP_OBJECT_BOUNDING_BOX = 1;
 

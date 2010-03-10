@@ -27,9 +27,7 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -53,7 +51,6 @@ public class MissingGlyph extends ShapeElement
     Shape path = null;
 
     //Alternately, we may have child graphical elements
-//    Vector members = null;
 
     int horizAdvX = -1;  //Inherits font's value if not set
     int vertOriginX = -1;  //Inherits font's value if not set
@@ -118,10 +115,7 @@ public class MissingGlyph extends ShapeElement
      */
     public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
     {
-		super.loaderAddChild(helper, child);
-
-//        if (members == null) members = new Vector();
-//        members.add(child);
+        super.loaderAddChild(helper, child);
     }
 
     

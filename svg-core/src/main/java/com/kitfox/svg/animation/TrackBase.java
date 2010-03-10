@@ -26,7 +26,6 @@
 
 package com.kitfox.svg.animation;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import java.util.*;
 
 import com.kitfox.svg.xml.*;
@@ -50,7 +49,7 @@ abstract public class TrackBase
     
     //It doesn't make sense to sort this, since some events will depend on
     // other events - in many cases, there will be no meaningful sorted order.
-    final Vector animEvents = new Vector();
+    final ArrayList animEvents = new ArrayList();
     
     /** Creates a new instance of TrackManager */
 //    public TrackBase(SVGElement parent)

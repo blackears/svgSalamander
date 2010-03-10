@@ -27,18 +27,29 @@
 
 package com.kitfox.svg.app;
 
-import java.net.*;
-import java.awt.*;
-import java.io.*;
-import java.util.regex.*;
-import javax.swing.*;
-
-//import javax.jnlp.*;
-
-import com.kitfox.svg.*;
+import com.kitfox.svg.SVGCache;
+import com.kitfox.svg.SVGDiagram;
+import com.kitfox.svg.SVGDisplayPanel;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGUniverse;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Point;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.AccessControlException;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 
 /**
  * @author Mark McKay
@@ -303,7 +314,7 @@ is.close();
     private void panel_svgAreaMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_panel_svgAreaMouseReleased
     {//GEN-HEADEREND:event_panel_svgAreaMouseReleased
         SVGDiagram diagram = svgDisplayPanel.getDiagram();
-        Vector pickedElements;
+        List pickedElements;
         try
         {
             pickedElements = diagram.pick(new Point(evt.getX(), evt.getY()), null);
@@ -317,7 +328,7 @@ is.close();
         System.out.println("Pick results:");
         for (Iterator it = pickedElements.iterator(); it.hasNext();)
         {
-            Vector path = (Vector)it.next();
+            ArrayList path = (ArrayList)it.next();
             
             System.out.print("  Path: ");
             

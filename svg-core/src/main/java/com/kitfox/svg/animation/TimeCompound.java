@@ -26,8 +26,11 @@
 
 package com.kitfox.svg.animation;
 
-import java.util.*;
-import java.util.regex.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
+
 
 /**
  * This represents a summation of other time elements.  It is used for complex
@@ -49,25 +52,10 @@ public class TimeCompound extends TimeBase
     private AnimationElement parent;
     
     /** Creates a new instance of TimeDiscrete */
-    public TimeCompound(Vector timeBases)
+    public TimeCompound(List timeBases)
     {
         componentTimes = Collections.unmodifiableList(timeBases);
     }
-    
-    /*
-    public TimeCompound(String text)
-    {
-        String[] vals = patPlus.split(text);
-        
-        Vector times = new Vector(vals.length);
-        
-        for (int i = 0; i < vals.length; i++)
-        {
-            times.set(i, parseTimeComponent(vals[i]));
-        }
-        
-        this(times);
-    }*/
     
     public double evalTime()
     {

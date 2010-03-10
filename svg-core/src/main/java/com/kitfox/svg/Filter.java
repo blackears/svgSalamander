@@ -27,14 +27,11 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
 import java.awt.geom.*;
 import java.net.*;
 import java.util.*;
 
 import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 /**
  * @author Mark McKay
@@ -61,7 +58,7 @@ public class Filter extends SVGElement
     
     URL href = null;
 
-    final Vector filterEffects = new Vector();
+    final ArrayList filterEffects = new ArrayList();
 
     /** Creates a new instance of FillElement */
     public Filter() {

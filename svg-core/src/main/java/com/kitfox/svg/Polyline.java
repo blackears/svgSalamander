@@ -27,13 +27,10 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.XMLParseUtil;
 import java.awt.geom.*;
 import java.awt.*;
 
 import com.kitfox.svg.xml.*;
-import java.util.Vector;
 
 /**
  * @author Mark McKay

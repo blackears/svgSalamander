@@ -27,13 +27,21 @@
 
 package com.kitfox.svg;
 
-
 import com.kitfox.svg.xml.StyleAttribute;
-import java.net.*;
-import java.awt.*;
-import java.awt.geom.*;
-import com.kitfox.svg.xml.*;
-import java.util.Vector;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Composite;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.net.URI;
+import java.util.List;
+
+
 
 /**
  * Parent of shape objects
@@ -64,7 +72,7 @@ abstract public class ShapeElement extends RenderableElement
     }
      */
 
-    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, List retVec) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
 //        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))
@@ -74,7 +82,7 @@ abstract public class ShapeElement extends RenderableElement
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List retVec) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
 //        if (getStyle(styleAttrib.setName("fill")) && getShape().contains(point))

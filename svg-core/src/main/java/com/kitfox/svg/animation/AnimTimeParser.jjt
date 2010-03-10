@@ -94,7 +94,7 @@ TOKEN :
 TimeBase Expr() :
 {
     TimeBase term;
-    Vector list = new Vector();
+    ArrayList list = new ArrayList();
 }
 {
     ( term = Sum() 
@@ -144,40 +144,6 @@ TimeBase Sum() :
         }
 }
 
-
-/*
-{
-    TimeBase base;
-    Vector timeList = new Vector();
-    Token t;
-}
-{
-    base=Term()
-        {
-            timeList.add(base);
-        }
-    ( (t="+" | t="-") base=Term()
-        {
-            if (t.image.equals"-")
-                timeList.sub(base);
-            else
-                timeList.add(base);
-        }
-    )*
-        {
-            switch (timeList.size())
-            {
-                case 0:
-                    return new TimeIndefinite();
-                case 1:
-                    return (TimeBase)timeList.get(0);
-                default:
-                    return new TimeCompound(timeList);
-            }
-        }
-    
-}
-*/
 
 TimeBase Term() :
 {

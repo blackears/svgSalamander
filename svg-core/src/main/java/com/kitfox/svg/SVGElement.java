@@ -27,8 +27,6 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.XMLParseUtil;
 import java.util.*;
 import java.util.regex.*;
 import java.net.*;
@@ -52,7 +50,7 @@ abstract public class SVGElement implements Serializable
     
     protected SVGElement parent = null;
     
-    protected final Vector children = new Vector();
+    protected final ArrayList children = new ArrayList();
     
     protected String id = null;
     /**
@@ -139,9 +137,9 @@ abstract public class SVGElement implements Serializable
     /**
      * @return an ordered list of nodes from the root of the tree to this node
      */
-    public Vector getPath(Vector retVec)
+    public List getPath(List retVec)
     {
-        if (retVec == null) retVec = new Vector();
+        if (retVec == null) retVec = new ArrayList();
         
         if (parent != null)
         {
@@ -153,14 +151,14 @@ abstract public class SVGElement implements Serializable
     }
     
     /**
-     * @param retVec - A vector to add all children to.  If null, a new vector is
+     * @param retVec - A list to add all children to.  If null, a new list is
      * created and children of this group are added.
      *
-     * @return The vector containing the children of this group
+     * @return The list containing the children of this group
      */
-    public Vector getChildren(Vector retVec)
+    public List getChildren(List retVec)
     {
-        if (retVec == null) retVec = new Vector();
+        if (retVec == null) retVec = new ArrayList();
         
         retVec.addAll(children);
         
@@ -742,9 +740,11 @@ abstract public class SVGElement implements Serializable
             {
                 case 'M':
                     cmd = new MoveTo(false, nextFloat(tokens), nextFloat(tokens));
+                    curCmd = 'L';
                     break;
                 case 'm':
                     cmd = new MoveTo(true, nextFloat(tokens), nextFloat(tokens));
+                    curCmd = 'l';
                     break;
                 case 'L':
                     cmd = new LineTo(false, nextFloat(tokens), nextFloat(tokens));

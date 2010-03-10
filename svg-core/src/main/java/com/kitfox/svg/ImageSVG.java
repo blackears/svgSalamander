@@ -27,14 +27,13 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.*;
 
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
-import java.util.*;
 import java.net.*;
+import java.util.List;
 
 /**
  * Implements an embedded font.
@@ -127,7 +126,7 @@ public class ImageSVG extends RenderableElement
     public float getWidth() { return width; }
     public float getHeight() { return height; }
 
-    void pick(Point2D point, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Point2D point, boolean boundingBox, List retVec) throws SVGException
     {
         if (getBoundingBox().contains(point))
         {
@@ -135,7 +134,7 @@ public class ImageSVG extends RenderableElement
         }
     }
 
-    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, Vector retVec) throws SVGException
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List retVec) throws SVGException
     {
         if (ltw.createTransformedShape(getBoundingBox()).intersects(pickArea))
         {

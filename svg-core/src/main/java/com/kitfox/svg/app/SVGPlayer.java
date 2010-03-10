@@ -27,19 +27,29 @@
 
 package com.kitfox.svg.app;
 
-import java.net.*;
-import java.awt.*;
-import java.io.*;
-import java.util.regex.*;
 
-import javax.swing.*;
-
-import com.kitfox.svg.*;
+import com.kitfox.svg.SVGDiagram;
+import com.kitfox.svg.SVGDisplayPanel;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGUniverse;
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.AccessControlException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  * @author Mark McKay
@@ -118,10 +128,10 @@ public class SVGPlayer extends javax.swing.JFrame
                 System.out.println("Picking at cursor (" + evt.getX() + ", " + evt.getY() + ")");
                 try
                 {
-                    Vector paths = diagram.pick(new Point2D.Float(evt.getX(), evt.getY()), null);
+                    List paths = diagram.pick(new Point2D.Float(evt.getX(), evt.getY()), null);
                     for (int i = 0; i < paths.size(); i++)
                     {
-                        Vector path = (Vector)paths.get(i);
+                        ArrayList path = (ArrayList)paths.get(i);
                         System.out.println(pathToString(path));
                     }
                 }
@@ -139,7 +149,7 @@ public class SVGPlayer extends javax.swing.JFrame
         playerDialog = new PlayerDialog(this);
     }
     
-    private String pathToString(Vector path)
+    private String pathToString(List path)
     {
         if (path.size() == 0) return "";
         
