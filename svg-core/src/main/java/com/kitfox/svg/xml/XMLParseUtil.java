@@ -40,7 +40,7 @@ import java.lang.reflect.*;
  */
 public class XMLParseUtil
 {
-    static final Matcher fpMatch = Pattern.compile("([-+]?((\\d*\\.\\d+)|(\\d+))([eE][+-]?\\d+)?)(\\%|in|cm|mm|pt|pc)?").matcher("");
+    static final Matcher fpMatch = Pattern.compile("([-+]?((\\d*\\.\\d+)|(\\d+))([eE][+-]?\\d+)?)(\\%|in|cm|mm|pt|pc|px|em|ex)?").matcher("");
     static final Matcher intMatch = Pattern.compile("[-+]?\\d+").matcher("");
 
     /** Creates a new instance of XMLParseUtil */
