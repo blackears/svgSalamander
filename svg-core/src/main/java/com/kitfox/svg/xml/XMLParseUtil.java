@@ -252,8 +252,9 @@ public class XMLParseUtil
         float retVal = 0f;
         try
         {
-            retVal = Float.parseFloat(val); 
-            if (fpMatch.group(6).equals("%")) retVal /= 100;
+            retVal = Float.parseFloat(val);
+            String units = fpMatch.group(6);
+            if ("%".equals(units)) retVal /= 100;
         }
         catch (Exception e)
         {}
