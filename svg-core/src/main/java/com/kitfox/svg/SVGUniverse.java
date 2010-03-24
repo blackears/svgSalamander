@@ -54,6 +54,7 @@ import javax.imageio.ImageIO;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -93,6 +94,9 @@ public class SVGUniverse implements Serializable
     protected double curTime = 0.0;
     
     private boolean verbose = false;
+
+    //Cache reader for efficiency
+    XMLReader cachedReader;
     
     /** Creates a new instance of SVGUniverse */
     public SVGUniverse()
@@ -468,6 +472,14 @@ public class SVGUniverse implements Serializable
         }
     }
     
+    private XMLReader getXMLReaderCached() throws SAXException
+    {
+        if (cachedReader == null)
+        {
+            cachedReader = XMLReaderFactory.createXMLReader();
+        }
+        return cachedReader;
+    }
     
 //    protected URI loadSVG(URI xmlBase, InputStream is)
     protected URI loadSVG(URI xmlBase, InputSource is)
@@ -482,14 +494,14 @@ public class SVGUniverse implements Serializable
         loadedDocs.put(xmlBase, handler.getLoadedDiagram());
         
         // Use the default (non-validating) parser
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(false);
-        factory.setNamespaceAware(true);
+//        SAXParserFactory factory = SAXParserFactory.newInstance();
+//        factory.setValidating(false);
+//        factory.setNamespaceAware(true);
         
         try
         {
             // Parse the input
-            XMLReader reader = XMLReaderFactory.createXMLReader();
+            XMLReader reader = getXMLReaderCached();
             reader.setEntityResolver(
                 new EntityResolver()
                 {
