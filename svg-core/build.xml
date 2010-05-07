@@ -67,6 +67,7 @@
 
     -->
 
+    <property name="version" value="0.0.1"/>
     <property name="javacc.home" location="../libraries"/>
     <property name="gen.main.src.dir" location="src/gen/java"/>
     <property name="gen.main.res.dir" location="src/gen/res"/>
@@ -93,9 +94,12 @@
     </target>
     
     <target name="-post-jar">
+        <tstamp/>
         <jar destfile="${dist.jar}" update="false">
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${TODAY}"/>
             </manifest>
 
             <fileset dir="build/classes">
