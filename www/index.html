@@ -2,6 +2,19 @@
     <head>
         <title>SVG Salamander - SVG Parser and Player</title>
         <link type="text/css" rel="stylesheet" href="salamanderStyle.css">
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-17414889-3']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
     </head>
     <body>
         
@@ -9,13 +22,13 @@
         
         <p>SVG Salamander is an SVG engine for Java that's designed to be small, fast, and allow programmers to use it with a minimum of fuss.  It's in particular targeted for making it easy to integrate SVG into Java games and making it much easier for artists to design 2D game content - from rich interactive menus to charts and graphcs to complex animations.</p>
         
-        <p class="alert">
+        <!--p class="alert">
             I know I announced about a month back that I was going to be making some big changes to the SVG Salamander project.  After thinking
             about this for a bit, I've decided to move those changes to an entirely different project.  If you're interested in the 
             next generation after SVG Salamander, check out Gazelle:<br/><br/>
             
             <a href="https://gazelle.dev.java.net">https://gazelle.dev.java.net</a>
-        </p>
+        </p-->
         
         <h3>Features</h3>
         
@@ -24,8 +37,8 @@
             <li/>SVGIcon class greatly simplifies loading and drawing images to screen
             <li/>A much smaller code foot print than Batik, and only one JAR file to include
             <li/>Direct access to the scene graph tree.  You can use Java commands to manipulate it directly.
-            <li/>An index of all named shapes in the SVG graph is easily accessable.
-            <li/>Picking shapes given (x, y) coorinates is possible, and can be used to implement graphical buttons
+            <li/>An index of all named shapes in the SVG graph is easily accessible.
+            <li/>Picking shapes given (x, y) coordinates is possible, and can be used to implement graphical buttons
             selected by the mouse
             <li/>Clip region sensitivity makes for fast rendering when only updating part of the image.  This makes panning the camera quite efficient.
             <li/>Easy rendering to any Graphics2D or BufferedImage.  Unlike Batik, the SVG Salamander engine does not own the graphics context, so you can pass it whatever graphics context you like.
@@ -61,7 +74,7 @@
         
         <h3>Binaries</h3>
         
-        <p>These programs provide the abiity to read SVG files from your hard drive or the internet.  If you're worried about security, <a href="secure.html">these restricted versions will not</a>.</p>
+        <p>These programs provide the ability to read SVG files from your hard drive or the internet.  If you're worried about security, <a href="secure.html">these restricted versions will not</a>.</p>
         
         <p><a href="binaries/svgViewer.jnlp">Run the SVG Viewer (no animation)</a></p>
         <p><a href="binaries/svgPlayer.jnlp">Run the SVG Player (animation)</a></p>
