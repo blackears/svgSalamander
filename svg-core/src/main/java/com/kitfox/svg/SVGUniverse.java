@@ -35,6 +35,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -51,7 +52,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.zip.GZIPInputStream;
 import javax.imageio.ImageIO;
-import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -173,7 +173,60 @@ public class SVGUniverse implements Serializable
     {
         return (Font)loadedFonts.get(fontName);
     }
-    
+
+    URL registerImage(URI imageURI)
+    {
+        String scheme = imageURI.getScheme();
+        if (scheme.equals("data"))
+        {
+            String path = imageURI.getRawSchemeSpecificPart();
+            int idx = path.indexOf(';');
+            String mime = path.substring(0, idx);
+            String content = path.substring(idx + 1);
+
+            if (content.startsWith("base64"))
+            {
+                content = content.substring(6);
+                try {
+                    byte[] buf = new sun.misc.BASE64Decoder().decodeBuffer(content);
+                    ByteArrayInputStream bais = new ByteArrayInputStream(buf);
+                    BufferedImage img = ImageIO.read(bais);
+
+                    URL url;
+                    int urlIdx = 0;
+                    while (true)
+                    {
+                        url = new URL("inlineImage", "localhost", "img" + urlIdx);
+                        if (!loadedImages.containsKey(url))
+                        {
+                            break;
+                        }
+                        urlIdx++;
+                    }
+
+                    SoftReference ref = new SoftReference(img);
+                    loadedImages.put(url, ref);
+
+                    return url;
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            return null;
+        }
+        else
+        {
+            try {
+                URL url = imageURI.toURL();
+                registerImage(url);
+                return url;
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
+    }
+
     void registerImage(URL imageURL)
     {
         if (loadedImages.containsKey(imageURL)) return;

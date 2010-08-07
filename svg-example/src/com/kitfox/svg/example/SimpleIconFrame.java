@@ -33,7 +33,8 @@ public class SimpleIconFrame extends javax.swing.JFrame
         getContentPane().add(panel, BorderLayout.CENTER);
         panel.setAntiAlias(true);
         try {
-            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+            panel.setSvgURI(SimpleIconFrame.class.getResource("data-uri-scheme-test-image.svg").toURI());
         } catch (URISyntaxException ex) {
             Logger.getLogger(SimpleIconFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

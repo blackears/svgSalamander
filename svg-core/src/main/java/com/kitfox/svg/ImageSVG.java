@@ -27,6 +27,7 @@
 
 package com.kitfox.svg;
 
+import com.kitfox.svg.app.data.Handler;
 import com.kitfox.svg.xml.*;
 
 import java.awt.*;
@@ -79,13 +80,20 @@ public class ImageSVG extends RenderableElement
             if (getPres(sty.setName("xlink:href")))
             {
                 URI src = sty.getURIValue(getXMLBase());
-                try {
-                    imageSrc = src.toURL();
-                }
-                catch (Exception e)
+                if ("data".equals(src.getScheme()))
                 {
-                    e.printStackTrace();
-                    imageSrc = null;
+                    imageSrc = new URL(null, src.toASCIIString(), new Handler());
+                }
+                else
+                {
+                    try {
+                        imageSrc = src.toURL();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        imageSrc = null;
+                    }
                 }
             }
         }
@@ -94,7 +102,6 @@ public class ImageSVG extends RenderableElement
             throw new SVGException(e);
         }
 
-    
         diagram.getUniverse().registerImage(imageSrc);
         
         //Set widths if not set
