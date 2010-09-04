@@ -858,5 +858,15 @@ abstract public class SVGElement implements Serializable
      * update
      */
     abstract public boolean updateTime(double curTime) throws SVGException;
+
+    public int getNumChildren()
+    {
+        return children.size();
+    }
+
+    public SVGElement getChild(int i)
+    {
+        return (SVGElement)children.get(i);
+    }
     
 }
