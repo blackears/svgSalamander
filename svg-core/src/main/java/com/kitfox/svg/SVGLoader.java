@@ -91,6 +91,7 @@ public class SVGLoader extends DefaultHandler
         nodeClasses.put("font-face", FontFace.class);
         nodeClasses.put("g", Group.class);
         nodeClasses.put("glyph", Glyph.class);
+        nodeClasses.put("hkern", Hkern.class);
         nodeClasses.put("image", ImageSVG.class);
         nodeClasses.put("line", Line.class);
         nodeClasses.put("lineargradient", LinearGradient.class);

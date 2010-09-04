@@ -28,11 +28,10 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
-import java.awt.geom.*;
-import java.awt.*;
 
 /**
  * Maintains bounding box for this element
