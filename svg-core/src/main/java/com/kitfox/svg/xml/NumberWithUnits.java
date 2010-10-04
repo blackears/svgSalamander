@@ -86,4 +86,63 @@ public class NumberWithUnits implements Serializable
         if (value.indexOf("%") != -1) { unitType = UT_PERCENT; return; }
     }
 
+    public static String unitsAsString(int unitIdx)
+    {
+        switch (unitIdx)
+        {
+            default:
+                return "";
+            case UT_PX:
+                return "px";
+            case UT_CM:
+                return "cm";
+            case UT_MM:
+                return "mm";
+            case UT_IN:
+                return "in";
+            case UT_EM:
+                return "em";
+            case UT_EX:
+                return "ex";
+            case UT_PT:
+                return "pt";
+            case UT_PC:
+                return "pc";
+            case UT_PERCENT:
+                return "%";
+        }
+    }
+
+    public String toString()
+    {
+        return "" + value + unitsAsString(unitType);
+    }
+
+    public boolean equals(Object obj)
+    {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final NumberWithUnits other = (NumberWithUnits) obj;
+        if (Float.floatToIntBits(this.value) != Float.floatToIntBits(other.value)) {
+            return false;
+        }
+        if (this.unitType != other.unitType) {
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 37 * hash + Float.floatToIntBits(this.value);
+        hash = 37 * hash + this.unitType;
+        return hash;
+    }
+
+
 }

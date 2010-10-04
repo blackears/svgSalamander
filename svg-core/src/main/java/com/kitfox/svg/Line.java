@@ -28,11 +28,10 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
-
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
@@ -163,10 +162,11 @@ public class Line extends ShapeElement {
 
         if (shapeChange)
         {
-            line = new Line2D.Float(x1, y1, x2, y2);
-            return true;
+            build();
+//            line = new Line2D.Float(x1, y1, x2, y2);
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

@@ -28,15 +28,10 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import com.kitfox.svg.animation.*;
-import org.xml.sax.*;
-
-import java.net.*;
-import java.io.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
@@ -162,11 +157,12 @@ public class Circle extends ShapeElement
         
         if (shapeChange)
         {
-            circle.setFrame(cx - r, cy - r, r * 2f, r * 2f);
-            return true;
+            build();
+//            circle.setFrame(cx - r, cy - r, r * 2f, r * 2f);
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
     
 }

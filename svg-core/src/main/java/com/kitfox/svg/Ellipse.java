@@ -182,10 +182,11 @@ public class Ellipse extends ShapeElement {
         
         if (shapeChange)
         {
-            ellipse.setFrame(cx - rx, cy - ry, rx * 2f, ry * 2f);
-            return true;
+            build();
+//            ellipse.setFrame(cx - rx, cy - ry, rx * 2f, ry * 2f);
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

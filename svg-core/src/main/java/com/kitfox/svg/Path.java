@@ -144,10 +144,11 @@ public class Path extends ShapeElement {
         
         if (shapeChange)
         {
-            path = buildPath(d, fillRule);
-            return true;
+            build();
+//            path = buildPath(d, fillRule);
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

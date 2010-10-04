@@ -28,12 +28,11 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
-
-import java.net.*;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.net.URI;
 
 /**
  * @author Mark McKay
@@ -244,12 +243,13 @@ public class Use extends ShapeElement {
 */        
         if (shapeChange)
         {
+            build();
             //Determine use offset/scale
-            refXform.setToTranslation(this.x, this.y);
-            refXform.scale(this.width, this.height);
-            return true;
+//            refXform.setToTranslation(this.x, this.y);
+//            refXform.scale(this.width, this.height);
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

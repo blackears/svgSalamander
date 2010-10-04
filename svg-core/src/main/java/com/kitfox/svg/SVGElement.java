@@ -102,7 +102,9 @@ abstract public class SVGElement implements Serializable
 //    protected SVGUniverse universe;
     
     protected final TrackManager trackManager = new TrackManager();
-    
+
+    boolean dirty = true;
+
 //    public static final Matcher adobeId = Pattern.compile("(.*)_1_").matcher("");
 //    static final String fpNumRe = "[-+]?((\\d+)|(\\d*\\.\\d+))([-+]?[eE]\\d+)?";
     

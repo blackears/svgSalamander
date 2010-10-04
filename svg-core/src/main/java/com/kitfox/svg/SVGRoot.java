@@ -336,7 +336,7 @@ public class SVGRoot extends Group
         if (getPres(sty.setName("x")))
         {
             NumberWithUnits newVal = sty.getNumberWithUnits();
-            if (newVal != x)
+            if (!newVal.equals(x))
             {
                 x = newVal;
                 shapeChange = true;
@@ -346,7 +346,7 @@ public class SVGRoot extends Group
         if (getPres(sty.setName("y")))
         {
             NumberWithUnits newVal = sty.getNumberWithUnits();
-            if (newVal != y)
+            if (!newVal.equals(y))
             {
                 y = newVal;
                 shapeChange = true;
@@ -356,7 +356,7 @@ public class SVGRoot extends Group
         if (getPres(sty.setName("width")))
         {
             NumberWithUnits newVal = sty.getNumberWithUnits();
-            if (newVal != width)
+            if (!newVal.equals(width))
             {
                 width = newVal;
                 shapeChange = true;
@@ -366,7 +366,7 @@ public class SVGRoot extends Group
         if (getPres(sty.setName("height")))
         {
             NumberWithUnits newVal = sty.getNumberWithUnits();
-            if (newVal != height)
+            if (!newVal.equals(height))
             {
                 height = newVal;
                 shapeChange = true;
@@ -384,7 +384,12 @@ public class SVGRoot extends Group
             }
         }
 
-        return changeState;
+        if (shapeChange)
+        {
+            build();
+        }
+
+        return changeState || shapeChange;
     }
 
 }

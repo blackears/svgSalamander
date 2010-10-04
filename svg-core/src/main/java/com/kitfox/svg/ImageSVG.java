@@ -275,33 +275,34 @@ public class ImageSVG extends RenderableElement
         
         if (shapeChange)
         {
-            diagram.getUniverse().registerImage(imageSrc);
-
-            //Set widths if not set
-            BufferedImage img = diagram.getUniverse().getImage(imageSrc);
-            if (img == null)
-            {
-                xform = new AffineTransform();
-                bounds = new Rectangle2D.Float();
-            }
-            else
-            {
-                if (width == 0) width = img.getWidth();
-                if (height == 0) height = img.getHeight();
-
-                //Determine image xform
-                xform = new AffineTransform();
-//                xform.setToScale(this.width / img.getWidth(), this.height / img.getHeight());
+            build();
+//            diagram.getUniverse().registerImage(imageSrc);
+//
+//            //Set widths if not set
+//            BufferedImage img = diagram.getUniverse().getImage(imageSrc);
+//            if (img == null)
+//            {
+//                xform = new AffineTransform();
+//                bounds = new Rectangle2D.Float();
+//            }
+//            else
+//            {
+//                if (width == 0) width = img.getWidth();
+//                if (height == 0) height = img.getHeight();
+//
+//                //Determine image xform
+//                xform = new AffineTransform();
+////                xform.setToScale(this.width / img.getWidth(), this.height / img.getHeight());
+////                xform.translate(this.x, this.y);
 //                xform.translate(this.x, this.y);
-                xform.translate(this.x, this.y);
-                xform.scale(this.width / img.getWidth(), this.height / img.getHeight());
-
-                bounds = new Rectangle2D.Float(this.x, this.y, this.width, this.height);
-            }
-            
-            return true;
+//                xform.scale(this.width / img.getWidth(), this.height / img.getHeight());
+//
+//                bounds = new Rectangle2D.Float(this.x, this.y, this.width, this.height);
+//            }
+//
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

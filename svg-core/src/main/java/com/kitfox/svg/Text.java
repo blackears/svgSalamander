@@ -530,10 +530,11 @@ public class Text extends ShapeElement
         
         if (shapeChange)
         {
-            buildFont();
-            return true;
+            build();
+//            buildFont();
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

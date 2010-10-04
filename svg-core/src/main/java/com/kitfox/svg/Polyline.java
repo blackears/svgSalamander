@@ -143,10 +143,11 @@ public class Polyline extends ShapeElement {
         
         if (shapeChange)
         {
-            buildPath();
-            return true;
+            build();
+//            buildPath();
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }

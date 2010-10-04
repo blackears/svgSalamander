@@ -251,17 +251,18 @@ public class Rect extends ShapeElement {
 
         if (shapeChange)
         {
-            if (rx == 0f && ry == 0f)
-            {
-                rect = new Rectangle2D.Float(x, y, width, height);
-            }
-            else
-            {
-                rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
-            }
-            return true;
+            build();
+//            if (rx == 0f && ry == 0f)
+//            {
+//                rect = new Rectangle2D.Float(x, y, width, height);
+//            }
+//            else
+//            {
+//                rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
+//            }
+//            return true;
         }
         
-        return changeState;
+        return changeState || shapeChange;
     }
 }
