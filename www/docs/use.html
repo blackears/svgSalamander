@@ -3,20 +3,21 @@
     <title>Default Project Content</title>
     <style type="text/css">
     code {color: blue}
-    </style>    
-        <script type="text/javascript">
+    </style>
 
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-17414889-3']);
-          _gaq.push(['_trackPageview']);
+		<script type="text/javascript">
 
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-17414889-4']);
+		  _gaq.push(['_trackPageview']);
 
-        </script>
+		  (function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
   </head>
   <body>
 
@@ -47,7 +48,7 @@ the document in parts.  For example, you can create a circle with the code
 &lt;circle id="myCircle" cx="100" cy="100" r="50"/&gt;.  This circle can be
 referenced later with the key word 'myCircle'.</p>
 
-<p>SVG Salamander provides the ability to access document parts with 
+<p>SVG Salamander provides the ability to access document parts with
 SVGDiagram.getElement(String elementName).  You can then read and write the
 attributes of the element directly.</p>
 
@@ -158,7 +159,7 @@ catch (SVGException e)<br/>
     e.printStackTrace();<br/>
 }
 </code>
-        
+
 
 <p>To remove an element, call removeChild() on an element capable of having children:</p>
 
@@ -196,7 +197,7 @@ Vector pickedElements = diagram.pick(pickPoint, null);<br/>
 <pre>
     &lt;target name="testAntTask"&gt;
         &lt;typedef name="SVGToImage" classname="com.kitfox.svg.app.ant.SVGToImageAntTask" classpath="www/binaries/svgSalamander.jar"/&gt;
-    
+
         &lt;SVGToImage format="png" antiAlias="false" verbose="true"&gt;
             &lt;fileset dir="examples"&gt;
                 &lt;include name="hinorei.svg"/&gt;
@@ -216,8 +217,8 @@ Vector pickedElements = diagram.pick(pickPoint, null);<br/>
     class is used for creating images, so format strings will depend on what
     files your system is configured to handle.  By default, "gif", "jpg" and "png"
     files are guaranteed to be present.  If omitted, "png" is used by default.
-    <li/>backgroundColor - Optional background color.  Color can be specified as a standard 
-    HTML color.  That is, as the name of a standard color such as "blue" or 
+    <li/>backgroundColor - Optional background color.  Color can be specified as a standard
+    HTML color.  That is, as the name of a standard color such as "blue" or
     "limegreen", using the # notation as in #ff00ff for magenta, or in rgb format
     listing the components as in rgb(255, 192, 192) for pink.  If omitted,
     background is transparent.
@@ -229,13 +230,13 @@ Vector pickedElements = diagram.pick(pickPoint, null);<br/>
     <li/>height - If greater than 0, determines the height of the written image.  Otherwise,
     the height is obtained from the SVG document.  Defaults to -1.
     <li/>sizeToFit - If true and the width and height of the output image differ
-    from that of the SVG image, the valid area of the SVG image will be resized 
+    from that of the SVG image, the valid area of the SVG image will be resized
     to fit the specified size.
     <li/>verbose - IF true, prints out diagnostic information about processing.
     Defaults to false.
 </ul>
 </p>
- 
+
 <h3>Examples</h3>
 
 <p>Some example SVG files that can be loaded and played in this browser can be found in the /examples directory of the source.</p>

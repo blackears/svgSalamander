@@ -27,6 +27,8 @@
 
 package com.kitfox.svg;
 
+import com.kitfox.svg.Marker.MarkerLayout;
+import com.kitfox.svg.Marker.MarkerPos;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
@@ -39,6 +41,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -231,6 +234,26 @@ abstract public class ShapeElement extends RenderableElement
             strokeWidth *= strokeWidthScalar;
 //        }
 
+        Marker markerStart = null;
+        if (getStyle(styleAttrib.setName("marker-start")))
+        {
+            URI uri = styleAttrib.getURIValue(getXMLBase());
+            markerStart = (Marker)diagram.getUniverse().getElement(uri);
+        }
+
+        Marker markerMid = null;
+        if (getStyle(styleAttrib.setName("marker-mid")))
+        {
+            URI uri = styleAttrib.getURIValue(getXMLBase());
+            markerMid = (Marker)diagram.getUniverse().getElement(uri);
+        }
+
+        Marker markerEnd = null;
+        if (getStyle(styleAttrib.setName("marker-end")))
+        {
+            URI uri = styleAttrib.getURIValue(getXMLBase());
+            markerEnd = (Marker)diagram.getUniverse().getElement(uri);
+        }
 
 
         //Draw the shape
@@ -291,9 +314,41 @@ abstract public class ShapeElement extends RenderableElement
                 g.setPaint(strokePaint);
                 g.fill(strokeShape);
             }
-
         }
 
+        if (markerStart != null || markerMid != null || markerEnd != null)
+        {
+            MarkerLayout layout = new MarkerLayout();
+            layout.layout(shape);
+            
+            ArrayList list = layout.getMarkerList();
+            for (int i = 0; i < list.size(); ++i)
+            {
+                MarkerPos pos = (MarkerPos)list.get(i);
+
+                switch (pos.type)
+                {
+                    case Marker.MARKER_START:
+                        if (markerStart != null)
+                        {
+                            markerStart.render(g, pos, strokeWidth);
+                        }
+                        break;
+                    case Marker.MARKER_MID:
+                        if (markerMid != null)
+                        {
+                            markerMid.render(g, pos, strokeWidth);
+                        }
+                        break;
+                    case Marker.MARKER_END:
+                        if (markerEnd != null)
+                        {
+                            markerEnd.render(g, pos, strokeWidth);
+                        }
+                        break;
+                }
+            }
+        }
     }
     
     abstract public Shape getShape();
