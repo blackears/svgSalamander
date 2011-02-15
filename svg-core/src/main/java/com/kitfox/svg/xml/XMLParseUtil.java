@@ -782,7 +782,7 @@ public class XMLParseUtil
     }
 
     /**
-     * Takes a CSS style string and retursn a hash of them.
+     * Takes a CSS style string and returns a hash of them.
      * @param styleString - A CSS formatted string of styles.  Eg,
      *     "font-size:12;fill:#d32c27;fill-rule:evenodd;stroke-width:1pt;"
      * @param map - A map to which these styles will be added
@@ -796,7 +796,13 @@ public class XMLParseUtil
 
         String[] styles = patSemi.split(styleString);
 
-        for (int i = 0; i < styles.length; i++) {
+        for (int i = 0; i < styles.length; i++)
+        {
+            if (styles[i].length() == 0)
+            {
+                continue;
+            }
+
             String[] vals = patColonSpace.split(styles[i]);
 
             matcherContent.reset(vals[0]);
