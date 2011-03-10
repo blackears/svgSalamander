@@ -11,7 +11,7 @@
 	<!-- TODO Mark: replace with com.kitfox -->
 	<groupId>com.kitfox</groupId>
 	<artifactId>svg-core</artifactId>
-	<version>1.0.8-SNAPSHOT</version>
+	<version>1.0.8</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
@@ -31,9 +31,9 @@
 
 	<!-- TODO Mark: replace with your repo url paths -->
 	<scm>
-		<url>http://svgsalamander.java.net/</url>
-		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/trunk/svg-core/</connection>
-		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/trunk/svg-core/</developerConnection>
+		<url>http://svgsalamander.java.net/tags/svg-core-1.0.8</url>
+		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/svg-core-1.0.8</connection>
+		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/svg-core-1.0.8</developerConnection>
 	</scm>
 
 	<!-- TODO Mark: replace with your license -->
