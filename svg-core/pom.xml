@@ -11,7 +11,7 @@
 	<!-- TODO Mark: replace with com.kitfox -->
 	<groupId>com.kitfox</groupId>
 	<artifactId>kitfox-svg-salamander</artifactId>
-	<version>1.0.8-SNAPSHOT</version>
+	<version>1.0.8</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
@@ -31,9 +31,9 @@
 
 	<!-- TODO Mark: replace with your repo url paths -->
 	<scm>
-		<url>http://svgsalamander.java.net/tags/svg-core-1.0.8</url>
-		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/svg-core-1.0.8</connection>
-		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/svg-core-1.0.8</developerConnection>
+		<url>http://svgsalamander.java.net/tags/kitfox-svg-salamander-1.0.8</url>
+		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.8</connection>
+		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.8</developerConnection>
 	</scm>
 
 	<!-- TODO Mark: replace with your license -->
@@ -136,8 +136,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.4</source>
+					<target>1.4</target>
 				</configuration>
 			</plugin>
 
