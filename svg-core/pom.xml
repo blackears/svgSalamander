@@ -10,7 +10,7 @@
 
 	<!-- TODO Mark: replace with com.kitfox -->
 	<groupId>com.kitfox</groupId>
-	<artifactId>svg-core</artifactId>
+	<artifactId>kitfox-svg-salamander</artifactId>
 	<version>1.0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
