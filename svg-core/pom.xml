@@ -11,7 +11,7 @@
 	<!-- TODO Mark: replace with com.kitfox -->
 	<groupId>com.kitfox</groupId>
 	<artifactId>svg-core</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>

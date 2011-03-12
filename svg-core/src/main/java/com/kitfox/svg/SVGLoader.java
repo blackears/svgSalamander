@@ -168,7 +168,10 @@ public class SVGLoader extends DefaultHandler
         {
             if (!ignoreClasses.contains(sName))
             {
-                System.err.println("SVGLoader: Could not identify tag '" + sName + "'");
+                if (verbose)
+                {
+                    System.err.println("SVGLoader: Could not identify tag '" + sName + "'");
+                }
             }
             return;
         }
