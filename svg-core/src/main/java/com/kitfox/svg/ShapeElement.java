@@ -237,8 +237,11 @@ abstract public class ShapeElement extends RenderableElement
         Marker markerStart = null;
         if (getStyle(styleAttrib.setName("marker-start")))
         {
-            URI uri = styleAttrib.getURIValue(getXMLBase());
-            markerStart = (Marker)diagram.getUniverse().getElement(uri);
+            if (!styleAttrib.getStringValue().equals("none"))
+            {
+                URI uri = styleAttrib.getURIValue(getXMLBase());
+                markerStart = (Marker)diagram.getUniverse().getElement(uri);
+            }
         }
 
         Marker markerMid = null;
