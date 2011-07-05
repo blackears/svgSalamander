@@ -47,6 +47,7 @@ public class Terminal extends PathCommand {
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
         path.closePath();
+        hist.setPoint(hist.start.x, hist.start.y);
     }
     
     public int getNumKnotsAdded()

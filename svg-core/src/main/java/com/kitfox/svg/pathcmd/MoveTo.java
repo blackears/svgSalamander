@@ -57,6 +57,7 @@ public class MoveTo extends PathCommand {
 
         path.moveTo(x + offx, y + offy);
         hist.setPoint(x + offx, y + offy);
+        hist.setStart(x + offx, y + offy);
     }
 
     public int getNumKnotsAdded()
