@@ -267,7 +267,20 @@ abstract public class SVGElement implements Serializable
             presAttribs.put(name, new StyleAttribute(name, value));
         }
     }
-    
+
+    public void removeAttribute(String name, int attribType)
+    {
+        switch (attribType)
+        {
+            case AnimationElement.AT_CSS:
+                inlineStyles.remove(name);
+                return;
+            case AnimationElement.AT_XML:
+                presAttribs.remove(name);
+                return;
+        }
+    }
+
     public void addAttribute(String name, int attribType, String value) throws SVGElementException
     {
         if (hasAttribute(name, attribType)) throw new SVGElementException(this, "Attribute " + name + "(" + AnimationElement.animationElementToString(attribType) + ") already exists");

@@ -129,7 +129,10 @@ abstract public class ShapeElement extends RenderableElement
                         AffineTransform xform = g.getTransform();
 
                         SVGElement ele = diagram.getUniverse().getElement(uri);
-                        fillPaint = ((FillElement)ele).getPaint(bounds, xform);
+                        if (ele != null)
+                        {
+                            fillPaint = ((FillElement)ele).getPaint(bounds, xform);
+                        }
                     }
                 }
             }
@@ -165,7 +168,10 @@ abstract public class ShapeElement extends RenderableElement
                         AffineTransform xform = g.getTransform();
 
                         SVGElement ele = diagram.getUniverse().getElement(uri);
-                        strokePaint = ((FillElement)ele).getPaint(bounds, xform);
+                        if (ele != null)
+                        {
+                            strokePaint = ((FillElement)ele).getPaint(bounds, xform);
+                        }
                     }
                 }
             }

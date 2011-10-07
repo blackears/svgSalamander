@@ -35,7 +35,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -45,6 +44,7 @@ import java.io.Serializable;
 import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -436,9 +436,13 @@ public class SVGUniverse implements Serializable
             InputStream is = docRoot.openStream();
             return loadSVG(uri, new InputSource(createDocumentInputStream(is)));
         }
-        catch (Throwable t)
+        catch (URISyntaxException ex)
         {
-            t.printStackTrace();
+            ex.printStackTrace();
+        }
+        catch (IOException ex)
+        {
+            ex.printStackTrace();
         }
         
         return null;
