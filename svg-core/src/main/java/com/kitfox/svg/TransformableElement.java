@@ -46,12 +46,24 @@ public class TransformableElement extends SVGElement
 //    AffineTransform invXform = null;
 
     /** Creates a new instance of BoundedElement */
-    public TransformableElement() {
+    public TransformableElement()
+    {
     }
 
     public TransformableElement(String id, SVGElement parent)
     {
         super(id, parent);
+    }
+
+    /**
+     * Fetches a copy of the cached AffineTransform.  Note that this
+     * value will only be valid after the node has been updated.
+     *
+     * @return
+     */
+    public AffineTransform getXForm()
+    {
+        return new AffineTransform(xform);
     }
 /*
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
