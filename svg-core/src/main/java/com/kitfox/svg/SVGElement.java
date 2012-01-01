@@ -286,11 +286,14 @@ abstract public class SVGElement implements Serializable
         if (hasAttribute(name, attribType)) throw new SVGElementException(this, "Attribute " + name + "(" + AnimationElement.animationElementToString(attribType) + ") already exists");
         
         //Alter layout for id attribute
-        if ("id".equals(name) && diagram != null)
+        if ("id".equals(name))
         {
-            diagram.removeElement(this.id);
-            this.id = name;
-            diagram.setElement(this.id, this);
+            if (diagram != null)
+            {
+                diagram.removeElement(id);
+                diagram.setElement(value, this);
+            }
+            this.id = value;
         }
         
         switch (attribType)
@@ -354,7 +357,7 @@ abstract public class SVGElement implements Serializable
         }
     }
     
-    private void setDiagram(SVGDiagram diagram)
+    protected void setDiagram(SVGDiagram diagram)
     {
         this.diagram = diagram;
         diagram.setElement(id, this);
@@ -510,9 +513,12 @@ abstract public class SVGElement implements Serializable
         //Alter layout for relevant attributes
         if ("id".equals(styAttr.getName()))
         {
-            diagram.removeElement(this.id);
-            this.id = name;
-            diagram.setElement(this.id, this);
+            if (diagram != null)
+            {
+                diagram.removeElement(this.id);
+                diagram.setElement(value, this);
+            }
+            this.id = value;
         }
         
         styAttr.setStringValue(value);

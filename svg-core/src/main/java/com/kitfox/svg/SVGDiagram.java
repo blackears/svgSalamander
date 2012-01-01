@@ -202,6 +202,7 @@ public class SVGDiagram implements Serializable
     public void setRoot(SVGRoot root)
     {
         this.root = root;
+        root.setDiagram(this);
     }
 
     public boolean ignoringClipHeuristic() { return ignoreClipHeuristic; }
