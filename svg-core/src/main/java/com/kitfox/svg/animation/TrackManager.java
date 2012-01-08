@@ -59,7 +59,13 @@ public class TrackManager implements Serializable
             this.type = type;
         }
         
-        public int hashCode() { return name.hashCode() ^ type; } 
+        public int hashCode()
+        {
+            int hash = name == null ? 0 : name.hashCode();
+            hash = hash * 97 + type;
+            return hash;
+        }
+
         public boolean equals(Object obj) 
         {
             if (!(obj instanceof TrackKey)) return false;
