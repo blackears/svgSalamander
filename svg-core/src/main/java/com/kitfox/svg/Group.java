@@ -52,7 +52,7 @@ public class Group extends ShapeElement
     Shape cachedShape;
 
     //Cache clip bounds
-    final Rectangle clipBounds = new Rectangle();
+//    final Rectangle clipBounds = new Rectangle();
 
     /** Creates a new instance of Stop */
     public Group() {
@@ -81,7 +81,12 @@ public class Group extends ShapeElement
 
     protected boolean outsideClip(Graphics2D g) throws SVGException
     {
-        g.getClipBounds(clipBounds);
+        Shape clip = g.getClip();
+        if (clip == null)
+        {
+            return false;
+        }
+        //g.getClipBounds(clipBounds);
         Rectangle2D rect = getBoundingBox();
 
 //if (rect == null)
@@ -90,7 +95,7 @@ public class Group extends ShapeElement
 //}
 
 //        if (rect.intersects(clipBounds))
-        if (rect.intersects(clipBounds))
+        if (clip.intersects(rect))
         {
             return false;
         }
@@ -158,23 +163,27 @@ public class Group extends ShapeElement
         
         //Do not process offscreen groups
         boolean ignoreClip = diagram.ignoringClipHeuristic();
-        if (!ignoreClip && outsideClip(g)) return;
+        if (!ignoreClip && outsideClip(g)) 
+        {
+            return;
+        }
 
         beginLayer(g);
 
         Iterator it = children.iterator();
 
-        try
-        {
-            g.getClipBounds(clipBounds);
-        }
-        catch (Exception e)
-        {
-            //For some reason, getClipBounds can throw a null pointer exception for 
-            // some types of Graphics2D
-            ignoreClip = true;
-        }
+//        try
+//        {
+//            g.getClipBounds(clipBounds);
+//        }
+//        catch (Exception e)
+//        {
+//            //For some reason, getClipBounds can throw a null pointer exception for
+//            // some types of Graphics2D
+//            ignoreClip = true;
+//        }
 
+        Shape clip = g.getClip();
         while (it.hasNext())
         {
             SVGElement ele = (SVGElement)it.next();
@@ -187,7 +196,8 @@ public class Group extends ShapeElement
                 if (!(ele instanceof Group))
                 {
                     //Skip if clipping area is outside our bounds
-                    if (!ignoreClip && !rendEle.getBoundingBox().intersects(clipBounds)) 
+                    if (!ignoreClip && clip != null 
+                            && !clip.intersects(rendEle.getBoundingBox()))
                     {
                         continue;
                     }

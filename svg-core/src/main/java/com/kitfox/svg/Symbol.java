@@ -103,9 +103,10 @@ public class Symbol extends Group
 
     protected boolean outsideClip(Graphics2D g) throws SVGException
     {
-        g.getClipBounds(clipBounds);
+        Shape clip = g.getClip();
+//        g.getClipBounds(clipBounds);
         Rectangle2D rect = super.getBoundingBox();
-        if (rect.intersects(clipBounds))
+        if (clip == null || clip.intersects(rect))
         {
             return false;
         }
