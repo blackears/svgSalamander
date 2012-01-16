@@ -29,6 +29,7 @@ public class Marker extends Group
     float markerWidth = 3;
     float markerHeight = 3;
     float orient = Float.NaN;
+    boolean markerUnitsStrokeWidth = true; //if set to false 'userSpaceOnUse' is assumed
 
     protected void build() throws SVGException
     {
@@ -62,6 +63,15 @@ public class Marker extends Group
         if (viewBox == null)
         {
             viewBox = new Rectangle(0, 0, 1, 1);
+        }
+
+        if (getPres(sty.setName("markerUnits")))
+        {
+            String markerUnits = sty.getStringValue();
+            if (markerUnits != null && markerUnits.equals("userSpaceOnUse"))
+            {
+                markerUnitsStrokeWidth = false;
+            }
         }
 
         //Transform pattern onto unit square
@@ -103,7 +113,11 @@ public class Marker extends Group
         AffineTransform cacheXform = g.getTransform();
 
         g.translate(pos.x, pos.y);
-        g.scale(strokeWidth, strokeWidth);
+        if (markerUnitsStrokeWidth)
+        {
+            g.scale(strokeWidth, strokeWidth);
+        }
+
         g.rotate(Math.atan2(pos.dy, pos.dx));
 
         g.transform(markerXform);
