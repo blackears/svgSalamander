@@ -95,6 +95,26 @@ abstract public class ShapeElement extends RenderableElement
         }
     }
 
+    private Paint handleCurrentColor(StyleAttribute styleAttrib) throws SVGException
+    {
+        if (styleAttrib.getStringValue().equals("currentColor"))
+        {
+            StyleAttribute currentColorAttrib = new StyleAttribute();
+            if (getStyle(currentColorAttrib.setName("color")))
+            {
+                if (!currentColorAttrib.getStringValue().equals("none"))
+                {
+                    return currentColorAttrib.getColorValue();
+                }
+            }
+            return null;
+        }
+        else
+        {
+            return styleAttrib.getColorValue();
+        }
+    }
+
     protected void renderShape(Graphics2D g, Shape shape) throws SVGException
     {
 //g.setColor(Color.green);
@@ -119,7 +139,7 @@ abstract public class ShapeElement extends RenderableElement
             if (styleAttrib.getStringValue().equals("none")) fillPaint = null;
             else
             {
-                fillPaint = styleAttrib.getColorValue();
+                fillPaint = handleCurrentColor(styleAttrib);
                 if (fillPaint == null)
                 {
                     URI uri = styleAttrib.getURIValue(getXMLBase());
@@ -158,7 +178,7 @@ abstract public class ShapeElement extends RenderableElement
             if (styleAttrib.getStringValue().equals("none")) strokePaint = null;
             else
             {
-                strokePaint = styleAttrib.getColorValue();
+                strokePaint = handleCurrentColor(styleAttrib);
                 if (strokePaint == null)
                 {
                     URI uri = styleAttrib.getURIValue(getXMLBase());
