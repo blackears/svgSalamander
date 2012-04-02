@@ -141,9 +141,16 @@ abstract public class RenderableElement extends TransformableElement
             }
 
             cachedClip = g.getClip();
-            Area newClip = new Area(cachedClip);
-            newClip.intersect(new Area(clipPath));
-            g.setClip(newClip);
+            if (cachedClip == null)
+            {
+                g.setClip(clipPath);
+            }
+            else
+            {
+                Area newClip = new Area(cachedClip);
+                newClip.intersect(new Area(clipPath));
+                g.setClip(newClip);
+            }
         }
     }
 
