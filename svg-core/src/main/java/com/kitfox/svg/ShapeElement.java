@@ -328,26 +328,50 @@ abstract public class ShapeElement extends RenderableElement
                 stroke = new BasicStroke(strokeWidth, strokeLinecap, strokeLinejoin, strokeMiterLimit, strokeDashArray, strokeDashOffset);
             }
 
-            Shape strokeShape = stroke.createStrokedShape(shape);
+            Shape strokeShape;
+            AffineTransform cacheXform = g.getTransform();
+            if (vectorEffect == VECTOR_EFFECT_NON_SCALING_STROKE)
+            {
+                strokeShape = cacheXform.createTransformedShape(shape);
+                strokeShape = stroke.createStrokedShape(strokeShape);
+            }
+            else
+            {
+                strokeShape = stroke.createStrokedShape(shape);
+            }
 
             if (strokeOpacity <= 0)
             {
                 //Do nothing
             }
-            else if (strokeOpacity < 1f)
-            {
-                Composite cachedComposite = g.getComposite();
-                g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, strokeOpacity));
-
-                g.setPaint(strokePaint);
-                g.fill(strokeShape);
-
-                g.setComposite(cachedComposite);
-            }
             else
             {
+                Composite cachedComposite = g.getComposite();
+
+                if (strokeOpacity < 1f)
+                {
+                    g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, strokeOpacity));
+                }
+
+                if (vectorEffect == VECTOR_EFFECT_NON_SCALING_STROKE)
+                {
+                    //Set to identity
+                    g.setTransform(new AffineTransform());
+                }
+
                 g.setPaint(strokePaint);
                 g.fill(strokeShape);
+
+                if (vectorEffect == VECTOR_EFFECT_NON_SCALING_STROKE)
+                {
+                    //Set to identity
+                    g.setTransform(cacheXform);
+                }
+
+                if (strokeOpacity < 1f)
+                {
+                    g.setComposite(cachedComposite);
+                }
             }
         }
 
