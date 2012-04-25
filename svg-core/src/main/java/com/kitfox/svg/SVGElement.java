@@ -689,7 +689,14 @@ abstract public class SVGElement implements Serializable
         }
         else if (function.equals("translate"))
         {
-            retXform.setToTranslation(terms[0], terms[1]);
+            if (terms.length == 1)
+            {
+                retXform.setToTranslation(terms[0], 0);
+            }
+            else
+            {
+                retXform.setToTranslation(terms[0], terms[1]);
+            }
         }
         else if (function.equals("scale"))
         {
