@@ -159,12 +159,19 @@ public class Tspan extends ShapeElement {
         {
             fontSize = sty.getFloatValueWithUnits();
         }
+        
+        float letterSpacing = 0;
+        if (getStyle(sty.setName("letter-spacing")))
+        {
+            letterSpacing = sty.getFloatValueWithUnits();
+        }
+        
 
         //Get font
         Font font = diagram.getUniverse().getFont(fontFamily);
         if (font == null)
         {
-            addShapeSysFont(addShape, font, fontFamily, fontSize);
+            addShapeSysFont(addShape, font, fontFamily, fontSize, letterSpacing);
             return;
         }
 
@@ -206,13 +213,14 @@ public class Tspan extends ShapeElement {
                 cursorY += dy[posPtr++];
             }
 
-            cursorX += fontScale * glyph.getHorizAdvX();
+            cursorX += fontScale * glyph.getHorizAdvX() + letterSpacing;
         }
 
         strokeWidthScalar = 1f;
     }
 
-    private void addShapeSysFont(GeneralPath addShape, Font font, String fontFamily, float fontSize)
+    private void addShapeSysFont(GeneralPath addShape, Font font, 
+            String fontFamily, float fontSize, float letterSpacing)
     {
         java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int)fontSize);
 
@@ -225,7 +233,7 @@ public class Tspan extends ShapeElement {
         for (int i = 0; i < text.length(); i++)
         {
             xform.setToIdentity();
-            xform.setToTranslation(cursorX, cursorY);
+            xform.setToTranslation(cursorX + i * letterSpacing, cursorY);
             if (rotate != null) xform.rotate(rotate[Math.min(i, rotate.length - 1)]);
 
             String unicode = text.substring(i, i + 1);
