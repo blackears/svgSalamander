@@ -266,6 +266,10 @@ public class Text extends ShapeElement
             if (obj instanceof String)
             {
                 String text = (String)obj;
+                if (text != null)
+                {
+                    text = text.trim();
+                }
                 
                 strokeWidthScalar = 1f / fontScale;
                 
