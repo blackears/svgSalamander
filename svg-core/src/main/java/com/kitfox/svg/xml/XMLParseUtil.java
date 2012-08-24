@@ -789,10 +789,6 @@ public class XMLParseUtil
      */
     public static HashMap parseStyle(String styleString, HashMap map) {
         final Pattern patSemi = Pattern.compile(";");
-        final Pattern patColonSpace = Pattern.compile(":");
-
-        //Strips left and right whitespace
-        final Matcher matcherContent = Pattern.compile("\\s*([^\\s](.*[^\\s])?)\\s*").matcher("");
 
         String[] styles = patSemi.split(styleString);
 
@@ -803,17 +799,16 @@ public class XMLParseUtil
                 continue;
             }
 
-            String[] vals = patColonSpace.split(styles[i]);
+            int colon = styles[i].indexOf(':');
+            if (colon == -1)
+            {
+                continue;
+            }
 
-            matcherContent.reset(vals[0]);
-            matcherContent.matches();
-            vals[0] = matcherContent.group(1);
+            String key = styles[i].substring(0, colon).trim();
+            String value = styles[i].substring(colon + 1).trim();
 
-            matcherContent.reset(vals[1]);
-            matcherContent.matches();
-            vals[1] = matcherContent.group(1);
-
-            map.put(vals[0], new StyleAttribute(vals[0], vals[1]));
+            map.put(key, new StyleAttribute(key, value));
         }
 
         return map;
