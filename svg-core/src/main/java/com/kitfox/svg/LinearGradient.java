@@ -27,15 +27,12 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.geom.*;
 import java.awt.*;
 
 import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 //import org.apache.batik.ext.awt.*;
-import com.kitfox.svg.batik.*;
 
 
 /**
@@ -110,13 +107,19 @@ public class LinearGradient extends Gradient {
                 break;
         }
 
-        com.kitfox.svg.batik.LinearGradientPaint paint;
-        if (gradientUnits == GU_USER_SPACE_ON_USE)
+        Paint paint;
+        Point2D.Float pt1 = new Point2D.Float(x1, y1);
+        Point2D.Float pt2 = new Point2D.Float(x2, y2);
+        if (pt1.equals(pt2))
         {
-//            paint = new LinearGradientPaint(x1, y1, x2, y2, getStopFractions(), getStopColors(), method);
+            Color[] colors = getStopColors();
+            paint = colors.length > 0 ? colors[0] : Color.black;
+        }
+        else if (gradientUnits == GU_USER_SPACE_ON_USE)
+        {
             paint = new com.kitfox.svg.batik.LinearGradientPaint(
-                new Point2D.Float(x1, y1),
-                new Point2D.Float(x2, y2),
+                pt1,
+                pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,
@@ -138,8 +141,8 @@ public class LinearGradient extends Gradient {
             viewXform.concatenate(gradientTransform);
 
             paint = new com.kitfox.svg.batik.LinearGradientPaint(
-                new Point2D.Float(x1, y1),
-                new Point2D.Float(x2, y2),
+                pt1,
+                pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,

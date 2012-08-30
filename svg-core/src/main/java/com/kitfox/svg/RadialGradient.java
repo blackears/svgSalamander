@@ -27,15 +27,12 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.geom.*;
 import java.awt.*;
 
 import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 //import org.apache.batik.ext.awt.*;
-import com.kitfox.svg.batik.*;
 
 
 /**
@@ -116,14 +113,20 @@ public class RadialGradient extends Gradient {
                 break;
         }
 
-        com.kitfox.svg.batik.RadialGradientPaint paint;
-
-        if (gradientUnits == GU_USER_SPACE_ON_USE)
+        Paint paint;
+        Point2D.Float pt1 = new Point2D.Float(cx, cy);
+        Point2D.Float pt2 = new Point2D.Float(fx, fy);
+        if (pt1.equals(pt2))
+        {
+            Color[] colors = getStopColors();
+            paint = colors.length > 0 ? colors[0] : Color.black;
+        }
+        else if (gradientUnits == GU_USER_SPACE_ON_USE)
         {
             paint = new com.kitfox.svg.batik.RadialGradientPaint(
-                new Point2D.Float(cx, cy),
+                pt1,
                 r,
-                new Point2D.Float(fx, fy),
+                pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,
@@ -139,9 +142,9 @@ public class RadialGradient extends Gradient {
             viewXform.concatenate(gradientTransform);
 
             paint = new com.kitfox.svg.batik.RadialGradientPaint(
-                new Point2D.Float(cx, cy),
+                pt1,
                 r,
-                new Point2D.Float(fx, fy),
+                pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,
