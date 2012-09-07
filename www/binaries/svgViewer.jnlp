@@ -2,7 +2,7 @@
 <!-- JNLP File for SVG Salamander Application -->
 <jnlp
     spec="1.0+"
-    codebase="https://svgsalamander.dev.java.net/binaries/"
+    codebase="https://svgsalamander.java.net/binaries/"
     href="svgViewer.jnlp">
 
     <information>

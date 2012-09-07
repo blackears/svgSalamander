@@ -37,9 +37,7 @@ import java.net.*;
 import java.util.List;
 
 /**
- * Implements an embedded font.
- *
- * SVG specification: http://www.w3.org/TR/SVG/fonts.html
+ * Implements an image.
  *
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
