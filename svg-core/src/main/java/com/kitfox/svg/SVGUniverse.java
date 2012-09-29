@@ -431,7 +431,10 @@ public class SVGUniverse implements Serializable
         try
         {
             URI uri = new URI(docRoot.toString());
-            if (loadedDocs.containsKey(uri) && !forceLoad) return uri;
+            if (loadedDocs.containsKey(uri) && !forceLoad)
+            {
+                return uri;
+            }
             
             InputStream is = docRoot.openStream();
             return loadSVG(uri, new InputSource(createDocumentInputStream(is)));
@@ -574,6 +577,7 @@ public class SVGUniverse implements Serializable
             
 //            SAXParser saxParser = factory.newSAXParser();
 //            saxParser.parse(new InputSource(new BufferedReader(is)), handler);
+            handler.getLoadedDiagram().updateTime(curTime);
             return xmlBase;
         }
         catch (SAXParseException sex)

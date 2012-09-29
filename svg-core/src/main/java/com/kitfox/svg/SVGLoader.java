@@ -228,16 +228,25 @@ public class SVGLoader extends DefaultHandler
             svgEle.loaderEndElement(helper);
 
             SVGElement parent = null;
-            if (buildStack.size() != 0) parent = (SVGElement)buildStack.getLast();
+            if (buildStack.size() != 0)
+            {
+                parent = (SVGElement)buildStack.getLast();
+            }
             //else loadRoot = (SVGElement)svgEle;
 
-            if (parent != null) parent.loaderAddChild(helper, svgEle);
-            else diagram.setRoot((SVGRoot)svgEle);
+            if (parent != null)
+            {
+                parent.loaderAddChild(helper, svgEle);
+            }
+            else
+            {
+                diagram.setRoot((SVGRoot)svgEle);
+            }
 
         }
         catch (Exception e)
         {
-e.printStackTrace();
+            e.printStackTrace();
             throw new SAXException(e);
         }
     }

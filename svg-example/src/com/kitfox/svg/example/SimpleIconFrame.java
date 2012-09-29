@@ -34,6 +34,7 @@ public class SimpleIconFrame extends javax.swing.JFrame
         panel.setAntiAlias(true);
         try {
             panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("Z.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("test-brd.svg").toURI());
 //              panel.setSvgURI(SimpleIconFrame.class.getResource("nonScalingStroke.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("areaCrash.svg").toURI());

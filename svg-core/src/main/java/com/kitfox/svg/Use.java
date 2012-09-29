@@ -45,7 +45,8 @@ public class Use extends ShapeElement {
     float width = 1f;
     float height = 1f;
 
-    SVGElement href = null;
+//    SVGElement href = null;
+    URI href = null;
 
     AffineTransform refXform;
 
@@ -94,18 +95,31 @@ public class Use extends ShapeElement {
         
         StyleAttribute sty = new StyleAttribute();
         
-        if (getPres(sty.setName("x"))) x = sty.getFloatValueWithUnits();
+        if (getPres(sty.setName("x"))) 
+        {
+            x = sty.getFloatValueWithUnits();
+        }
 
-        if (getPres(sty.setName("y"))) y = sty.getFloatValueWithUnits();
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getFloatValueWithUnits();
+        }
 
-        if (getPres(sty.setName("width"))) width = sty.getFloatValueWithUnits();
+        if (getPres(sty.setName("width"))) 
+        {
+            width = sty.getFloatValueWithUnits();
+        }
 
-        if (getPres(sty.setName("height"))) height = sty.getFloatValueWithUnits();
+        if (getPres(sty.setName("height")))
+        {
+            height = sty.getFloatValueWithUnits();
+        }
 
         if (getPres(sty.setName("xlink:href")))
         {
             URI src = sty.getURIValue(getXMLBase());
-            href = diagram.getUniverse().getElement(src);
+            href = src;
+//            href = diagram.getUniverse().getElement(src);
         }
         
         //Determine use offset/scale
@@ -121,9 +135,11 @@ public class Use extends ShapeElement {
         AffineTransform oldXform = g.getTransform();
         g.transform(refXform);
 
-        if (href == null || !(href instanceof RenderableElement)) return;
+        SVGElement ref = diagram.getUniverse().getElement(href);
 
-        RenderableElement rendEle = (RenderableElement)href;
+        if (ref == null || !(ref instanceof RenderableElement)) return;
+
+        RenderableElement rendEle = (RenderableElement)ref;
         rendEle.pushParentContext(this);
         rendEle.render(g);
         rendEle.popParentContext();
@@ -135,9 +151,10 @@ public class Use extends ShapeElement {
 
     public Shape getShape()
     {
-        if (href instanceof ShapeElement)
+        SVGElement ref = diagram.getUniverse().getElement(href);
+        if (ref instanceof ShapeElement)
         {
-            Shape shape = ((ShapeElement)href).getShape();
+            Shape shape = ((ShapeElement)ref).getShape();
             shape = refXform.createTransformedShape(shape);
             shape = shapeToParent(shape);
             return shape;
@@ -148,9 +165,10 @@ public class Use extends ShapeElement {
 
     public Rectangle2D getBoundingBox() throws SVGException
     {
-        if (href instanceof ShapeElement)
+        SVGElement ref = diagram.getUniverse().getElement(href);
+        if (ref instanceof ShapeElement)
         {
-            ShapeElement shapeEle = (ShapeElement)href;
+            ShapeElement shapeEle = (ShapeElement)ref;
             shapeEle.pushParentContext(this);
             Rectangle2D bounds = shapeEle.getBoundingBox();
             shapeEle.popParentContext();
@@ -222,10 +240,10 @@ public class Use extends ShapeElement {
         if (getPres(sty.setName("xlink:href")))
         {
             URI src = sty.getURIValue(getXMLBase());
-            SVGElement newVal = diagram.getUniverse().getElement(src);
-            if (newVal != href)
+//            SVGElement newVal = diagram.getUniverse().getElement(src);
+            if (!src.equals(href))
             {
-                href = newVal;
+                href = src;
                 shapeChange = true;
             }
         }
