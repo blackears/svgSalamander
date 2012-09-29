@@ -182,8 +182,14 @@ public class AnimateTransform extends AnimateXform
         {
             case TR_TRANSLATE:
             {
-                double x = (1.0 - interp) * fromValue[0] + interp * toValue[0];
-                double y = (1.0 - interp) * fromValue[1] + interp * toValue[1];
+                double x0 = fromValue.length > 1 ? fromValue[0] : 0;
+                double x1 = toValue.length > 1 ? toValue[0] : 0;
+                double y0 = fromValue.length > 2 ? fromValue[1] : 0;
+                double y1 = toValue.length > 2 ? toValue[1] : 0;
+                
+                double x = lerp(x0, x1, interp);
+                double y = lerp(y0, y1, interp);
+                
                 xform.setToTranslation(x, y);
                 break;
             }
@@ -194,28 +200,33 @@ public class AnimateTransform extends AnimateXform
                 double x2 = toValue.length == 3 ? toValue[1] : 0;
                 double y2 = toValue.length == 3 ? toValue[2] : 0;
                 
-                double theta = (1.0 - interp) * fromValue[0] + interp * toValue[0];
-                double x = (1.0 - interp) * x1 + interp * x2;
-                double y = (1.0 - interp) * y1 + interp * y2;
+                double theta = lerp(fromValue[0], toValue[0], interp);
+                double x = lerp(x1, x2, interp);
+                double y = lerp(y1, y2, interp);
                 xform.setToRotation(Math.toRadians(theta), x, y);
                 break;
             }
             case TR_SCALE:
             {
-                double x = (1.0 - interp) * fromValue[0] + interp * toValue[0];
-                double y = (1.0 - interp) * fromValue[1] + interp * toValue[1];
+                double x0 = fromValue.length > 1 ? fromValue[0] : 1;
+                double x1 = toValue.length > 1 ? toValue[0] : 1;
+                double y0 = fromValue.length > 2 ? fromValue[1] : 1;
+                double y1 = toValue.length > 2 ? toValue[1] : 1;
+                
+                double x = lerp(x0, x1, interp);
+                double y = lerp(y0, y1, interp);
                 xform.setToScale(x, y);
                 break;
             }
             case TR_SKEWX:
             {
-                double x = (1.0 - interp) * fromValue[0] + interp * toValue[0];
+                double x = lerp(fromValue[0], toValue[0], interp);
                 xform.setToShear(Math.toRadians(x), 0.0);
                 break;
             }
             case TR_SKEWY:
             {
-                double y = (1.0 - interp) * fromValue[0] + interp * toValue[0];
+                double y = lerp(fromValue[0], toValue[0], interp);
                 xform.setToShear(0.0, Math.toRadians(y));
                 break;
             }

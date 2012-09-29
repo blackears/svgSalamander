@@ -897,4 +897,9 @@ abstract public class SVGElement implements Serializable
         return (SVGElement)children.get(i);
     }
     
+    public double lerp(double t0, double t1, double alpha)
+    {
+        return (1 - alpha) * t0 + alpha * t1;
+    }
+        
 }
