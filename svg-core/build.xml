@@ -95,6 +95,7 @@
     
     <target name="-post-jar">
         <tstamp/>
+
         <jar destfile="${dist.jar}" update="false">
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
@@ -121,9 +122,11 @@
             </dname>
         </genkey>
         
-        <signjar jar="${dist.jar}" alias="${key.user}" storepass="${key.password}" keystore="${key.location}"/>
-        
         <copy file="${dist.jar}" toFile="${project.www.jar}"/>
+        <signjar jar="${project.www.jar}" 
+                 alias="${key.user}" 
+                 storepass="${key.password}" 
+                 keystore="${key.location}"/>
 
         <delete file="${project.tiny.jar}"/>
         <jar destfile="${project.tiny.jar}" update="true">

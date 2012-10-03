@@ -104,7 +104,7 @@ public class Stop extends SVGElement {
             }
         }
         
-        if (getPres(sty.setName("stop-color")))
+        if (getStyle(sty.setName("stop-color")))
         {
             Color newVal = sty.getColorValue();
             if (newVal != color)
@@ -114,7 +114,7 @@ public class Stop extends SVGElement {
             }
         }
         
-        if (getPres(sty.setName("stop-opacity")))
+        if (getStyle(sty.setName("stop-opacity")))
         {
             float newVal = sty.getFloatValue();
             if (newVal != opacity)

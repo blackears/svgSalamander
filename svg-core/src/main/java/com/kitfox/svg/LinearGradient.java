@@ -132,13 +132,14 @@ public class LinearGradient extends Gradient {
             viewXform.translate(bounds.getX(), bounds.getY());
             
             //This is a hack to get around shapes that have a width or height of 0.  Should be close enough to the true answer.
-            double width = bounds.getWidth();
-            double height = bounds.getHeight();
-            if (width == 0) width = 1;
-            if (height == 0) height = 1;
+            double width = Math.max(1, bounds.getWidth());
+            double height = Math.max(1, bounds.getHeight());
             viewXform.scale(width, height);
 
-            viewXform.concatenate(gradientTransform);
+            if (gradientTransform != null)
+            {
+                viewXform.concatenate(gradientTransform);
+            }
 
             paint = new com.kitfox.svg.batik.LinearGradientPaint(
                 pt1,
