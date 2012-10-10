@@ -6,13 +6,11 @@
 
 package com.kitfox.svg.app.beans;
 
-import javax.swing.*;
+import com.kitfox.svg.*;
 import java.awt.*;
 import java.awt.geom.*;
 import java.net.*;
-import java.beans.*;
-
-import com.kitfox.svg.*;
+import javax.swing.*;
 
 /**
  *
@@ -41,35 +39,54 @@ public class SVGPanel extends JPanel
         
     public int getSVGHeight()
     {
-        if (scaleToFit) return getPreferredSize().height;
+        if (scaleToFit)
+        {
+            return getPreferredSize().height;
+        }
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return 0;
+        if (diagram == null)
+        {
+            return 0;
+        }
         return (int)diagram.getHeight();
     }
     
     public int getSVGWidth()
     {
-        if (scaleToFit) return getPreferredSize().width;
+        if (scaleToFit)
+        {
+            return getPreferredSize().width;
+        }
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return 0;
+        if (diagram == null)
+        {
+            return 0;
+        }
         return (int)diagram.getWidth();
     }
     
-//          Draw the icon at the specified location.
     public void paintComponent(Graphics gg)
     {
         super.paintComponent(gg);
-        
-        Graphics2D g = (Graphics2D)gg;
-        
+
+        Graphics2D g = (Graphics2D)gg.create();
+        paintComponent(g);
+        g.dispose();
+    }
+    
+    private void paintComponent(Graphics2D g)
+    {
         Object oldAliasHint = g.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
 
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return;
+        if (diagram == null)
+        {
+            return;
+        }
         
         if (!scaleToFit)
         {

@@ -6,13 +6,12 @@
 
 package com.kitfox.svg.app.beans;
 
-import javax.swing.*;
+import com.kitfox.svg.*;
 import java.awt.*;
 import java.awt.geom.*;
-import java.net.*;
 import java.beans.*;
-
-import com.kitfox.svg.*;
+import java.net.*;
+import javax.swing.*;
 
 /**
  *
@@ -68,7 +67,10 @@ public class SVGIcon implements Icon
         }
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return 0;
+        if (diagram == null)
+        {
+            return 0;
+        }
         return (int)diagram.getHeight();
     }
     
@@ -83,7 +85,10 @@ public class SVGIcon implements Icon
         }
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return 0;
+        if (diagram == null)
+        {
+            return 0;
+        }
         return (int)diagram.getWidth();
     }
     
@@ -96,8 +101,14 @@ public class SVGIcon implements Icon
      */
     public void paintIcon(Component comp, Graphics gg, int x, int y)
     {
-        Graphics2D g = (Graphics2D)gg;
-        
+        //Copy graphics object so that 
+        Graphics2D g = (Graphics2D)gg.create();
+        paintIcon(comp, g, x, y);
+        g.dispose();
+    }
+    
+    private void paintIcon(Component comp, Graphics2D g, int x, int y)
+    {
         Object oldAliasHint = g.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
         
@@ -117,7 +128,10 @@ public class SVGIcon implements Icon
         
         
         SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
-        if (diagram == null) return;
+        if (diagram == null)
+        {
+            return;
+        }
         
         g.translate(x, y);
         diagram.setIgnoringClipHeuristic(!clipToViewbox);
@@ -188,7 +202,10 @@ public class SVGIcon implements Icon
         g.translate(-x, -y);
         
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAliasHint);
-        if (oldInterpolationHint != null) g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, oldInterpolationHint);
+        if (oldInterpolationHint != null)
+        {
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, oldInterpolationHint);
+        }
     }
     
     /**
