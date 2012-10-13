@@ -124,7 +124,9 @@ public class LinearGradient extends Gradient {
                 getStopColors(),
                 method,
                 com.kitfox.svg.batik.MultipleGradientPaint.SRGB,
-                gradientTransform);
+                gradientTransform == null 
+                    ? new AffineTransform()
+                    : gradientTransform);
         }
         else
         {
