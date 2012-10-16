@@ -43,6 +43,11 @@ public class QuadraticSmooth extends PathCommand {
     public QuadraticSmooth() {
     }
 
+    public String toString()
+    {
+        return "T " + x + " " + y;
+    }
+
     public QuadraticSmooth(boolean isRelative, float x, float y) {
         super(isRelative);
         this.x = x;
@@ -52,19 +57,20 @@ public class QuadraticSmooth extends PathCommand {
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
-        float offx = isRelative ? hist.history[0].x : 0f;
-        float offy = isRelative ? hist.history[0].y : 0f;
+        float offx = isRelative ? hist.lastPoint.x : 0f;
+        float offy = isRelative ? hist.lastPoint.y : 0f;
 
-        float oldKx = hist.history.length >= 2 ? hist.history[1].x : hist.history[0].x;
-        float oldKy = hist.history.length >= 2 ? hist.history[1].y : hist.history[0].y;
-        float oldX = hist.history[0].x;
-        float oldY = hist.history[0].y;
+        float oldKx = hist.lastKnot.x;
+        float oldKy = hist.lastKnot.y;
+        float oldX = hist.lastPoint.x;
+        float oldY = hist.lastPoint.y;
         //Calc knot as reflection of old knot
         float kx = oldX * 2f - oldKx;
         float ky = oldY * 2f - oldKy;
 
         path.quadTo(kx, ky, x + offx, y + offy);
-        hist.setPointAndKnot(x + offx, y + offy, kx, ky);
+        hist.setLastPoint(x + offx, y + offy);
+        hist.setLastKnot(kx, ky);
     }
 
     public int getNumKnotsAdded()

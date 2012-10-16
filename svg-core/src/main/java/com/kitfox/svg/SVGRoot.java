@@ -29,8 +29,8 @@ package com.kitfox.svg;
 
 import com.kitfox.svg.xml.NumberWithUnits;
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.geom.*;
 import java.awt.*;
+import java.awt.geom.*;
 
 /**
  * The root element of an SVG tree.

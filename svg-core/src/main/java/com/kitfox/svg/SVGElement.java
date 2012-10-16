@@ -421,6 +421,13 @@ abstract public class SVGElement implements Serializable
         }
         if (getPres(sty.setName("class"))) cssClass = sty.getStringValue();
         if (getPres(sty.setName("xml:base"))) xmlBase = sty.getURIValue();
+        
+        //Build children
+        for (int i = 0; i < children.size(); ++i)
+        {
+            SVGElement ele = (SVGElement)children.get(i);
+            ele.build();
+        }
     }
     
     public URI getXMLBase()

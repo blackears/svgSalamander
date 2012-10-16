@@ -69,12 +69,16 @@ public class Arc extends PathCommand
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
-        float offx = isRelative ? hist.history[0].x : 0f;
-        float offy = isRelative ? hist.history[0].y : 0f;
+        float offx = isRelative ? hist.lastPoint.x : 0f;
+        float offy = isRelative ? hist.lastPoint.y : 0f;
 
-        arcTo(path, rx, ry, xAxisRot, largeArc, sweep, x + offx, y + offy, hist.history[0].x, hist.history[0].y);
+        arcTo(path, rx, ry, xAxisRot, largeArc, sweep,
+            x + offx, y + offy,
+            hist.lastPoint.x, hist.lastPoint.y);
 //        path.lineTo(x + offx, y + offy);
-        hist.setPoint(x + offx, y + offy);
+//        hist.setPoint(x + offx, y + offy);
+        hist.setLastPoint(x + offx, y + offy);
+        hist.setLastKnot(x + offx, y + offy);
     }
 
     public int getNumKnotsAdded()
@@ -241,5 +245,13 @@ public class Arc extends PathCommand
         arc.extent = -angleExtent;
 
         return arc;
+    }
+
+    public String toString()
+    {
+        return "A " + rx + " " + ry
+             + " " + xAxisRot + " " + largeArc
+             + " " + sweep
+             + " " + x + " " + y;
     }
 }

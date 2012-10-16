@@ -42,6 +42,11 @@ public class Horizontal extends PathCommand {
     public Horizontal() {
     }
 
+    public String toString()
+    {
+        return "H " + x;
+    }
+
     public Horizontal(boolean isRelative, float x) {
         super(isRelative);
         this.x = x;
@@ -51,11 +56,12 @@ public class Horizontal extends PathCommand {
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
-        float offx = isRelative ? hist.history[0].x : 0f;
-        float offy = hist.history[0].y;
+        float offx = isRelative ? hist.lastPoint.x : 0f;
+        float offy = hist.lastPoint.y;
 
         path.lineTo(x + offx, offy);
-        hist.setPoint(x + offx, offy);
+        hist.setLastPoint(x + offx, offy);
+        hist.setLastKnot(x + offx, offy);
     }
     
     public int getNumKnotsAdded()

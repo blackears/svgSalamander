@@ -53,15 +53,21 @@ public class LineTo extends PathCommand {
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
-        float offx = isRelative ? hist.history[0].x : 0f;
-        float offy = isRelative ? hist.history[0].y : 0f;
+        float offx = isRelative ? hist.lastPoint.x : 0f;
+        float offy = isRelative ? hist.lastPoint.y : 0f;
 
         path.lineTo(x + offx, y + offy);
-        hist.setPoint(x + offx, y + offy);
+        hist.setLastPoint(x + offx, y + offy);
+        hist.setLastKnot(x + offx, y + offy);
     }
     
     public int getNumKnotsAdded()
     {
         return 2;
+    }
+
+    public String toString()
+    {
+        return "L " + x + " " + y;
     }
 }

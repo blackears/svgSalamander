@@ -42,12 +42,18 @@ public class Terminal extends PathCommand {
     public Terminal() {
     }
 
+    public String toString()
+    {
+        return "Z";
+    }
+
 
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
         path.closePath();
-        hist.setPoint(hist.start.x, hist.start.y);
+        hist.setLastPoint(hist.startPoint.x, hist.startPoint.y);
+        hist.setLastKnot(hist.startPoint.x, hist.startPoint.y);
     }
     
     public int getNumKnotsAdded()

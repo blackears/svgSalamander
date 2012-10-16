@@ -47,6 +47,13 @@ public class Cubic extends PathCommand {
     public Cubic() {
     }
 
+    public String toString()
+    {
+        return "C " + k1x + " " + k1y
+             + " " + k2x + " " + k2y
+             + " " + x + " " + y;
+    }
+
     public Cubic(boolean isRelative, float k1x, float k1y, float k2x, float k2y, float x, float y) {
         super(isRelative);
         this.k1x = k1x;
@@ -60,11 +67,15 @@ public class Cubic extends PathCommand {
 //    public void appendPath(ExtendedGeneralPath path, BuildHistory hist)
     public void appendPath(GeneralPath path, BuildHistory hist)
     {
-        float offx = isRelative ? hist.history[0].x : 0f;
-        float offy = isRelative ? hist.history[0].y : 0f;
+        float offx = isRelative ? hist.lastPoint.x : 0f;
+        float offy = isRelative ? hist.lastPoint.y : 0f;
 
-        path.curveTo(k1x + offx, k1y + offy, k2x + offx, k2y + offy, x + offx, y + offy);
-        hist.setPointAndKnot(x + offx, y + offy, k2x + offx, k2y + offy);
+        path.curveTo(k1x + offx, k1y + offy,
+            k2x + offx, k2y + offy, 
+            x + offx, y + offy);
+//        hist.setPointAndKnot(x + offx, y + offy, k2x + offx, k2y + offy);
+        hist.setLastPoint(x + offx, y + offy);
+        hist.setLastKnot(k2x + offx, k2y + offy);
     }
 
     public int getNumKnotsAdded()
