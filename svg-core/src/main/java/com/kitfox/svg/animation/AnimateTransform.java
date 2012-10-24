@@ -182,10 +182,10 @@ public class AnimateTransform extends AnimateXform
         {
             case TR_TRANSLATE:
             {
-                double x0 = fromValue.length > 1 ? fromValue[0] : 0;
-                double x1 = toValue.length > 1 ? toValue[0] : 0;
-                double y0 = fromValue.length > 2 ? fromValue[1] : 0;
-                double y1 = toValue.length > 2 ? toValue[1] : 0;
+                double x0 = fromValue.length >= 1 ? fromValue[0] : 0;
+                double x1 = toValue.length >= 1 ? toValue[0] : 0;
+                double y0 = fromValue.length >= 2 ? fromValue[1] : 0;
+                double y1 = toValue.length >= 2 ? toValue[1] : 0;
                 
                 double x = lerp(x0, x1, interp);
                 double y = lerp(y0, y1, interp);
@@ -208,10 +208,10 @@ public class AnimateTransform extends AnimateXform
             }
             case TR_SCALE:
             {
-                double x0 = fromValue.length > 1 ? fromValue[0] : 1;
-                double x1 = toValue.length > 1 ? toValue[0] : 1;
-                double y0 = fromValue.length > 2 ? fromValue[1] : 1;
-                double y1 = toValue.length > 2 ? toValue[1] : 1;
+                double x0 = fromValue.length >= 1 ? fromValue[0] : 1;
+                double x1 = toValue.length >= 1 ? toValue[0] : 1;
+                double y0 = fromValue.length >= 2 ? fromValue[1] : 1;
+                double y1 = toValue.length >= 2 ? toValue[1] : 1;
                 
                 double x = lerp(x0, x1, interp);
                 double y = lerp(y0, y1, interp);
