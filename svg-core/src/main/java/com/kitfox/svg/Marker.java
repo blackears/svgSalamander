@@ -215,6 +215,28 @@ public class Marker extends Group
                         double k0y = coords[1];
                         double x = coords[2];
                         double y = coords[3];
+                        
+                        
+                        //Best in tangent
+                        if (px != k0x || py != k0y)
+                        {
+                            markerIn(px, py, k0x - px, k0y - py);
+                        }
+                        else
+                        {
+                            markerIn(px, py, x - px, y - py);
+                        }
+                        
+                        //Best out tangent
+                        if (x != k0x || y != k0y)
+                        {
+                            markerOut(x, y, x - k0x, y - k0y);
+                        }
+                        else
+                        {
+                            markerOut(x, y, x - px, y - py);
+                        }
+                        
                         markerIn(px, py, k0x - px, k0y - py);
                         markerOut(x, y, x - k0x, y - k0y);
                         px = x;
@@ -229,8 +251,34 @@ public class Marker extends Group
                         double k1y = coords[3];
                         double x = coords[4];
                         double y = coords[5];
-                        markerIn(px, py, k0x - px, k0y - py);
-                        markerOut(x, y, x - k1x, y - k1y);
+                        
+                        //Best in tangent
+                        if (px != k0x || py != k0y)
+                        {
+                            markerIn(px, py, k0x - px, k0y - py);
+                        }
+                        else if (px != k1x || py != k1y)
+                        {
+                            markerIn(px, py, k1x - px, k1y - py);
+                        }
+                        else
+                        {
+                            markerIn(px, py, x - px, y - py);
+                        }
+                        
+                        //Best out tangent
+                        if (x != k1x || y != k1y)
+                        {
+                            markerOut(x, y, x - k1x, y - k1y);
+                        }
+                        else if (x != k0x || y != k0y)
+                        {
+                            markerOut(x, y, x - k0x, y - k0y);
+                        }
+                        else
+                        {
+                            markerOut(x, y, x - px, y - py);
+                        }
                         px = x;
                         py = y;
                         break;
