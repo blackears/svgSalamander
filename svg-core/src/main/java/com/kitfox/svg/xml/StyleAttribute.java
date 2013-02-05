@@ -37,8 +37,8 @@
 package com.kitfox.svg.xml;
 
 import java.awt.*;
-import java.net.*;
 import java.io.*;
+import java.net.*;
 import java.util.regex.*;
 
 /**
@@ -49,7 +49,7 @@ public class StyleAttribute implements Serializable
 {
     public static final long serialVersionUID = 0;
 
-    static final Matcher matchUrl = Pattern.compile("\\s*url\\((.*)\\)\\s*").matcher("");
+    static final Pattern patternUrl = Pattern.compile("\\s*url\\((.*)\\)\\s*");
     static final Matcher matchFpNumUnits = Pattern.compile("\\s*([-+]?((\\d*\\.\\d+)|(\\d+))([-+]?[eE]\\d+)?)\\s*(px|cm|mm|in|pc|pt|em|ex)\\s*").matcher("");
     
     String name;
@@ -185,8 +185,11 @@ public class StyleAttribute implements Serializable
 
     public String parseURLFn()
     {
-        matchUrl.reset(stringValue);
-        if (!matchUrl.matches()) return null;
+        Matcher matchUrl = patternUrl.matcher(stringValue);
+        if (!matchUrl.matches()) 
+        {
+            return null;
+        }
         return matchUrl.group(1);
     }
 
