@@ -547,7 +547,7 @@ abstract public class SVGElement implements Serializable
      * @param attrib - Attribute to write style data to.  Must have it's name
      * set to the name of the style being queried.
      * @param recursive - If true and this object does not contain the
-     * named style attribute, checks attributes of parents abck to root until
+     * named style attribute, checks attributes of parents back to root until
      * one found.
      */
     public boolean getStyle(StyleAttribute attrib, boolean recursive) throws SVGException
