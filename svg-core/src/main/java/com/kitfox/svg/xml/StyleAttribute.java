@@ -36,9 +36,12 @@
 
 package com.kitfox.svg.xml;
 
+import com.kitfox.svg.SVGConst;
 import java.awt.*;
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
 
 /**
@@ -202,7 +205,7 @@ public class StyleAttribute implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             return null;
         }
     }
@@ -217,7 +220,7 @@ public class StyleAttribute implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             return null;
         }
     }
@@ -275,7 +278,7 @@ public class StyleAttribute implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             return null;
         }
     }
@@ -296,7 +299,7 @@ public class StyleAttribute implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
     }
 }

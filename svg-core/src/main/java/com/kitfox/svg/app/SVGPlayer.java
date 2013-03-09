@@ -37,6 +37,7 @@
 package com.kitfox.svg.app;
 
 
+import com.kitfox.svg.SVGConst;
 import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGDisplayPanel;
 import com.kitfox.svg.SVGElement;
@@ -55,6 +56,8 @@ import java.security.AccessControlException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
@@ -146,7 +149,8 @@ public class SVGPlayer extends javax.swing.JFrame
                 }
                 catch (SVGException ex)
                 {
-                    ex.printStackTrace();
+                    Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                        "Could not pick", ex);
                 }
             }
         }
@@ -186,7 +190,7 @@ public class SVGPlayer extends javax.swing.JFrame
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
     }
 
@@ -221,7 +225,7 @@ public class SVGPlayer extends javax.swing.JFrame
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             }
         }
 
@@ -361,7 +365,7 @@ public class SVGPlayer extends javax.swing.JFrame
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
 
     }//GEN-LAST:event_cm_loadUrlActionPerformed
@@ -405,7 +409,7 @@ public class SVGPlayer extends javax.swing.JFrame
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
 
     }//GEN-LAST:event_cm_loadFileActionPerformed

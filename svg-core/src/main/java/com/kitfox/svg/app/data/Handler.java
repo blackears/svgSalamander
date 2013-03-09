@@ -34,12 +34,15 @@
 
 package com.kitfox.svg.app.data;
 
+import com.kitfox.svg.SVGConst;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -64,10 +67,13 @@ public class Handler extends URLStreamHandler
             if (content.startsWith("base64,"))
             {
                 content = content.substring(7);
-                try {
+                try
+                {
                     buf = new sun.misc.BASE64Decoder().decodeBuffer(content);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                }
+                catch (IOException e)
+                {
+                    Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
                 }
             }
         }

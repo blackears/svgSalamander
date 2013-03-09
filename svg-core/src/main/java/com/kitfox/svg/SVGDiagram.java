@@ -46,6 +46,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -248,7 +250,8 @@ public class SVGDiagram implements Serializable
                 root.build();
             } catch (SVGException ex)
             {
-                ex.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not build document", ex);
             }
         }
     }

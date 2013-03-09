@@ -39,6 +39,8 @@ package com.kitfox.svg;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -132,7 +134,8 @@ public class SVGDisplayPanel extends javax.swing.JPanel implements Scrollable
             }
             catch (SVGException e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not render diagram", e);
             }
         }
     }

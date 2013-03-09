@@ -36,9 +36,12 @@
 
 package com.kitfox.svg.pattern;
 
+import com.kitfox.svg.SVGConst;
 import java.awt.*;
 import java.awt.geom.*;
 import java.awt.image.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -74,7 +77,10 @@ public class PatternPaintContext implements PaintContext
             xform = distortXform.createInverse();
             xform.concatenate(userXform.createInverse());
         }
-        catch (Exception e) { e.printStackTrace(); }
+        catch (Exception e) 
+        {
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
+        }
 
         sourceWidth = source.getWidth();
         sourceHeight = source.getHeight();

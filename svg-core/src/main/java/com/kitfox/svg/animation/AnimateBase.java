@@ -36,6 +36,7 @@
 
 package com.kitfox.svg.animation;
 
+import com.kitfox.svg.SVGConst;
 import com.kitfox.svg.SVGElement;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGLoaderHelper;
@@ -43,6 +44,8 @@ import com.kitfox.svg.animation.parser.AnimTimeParser;
 import com.kitfox.svg.animation.parser.ParseException;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -114,10 +117,14 @@ abstract public class AnimateBase extends AnimationElement
             if (strn != null)
             {
                 animTimeParser.ReInit(new StringReader(strn));
-                try {
+                try
+                {
                     this.repeatDur = animTimeParser.Expr();
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
+                }
+                catch (ParseException ex)
+                {
+                    Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                        "Could not parse '" + strn + "'", ex);
                 }
             }
         }

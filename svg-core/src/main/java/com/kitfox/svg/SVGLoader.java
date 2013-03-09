@@ -43,6 +43,8 @@ import org.xml.sax.*;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.kitfox.svg.animation.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -201,7 +203,8 @@ public class SVGLoader extends DefaultHandler
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not load", e);
             throw new SAXException(e);
         }
 
@@ -255,7 +258,8 @@ public class SVGLoader extends DefaultHandler
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse", e);
             throw new SAXException(e);
         }
     }

@@ -36,8 +36,10 @@
 
 package com.kitfox.svg.xml.cpx;
 
+import com.kitfox.svg.SVGConst;
 import java.io.*;
-import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -73,7 +75,7 @@ public class CPXTest {
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
     }
 
@@ -95,14 +97,15 @@ public class CPXTest {
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         new CPXTest();
     }
 

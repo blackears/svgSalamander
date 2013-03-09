@@ -62,42 +62,7 @@ public class Use extends ShapeElement {
     /** Creates a new instance of LinearGradient */
     public Use() {
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
 
-        String x = attrs.getValue("x");
-        String y = attrs.getValue("y");
-        String width = attrs.getValue("width");
-        String height = attrs.getValue("height");
-        String href = attrs.getValue("xlink:href");
-
-        if (x != null) this.x = (float)XMLParseUtil.parseRatio(x);
-        if (y != null) this.y = (float)XMLParseUtil.parseRatio(y);
-        if (width != null) this.width = (float)XMLParseUtil.parseRatio(width);
-        if (height != null) this.height = (float)XMLParseUtil.parseRatio(height);
-
-
-        if (href != null)
-        {
-            try {
-                URI src = getXMLBase().resolve(href);
-                this.href = helper.universe.getElement(src);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        //Determine use offset/scale
-        refXform = new AffineTransform();
-        refXform.translate(this.x, this.y);
-        refXform.scale(this.width, this.height);
-    }
-*/
     protected void build() throws SVGException
     {
         super.build();

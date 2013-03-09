@@ -67,20 +67,7 @@ public class SVGLoaderHelper
     /** Creates a new instance of SVGLoaderHelper */
     public SVGLoaderHelper(URI xmlBase, SVGUniverse universe, SVGDiagram diagram)
     {
-        /*
-        URI docURI = null;
-        try
-        {
-            docURI = new URI(docRoot.toString());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-         */
-        
         this.xmlBase = xmlBase;
-//        this.docRoot = docURI;
         this.universe = universe;
         this.diagram = diagram;
     }

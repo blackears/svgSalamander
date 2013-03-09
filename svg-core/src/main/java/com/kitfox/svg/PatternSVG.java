@@ -48,6 +48,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -74,71 +76,7 @@ public class PatternSVG extends FillElement {
     /** Creates a new instance of Gradient */
     public PatternSVG() {
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
 
-        String href = attrs.getValue("xlink:href");
-        //If we have a link to another pattern, initialize ourselves with it's values
-        if (href != null)
-        {
-//System.err.println("Gradient.loaderStartElement() href '" + href + "'");
-            try {
-                URI src = getXMLBase().resolve(href);
-//                URL url = srcUrl.toURL();
-//                URL url = new URL(helper.docRoot, href);
-                PatternSVG patSrc = (PatternSVG)helper.universe.getElement(src);
-
-                gradientUnits = patSrc.gradientUnits;
-                x = patSrc.x;
-                y = patSrc.y;
-                width = patSrc.width;
-                height = patSrc.height;
-                viewBox = patSrc.viewBox;
-                patternXform.setTransform(patSrc.patternXform);
-                members.addAll(patSrc.members);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-
-        String gradientUnits = attrs.getValue("gradientUnits");
-
-        if (gradientUnits != null)
-        {
-            if (gradientUnits.toLowerCase().equals("userspaceonuse")) this.gradientUnits = GU_USER_SPACE_ON_USE;
-            else this.gradientUnits = GU_OBJECT_BOUNDING_BOX;
-        }
-
-        String patternTransform = attrs.getValue("patternTransform");
-        if (patternTransform != null)
-        {
-            patternXform = parseTransform(patternTransform);
-        }
-
-        String x = attrs.getValue("x");
-        String y = attrs.getValue("y");
-        String width = attrs.getValue("width");
-        String height = attrs.getValue("height");
-
-        if (x != null) this.x = XMLParseUtil.parseFloat(x);
-        if (y != null) this.y = XMLParseUtil.parseFloat(y);
-        if (width != null) this.width = XMLParseUtil.parseFloat(width);
-        if (height != null) this.height = XMLParseUtil.parseFloat(height);
-
-        String viewBoxStrn = attrs.getValue("viewBox");
-        if (viewBoxStrn != null)
-        {
-            float[] dim = XMLParseUtil.parseFloatList(viewBoxStrn);
-            viewBox = new Rectangle2D.Float(dim[0], dim[1], dim[2], dim[3]);
-        }
-    }
-  */  
     /**
      * Called after the start element but before the end element to indicate
      * each child tag that has been processed
@@ -179,7 +117,8 @@ public class PatternSVG extends FillElement {
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not parse xlink:href", e);
             }
         }
 

@@ -37,6 +37,7 @@
 package com.kitfox.svg.app;
 
 import com.kitfox.svg.SVGCache;
+import com.kitfox.svg.SVGConst;
 import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGDisplayPanel;
 import com.kitfox.svg.SVGElement;
@@ -54,6 +55,8 @@ import java.security.AccessControlException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
@@ -159,7 +162,7 @@ public class SVGViewer extends javax.swing.JFrame
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
                 return;
             }
         }
@@ -315,7 +318,7 @@ is.close();
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
 
     }//GEN-LAST:event_cm_loadUrlActionPerformed
@@ -328,9 +331,9 @@ is.close();
         {
             pickedElements = diagram.pick(new Point(evt.getX(), evt.getY()), null);
         } 
-        catch (SVGException ex)
+        catch (SVGException e)
         {
-            ex.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             return;
         }
         
@@ -386,25 +389,9 @@ is.close();
                 loadURL(url);
             }
         }
-        /*
-        catch (IOException ioe)
-        {
-            try
-            {
-                //We may be in a WebStart app.  Try again with a FileOpenService
-                FileContents fc = fileOpenService.openFileDialog(null, new String[]{"svg"});
-                InputStream is = fc.getInputStream();
-                String name = fc.getName();
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-         */
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
         }
 
     }//GEN-LAST:event_cm_loadFileActionPerformed

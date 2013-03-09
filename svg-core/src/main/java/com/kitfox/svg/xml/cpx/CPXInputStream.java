@@ -36,10 +36,13 @@
 
 package com.kitfox.svg.xml.cpx;
 
+import com.kitfox.svg.SVGConst;
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
 import java.security.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.crypto.*;
 
 /**
@@ -209,24 +212,26 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
                 return -1;
             }
 
             if (!inflater.finished())
             {
-                new Exception("Inflation incomplete").printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
+                    "Inflation imncomplete");
             }
 
             return numRead == 0 ? -1 : numRead;
         }
 
-        try {
+        try
+        {
             return inflater.inflate(b, off, len);
         }
         catch (DataFormatException e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
             return -1;
         }
     }

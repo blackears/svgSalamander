@@ -36,8 +36,11 @@
 
 package com.kitfox.svg.composite;
 
+import com.kitfox.svg.SVGConst;
 import java.awt.*;
 import java.awt.image.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -60,12 +63,12 @@ public class AdobeComposite implements Composite
 
         if (compositeType < 0 || compositeType >= CT_LAST)
         {
-            new Exception("Invalid composite type").printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, "Invalid composite type");
         }
 
         if (extraAlpha < 0f || extraAlpha > 1f)
         {
-            new Exception("Invalid alpha").printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, "Invalid alpha");
         }
     }
 

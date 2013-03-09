@@ -42,9 +42,17 @@ PARSER_BEGIN(AnimTimeParser)
 
 package com.kitfox.svg.animation.parser;
 
-import java.util.*;
-import java.io.*;
-import com.kitfox.svg.animation.*;
+import com.kitfox.svg.SVGConst;
+import com.kitfox.svg.animation.TimeBase;
+import com.kitfox.svg.animation.TimeCompound;
+import com.kitfox.svg.animation.TimeDiscrete;
+import com.kitfox.svg.animation.TimeIndefinite;
+import com.kitfox.svg.animation.TimeLookup;
+import com.kitfox.svg.animation.TimeSum;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AnimTimeParser 
 {
@@ -283,15 +291,25 @@ double Number() :
 {
     t=<FLOAT> 
     {
-        try { return Double.parseDouble(t.image); }
-        catch (Exception e) { e.printStackTrace(); }
+        try {
+            return Double.parseDouble(t.image);
+        }
+        catch (Exception e) {
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse double '" + t.image + "'", e);
+        }
         
         return 0.0;
     }
     | t=<INTEGER>
     {
-        try { return Double.parseDouble(t.image); }
-        catch (Exception e) { e.printStackTrace(); }
+        try {
+            return Double.parseDouble(t.image);
+        }
+        catch (Exception e) {
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse double '" + t.image + "'", e);
+        }
         
         return 0.0;
     }
@@ -304,8 +322,13 @@ int Integer() :
 {
     t=<INTEGER>
     {
-        try { return Integer.parseInt(t.image); }
-        catch (Exception e) { e.printStackTrace(); }
+        try {
+            return Integer.parseInt(t.image);
+        }
+        catch (Exception e) {
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse int '" + t.image + "'", e);
+        }
         
         return 0;
     }

@@ -36,12 +36,15 @@
 
 package com.kitfox.svg.xml;
 
+import com.kitfox.svg.SVGConst;
 import org.w3c.dom.*;
 import java.awt.*;
 import java.net.*;
 import java.util.*;
 import java.util.regex.*;
 import java.lang.reflect.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -148,8 +151,8 @@ public class XMLParseUtil
         }
         catch (StringIndexOutOfBoundsException e)
         {
-            System.err.println("XMLParseUtil: regex parse problem: '" + val + "'");
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "XMLParseUtil: regex parse problem: '" + val + "'", e);
         }
 
         val = fpMatch.group(1);
@@ -545,8 +548,15 @@ public class XMLParseUtil
             if (!ele.getTagName().equals(name)) continue;
 
             ReadableXMLElement newObj = null;
-            try { newObj = (ReadableXMLElement)classType.newInstance(); }
-            catch (Exception e) { e.printStackTrace(); continue; }
+            try
+            {
+                newObj = (ReadableXMLElement)classType.newInstance();
+            }
+            catch (Exception e)
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
+                continue;
+            }
             newObj.read(ele, docRoot);
 
             if (newObj == null) continue;
@@ -575,13 +585,6 @@ public class XMLParseUtil
 
         HashMap retMap = new HashMap();
 
-/*
-        Class[] params = {Element.class, URL.class};
-        Method loadMethod = null;
-        try { loadMethod = classType.getMethod("load", params); }
-        catch (Exception e) { e.printStackTrace(); return null; }
-
- */
         NodeList nl = root.getChildNodes();
         int size = nl.getLength();
         for (int i = 0; i < size; i++)
@@ -592,16 +595,17 @@ public class XMLParseUtil
             if (!ele.getTagName().equals(name)) continue;
 
             ReadableXMLElement newObj = null;
-            try { newObj = (ReadableXMLElement)classType.newInstance(); }
-            catch (Exception e) { e.printStackTrace(); continue; }
+            try 
+            {
+                newObj = (ReadableXMLElement)classType.newInstance();
+            }
+            catch (Exception e)
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
+                continue;
+            }
             newObj.read(ele, docRoot);
-/*
-            Object[] args = {ele, source};
-            Object obj = null;
-            try { obj = loadMethod.invoke(null, args); }
-            catch (Exception e) { e.printStackTrace(); }
 
- */
             if (newObj == null) continue;
 
             String keyVal = getAttribString(ele, key);
@@ -623,13 +627,6 @@ public class XMLParseUtil
 
         HashSet retSet = new HashSet();
 
-        /*
-        Class[] params = {Element.class, URL.class};
-        Method loadMethod = null;
-        try { loadMethod = classType.getMethod("load", params); }
-        catch (Exception e) { e.printStackTrace(); return null; }
-        */
-
         NodeList nl = root.getChildNodes();
         int size = nl.getLength();
         for (int i = 0; i < size; i++)
@@ -640,17 +637,21 @@ public class XMLParseUtil
             if (!ele.getTagName().equals(name)) continue;
 
             ReadableXMLElement newObj = null;
-            try { newObj = (ReadableXMLElement)classType.newInstance(); }
-            catch (Exception e) { e.printStackTrace(); continue; }
+            try 
+            {
+                newObj = (ReadableXMLElement)classType.newInstance();
+            }
+            catch (Exception e)
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
+                continue;
+            }
             newObj.read(ele, docRoot);
-            /*
-            Object[] args = {ele, source};
-            Object obj = null;
-            try { obj = loadMethod.invoke(null, args); }
-            catch (Exception e) { e.printStackTrace(); }
-             */
 
-            if (newObj == null) continue;
+            if (newObj == null)
+            {
+                continue;
+            }
 
             retSet.add(newObj);
         }
@@ -680,8 +681,15 @@ public class XMLParseUtil
             if (!ele.getTagName().equals(name)) continue;
 
             ReadableXMLElement newObj = null;
-            try { newObj = (ReadableXMLElement)classType.newInstance(); }
-            catch (Exception e) { e.printStackTrace(); continue; }
+            try 
+            { 
+                newObj = (ReadableXMLElement)classType.newInstance();
+            }
+            catch (Exception e)
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, null, e);
+                continue;
+            }
             newObj.read(ele, docRoot);
 
             elementCache.addLast(newObj);

@@ -59,6 +59,8 @@ import java.net.URLConnection;
 import java.net.URLStreamHandler;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import javax.imageio.ImageIO;
 import org.xml.sax.EntityResolver;
@@ -218,7 +220,8 @@ public class SVGUniverse implements Serializable
 
                     return url;
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                        "Could not decode inline image", ex);
                 }
             }
             return null;
@@ -230,7 +233,8 @@ public class SVGUniverse implements Serializable
                 registerImage(url);
                 return url;
             } catch (MalformedURLException ex) {
-                ex.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Bad url", ex);
             }
             return null;
         }
@@ -264,8 +268,8 @@ public class SVGUniverse implements Serializable
         }
         catch (Exception e)
         {
-            System.err.println("Could not load image: " + imageURL);
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not load image: " + imageURL, e);
         }
     }
     
@@ -283,7 +287,10 @@ public class SVGUniverse implements Serializable
                 img = ImageIO.read(imageURL);
             }
             catch (Exception e)
-            { e.printStackTrace(); }
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not load image", e);
+            }
             ref = new SoftReference(img);
             loadedImages.put(imageURL, ref);
         }
@@ -309,7 +316,8 @@ public class SVGUniverse implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse url " + path, e);
         }
         return null;
     }
@@ -344,7 +352,8 @@ public class SVGUniverse implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse path " + path, e);
             return null;
         }
     }
@@ -387,7 +396,8 @@ public class SVGUniverse implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse", e);
         }
         
         return null;
@@ -450,11 +460,13 @@ public class SVGUniverse implements Serializable
         }
         catch (URISyntaxException ex)
         {
-            ex.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse", ex);
         }
-        catch (IOException ex)
+        catch (IOException e)
         {
-            ex.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse", e);
         }
         
         return null;
@@ -536,7 +548,8 @@ public class SVGUniverse implements Serializable
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse", e);
             return null;
         }
     }
@@ -550,7 +563,6 @@ public class SVGUniverse implements Serializable
         return cachedReader;
     }
     
-//    protected URI loadSVG(URI xmlBase, InputStream is)
     protected URI loadSVG(URI xmlBase, InputSource is)
     {
         // Use an instance of ourselves as the SAX event handler
@@ -559,13 +571,7 @@ public class SVGUniverse implements Serializable
         //Place this docment in the universe before it is completely loaded
         // so that the load process can refer to references within it's current
         // document
-//System.err.println("SVGUniverse: loading dia " + xmlBase);
         loadedDocs.put(xmlBase, handler.getLoadedDiagram());
-        
-        // Use the default (non-validating) parser
-//        SAXParserFactory factory = SAXParserFactory.newInstance();
-//        factory.setValidating(false);
-//        factory.setNamespaceAware(true);
         
         try
         {
@@ -584,8 +590,6 @@ public class SVGUniverse implements Serializable
             reader.setContentHandler(handler);
             reader.parse(is);
             
-//            SAXParser saxParser = factory.newSAXParser();
-//            saxParser.parse(new InputSource(new BufferedReader(is)), handler);
             handler.getLoadedDiagram().updateTime(curTime);
             return xmlBase;
         }
@@ -597,52 +601,54 @@ public class SVGUniverse implements Serializable
             loadedDocs.remove(xmlBase);
             return null;
         }
-        catch (Throwable t)
+        catch (Throwable e)
         {
-            t.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not load SVG " + xmlBase, e);
         }
         
         return null;
     }
     
-    public static void main(String argv[])
-    {
-        try
-        {
-            URL url = new URL("svgSalamander", "localhost", -1, "abc.svg",
-                    new URLStreamHandler()
-            {
-                protected URLConnection openConnection(URL u)
-                {
-                    return null;
-                }
-            }
-            );
-//            URL url2 = new URL("svgSalamander", "localhost", -1, "abc.svg");
-            
-            //Investigate URI resolution
-            URI uriA, uriB, uriC, uriD, uriE;
-            
-            uriA = new URI("svgSalamander", "/names/mySpecialName", null);
-//            uriA = new URI("http://www.kitfox.com/salamander");
-//            uriA = new URI("svgSalamander://mySpecialName/grape");
-            System.err.println(uriA.toString());
-            System.err.println(uriA.getScheme());
-            
-            uriB = uriA.resolve("#begin");
-            System.err.println(uriB.toString());
-            
-            uriC = uriA.resolve("tree#boing");
-            System.err.println(uriC.toString());
-            
-            uriC = uriA.resolve("../tree#boing");
-            System.err.println(uriC.toString());
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String argv[])
+//    {
+//        try
+//        {
+//            URL url = new URL("svgSalamander", "localhost", -1, "abc.svg",
+//                    new URLStreamHandler()
+//            {
+//                protected URLConnection openConnection(URL u)
+//                {
+//                    return null;
+//                }
+//            }
+//            );
+////            URL url2 = new URL("svgSalamander", "localhost", -1, "abc.svg");
+//            
+//            //Investigate URI resolution
+//            URI uriA, uriB, uriC, uriD, uriE;
+//            
+//            uriA = new URI("svgSalamander", "/names/mySpecialName", null);
+////            uriA = new URI("http://www.kitfox.com/salamander");
+////            uriA = new URI("svgSalamander://mySpecialName/grape");
+//            System.err.println(uriA.toString());
+//            System.err.println(uriA.getScheme());
+//            
+//            uriB = uriA.resolve("#begin");
+//            System.err.println(uriB.toString());
+//            
+//            uriC = uriA.resolve("tree#boing");
+//            System.err.println(uriC.toString());
+//            
+//            uriC = uriA.resolve("../tree#boing");
+//            System.err.println(uriC.toString());
+//        }
+//        catch (Exception e)
+//        {
+//            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+//                "Could not parse", e);
+//        }
+//    }
 
     public boolean isVerbose()
     {

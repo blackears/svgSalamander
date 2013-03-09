@@ -44,6 +44,8 @@ import java.awt.geom.*;
 import java.awt.image.*;
 import java.net.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implements an image.
@@ -98,7 +100,9 @@ public class ImageSVG extends RenderableElement
                     }
                     catch (Exception e)
                     {
-                        e.printStackTrace();
+                        Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                            "Could not parse xlink:href", e);
+//                        e.printStackTrace();
                         imageSrc = null;
                     }
                 }
@@ -281,11 +285,14 @@ public class ImageSVG extends RenderableElement
         }
         catch (IllegalArgumentException ie)
         {
-            new Exception("Image provided with illegal value for href: \"" + sty.getStringValue() + '"', ie).printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Image provided with illegal value for href: \"" 
+                + sty.getStringValue() + '"', ie);
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                "Could not parse xlink:href", e);
         }
 
         

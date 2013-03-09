@@ -42,6 +42,10 @@ import java.awt.geom.*;
 import java.awt.*;
 
 import com.kitfox.svg.xml.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Mark McKay
@@ -275,10 +279,11 @@ abstract public class Gradient extends FillElement
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not parse xlink:href", e);
             }
         }
-        
+
         //Check stops, if any
         for (Iterator it = stops.iterator(); it.hasNext();)
         {
@@ -293,5 +298,5 @@ abstract public class Gradient extends FillElement
         
         return stateChange;
     }
-
+        
 }
