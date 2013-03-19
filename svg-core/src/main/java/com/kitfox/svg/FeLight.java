@@ -33,27 +33,26 @@
  *
  * Created on March 18, 2004, 6:52 AM
  */
-
 package com.kitfox.svg;
-
-import java.awt.*;
-import java.awt.geom.*;
-import java.net.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-abstract public class FeLight extends FilterEffects 
+abstract public class FeLight extends FilterEffects
 {
 
-    /** Creates a new instance of FillElement */
-    public FeLight() {
+    public static final String TAG_NAME = "feLight";
+
+    /**
+     * Creates a new instance of FillElement
+     */
+    public FeLight()
+    {
     }
 
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
 }
-

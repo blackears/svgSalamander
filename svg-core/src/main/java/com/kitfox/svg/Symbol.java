@@ -33,13 +33,14 @@
  *
  * Created on January 26, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
-import java.awt.*;
-import java.awt.geom.*;
-
-import com.kitfox.svg.xml.*;
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
@@ -47,47 +48,29 @@ import com.kitfox.svg.xml.*;
  */
 public class Symbol extends Group
 {
+
+    public static final String TAG_NAME = "symbol";
     AffineTransform viewXform;
     Rectangle2D viewBox;
 
-    /** Creates a new instance of Stop */
-    public Symbol() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of Stop
+     */
+    public Symbol()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String viewBoxStrn = attrs.getValue("viewBox");
-        if (viewBoxStrn != null)
-        {
-            float[] dim = XMLParseUtil.parseFloatList(viewBoxStrn);
-            viewBox = new Rectangle2D.Float(dim[0], dim[1], dim[2], dim[3]);
-        }
     }
-*/
-    /*
-    public void loaderEndElement(SVGLoaderHelper helper)
+
+    public String getTagName()
     {
-        if (viewBox == null)
-        {
-            viewBox = super.getBoundingBox();
-        }
-
-        //Transform pattern onto unit square
-        viewXform = new AffineTransform();
-        viewXform.scale(1.0 / viewBox.getWidth(), 1.0 / viewBox.getHeight());
-        viewXform.translate(-viewBox.getX(), -viewBox.getY());
+        return TAG_NAME;
     }
-*/
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
 //        sty = getPres("unicode");
 //        if (sty != null) unicode = sty.getStringValue();
 
@@ -97,7 +80,7 @@ public class Symbol extends Group
             float[] dim = sty.getFloatList();
             viewBox = new Rectangle2D.Float(dim[0], dim[1], dim[2], dim[3]);
         }
-        
+
         if (viewBox == null)
         {
 //            viewBox = super.getBoundingBox();
@@ -147,8 +130,9 @@ public class Symbol extends Group
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -156,10 +140,9 @@ public class Symbol extends Group
     {
 //        if (trackManager.getNumTracks() == 0) return false;
         boolean changeState = super.updateTime(curTime);
-        
+
         //View box properties do not change
-        
+
         return changeState;
     }
-
 }

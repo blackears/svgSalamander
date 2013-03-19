@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg 
+    contentScriptType="text/ecmascript" 
+    zoomAndPan="magnify" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    contentStyleType="text/css" 
+    id="svg" 
+    version="1.0" 
+    width="200" 
+    preserveAspectRatio="xMidYMid meet" 
+    viewBox="0 0 200 200" 
+    height="200" 
+    xmlns="http://www.w3.org/2000/svg">
+
+    <circle transform="matrix( 1, 0, 0, 1, 0, 0)" 
+            style="fill:#ccccff;" 
+            r="64.5" cx="101.0" id="circle0" cy="95.0" />
+
+</svg>

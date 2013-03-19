@@ -33,13 +33,9 @@
  *
  * Created on September 19, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
-
 
 /**
  * Holds title textual information within tree
@@ -47,24 +43,26 @@ import org.xml.sax.*;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Style extends SVGElement {
+public class Style extends SVGElement
+{
 
+    public static final String TAG_NAME = "style";
     //Should be set to "text/css"
     String type;
     StringBuffer text = new StringBuffer();
 
-    /** Creates a new instance of Stop */
-    public Style() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of Stop
+     */
+    public Style()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        this.type = attrs.getValue("type");
     }
-*/
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     /**
      * Called during load process to add text scanned within a tag
      */
@@ -73,20 +71,21 @@ public class Style extends SVGElement {
         this.text.append(text);
     }
 
-    
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("type"))) type = sty.getStringValue();
+
+        if (getPres(sty.setName("type")))
+        {
+            type = sty.getStringValue();
+        }
     }
-    
+
     public boolean updateTime(double curTime) throws SVGException
     {
         //Style sheet doesn't change
         return false;
-    }    
-    
+    }
 }

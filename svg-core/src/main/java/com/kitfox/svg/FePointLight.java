@@ -33,52 +33,72 @@
  *
  * Created on March 18, 2004, 6:52 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
-import java.awt.geom.*;
-import java.net.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class FePointLight extends FeLight 
+public class FePointLight extends FeLight
 {
+
+    public static final String TAG_NAME = "fepointlight";
     float x = 0f;
     float y = 0f;
     float z = 0f;
-    
 
-    /** Creates a new instance of FillElement */
-    public FePointLight() {
+    /**
+     * Creates a new instance of FillElement
+     */
+    public FePointLight()
+    {
     }
 
-    
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
         String strn;
-        
-        if (getPres(sty.setName("x"))) x = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("y"))) y = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("z"))) z = sty.getFloatValueWithUnits();
+
+        if (getPres(sty.setName("x")))
+        {
+            x = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("z")))
+        {
+            z = sty.getFloatValueWithUnits();
+        }
     }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
-    public float getZ() { return z; }
-    
+    public float getX()
+    {
+        return x;
+    }
+
+    public float getY()
+    {
+        return y;
+    }
+
+    public float getZ()
+    {
+        return z;
+    }
+
     public boolean updateTime(double curTime) throws SVGException
     {
 //        if (trackManager.getNumTracks() == 0) return false;
@@ -86,7 +106,7 @@ public class FePointLight extends FeLight
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean stateChange = false;
-        
+
         if (getPres(sty.setName("x")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -96,7 +116,7 @@ public class FePointLight extends FeLight
                 stateChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("y")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -106,7 +126,7 @@ public class FePointLight extends FeLight
                 stateChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("z")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -116,8 +136,7 @@ public class FePointLight extends FeLight
                 stateChange = true;
             }
         }
-        
+
         return stateChange;
     }
 }
-

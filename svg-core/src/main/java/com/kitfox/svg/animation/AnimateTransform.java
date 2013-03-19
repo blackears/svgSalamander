@@ -54,6 +54,8 @@ import org.xml.sax.SAXException;
  */
 public class AnimateTransform extends AnimateXform
 {
+    public static final String TAG_NAME = "animateTransform";
+    
 //    protected AffineTransform fromValue;
 //    protected AffineTransform toValue;
 //    protected double[] fromValue;  //Transform parameters
@@ -78,6 +80,11 @@ public class AnimateTransform extends AnimateXform
     /** Creates a new instance of Animate */
     public AnimateTransform()
     {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException

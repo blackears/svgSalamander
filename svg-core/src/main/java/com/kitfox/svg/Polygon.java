@@ -33,78 +33,56 @@
  *
  * Created on January 26, 2004, 5:25 PM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.XMLParseUtil;
-import java.awt.geom.*;
-import java.awt.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Polygon extends ShapeElement {
+public class Polygon extends ShapeElement
+{
+    public static final String TAG_NAME = "polygon";
 
     int fillRule = GeneralPath.WIND_NON_ZERO;
     String pointsStrn = "";
-//    float[] points = null;
     GeneralPath path;
 
-    /** Creates a new instance of Rect */
-    public Polygon() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of Rect
+     */
+    public Polygon()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-
-        points = XMLParseUtil.parseFloatList(attrs.getValue("points"));
-
-        build();
     }
-*/
-/*
-    public void build()
+
+    public String getTagName()
     {
-        StyleAttribute styleAttrib = getStyle("fill-rule");
-        String fillRule = (styleAttrib == null) ? "nonzero" : styleAttrib.getStringValue();
-
-        path = new GeneralPath(
-            fillRule.equals("evenodd") ? GeneralPath.WIND_EVEN_ODD : GeneralPath.WIND_NON_ZERO,
-            points.length / 2);
-
-        path.moveTo(points[0], points[1]);
-        for (int i = 2; i < points.length; i += 2)
-        {
-            path.lineTo(points[i], points[i + 1]);
-        }
-        path.closePath();
+        return TAG_NAME;
     }
-*/
-    
-//static int yyyyy = 0;
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("points"))) pointsStrn = sty.getStringValue();
-        
+
+        if (getPres(sty.setName("points")))
+        {
+            pointsStrn = sty.getStringValue();
+        }
+
         String fillRuleStrn = getStyle(sty.setName("fill-rule")) ? sty.getStringValue() : "nonzero";
         fillRule = fillRuleStrn.equals("evenodd") ? GeneralPath.WIND_EVEN_ODD : GeneralPath.WIND_NON_ZERO;
 
         buildPath();
     }
-    
+
     protected void buildPath()
     {
         float[] points = XMLParseUtil.parseFloatList(pointsStrn);
@@ -117,14 +95,13 @@ public class Polygon extends ShapeElement {
         }
         path.closePath();
     }
-    
+
     public void render(Graphics2D g) throws SVGException
     {
         beginLayer(g);
         renderShape(g, path);
         finishLayer(g);
     }
-
 
     public Shape getShape()
     {
@@ -136,10 +113,10 @@ public class Polygon extends ShapeElement {
         return boundsToParent(includeStrokeInBounds(path.getBounds2D()));
     }
 
-
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -151,11 +128,11 @@ public class Polygon extends ShapeElement {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getStyle(sty.setName("fill-rule")))
         {
-            int newVal = sty.getStringValue().equals("evenodd") 
-                ? GeneralPath.WIND_EVEN_ODD 
+            int newVal = sty.getStringValue().equals("evenodd")
+                ? GeneralPath.WIND_EVEN_ODD
                 : GeneralPath.WIND_NON_ZERO;
             if (newVal != fillRule)
             {
@@ -163,7 +140,7 @@ public class Polygon extends ShapeElement {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("points")))
         {
             String newVal = sty.getStringValue();
@@ -173,15 +150,15 @@ public class Polygon extends ShapeElement {
                 shapeChange = true;
             }
         }
-        
-        
+
+
         if (shapeChange)
         {
             build();
 //            buildPath();
 //            return true;
         }
-        
+
         return changeState || shapeChange;
     }
 }

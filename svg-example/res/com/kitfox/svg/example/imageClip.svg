@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+     width="100%" height="100%" 
+>
+    <!--
+     viewBox="0 0 1292 564"
+    -->
+    <clipPath id="1360314579789-6cp" clipPathUnits="userSpaceOnUse">
+        <path d="M 208 34.3447493940356 a 121.6552506059644 121.6552506059644 0 0,0 0,243.3105012119288 a 121.6552506059644 121.6552506059644 0 0,0 0, -243.3105012119288 z" fill="#FFFFFF" stroke="rgb(0,0,0)"
+              stroke-width="1" opacity="1" vector-effect="non-scaling-stroke" de_ele_type="circle" svgprocessed="true" cursor="move" />
+    </clipPath>
+    <g id="clipped1360314586816-8" clip-path="url(#1360314579789-6cp)">
+        <g transform="matrix(1,0,0,1,248.552734375,156)">
+            <g transform="matrix(1,0,0,1,-248.552734375,-156)">
+                <image x="86.34375" y="34.34375" width="324.4166666666667" height="243.3125" stroke="rgb(0,0,0)" stroke-width="1" opacity="1" vector-effect="non-scaling-stroke"
+                    xlink:href="horse.jpg" ratio="1.3333333333333333" pe_ed="1" id="1360314586816-8" cursor="move" de_clipped="1360314579789-6"
+                    svgprocessed="true" />
+            </g>
+        </g>
+    </g>
+    <path d="M 208 34.3447493940356 a 121.6552506059644 121.6552506059644 0 0,0 0,243.3105012119288 a 121.6552506059644 121.6552506059644 0 0,0 0, -243.3105012119288 z" fill="none" stroke="rgb(0,0,0)"
+          stroke-width="1" opacity="1" vector-effect="non-scaling-stroke" de_ele_type="circle" pe_ed="1" id="1360314579789-6" svgprocessed="true" cursor="move" de_ocolor="#FFFFFF" de_inscribed="1360314586816-8" />
+</svg>

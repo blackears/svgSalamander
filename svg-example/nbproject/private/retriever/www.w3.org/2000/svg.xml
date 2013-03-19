@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>SVG namespace</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <link rel="stylesheet" type="text/css"
+        href="http://www.w3.org/StyleSheets/TR/base"/>
+</head>
+<body>
+<div class="head">
+<p><a href="http://www.w3.org/"><img class="head"
+src="http://www.w3.org/Icons/WWW/w3c_home" alt="W3C"/></a></p>
+</div>
+<p>
+This is an XML namespace, first defined in the 
+Scalable Vector Graphics (SVG) 1.0 Specification and subsequently added to by SVG 1.1 and SVG 1.2. The SVG namespace is  <a href="http://www.w3.org/2001/tag/doc/namespaceState.html"><em>mutable</em></a>; names may be added over time by the W3C SVG Working Group by publication in W3C Technical Reports. </p>
+  
+<p>The
+latest version of the SVG specification can be found <a href="http://www.w3.org/TR/SVG">http://www.w3.org/TR/SVG</a>.
+</p>
+
+<p>
+For more information about SVG, please refer to <a href="http://www.w3.org/Graphics/SVG">the W3C SVG overview</a>.
+For more information about XML, please refer to <a
+href="http://www.w3.org/TR/REC-xml">The Extensible Markup Language
+(XML) 1.0 specification</a>. For more information about XML
+namespaces, please refer to the
+<a href="http://www.w3.org/TR/REC-xml-names">Namespaces in XML
+specification</a>.</p>
+
+<hr />
+<address>
+  <a href="http://www.w3.org/Help/Webmaster">Webmaster</a><br />
+  Last modified: $Date: 2006/02/05 10:17:51 $
+</address>
+</body>
+</html>

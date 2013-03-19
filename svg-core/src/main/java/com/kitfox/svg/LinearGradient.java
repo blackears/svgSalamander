@@ -33,72 +33,67 @@
  *
  * Created on January 26, 2004, 1:54 AM
  */
-
 package com.kitfox.svg;
 
-import java.awt.geom.*;
-import java.awt.*;
-
-import com.kitfox.svg.xml.*;
-
-//import org.apache.batik.ext.awt.*;
-
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.Color;
+import java.awt.Paint;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class LinearGradient extends Gradient {
-
+public class LinearGradient extends Gradient
+{
+    public static final String TAG_NAME = "lineargradient";
+    
     float x1 = 0f;
     float y1 = 0f;
     float x2 = 1f;
     float y2 = 0f;
 
-    /** Creates a new instance of LinearGradient */
-    public LinearGradient() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of LinearGradient
+     */
+    public LinearGradient()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String x1 = attrs.getValue("x1");
-        String x2 = attrs.getValue("x2");
-        String y1 = attrs.getValue("y1");
-        String y2 = attrs.getValue("y2");
-
-        if (x1 != null) this.x1 = (float)XMLParseUtil.parseRatio(x1);
-        if (y1 != null) this.y1 = (float)XMLParseUtil.parseRatio(y1);
-        if (x2 != null) this.x2 = (float)XMLParseUtil.parseRatio(x2);
-        if (y2 != null) this.y2 = (float)XMLParseUtil.parseRatio(y2);
     }
-*/
-    /*
-    public void loaderEndElement(SVGLoaderHelper helper)
+
+    public String getTagName()
     {
-        super.loaderEndElement(helper);
-        
-        build();
+        return TAG_NAME;
     }
-    */
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("x1"))) x1 = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("y1"))) y1 = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("x2"))) x2 = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("y2"))) y2 = sty.getFloatValueWithUnits();
+
+        if (getPres(sty.setName("x1")))
+        {
+            x1 = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("y1")))
+        {
+            y1 = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("x2")))
+        {
+            x2 = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("y2")))
+        {
+            y2 = sty.getFloatValueWithUnits();
+        }
     }
-    
+
     public Paint getPaint(Rectangle2D bounds, AffineTransform xform)
     {
         com.kitfox.svg.batik.MultipleGradientPaint.CycleMethodEnum method;
@@ -123,8 +118,7 @@ public class LinearGradient extends Gradient {
         {
             Color[] colors = getStopColors();
             paint = colors.length > 0 ? colors[0] : Color.black;
-        }
-        else if (gradientUnits == GU_USER_SPACE_ON_USE)
+        } else if (gradientUnits == GU_USER_SPACE_ON_USE)
         {
             paint = new com.kitfox.svg.batik.LinearGradientPaint(
                 pt1,
@@ -133,15 +127,14 @@ public class LinearGradient extends Gradient {
                 getStopColors(),
                 method,
                 com.kitfox.svg.batik.MultipleGradientPaint.SRGB,
-                gradientTransform == null 
-                    ? new AffineTransform()
-                    : gradientTransform);
-        }
-        else
+                gradientTransform == null
+                ? new AffineTransform()
+                : gradientTransform);
+        } else
         {
             AffineTransform viewXform = new AffineTransform();
             viewXform.translate(bounds.getX(), bounds.getY());
-            
+
             //This is a hack to get around shapes that have a width or height of 0.  Should be close enough to the true answer.
             double width = Math.max(1, bounds.getWidth());
             double height = Math.max(1, bounds.getHeight());
@@ -164,10 +157,11 @@ public class LinearGradient extends Gradient {
 
         return paint;
     }
-    
+
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -179,7 +173,7 @@ public class LinearGradient extends Gradient {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getPres(sty.setName("x1")))
         {
             float newVal = sty.getFloatValueWithUnits();

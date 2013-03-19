@@ -33,19 +33,9 @@
  *
  * Created on February 20, 2004, 10:00 PM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
-
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-
-import com.kitfox.svg.pathcmd.*;
-//import org.apache.batik.ext.awt.geom.ExtendedGeneralPath;
 
 /**
  * Implements an embedded font.
@@ -57,49 +47,47 @@ import com.kitfox.svg.pathcmd.*;
  */
 public class Glyph extends MissingGlyph
 {
+
+    public static final String TAG_NAME = "missingglyph";
     /**
-     * One or more characters indicating the unicode sequence that denotes
-     * this glyph.
+     * One or more characters indicating the unicode sequence that denotes this
+     * glyph.
      */
     String unicode;
 
-    /** Creates a new instance of Font */
+    /**
+     * Creates a new instance of Font
+     */
     public Glyph()
     {
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
 
-        //Get unicode sequence that maps to this glyph
-        unicode = attrs.getValue("unicode");
-    }
-*/
-    /*
-    public void loaderEndElement(SVGLoaderHelper helper)
+    public String getTagName()
     {
-        super.loaderEndElement(helper);
-
-        build();
+        return TAG_NAME;
     }
-     */
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("unicode"))) unicode = sty.getStringValue();
+
+        if (getPres(sty.setName("unicode")))
+        {
+            unicode = sty.getStringValue();
+        }
     }
-    
-    public String getUnicode() { return unicode; }
-    
+
+    public String getUnicode()
+    {
+        return unicode;
+    }
+
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */

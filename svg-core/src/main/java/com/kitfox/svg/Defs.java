@@ -33,15 +33,9 @@
  *
  * Created on January 26, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
+import java.util.Iterator;
 
 /**
  * @author Mark McKay
@@ -50,8 +44,18 @@ import org.xml.sax.*;
 public class Defs extends TransformableElement
 {
 
-    /** Creates a new instance of Stop */
-    public Defs() {
+    public static final String TAG_NAME = "defs";
+
+    /**
+     * Creates a new instance of Stop
+     */
+    public Defs()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     /**
@@ -60,7 +64,7 @@ public class Defs extends TransformableElement
      */
     public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
     {
-		super.loaderAddChild(helper, child);
+        super.loaderAddChild(helper, child);
 
 //        members.add(child);
     }
@@ -70,10 +74,10 @@ public class Defs extends TransformableElement
         boolean stateChange = false;
         for (Iterator it = children.iterator(); it.hasNext();)
         {
-            SVGElement ele = (SVGElement)it.next();
+            SVGElement ele = (SVGElement) it.next();
             stateChange = stateChange || ele.updateTime(curTime);
         }
-        
+
         return super.updateTime(curTime) || stateChange;
     }
 }

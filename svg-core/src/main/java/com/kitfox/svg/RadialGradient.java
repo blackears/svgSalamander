@@ -33,22 +33,22 @@
  *
  * Created on January 26, 2004, 1:55 AM
  */
-
 package com.kitfox.svg;
 
-import java.awt.geom.*;
-import java.awt.*;
-
-import com.kitfox.svg.xml.*;
-
-//import org.apache.batik.ext.awt.*;
-
+import com.kitfox.svg.xml.StyleAttribute;
+import java.awt.Color;
+import java.awt.Paint;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class RadialGradient extends Gradient {
+public class RadialGradient extends Gradient
+{
+    public static final String TAG_NAME = "radialgradient";
 
     float cx = 0.5f;
     float cy = 0.5f;
@@ -56,55 +56,50 @@ public class RadialGradient extends Gradient {
     float fy = 0.5f;
     float r = 0.5f;
 
-    /** Creates a new instance of RadialGradient */
-    public RadialGradient() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String cx = attrs.getValue("cx");
-        String cy = attrs.getValue("cy");
-        String fx = attrs.getValue("fx");
-        String fy = attrs.getValue("fy");
-        String r = attrs.getValue("r");
-
-        if (cx != null) this.cx = (float)XMLParseUtil.parseRatio(cx);
-        if (cy != null) this.cy = (float)XMLParseUtil.parseRatio(cy);
-        if (fx != null) this.fx = (float)XMLParseUtil.parseRatio(fx);
-        if (fy != null) this.fy = (float)XMLParseUtil.parseRatio(fy);
-        if (r != null) this.r = (float)XMLParseUtil.parseRatio(r);
-    }
-    */
-
-    /*
-    public void loaderEndElement(SVGLoaderHelper helper)
-    {
-        super.loaderEndElement(helper);
-        
-        build();
-    }
+    /**
+     * Creates a new instance of RadialGradient
      */
-    
+    public RadialGradient()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("cx"))) cx = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("cy"))) cy = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("fx"))) fx = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("fy"))) fy = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("r"))) r = sty.getFloatValueWithUnits();
+
+        if (getPres(sty.setName("cx")))
+        {
+            cx = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("cy")))
+        {
+            cy = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("fx")))
+        {
+            fx = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("fy")))
+        {
+            fy = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("r")))
+        {
+            r = sty.getFloatValueWithUnits();
+        }
     }
-    
+
     public Paint getPaint(Rectangle2D bounds, AffineTransform xform)
     {
         com.kitfox.svg.batik.MultipleGradientPaint.CycleMethodEnum method;
@@ -129,8 +124,7 @@ public class RadialGradient extends Gradient {
         {
             Color[] colors = getStopColors();
             paint = colors.length > 0 ? colors[0] : Color.black;
-        }
-        else if (gradientUnits == GU_USER_SPACE_ON_USE)
+        } else if (gradientUnits == GU_USER_SPACE_ON_USE)
         {
             paint = new com.kitfox.svg.batik.RadialGradientPaint(
                 pt1,
@@ -141,8 +135,7 @@ public class RadialGradient extends Gradient {
                 method,
                 com.kitfox.svg.batik.MultipleGradientPaint.SRGB,
                 gradientTransform);
-        }
-        else
+        } else
         {
             AffineTransform viewXform = new AffineTransform();
             viewXform.translate(bounds.getX(), bounds.getY());
@@ -165,8 +158,9 @@ public class RadialGradient extends Gradient {
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -178,7 +172,7 @@ public class RadialGradient extends Gradient {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getPres(sty.setName("cx")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -188,7 +182,7 @@ public class RadialGradient extends Gradient {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("cy")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -198,7 +192,7 @@ public class RadialGradient extends Gradient {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("fx")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -208,7 +202,7 @@ public class RadialGradient extends Gradient {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("fy")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -218,7 +212,7 @@ public class RadialGradient extends Gradient {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("r")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -228,7 +222,7 @@ public class RadialGradient extends Gradient {
                 shapeChange = true;
             }
         }
-        
+
         return changeState;
     }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html lang="en">
+<head>
+  <title>XLink namespace</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css"
+        href="http://www.w3.org/StyleSheets/TR/base.css">
+</head>
+<body>
+<div class="head">
+<p><a href="http://www.w3.org/"><img class="head"
+src="http://www.w3.org/Icons/WWW/w3c_home.gif" alt="W3C"></a></p>
+</div>
+<p>
+This is an XML namespace defined in the 
+<a href="http://www.w3.org/TR/xlink/">XML Linking Language (XLink) specification</a>.
+</p>
+<p>
+For more information about XML, please refer to <a
+href="http://www.w3.org/TR/REC-xml">The Extensible Markup Language
+(XML) 1.0 specification</a>. For more information about XML
+namespaces, please refer to the
+<a href="http://www.w3.org/TR/REC-xml-names">Namespaces in XML
+specification</a>.
+
+<hr>
+<address>
+  <a href="/Help/Webmaster">Webmaster</a><BR>
+  Last modified: $Date: 2000/06/22 15:15:22 $
+</address>
+</body>
+</html>

@@ -53,13 +53,20 @@ import org.xml.sax.SAXException;
  */
 public class SetSmil extends AnimationElement
 {
+    public static final String TAG_NAME = "set";
+    
     String toValue;
     
     /** Creates a new instance of Set */
     public SetSmil()
     {
     }
-    
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string

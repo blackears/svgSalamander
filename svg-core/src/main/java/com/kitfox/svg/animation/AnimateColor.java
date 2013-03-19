@@ -53,6 +53,8 @@ import org.xml.sax.SAXException;
  */
 public class AnimateColor extends AnimateBase implements AnimateColorIface
 {
+    public static final String TAG_NAME = "animateColor";
+    
     
     protected Color fromValue;
     protected Color toValue;
@@ -61,7 +63,12 @@ public class AnimateColor extends AnimateBase implements AnimateColorIface
     public AnimateColor()
     {
     }
-    
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string

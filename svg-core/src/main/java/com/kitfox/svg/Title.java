@@ -33,7 +33,6 @@
  *
  * Created on September 19, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 /**
@@ -42,12 +41,22 @@ package com.kitfox.svg;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Title extends SVGElement {
-
+public class Title extends SVGElement
+{
+    public static final String TAG_NAME = "title";
+    
     StringBuffer text = new StringBuffer();
 
-    /** Creates a new instance of Stop */
-    public Title() {
+    /**
+     * Creates a new instance of Stop
+     */
+    public Title()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     /**
@@ -58,11 +67,15 @@ public class Title extends SVGElement {
         this.text.append(text);
     }
 
-    public String getText() { return text.toString(); }
-    
+    public String getText()
+    {
+        return text.toString();
+    }
+
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */

@@ -33,65 +33,74 @@
  *
  * Created on January 26, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
+import java.awt.Color;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Stop extends SVGElement {
+public class Stop extends SVGElement
+{
 
+    public static final String TAG_NAME = "stop";
     float offset = 0f;
     float opacity = 1f;
     Color color = Color.black;
 
-    /** Creates a new instance of Stop */
-    public Stop() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of Stop
+     */
+    public Stop()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String offset = attrs.getValue("offset");
-        this.offset = (float)XMLParseUtil.parseRatio(offset);
-
-        buildStop();
     }
-    */
-    
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
         if (getPres(sty.setName("offset")))
         {
             offset = sty.getFloatValue();
             String units = sty.getUnits();
-            if (units != null && units.equals("%")) offset /= 100f;
-            if (offset > 1) offset = 1;
-            if (offset < 0) offset = 0;
+            if (units != null && units.equals("%"))
+            {
+                offset /= 100f;
+            }
+            if (offset > 1)
+            {
+                offset = 1;
+            }
+            if (offset < 0)
+            {
+                offset = 0;
+            }
         }
-        
-        if (getStyle(sty.setName("stop-color"))) color = sty.getColorValue();
 
-        if (getStyle(sty.setName("stop-opacity"))) opacity = sty.getRatioValue();
+        if (getStyle(sty.setName("stop-color")))
+        {
+            color = sty.getColorValue();
+        }
+
+        if (getStyle(sty.setName("stop-opacity")))
+        {
+            opacity = sty.getRatioValue();
+        }
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -102,7 +111,7 @@ public class Stop extends SVGElement {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getPres(sty.setName("offset")))
         {
             float newVal = sty.getFloatValue();
@@ -112,7 +121,7 @@ public class Stop extends SVGElement {
                 shapeChange = true;
             }
         }
-        
+
         if (getStyle(sty.setName("stop-color")))
         {
             Color newVal = sty.getColorValue();
@@ -122,7 +131,7 @@ public class Stop extends SVGElement {
                 shapeChange = true;
             }
         }
-        
+
         if (getStyle(sty.setName("stop-opacity")))
         {
             float newVal = sty.getFloatValue();
@@ -132,7 +141,7 @@ public class Stop extends SVGElement {
                 shapeChange = true;
             }
         }
-        
+
         return shapeChange;
     }
 }

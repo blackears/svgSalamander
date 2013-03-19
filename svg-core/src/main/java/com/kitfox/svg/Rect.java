@@ -33,13 +33,14 @@
  *
  * Created on January 26, 2004, 5:25 PM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -48,7 +49,9 @@ import java.io.ObjectOutputStream;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Rect extends ShapeElement {
+public class Rect extends ShapeElement
+{
+    public static final String TAG_NAME = "rect";
 
     float x = 0f;
     float y = 0f;
@@ -56,14 +59,21 @@ public class Rect extends ShapeElement {
     float height = 0f;
     float rx = 0f;
     float ry = 0f;
-
     RectangularShape rect;
 
-    /** Creates a new instance of Rect */
-    public Rect() {
+    /**
+     * Creates a new instance of Rect
+     */
+    public Rect()
+    {
     }
 
-    private void writeObject(ObjectOutputStream out) throws IOException    
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException
     {
         out.writeFloat(x);
         out.writeFloat(y);
@@ -72,7 +82,7 @@ public class Rect extends ShapeElement {
         out.writeFloat(rx);
         out.writeFloat(ry);
     }
-    
+
     private void readObject(ObjectInputStream in) throws IOException
     {
         x = in.readFloat();
@@ -81,54 +91,52 @@ public class Rect extends ShapeElement {
         height = in.readFloat();
         rx = in.readFloat();
         ry = in.readFloat();
-        
+
         if (rx == 0f && ry == 0f)
         {
             rect = new Rectangle2D.Float(x, y, width, height);
-        }
-        else
+        } else
         {
             rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
         }
     }
-    
+
     /*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
+     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+     {
+     //Load style string
+     super.loaderStartElement(helper, attrs, parent);
 
-        String x = attrs.getValue("x");
-        String y = attrs.getValue("y");
-        String width = attrs.getValue("width");
-        String height = attrs.getValue("height");
-        String rx = attrs.getValue("rx");
-        String ry = attrs.getValue("ry");
+     String x = attrs.getValue("x");
+     String y = attrs.getValue("y");
+     String width = attrs.getValue("width");
+     String height = attrs.getValue("height");
+     String rx = attrs.getValue("rx");
+     String ry = attrs.getValue("ry");
 
-        if (rx == null) rx = ry;
-        if (ry == null) ry = rx;
+     if (rx == null) rx = ry;
+     if (ry == null) ry = rx;
 
-        this.x = XMLParseUtil.parseFloat(x);
-        this.y = XMLParseUtil.parseFloat(y);
-        this.width = XMLParseUtil.parseFloat(width);
-        this.height = XMLParseUtil.parseFloat(height);
-        if (rx != null)
-        {
-            this.rx = XMLParseUtil.parseFloat(rx);
-            this.ry = XMLParseUtil.parseFloat(ry);
-        }
+     this.x = XMLParseUtil.parseFloat(x);
+     this.y = XMLParseUtil.parseFloat(y);
+     this.width = XMLParseUtil.parseFloat(width);
+     this.height = XMLParseUtil.parseFloat(height);
+     if (rx != null)
+     {
+     this.rx = XMLParseUtil.parseFloat(rx);
+     this.ry = XMLParseUtil.parseFloat(ry);
+     }
 
-        build();
-//        setBounds(this.x, this.y, this.width, this.height);
-    }
-*/
-    
+     build();
+     //        setBounds(this.x, this.y, this.width, this.height);
+     }
+     */
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
 //        SVGElement parent = this.getParent();
 //        if (parent instanceof RenderableElement)
 //        {
@@ -136,31 +144,56 @@ public class Rect extends ShapeElement {
 //            Rectangle2D bounds = re.getBoundingBox();
 //            bounds = null;
 //        }
-        
-        
-        if (getPres(sty.setName("x"))) x = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("y"))) y = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("width"))) width = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("height"))) height = sty.getFloatValueWithUnits();
+
+
+        if (getPres(sty.setName("x")))
+        {
+            x = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("width")))
+        {
+            width = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("height")))
+        {
+            height = sty.getFloatValueWithUnits();
+        }
 
         boolean rxSet = false;
-        if (getPres(sty.setName("rx"))) { rx = sty.getFloatValueWithUnits(); rxSet = true; }
-        
-        boolean rySet = false;
-        if (getPres(sty.setName("ry"))) { ry = sty.getFloatValueWithUnits(); rySet = true; }
-        
-        if (!rxSet) rx = ry;
-        if (!rySet) ry = rx;
+        if (getPres(sty.setName("rx")))
+        {
+            rx = sty.getFloatValueWithUnits();
+            rxSet = true;
+        }
 
-        
+        boolean rySet = false;
+        if (getPres(sty.setName("ry")))
+        {
+            ry = sty.getFloatValueWithUnits();
+            rySet = true;
+        }
+
+        if (!rxSet)
+        {
+            rx = ry;
+        }
+        if (!rySet)
+        {
+            ry = rx;
+        }
+
+
         if (rx == 0f && ry == 0f)
         {
             rect = new Rectangle2D.Float(x, y, width, height);
-        }
-        else
+        } else
         {
             rect = new RoundRectangle2D.Float(x, y, width, height, rx * 2, ry * 2);
         }
@@ -184,8 +217,9 @@ public class Rect extends ShapeElement {
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -197,7 +231,7 @@ public class Rect extends ShapeElement {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getPres(sty.setName("x")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -271,7 +305,7 @@ public class Rect extends ShapeElement {
 //            }
 //            return true;
         }
-        
+
         return changeState || shapeChange;
     }
 }

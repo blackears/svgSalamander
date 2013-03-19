@@ -33,7 +33,6 @@
  *
  * Created on January 26, 2004, 9:00 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
@@ -46,26 +45,26 @@ import java.awt.geom.Rectangle2D;
 import java.net.URI;
 import java.util.List;
 
-
-
 /**
  * Maintains bounding box for this element
  *
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-abstract public class RenderableElement extends TransformableElement 
+abstract public class RenderableElement extends TransformableElement
 {
-
     AffineTransform cachedXform = null;
-    Shape cachedClip = null;
     
+    Shape cachedClip = null;
     public static final int VECTOR_EFFECT_NONE = 0;
     public static final int VECTOR_EFFECT_NON_SCALING_STROKE = 1;
     int vectorEffect;
 
-    /** Creates a new instance of BoundedElement */
-    public RenderableElement() {
+    /**
+     * Creates a new instance of BoundedElement
+     */
+    public RenderableElement()
+    {
     }
 
     public RenderableElement(String id, SVGElement parent)
@@ -76,39 +75,38 @@ abstract public class RenderableElement extends TransformableElement
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
         if (getPres(sty.setName("vector-effect")))
         {
             if ("non-scaling-stroke".equals(sty.getStringValue()))
             {
                 vectorEffect = VECTOR_EFFECT_NON_SCALING_STROKE;
-            }
-            else
+            } else
             {
                 vectorEffect = VECTOR_EFFECT_NONE;
             }
-        }
-        else
+        } else
         {
             vectorEffect = VECTOR_EFFECT_NONE;
         }
     }
-    
+
     abstract public void render(Graphics2D g) throws SVGException;
-    
+
     abstract void pick(Point2D point, boolean boundingBox, List retVec) throws SVGException;
-    
+
     abstract void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List retVec) throws SVGException;
-    
+
     abstract public Rectangle2D getBoundingBox() throws SVGException;
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-        super.loaderStartElement(helper, attrs, parent);
-    }
-*/
+    /*
+     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+     {
+     super.loaderStartElement(helper, attrs, parent);
+     }
+     */
+
     /**
      * Pushes transform stack, transforms to local coordinates and sets up
      * clipping mask.
@@ -122,7 +120,7 @@ abstract public class RenderableElement extends TransformableElement
         }
 
         StyleAttribute styleAttrib = new StyleAttribute();
-        
+
         //Get clipping path
 //        StyleAttribute styleAttrib = getStyle("clip-path", false);
         Shape clipPath = null;
@@ -132,7 +130,7 @@ abstract public class RenderableElement extends TransformableElement
             URI uri = styleAttrib.getURIValue(getXMLBase());
             if (uri != null)
             {
-                ClipPath ele = (ClipPath)diagram.getUniverse().getElement(uri);
+                ClipPath ele = (ClipPath) diagram.getUniverse().getElement(uri);
                 clipPath = ele.getClipPathShape();
                 clipPathUnits = ele.getClipPathUnits();
             }
@@ -143,7 +141,7 @@ abstract public class RenderableElement extends TransformableElement
         {
             if (clipPathUnits == ClipPath.CP_OBJECT_BOUNDING_BOX && (this instanceof ShapeElement))
             {
-                Rectangle2D rect = ((ShapeElement)this).getBoundingBox();
+                Rectangle2D rect = ((ShapeElement) this).getBoundingBox();
                 AffineTransform at = new AffineTransform();
                 at.scale(rect.getWidth(), rect.getHeight());
                 clipPath = at.createTransformedShape(clipPath);
@@ -153,8 +151,7 @@ abstract public class RenderableElement extends TransformableElement
             if (cachedClip == null)
             {
                 g.setClip(clipPath);
-            }
-            else
+            } else
             {
                 Area newClip = new Area(cachedClip);
                 newClip.intersect(new Area(clipPath));
@@ -164,8 +161,8 @@ abstract public class RenderableElement extends TransformableElement
     }
 
     /**
-     * Restores transform and clipping values to the way they were before
-     * this layer was drawn.
+     * Restores transform and clipping values to the way they were before this
+     * layer was drawn.
      */
     protected void finishLayer(Graphics2D g)
     {
@@ -179,5 +176,4 @@ abstract public class RenderableElement extends TransformableElement
             g.setTransform(cachedXform);
         }
     }
-
 }

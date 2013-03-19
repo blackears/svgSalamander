@@ -33,24 +33,20 @@
  *
  * Created on March 18, 2004, 6:52 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
-import java.awt.geom.*;
-import java.net.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
+import java.net.URI;
+import java.net.URL;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class FilterEffects extends SVGElement 
+public class FilterEffects extends SVGElement
 {
+    public static final String TAG_NAME = "filtereffects";
+    
     public static final int FP_SOURCE_GRAPHIC = 0;
     public static final int FP_SOURCE_ALPHA = 1;
     public static final int FP_BACKGROUND_IMAGE = 2;
@@ -58,25 +54,25 @@ public class FilterEffects extends SVGElement
     public static final int FP_FILL_PAINT = 4;
     public static final int FP_STROKE_PAINT = 5;
     public static final int FP_CUSTOM = 5;
-
     private int filterPrimitiveTypeIn;
     private String filterPrimitiveRefIn;
-    
-    
     float x = 0f;
     float y = 0f;
     float width = 1f;
     float height = 1f;
-    
     String result = "defaultFilterName";
-    
-    
-    
     URL href = null;
 
+    /**
+     * Creates a new instance of FillElement
+     */
+    public FilterEffects()
+    {
+    }
 
-    /** Creates a new instance of FillElement */
-    public FilterEffects() {
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     /**
@@ -92,55 +88,70 @@ public class FilterEffects extends SVGElement
 //            filterEffects.add(child);
         }
     }
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
         String strn;
         /*
-        if (getPres(sty.setName("filterUnits")))
-        {
-            strn = sty.getStringValue().toLowerCase();
-            if (strn.equals("userspaceonuse")) filterUnits = FU_USER_SPACE_ON_USE;
-            else filterUnits = FU_OBJECT_BOUNDING_BOX;
-        }
+         if (getPres(sty.setName("filterUnits")))
+         {
+         strn = sty.getStringValue().toLowerCase();
+         if (strn.equals("userspaceonuse")) filterUnits = FU_USER_SPACE_ON_USE;
+         else filterUnits = FU_OBJECT_BOUNDING_BOX;
+         }
 
-        if (getPres(sty.setName("primitiveUnits")))
-        {
-            strn = sty.getStringValue().toLowerCase();
-            if (strn.equals("userspaceonuse")) primitiveUnits = PU_USER_SPACE_ON_USE;
-            else primitiveUnits = PU_OBJECT_BOUNDING_BOX;
-        }
+         if (getPres(sty.setName("primitiveUnits")))
+         {
+         strn = sty.getStringValue().toLowerCase();
+         if (strn.equals("userspaceonuse")) primitiveUnits = PU_USER_SPACE_ON_USE;
+         else primitiveUnits = PU_OBJECT_BOUNDING_BOX;
+         }
 
-        if (getPres(sty.setName("x"))) x = sty.getFloatValue();
+         if (getPres(sty.setName("x"))) x = sty.getFloatValue();
 
-        if (getPres(sty.setName("y"))) y = sty.getFloatValue();
+         if (getPres(sty.setName("y"))) y = sty.getFloatValue();
 
-        if (getPres(sty.setName("width"))) width = sty.getFloatValue();
+         if (getPres(sty.setName("width"))) width = sty.getFloatValue();
 
-        if (getPres(sty.setName("height"))) height = sty.getFloatValue();
+         if (getPres(sty.setName("height"))) height = sty.getFloatValue();
 
-        try {
-            if (getPres(sty.setName("xlink:href")))
-            {
-                URI src = sty.getURIValue(getXMLBase());
-                href = src.toURL();
-            }
-        }
-        catch (Exception e)
-        {
-            throw new SVGException(e);
-        }
-*/
+         try {
+         if (getPres(sty.setName("xlink:href")))
+         {
+         URI src = sty.getURIValue(getXMLBase());
+         href = src.toURL();
+         }
+         }
+         catch (Exception e)
+         {
+         throw new SVGException(e);
+         }
+         */
     }
 
-    public float getX() { return x; }
-    public float getY() { return y; }
-    public float getWidth() { return width; }
-    public float getHeight() { return height; }
-    
+    public float getX()
+    {
+        return x;
+    }
+
+    public float getY()
+    {
+        return y;
+    }
+
+    public float getWidth()
+    {
+        return width;
+    }
+
+    public float getHeight()
+    {
+        return height;
+    }
+
     public boolean updateTime(double curTime) throws SVGException
     {
 //        if (trackManager.getNumTracks() == 0) return false;
@@ -148,7 +159,7 @@ public class FilterEffects extends SVGElement
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean stateChange = false;
-        
+
         if (getPres(sty.setName("x")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -158,7 +169,7 @@ public class FilterEffects extends SVGElement
                 stateChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("y")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -168,7 +179,7 @@ public class FilterEffects extends SVGElement
                 stateChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("width")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -178,7 +189,7 @@ public class FilterEffects extends SVGElement
                 stateChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("height")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -188,55 +199,54 @@ public class FilterEffects extends SVGElement
                 stateChange = true;
             }
         }
-        
-        try {
+
+        try
+        {
             if (getPres(sty.setName("xlink:href")))
             {
                 URI src = sty.getURIValue(getXMLBase());
                 URL newVal = src.toURL();
-                
+
                 if (!newVal.equals(href))
                 {
                     href = newVal;
                     stateChange = true;
                 }
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             throw new SVGException(e);
         }
 
         /*
-        if (getPres(sty.setName("filterUnits")))
-        {
-            int newVal;
-            String strn = sty.getStringValue().toLowerCase();
-            if (strn.equals("userspaceonuse")) newVal = FU_USER_SPACE_ON_USE;
-            else newVal = FU_OBJECT_BOUNDING_BOX;
-            if (newVal != filterUnits)
-            {
-                filterUnits = newVal;
-                stateChange = true;
-            }
-        }
+         if (getPres(sty.setName("filterUnits")))
+         {
+         int newVal;
+         String strn = sty.getStringValue().toLowerCase();
+         if (strn.equals("userspaceonuse")) newVal = FU_USER_SPACE_ON_USE;
+         else newVal = FU_OBJECT_BOUNDING_BOX;
+         if (newVal != filterUnits)
+         {
+         filterUnits = newVal;
+         stateChange = true;
+         }
+         }
 
-        if (getPres(sty.setName("primitiveUnits")))
-        {
-            int newVal;
-            String strn = sty.getStringValue().toLowerCase();
-            if (strn.equals("userspaceonuse")) newVal = PU_USER_SPACE_ON_USE;
-            else newVal = PU_OBJECT_BOUNDING_BOX;
-            if (newVal != filterUnits)
-            {
-                primitiveUnits = newVal;
-                stateChange = true;
-            }
-        }
+         if (getPres(sty.setName("primitiveUnits")))
+         {
+         int newVal;
+         String strn = sty.getStringValue().toLowerCase();
+         if (strn.equals("userspaceonuse")) newVal = PU_USER_SPACE_ON_USE;
+         else newVal = PU_OBJECT_BOUNDING_BOX;
+         if (newVal != filterUnits)
+         {
+         primitiveUnits = newVal;
+         stateChange = true;
+         }
+         }
 
-        */
-        
+         */
+
         return stateChange;
     }
 }
-

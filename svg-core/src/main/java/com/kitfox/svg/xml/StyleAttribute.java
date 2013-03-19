@@ -79,10 +79,20 @@ public class StyleAttribute implements Serializable
         this.stringValue = stringValue;
     }
 
-    public String getName() { return name; }
-    public StyleAttribute setName(String name) { this.name = name; return this; }
+    public String getName() {
+        return name;
+    }
     
-    public String getStringValue() { return stringValue; }
+    public StyleAttribute setName(String name)
+    {
+        this.name = name;
+        return this;
+    }
+    
+    public String getStringValue()
+    {
+        return stringValue; 
+    }
 
     public String[] getStringList() 
     { 

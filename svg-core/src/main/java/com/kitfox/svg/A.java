@@ -37,33 +37,28 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
 import java.net.URI;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class A extends Group {
+public class A extends Group
+{
+    public static final String TAG_NAME = "a";
 
     URI href;
     String title;
 
     /** Creates a new instance of Stop */
-    public A() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    public A()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String offset = attrs.getValue("offset");
-        this.offset = (float)XMLParseUtil.parseRatio(offset);
-
-        buildStop();
     }
-    */
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
     
     protected void build() throws SVGException
     {

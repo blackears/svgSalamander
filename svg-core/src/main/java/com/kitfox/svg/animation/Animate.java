@@ -60,6 +60,8 @@ import org.xml.sax.SAXException;
  */
 public class Animate extends AnimateBase implements AnimateColorIface
 {
+    public static final String TAG_NAME = "animate";
+    
 //    StyleAttribute retAttrib = new StyleAttribute
     public static final int DT_REAL = 0;
     public static final int DT_COLOR = 1;
@@ -81,7 +83,12 @@ public class Animate extends AnimateBase implements AnimateColorIface
     public Animate()
     {
     }
-    
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     public int getDataType()
     {
         return dataType;

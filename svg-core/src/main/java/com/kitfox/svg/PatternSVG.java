@@ -33,7 +33,6 @@
  *
  * Created on January 26, 2004, 3:25 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.pattern.PatternPaint;
@@ -51,30 +50,35 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class PatternSVG extends FillElement {
-
+public class PatternSVG extends FillElement
+{
+    public static final String TAG_NAME = "pattern";
+    
     public static final int GU_OBJECT_BOUNDING_BOX = 0;
     public static final int GU_USER_SPACE_ON_USE = 1;
-
     int gradientUnits = GU_OBJECT_BOUNDING_BOX;
-
     float x;
     float y;
     float width;
     float height;
-
     AffineTransform patternXform = new AffineTransform();
     Rectangle2D.Float viewBox;
-
     Paint texPaint;
 
-    /** Creates a new instance of Gradient */
-    public PatternSVG() {
+    /**
+     * Creates a new instance of Gradient
+     */
+    public PatternSVG()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     /**
@@ -84,27 +88,29 @@ public class PatternSVG extends FillElement {
     public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
     {
         super.loaderAddChild(helper, child);
-
-//        members.add(child);
     }
-    
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-		//Load style string
+
+        //Load style string
         String href = null;
-        if (getPres(sty.setName("xlink:href"))) href = sty.getStringValue();
+        if (getPres(sty.setName("xlink:href")))
+        {
+            href = sty.getStringValue();
+        }
         //String href = attrs.getValue("xlink:href");
         //If we have a link to another pattern, initialize ourselves with it's values
         if (href != null)
         {
 //System.err.println("Gradient.loaderStartElement() href '" + href + "'");
-            try {
+            try
+            {
                 URI src = getXMLBase().resolve(href);
-                PatternSVG patSrc = (PatternSVG)diagram.getUniverse().getElement(src);
+                PatternSVG patSrc = (PatternSVG) diagram.getUniverse().getElement(src);
 
                 gradientUnits = patSrc.gradientUnits;
                 x = patSrc.x;
@@ -114,61 +120,82 @@ public class PatternSVG extends FillElement {
                 viewBox = patSrc.viewBox;
                 patternXform.setTransform(patSrc.patternXform);
                 children.addAll(patSrc.children);
-            }
-            catch (Exception e)
+            } catch (Exception e)
             {
-                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
                     "Could not parse xlink:href", e);
             }
         }
 
         String gradientUnits = "";
-        if (getPres(sty.setName("gradientUnits"))) gradientUnits = sty.getStringValue().toLowerCase();
-        if (gradientUnits.equals("userspaceonuse")) this.gradientUnits = GU_USER_SPACE_ON_USE;
-        else this.gradientUnits = GU_OBJECT_BOUNDING_BOX;
+        if (getPres(sty.setName("gradientUnits")))
+        {
+            gradientUnits = sty.getStringValue().toLowerCase();
+        }
+        if (gradientUnits.equals("userspaceonuse"))
+        {
+            this.gradientUnits = GU_USER_SPACE_ON_USE;
+        } else
+        {
+            this.gradientUnits = GU_OBJECT_BOUNDING_BOX;
+        }
 
         String patternTransform = "";
-        if (getPres(sty.setName("patternTransform"))) patternTransform = sty.getStringValue();
+        if (getPres(sty.setName("patternTransform")))
+        {
+            patternTransform = sty.getStringValue();
+        }
         patternXform = parseTransform(patternTransform);
 
-        
-        if (getPres(sty.setName("x"))) x = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("y"))) y = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("width"))) width = sty.getFloatValueWithUnits();
-        
-        if (getPres(sty.setName("height"))) height = sty.getFloatValueWithUnits();
-        
+
+        if (getPres(sty.setName("x")))
+        {
+            x = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("width")))
+        {
+            width = sty.getFloatValueWithUnits();
+        }
+
+        if (getPres(sty.setName("height")))
+        {
+            height = sty.getFloatValueWithUnits();
+        }
+
         if (getPres(sty.setName("viewBox")))
         {
             float[] dim = sty.getFloatList();
             viewBox = new Rectangle2D.Float(dim[0], dim[1], dim[2], dim[3]);
         }
-            
+
         preparePattern();
     }
-    
-/*
-    public void loaderEndElement(SVGLoaderHelper helper)
-    {
-        build();
-    }
-    */
 
+    /*
+     public void loaderEndElement(SVGLoaderHelper helper)
+     {
+     build();
+     }
+     */
     protected void preparePattern() throws SVGException
     {
         //For now, treat all fills as UserSpaceOnUse.  Otherwise, we'll need
         // a different paint for every object.
-        int tileWidth = (int)width;
-        int tileHeight = (int)height;
+        int tileWidth = (int) width;
+        int tileHeight = (int) height;
 
         float stretchX = 1f, stretchY = 1f;
         if (!patternXform.isIdentity())
         {
             //Scale our source tile so that we can have nice sampling from it.
-            float xlateX = (float)patternXform.getTranslateX();
-            float xlateY = (float)patternXform.getTranslateY();
+            float xlateX = (float) patternXform.getTranslateX();
+            float xlateY = (float) patternXform.getTranslateY();
 
             Point2D.Float pt = new Point2D.Float(), pt2 = new Point2D.Float();
 
@@ -176,24 +203,24 @@ public class PatternSVG extends FillElement {
             patternXform.transform(pt, pt2);
             pt2.x -= xlateX;
             pt2.y -= xlateY;
-            stretchX = (float)Math.sqrt(pt2.x * pt2.x + pt2.y * pt2.y) * 1.5f / width;
+            stretchX = (float) Math.sqrt(pt2.x * pt2.x + pt2.y * pt2.y) * 1.5f / width;
 
             pt.setLocation(height, 0);
             patternXform.transform(pt, pt2);
             pt2.x -= xlateX;
             pt2.y -= xlateY;
-            stretchY = (float)Math.sqrt(pt2.x * pt2.x + pt2.y * pt2.y) * 1.5f / height;
+            stretchY = (float) Math.sqrt(pt2.x * pt2.x + pt2.y * pt2.y) * 1.5f / height;
 
             tileWidth *= stretchX;
             tileHeight *= stretchY;
         }
 
-        if (tileWidth == 0 || tileHeight == 0) 
+        if (tileWidth == 0 || tileHeight == 0)
         {
             //Use defaults if tile has degenerate size
             return;
         }
-        
+
         BufferedImage buf = new BufferedImage(tileWidth, tileHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = buf.createGraphics();
         g.setClip(0, 0, tileWidth, tileHeight);
@@ -201,7 +228,7 @@ public class PatternSVG extends FillElement {
 
         for (Iterator it = children.iterator(); it.hasNext();)
         {
-            SVGElement ele = (SVGElement)it.next();
+            SVGElement ele = (SVGElement) it.next();
             if (ele instanceof RenderableElement)
             {
                 AffineTransform xform = new AffineTransform();
@@ -209,15 +236,14 @@ public class PatternSVG extends FillElement {
                 if (viewBox == null)
                 {
                     xform.translate(-x, -y);
-                }
-                else
+                } else
                 {
                     xform.scale(tileWidth / viewBox.width, tileHeight / viewBox.height);
                     xform.translate(-viewBox.x, -viewBox.y);
                 }
 
                 g.setTransform(xform);
-                ((RenderableElement)ele).render(g);
+                ((RenderableElement) ele).render(g);
             }
         }
 
@@ -230,8 +256,7 @@ public class PatternSVG extends FillElement {
         if (patternXform.isIdentity())
         {
             texPaint = new TexturePaint(buf, new Rectangle2D.Float(x, y, width, height));
-        }
-        else
+        } else
         {
             patternXform.scale(1 / stretchX, 1 / stretchY);
             texPaint = new PatternPaint(buf, patternXform);
@@ -244,8 +269,9 @@ public class PatternSVG extends FillElement {
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */

@@ -36,6 +36,7 @@
 
 package com.kitfox.svg;
 
+import com.kitfox.svg.xml.StyleSheet;
 import com.kitfox.svg.xml.NumberWithUnits;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.*;
@@ -49,13 +50,13 @@ import java.awt.geom.*;
  */
 public class SVGRoot extends Group
 {
+    public static final String TAG_NAME = "svg";
+
     NumberWithUnits x;
     NumberWithUnits y;
     NumberWithUnits width;
     NumberWithUnits height;
 
-    
-//    final Rectangle2D.Float viewBox = new Rectangle2D.Float();
     Rectangle2D.Float viewBox = null;
 
     public static final int PA_X_NONE = 0;
@@ -78,57 +79,17 @@ public class SVGRoot extends Group
     final AffineTransform viewXform = new AffineTransform();
     final Rectangle2D.Float clipRect = new Rectangle2D.Float();
 
+    private StyleSheet styleSheet;
+    
     /** Creates a new instance of SVGRoot */
     public SVGRoot()
     {
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+
+    public String getTagName()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        x = XMLParseUtil.parseNumberWithUnits(attrs.getValue("x"));
-        y = XMLParseUtil.parseNumberWithUnits(attrs.getValue("y"));
-        width = XMLParseUtil.parseNumberWithUnits(attrs.getValue("width"));
-        height = XMLParseUtil.parseNumberWithUnits(attrs.getValue("height"));
-
-        String viewBox = attrs.getValue("viewBox");
-        float[] coords = XMLParseUtil.parseFloatList(viewBox);
-
-        if (coords == null)
-        {
-            //this.viewBox.setRect(0, 0, width.getValue(), height.getValue());
-            this.viewBox = null;
-        }
-        else
-        {
-            this.viewBox = new Rectangle2D.Float(coords[0], coords[1], coords[2], coords[3]);
-        }
-
-        String par = attrs.getValue("preserveAspectRatio");
-        if (par != null)
-        {
-            String[] parList = XMLParseUtil.parseStringList(par);
-
-            if (parList[0].equals("none")) { parAlignX = PA_X_NONE; parAlignY = PA_Y_NONE; }
-            else if (parList[0].equals("xMinYMin")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMidYMin")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMaxYMin")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMinYMid")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMidYMid")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMaxYMid")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMinYMax")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MAX; }
-            else if (parList[0].equals("xMidYMax")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MAX; }
-            else if (parList[0].equals("xMaxYMax")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MAX; }
-
-            if (parList[1].equals("meet")) parSpecifier = PS_MEET;
-            else if (parList[1].equals("slice")) parSpecifier = PS_SLICE;
-        }
-
-        build();
+        return TAG_NAME;
     }
-*/
     
     public void build() throws SVGException
     {
@@ -136,13 +97,25 @@ public class SVGRoot extends Group
         
         StyleAttribute sty = new StyleAttribute();
         
-        if (getPres(sty.setName("x"))) x = sty.getNumberWithUnits();
+        if (getPres(sty.setName("x")))
+        {
+            x = sty.getNumberWithUnits();
+        }
         
-        if (getPres(sty.setName("y"))) y = sty.getNumberWithUnits();
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getNumberWithUnits();
+        }
         
-        if (getPres(sty.setName("width"))) width = sty.getNumberWithUnits();
+        if (getPres(sty.setName("width")))
+        {
+            width = sty.getNumberWithUnits();
+        }
         
-        if (getPres(sty.setName("height"))) height = sty.getNumberWithUnits();
+        if (getPres(sty.setName("height")))
+        {
+            height = sty.getNumberWithUnits();
+        }
         
         if (getPres(sty.setName("viewBox"))) 
         {
@@ -165,26 +138,11 @@ public class SVGRoot extends Group
             else if (contains(preserve, "xMidYMax")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MAX; }
             else if (contains(preserve, "xMaxYMax")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MAX; }
 
-            if (contains(preserve, "meet")) parSpecifier = PS_MEET;
+            if (contains(preserve, "meet"))
+            {
+                parSpecifier = PS_MEET;
+            }
             else if (contains(preserve, "slice")) parSpecifier = PS_SLICE;
-            
-            /*
-            String[] parList = sty.getStringList();
-
-            if (parList[0].equals("none")) { parAlignX = PA_X_NONE; parAlignY = PA_Y_NONE; }
-            else if (parList[0].equals("xMinYMin")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMidYMin")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMaxYMin")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MIN; }
-            else if (parList[0].equals("xMinYMid")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMidYMid")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMaxYMid")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MID; }
-            else if (parList[0].equals("xMinYMax")) { parAlignX = PA_X_MIN; parAlignY = PA_Y_MAX; }
-            else if (parList[0].equals("xMidYMax")) { parAlignX = PA_X_MID; parAlignY = PA_Y_MAX; }
-            else if (parList[0].equals("xMaxYMax")) { parAlignX = PA_X_MAX; parAlignY = PA_Y_MAX; }
-
-            if (parList[1].equals("meet")) parSpecifier = PS_MEET;
-            else if (parList[1].equals("slice")) parSpecifier = PS_SLICE;
-             */
         }
         
         prepareViewport();
@@ -193,6 +151,11 @@ public class SVGRoot extends Group
     private boolean contains(String text, String find) 
     {
         return (text.indexOf(find) != -1);
+    }
+
+    public SVGRoot getRoot()
+    {
+        return this;
     }
     
     protected void prepareViewport()
@@ -203,7 +166,8 @@ public class SVGRoot extends Group
         try
         {
             defaultBounds = getBoundingBox();
-        } catch (SVGException ex)
+        }
+        catch (SVGException ex)
         {
             defaultBounds= new Rectangle2D.Float();
         }
@@ -221,8 +185,6 @@ public class SVGRoot extends Group
             {
                 ww = StyleAttribute.convertUnitsToPixels(width.getUnits(), width.getValue());
             }
-//            setAttribute("x", AnimationElement.AT_XML, "" + xx);
-//            setAttribute("width", AnimationElement.AT_XML, "" + ww);
         }
         else if (viewBox != null)
         {
@@ -281,12 +243,6 @@ public class SVGRoot extends Group
             viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
             viewXform.translate(-viewBox.x, -viewBox.y);
         }
-
-        
-        //For now, treat all preserveAspectRatio as 'none'
-//        viewXform.setToTranslation(viewBox.x, viewBox.y);
-//        viewXform.scale(clipRect.width / viewBox.width, clipRect.height / viewBox.height);
-//        viewXform.translate(-clipRect.x, -clipRect.y);
     }
 
     public void render(Graphics2D g) throws SVGException
@@ -399,6 +355,22 @@ public class SVGRoot extends Group
         }
 
         return changeState || shapeChange;
+    }
+
+    /**
+     * @return the styleSheet
+     */
+    public StyleSheet getStyleSheet()
+    {
+        return styleSheet;
+    }
+
+    /**
+     * @param styleSheet the styleSheet to set
+     */
+    public void setStyleSheet(StyleSheet styleSheet)
+    {
+        this.styleSheet = styleSheet;
     }
 
 }

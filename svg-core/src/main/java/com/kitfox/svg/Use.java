@@ -33,7 +33,6 @@
  *
  * Created on January 26, 2004, 1:54 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
@@ -47,29 +46,37 @@ import java.net.URI;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Use extends ShapeElement {
-
+public class Use extends ShapeElement
+{
+    public static final String TAG_NAME = "use";
+    
     float x = 0f;
     float y = 0f;
     float width = 1f;
     float height = 1f;
-
 //    SVGElement href = null;
     URI href = null;
-
     AffineTransform refXform;
 
-    /** Creates a new instance of LinearGradient */
-    public Use() {
+    /**
+     * Creates a new instance of LinearGradient
+     */
+    public Use()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("x"))) 
+
+        if (getPres(sty.setName("x")))
         {
             x = sty.getFloatValueWithUnits();
         }
@@ -79,7 +86,7 @@ public class Use extends ShapeElement {
             y = sty.getFloatValueWithUnits();
         }
 
-        if (getPres(sty.setName("width"))) 
+        if (getPres(sty.setName("width")))
         {
             width = sty.getFloatValueWithUnits();
         }
@@ -95,12 +102,12 @@ public class Use extends ShapeElement {
             href = src;
 //            href = diagram.getUniverse().getElement(src);
         }
-        
+
         //Determine use offset/scale
         refXform = new AffineTransform();
         refXform.translate(this.x, this.y);
     }
-    
+
     public void render(Graphics2D g) throws SVGException
     {
         beginLayer(g);
@@ -111,9 +118,12 @@ public class Use extends ShapeElement {
 
         SVGElement ref = diagram.getUniverse().getElement(href);
 
-        if (ref == null || !(ref instanceof RenderableElement)) return;
+        if (ref == null || !(ref instanceof RenderableElement))
+        {
+            return;
+        }
 
-        RenderableElement rendEle = (RenderableElement)ref;
+        RenderableElement rendEle = (RenderableElement) ref;
         rendEle.pushParentContext(this);
         rendEle.render(g);
         rendEle.popParentContext();
@@ -128,7 +138,7 @@ public class Use extends ShapeElement {
         SVGElement ref = diagram.getUniverse().getElement(href);
         if (ref instanceof ShapeElement)
         {
-            Shape shape = ((ShapeElement)ref).getShape();
+            Shape shape = ((ShapeElement) ref).getShape();
             shape = refXform.createTransformedShape(shape);
             shape = shapeToParent(shape);
             return shape;
@@ -142,11 +152,11 @@ public class Use extends ShapeElement {
         SVGElement ref = diagram.getUniverse().getElement(href);
         if (ref instanceof ShapeElement)
         {
-            ShapeElement shapeEle = (ShapeElement)ref;
+            ShapeElement shapeEle = (ShapeElement) ref;
             shapeEle.pushParentContext(this);
             Rectangle2D bounds = shapeEle.getBoundingBox();
             shapeEle.popParentContext();
-            
+
             bounds = refXform.createTransformedShape(bounds).getBounds2D();
             bounds = boundsToParent(bounds);
 
@@ -157,8 +167,9 @@ public class Use extends ShapeElement {
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
@@ -170,7 +181,7 @@ public class Use extends ShapeElement {
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
-        
+
         if (getPres(sty.setName("x")))
         {
             float newVal = sty.getFloatValueWithUnits();
@@ -210,7 +221,7 @@ public class Use extends ShapeElement {
                 shapeChange = true;
             }
         }
-        
+
         if (getPres(sty.setName("xlink:href")))
         {
             URI src = sty.getURIValue(getXMLBase());
@@ -221,18 +232,18 @@ public class Use extends ShapeElement {
                 shapeChange = true;
             }
         }
-/*
-        if (getPres(sty.setName("xlink:href")))
-        {
-            URI src = sty.getURIValue(getXMLBase());
-            href = diagram.getUniverse().getElement(src);
-        }
+        /*
+         if (getPres(sty.setName("xlink:href")))
+         {
+         URI src = sty.getURIValue(getXMLBase());
+         href = diagram.getUniverse().getElement(src);
+         }
         
-        //Determine use offset/scale
-        refXform = new AffineTransform();
-        refXform.translate(this.x, this.y);
-        refXform.scale(this.width, this.height);
-*/        
+         //Determine use offset/scale
+         refXform = new AffineTransform();
+         refXform.translate(this.x, this.y);
+         refXform.scale(this.width, this.height);
+         */
         if (shapeChange)
         {
             build();
@@ -241,7 +252,7 @@ public class Use extends ShapeElement {
 //            refXform.scale(this.width, this.height);
 //            return true;
         }
-        
+
         return changeState || shapeChange;
     }
 }

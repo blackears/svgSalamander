@@ -59,6 +59,8 @@ import org.xml.sax.SAXException;
  */
 public class AnimateMotion extends AnimateXform
 {
+    public static final String TAG_NAME = "animateMotion";
+    
     static final Matcher matchPoint = Pattern.compile("\\s*(\\d+)[^\\d]+(\\d+)\\s*").matcher("");
     
 //    protected double fromValue;
@@ -77,7 +79,12 @@ public class AnimateMotion extends AnimateXform
     public AnimateMotion()
     {
     }
-    
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string

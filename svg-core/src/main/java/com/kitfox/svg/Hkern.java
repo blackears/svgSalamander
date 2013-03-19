@@ -33,7 +33,6 @@
  *
  * Created on February 20, 2004, 10:00 PM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
@@ -44,10 +43,16 @@ import com.kitfox.svg.xml.StyleAttribute;
  */
 public class Hkern extends SVGElement
 {
+
+    public static final String TAG_NAME = "hkern";
     String u1;
     String u2;
     int k;
 
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
 
     protected void build() throws SVGException
     {
@@ -57,11 +62,20 @@ public class Hkern extends SVGElement
 
 
         //Read glyph spacing info
-        if (getPres(sty.setName("u1"))) u1 = sty.getStringValue();
+        if (getPres(sty.setName("u1")))
+        {
+            u1 = sty.getStringValue();
+        }
 
-        if (getPres(sty.setName("u2"))) u2 = sty.getStringValue();
+        if (getPres(sty.setName("u2")))
+        {
+            u2 = sty.getStringValue();
+        }
 
-        if (getPres(sty.setName("k"))) k = sty.getIntValue();
+        if (getPres(sty.setName("k")))
+        {
+            k = sty.getIntValue();
+        }
     }
 
     public boolean updateTime(double curTime) throws SVGException
@@ -69,6 +83,4 @@ public class Hkern extends SVGElement
         //Fonts can't change
         return false;
     }
-    
-    
 }

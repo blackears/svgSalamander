@@ -33,7 +33,6 @@
  *
  * Created on January 26, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
@@ -45,61 +44,47 @@ import java.util.Iterator;
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class ClipPath extends SVGElement 
+public class ClipPath extends SVGElement
 {
 
+    public static final String TAG_NAME = "clippath";
     public static final int CP_USER_SPACE_ON_USE = 0;
     public static final int CP_OBJECT_BOUNDING_BOX = 1;
-
     int clipPathUnits = CP_USER_SPACE_ON_USE;
 
-    /** Creates a new instance of Stop */
-    public ClipPath() {
-    }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+    /**
+     * Creates a new instance of Stop
+     */
+    public ClipPath()
     {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
-
-        String clipPathUnits = attrs.getValue("clipPathUnits");
-
-        if (clipPathUnits.equals("objectBoundingBox")) this.clipPathUnits = CP_OBJECT_BOUNDING_BOX;
-
     }
-*/
+
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
     /**
      * Called after the start element but before the end element to indicate
      * each child tag that has been processed
      */
     public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
     {
-		super.loaderAddChild(helper, child);
-
-//        if (child instanceof ShapeElement) members.add(child);
+        super.loaderAddChild(helper, child);
     }
 
-    /*
-    public void loaderEndElement(SVGLoaderHelper helper)
-    {
-//        super.loaderEndElement(helper);
-
-//        build();
-    }
-    */
-    
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
         clipPathUnits = (getPres(sty.setName("clipPathUnits"))
-            && sty.getStringValue().equals("objectBoundingBox")) 
-            ? CP_OBJECT_BOUNDING_BOX 
+            && sty.getStringValue().equals("objectBoundingBox"))
+            ? CP_OBJECT_BOUNDING_BOX
             : CP_USER_SPACE_ON_USE;
     }
-    
+
     public int getClipPathUnits()
     {
         return clipPathUnits;
@@ -107,50 +92,61 @@ public class ClipPath extends SVGElement
 
     public Shape getClipPathShape()
     {
-        if (children.size() == 0) return null;
-        if (children.size() == 1) return ((ShapeElement)children.get(0)).getShape();
+        if (children.isEmpty())
+        {
+            return null;
+        }
+        if (children.size() == 1)
+        {
+            return ((ShapeElement) children.get(0)).getShape();
+        }
 
         Area clipArea = null;
         for (Iterator it = children.iterator(); it.hasNext();)
         {
-            ShapeElement se = (ShapeElement)it.next();
+            ShapeElement se = (ShapeElement) it.next();
 
             if (clipArea == null)
             {
                 Shape shape = se.getShape();
-                if (shape != null) clipArea = new Area(se.getShape());
+                if (shape != null)
+                {
+                    clipArea = new Area(se.getShape());
+                }
                 continue;
             }
 
             Shape shape = se.getShape();
-            if (shape != null) clipArea.intersect(new Area(shape));
+            if (shape != null)
+            {
+                clipArea.intersect(new Area(shape));
+            }
         }
 
         return clipArea;
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
     public boolean updateTime(double curTime) throws SVGException
     {
-//        if (trackManager.getNumTracks() == 0) return false;
-
         //Get current values for parameters
         StyleAttribute sty = new StyleAttribute();
         boolean shapeChange = false;
 
-        
+
         if (getPres(sty.setName("clipPathUnits")))
         {
             String newUnitsStrn = sty.getStringValue();
             int newUnits = newUnitsStrn.equals("objectBoundingBox")
-                ? CP_OBJECT_BOUNDING_BOX 
+                ? CP_OBJECT_BOUNDING_BOX
                 : CP_USER_SPACE_ON_USE;
-                
+
             if (newUnits != clipPathUnits)
             {
                 clipPathUnits = newUnits;

@@ -33,7 +33,6 @@
  *
  * Created on January 26, 2004, 9:00 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
@@ -41,20 +40,19 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 
-
 /**
  * Maintains bounding box for this element
  *
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class TransformableElement extends SVGElement 
+abstract public class TransformableElement extends SVGElement
 {
-
     AffineTransform xform = null;
-//    AffineTransform invXform = null;
 
-    /** Creates a new instance of BoundedElement */
+    /**
+     * Creates a new instance of BoundedElement
+     */
     public TransformableElement()
     {
     }
@@ -65,8 +63,8 @@ public class TransformableElement extends SVGElement
     }
 
     /**
-     * Fetches a copy of the cached AffineTransform.  Note that this
-     * value will only be valid after the node has been updated.
+     * Fetches a copy of the cached AffineTransform. Note that this value will
+     * only be valid after the node has been updated.
      *
      * @return
      */
@@ -74,54 +72,61 @@ public class TransformableElement extends SVGElement
     {
         return new AffineTransform(xform);
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
+    /*
+     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+     {
+     //Load style string
+     super.loaderStartElement(helper, attrs, parent);
 
-        String transform = attrs.getValue("transform");
-        if (transform != null)
-        {
-            xform = parseTransform(transform);
-        }
-    }
-*/
-    
+     String transform = attrs.getValue("transform");
+     if (transform != null)
+     {
+     xform = parseTransform(transform);
+     }
+     }
+     */
+
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
+
         if (getPres(sty.setName("transform")))
         {
             xform = parseTransform(sty.getStringValue());
         }
     }
-    
+
     protected Shape shapeToParent(Shape shape)
     {
-        if (xform == null) return shape;
+        if (xform == null)
+        {
+            return shape;
+        }
         return xform.createTransformedShape(shape);
     }
 
     protected Rectangle2D boundsToParent(Rectangle2D rect)
     {
-        if (xform == null) return rect;
+        if (xform == null)
+        {
+            return rect;
+        }
         return xform.createTransformedShape(rect).getBounds2D();
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */
     public boolean updateTime(double curTime) throws SVGException
     {
         StyleAttribute sty = new StyleAttribute();
-        
+
         if (getPres(sty.setName("transform")))
         {
             AffineTransform newXform = parseTransform(sty.getStringValue());
@@ -131,7 +136,7 @@ public class TransformableElement extends SVGElement
                 return true;
             }
         }
-        
+
         return false;
     }
 }

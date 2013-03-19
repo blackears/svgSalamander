@@ -33,45 +33,57 @@
  *
  * Created on January 26, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
-import java.awt.font.*;
-import java.awt.geom.*;
-import java.util.*;
-
-import com.kitfox.svg.xml.*;
-import org.xml.sax.*;
-
-//import org.apache.batik.ext.awt.geom.ExtendedGeneralPath;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphMetrics;
+import java.awt.font.GlyphVector;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Tspan extends ShapeElement {
-
+public class Tspan extends ShapeElement
+{
+    public static final String TAG_NAME = "tspan";
+    
     float[] x = null;
     float[] y = null;
     float[] dx = null;
     float[] dy = null;
     float[] rotate = null;
-
     private String text = "";
-
     float cursorX;
     float cursorY;
 
 //    Shape tspanShape;
-
-    /** Creates a new instance of Stop */
-    public Tspan() {
+    /**
+     * Creates a new instance of Stop
+     */
+    public Tspan()
+    {
     }
 
-    public float getCursorX() { return cursorX; }
-    public float getCursorY() { return cursorY; }
+    public String getTagName()
+    {
+        return TAG_NAME;
+    }
+
+    public float getCursorX()
+    {
+        return cursorX;
+    }
+
+    public float getCursorY()
+    {
+        return cursorY;
+    }
 
     public void setCursorX(float cursorX)
     {
@@ -82,30 +94,30 @@ public class Tspan extends ShapeElement {
     {
         this.cursorY = cursorY;
     }
-/*
-    public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-    {
-		//Load style string
-        super.loaderStartElement(helper, attrs, parent);
+    /*
+     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
+     {
+     //Load style string
+     super.loaderStartElement(helper, attrs, parent);
 
-        String x = attrs.getValue("x");
-        String y = attrs.getValue("y");
-        String dx = attrs.getValue("dx");
-        String dy = attrs.getValue("dy");
-        String rotate = attrs.getValue("rotate");
+     String x = attrs.getValue("x");
+     String y = attrs.getValue("y");
+     String dx = attrs.getValue("dx");
+     String dy = attrs.getValue("dy");
+     String rotate = attrs.getValue("rotate");
 
-        if (x != null) this.x = XMLParseUtil.parseFloatList(x);
-        if (y != null) this.y = XMLParseUtil.parseFloatList(y);
-        if (dx != null) this.dx = XMLParseUtil.parseFloatList(dx);
-        if (dy != null) this.dy = XMLParseUtil.parseFloatList(dy);
-        if (rotate != null)
-        {
-            this.rotate = XMLParseUtil.parseFloatList(rotate);
-            for (int i = 0; i < this.rotate.length; i++)
-                this.rotate[i] = (float)Math.toRadians(this.rotate[i]);
-        }
-    }
-    */
+     if (x != null) this.x = XMLParseUtil.parseFloatList(x);
+     if (y != null) this.y = XMLParseUtil.parseFloatList(y);
+     if (dx != null) this.dx = XMLParseUtil.parseFloatList(dx);
+     if (dy != null) this.dy = XMLParseUtil.parseFloatList(dy);
+     if (rotate != null)
+     {
+     this.rotate = XMLParseUtil.parseFloatList(rotate);
+     for (int i = 0; i < this.rotate.length; i++)
+     this.rotate[i] = (float)Math.toRadians(this.rotate[i]);
+     }
+     }
+     */
 
     /**
      * Called during load process to add text scanned within a tag
@@ -115,47 +127,57 @@ public class Tspan extends ShapeElement {
         this.text += text;
     }
 
-    
     protected void build() throws SVGException
     {
         super.build();
-        
+
         StyleAttribute sty = new StyleAttribute();
-        
-        if (getPres(sty.setName("x"))) x = sty.getFloatList();
 
-        if (getPres(sty.setName("y"))) y = sty.getFloatList();
+        if (getPres(sty.setName("x")))
+        {
+            x = sty.getFloatList();
+        }
 
-        if (getPres(sty.setName("dx"))) dx = sty.getFloatList();
+        if (getPres(sty.setName("y")))
+        {
+            y = sty.getFloatList();
+        }
 
-        if (getPres(sty.setName("dy"))) dy = sty.getFloatList();
+        if (getPres(sty.setName("dx")))
+        {
+            dx = sty.getFloatList();
+        }
+
+        if (getPres(sty.setName("dy")))
+        {
+            dy = sty.getFloatList();
+        }
 
         if (getPres(sty.setName("rotate")))
         {
             rotate = sty.getFloatList();
             for (int i = 0; i < this.rotate.length; i++)
             {
-                rotate[i] = (float)Math.toRadians(this.rotate[i]);
+                rotate[i] = (float) Math.toRadians(this.rotate[i]);
             }
-                
+
         }
     }
-    
+
     public void addShape(GeneralPath addShape) throws SVGException
     {
         if (x != null)
         {
             cursorX = x[0];
             cursorY = y[0];
-        }
-        else if (dx != null)
+        } else if (dx != null)
         {
             cursorX += dx[0];
             cursorY += dy[0];
         }
 
         StyleAttribute sty = new StyleAttribute();
-        
+
         String fontFamily = null;
         if (getStyle(sty.setName("font-family")))
         {
@@ -168,13 +190,13 @@ public class Tspan extends ShapeElement {
         {
             fontSize = sty.getFloatValueWithUnits();
         }
-        
+
         float letterSpacing = 0;
         if (getStyle(sty.setName("letter-spacing")))
         {
             letterSpacing = sty.getFloatValueWithUnits();
         }
-        
+
 
         //Get font
         Font font = diagram.getUniverse().getFont(fontFamily);
@@ -186,7 +208,7 @@ public class Tspan extends ShapeElement {
 
         FontFace fontFace = font.getFontFace();
         int ascent = fontFace.getAscent();
-        float fontScale = fontSize / (float)ascent;
+        float fontScale = fontSize / (float) ascent;
 
         AffineTransform xform = new AffineTransform();
 
@@ -199,7 +221,10 @@ public class Tspan extends ShapeElement {
             xform.setToIdentity();
             xform.setToTranslation(cursorX, cursorY);
             xform.scale(fontScale, fontScale);
-            if (rotate != null) xform.rotate(rotate[posPtr]);
+            if (rotate != null)
+            {
+                xform.rotate(rotate[posPtr]);
+            }
 
             String unicode = text.substring(i, i + 1);
             MissingGlyph glyph = font.getGlyph(unicode);
@@ -215,8 +240,7 @@ public class Tspan extends ShapeElement {
             {
                 cursorX = x[posPtr];
                 cursorY = y[posPtr++];
-            }
-            else if (dx != null && posPtr < dx.length)
+            } else if (dx != null && posPtr < dx.length)
             {
                 cursorX += dx[posPtr];
                 cursorY += dy[posPtr++];
@@ -228,10 +252,10 @@ public class Tspan extends ShapeElement {
         strokeWidthScalar = 1f;
     }
 
-    private void addShapeSysFont(GeneralPath addShape, Font font, 
-            String fontFamily, float fontSize, float letterSpacing)
+    private void addShapeSysFont(GeneralPath addShape, Font font,
+        String fontFamily, float fontSize, float letterSpacing)
     {
-        java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int)fontSize);
+        java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int) fontSize);
 
         FontRenderContext frc = new FontRenderContext(null, true, true);
         GlyphVector textVector = sysFont.createGlyphVector(frc, text);
@@ -243,7 +267,10 @@ public class Tspan extends ShapeElement {
         {
             xform.setToIdentity();
             xform.setToTranslation(cursorX + i * letterSpacing, cursorY);
-            if (rotate != null) xform.rotate(rotate[Math.min(i, rotate.length - 1)]);
+            if (rotate != null)
+            {
+                xform.rotate(rotate[Math.min(i, rotate.length - 1)]);
+            }
 
             String unicode = text.substring(i, i + 1);
             Shape glyphOutline = textVector.getGlyphOutline(i);
@@ -256,8 +283,7 @@ public class Tspan extends ShapeElement {
             {
                 cursorX = x[posPtr];
                 cursorY = y[posPtr++];
-            }
-            else if (dx != null && posPtr < dx.length)
+            } else if (dx != null && posPtr < dx.length)
             {
                 cursorX += dx[posPtr];
                 cursorY += dy[posPtr++];
@@ -271,15 +297,14 @@ public class Tspan extends ShapeElement {
         {
             cursorX = x[0];
             cursorY = y[0];
-        }
-        else if (dx != null)
+        } else if (dx != null)
         {
             cursorX += dx[0];
             cursorY += dy[0];
         }
 
         StyleAttribute sty = new StyleAttribute();
-        
+
         String fontFamily = null;
         if (getPres(sty.setName("font-family")))
         {
@@ -298,7 +323,7 @@ public class Tspan extends ShapeElement {
         if (font == null)
         {
             System.err.println("Could not load font");
-            java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int)fontSize);
+            java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int) fontSize);
             renderSysFont(g, sysFont);
             return;
         }
@@ -306,7 +331,7 @@ public class Tspan extends ShapeElement {
 
         FontFace fontFace = font.getFontFace();
         int ascent = fontFace.getAscent();
-        float fontScale = fontSize / (float)ascent;
+        float fontScale = fontSize / (float) ascent;
 
         AffineTransform oldXform = g.getTransform();
         AffineTransform xform = new AffineTransform();
@@ -328,15 +353,16 @@ public class Tspan extends ShapeElement {
             if (path != null)
             {
                 renderShape(g, path);
+            } else
+            {
+                glyph.render(g);
             }
-            else glyph.render(g);
 
             if (x != null && posPtr < x.length)
             {
                 cursorX = x[posPtr];
                 cursorY = y[posPtr++];
-            }
-            else if (dx != null && posPtr < dx.length)
+            } else if (dx != null && posPtr < dx.length)
             {
                 cursorX += dx[posPtr];
                 cursorY += dy[posPtr++];
@@ -358,7 +384,7 @@ public class Tspan extends ShapeElement {
         Shape textShape = font.createGlyphVector(frc, text).getOutline(cursorX, cursorY);
         renderShape(g, textShape);
         Rectangle2D rect = font.getStringBounds(text, frc);
-        cursorX += (float)rect.getWidth();
+        cursorX += (float) rect.getWidth();
     }
 
     public Shape getShape()
@@ -374,8 +400,9 @@ public class Tspan extends ShapeElement {
     }
 
     /**
-     * Updates all attributes in this diagram associated with a time event.
-     * Ie, all attributes with track information.
+     * Updates all attributes in this diagram associated with a time event. Ie,
+     * all attributes with track information.
+     *
      * @return - true if this node has changed state as a result of the time
      * update
      */

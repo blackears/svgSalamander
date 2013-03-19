@@ -33,19 +33,28 @@
  *
  * Created on September 19, 2004, 1:56 AM
  */
-
 package com.kitfox.svg;
 
 /**
- * Does not hold any information.  Included to allow metadata tag to be parsed.
+ * Does not hold any information. Included to allow metadata tag to be parsed.
  *
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class Metadata extends SVGElement 
+public class Metadata extends SVGElement
 {
-    /** Creates a new instance of Stop */
-    public Metadata() {
+    public static final String TAG_NAME = "metadata";
+
+    /**
+     * Creates a new instance of Stop
+     */
+    public Metadata()
+    {
+    }
+
+    public String getTagName()
+    {
+        return TAG_NAME;
     }
 
     public boolean updateTime(double curTime)
