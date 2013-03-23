@@ -125,7 +125,8 @@ abstract public class RenderableElement extends TransformableElement
 //        StyleAttribute styleAttrib = getStyle("clip-path", false);
         Shape clipPath = null;
         int clipPathUnits = ClipPath.CP_USER_SPACE_ON_USE;
-        if (getStyle(styleAttrib.setName("clip-path"), false))
+        if (getStyle(styleAttrib.setName("clip-path"), false)
+             && !"none".equals(styleAttrib.getStringValue()))
         {
             URI uri = styleAttrib.getURIValue(getXMLBase());
             if (uri != null)
