@@ -51,8 +51,8 @@ import java.awt.geom.Rectangle2D;
  */
 public class Tspan extends ShapeElement
 {
+
     public static final String TAG_NAME = "tspan";
-    
     float[] x = null;
     float[] y = null;
     float[] dx = null;
@@ -169,10 +169,16 @@ public class Tspan extends ShapeElement
         if (x != null)
         {
             cursorX = x[0];
-            cursorY = y[0];
         } else if (dx != null)
         {
             cursorX += dx[0];
+        }
+
+        if (y != null)
+        {
+            cursorY = y[0];
+        } else if (dy != null)
+        {
             cursorY += dy[0];
         }
 

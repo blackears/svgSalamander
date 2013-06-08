@@ -36,6 +36,7 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
+import com.kitfox.svg.xml.StyleSheet;
 
 /**
  * Holds title textual information within tree
@@ -51,6 +52,8 @@ public class Style extends SVGElement
     String type;
     StringBuffer text = new StringBuffer();
 
+    StyleSheet styleSheet;
+    
     /**
      * Creates a new instance of Stop
      */
@@ -69,6 +72,9 @@ public class Style extends SVGElement
     public void loaderAddText(SVGLoaderHelper helper, String text)
     {
         this.text.append(text);
+        
+        //Invalidate style sheet
+        styleSheet = null;
     }
 
     protected void build() throws SVGException
@@ -87,5 +93,14 @@ public class Style extends SVGElement
     {
         //Style sheet doesn't change
         return false;
+    }
+
+    public StyleSheet getStyleSheet()
+    {
+        if (styleSheet == null && text.length() > 0)
+        {
+            styleSheet = StyleSheet.parseSheet(text.toString());
+        }
+        return styleSheet;
     }
 }

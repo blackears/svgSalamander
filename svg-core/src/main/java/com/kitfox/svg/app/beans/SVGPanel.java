@@ -135,20 +135,6 @@ public class SVGPanel extends JPanel
         Dimension dim = getSize();
         final int width = dim.width;
         final int height = dim.height;
-//        int width = getWidth();
-//        int height = getHeight();
-        
-//        if (width == 0 || height == 0)
-//        {
-//           //Chances are we're rendering offscreen
-//            Dimension dim = getSize();
-//            width = dim.width;
-//            height = dim.height;
-//            return;
-//        }
-        
-//        g.setClip(0, 0, dim.width, dim.height);
-
             
         final Rectangle2D.Double rect = new Rectangle2D.Double();
         diagram.getViewRect(rect);

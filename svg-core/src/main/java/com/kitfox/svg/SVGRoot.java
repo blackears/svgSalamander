@@ -36,11 +36,14 @@
 
 package com.kitfox.svg;
 
-import com.kitfox.svg.xml.StyleSheet;
 import com.kitfox.svg.xml.NumberWithUnits;
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
-import java.awt.geom.*;
+import com.kitfox.svg.xml.StyleSheet;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 
 /**
  * The root element of an SVG tree.
@@ -142,7 +145,10 @@ public class SVGRoot extends Group
             {
                 parSpecifier = PS_MEET;
             }
-            else if (contains(preserve, "slice")) parSpecifier = PS_SLICE;
+            else if (contains(preserve, "slice"))
+            {
+                parSpecifier = PS_SLICE;
+            }
         }
         
         prepareViewport();
@@ -362,6 +368,18 @@ public class SVGRoot extends Group
      */
     public StyleSheet getStyleSheet()
     {
+        if (styleSheet == null)
+        {
+            for (int i = 0; i < getNumChildren(); ++i)
+            {
+                SVGElement ele = getChild(i);
+                if (ele instanceof Style)
+                {
+                    return ((Style)ele).getStyleSheet();
+                }
+            }
+        }
+        
         return styleSheet;
     }
 

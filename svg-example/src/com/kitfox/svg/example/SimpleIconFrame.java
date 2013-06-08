@@ -63,6 +63,8 @@ public class SimpleIconFrame extends javax.swing.JFrame
         panel.setAntiAlias(true);
         try {
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("map2.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("imageClip.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("markerEnd.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("casing2.svg").toURI());
@@ -78,15 +80,15 @@ public class SimpleIconFrame extends javax.swing.JFrame
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("marker.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("markerTest.svg").toURI());
 
-            panel.setSvgURI(SimpleIconFrame.class.getResource("class.svg").toURI());
-            SVGDiagram diagram = panel.getSvgUniverse().getDiagram(SimpleIconFrame.class.getResource("class.svg").toURI());
-            SVGRoot root = diagram.getRoot();
-            StyleSheet ss = new StyleSheet();
-            root.setStyleSheet(ss);
-            ss.addStyleRule(new StyleSheetRule("stroke-width", "rect", null), "5");
-            ss.addStyleRule(new StyleSheetRule("fill", "rect", null), "none");
-            ss.addStyleRule(new StyleSheetRule("stroke", "rect", "alpha"), "red");
-            ss.addStyleRule(new StyleSheetRule("stroke", "rect", null), "green");
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("class.svg").toURI());
+//            SVGDiagram diagram = panel.getSvgUniverse().getDiagram(SimpleIconFrame.class.getResource("class.svg").toURI());
+//            SVGRoot root = diagram.getRoot();
+//            StyleSheet ss = new StyleSheet();
+//            root.setStyleSheet(ss);
+//            ss.addStyleRule(new StyleSheetRule("stroke-width", "rect", null), "5");
+//            ss.addStyleRule(new StyleSheetRule("fill", "rect", null), "none");
+//            ss.addStyleRule(new StyleSheetRule("stroke", "rect", "alpha"), "red");
+//            ss.addStyleRule(new StyleSheetRule("stroke", "rect", null), "green");
             
         } catch (URISyntaxException ex) {
             Logger.getLogger(SimpleIconFrame.class.getName()).log(Level.SEVERE, null, ex);

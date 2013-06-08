@@ -35,17 +35,41 @@
  */
 package com.kitfox.svg;
 
+import com.kitfox.svg.animation.AnimationElement;
+import com.kitfox.svg.animation.TrackBase;
+import com.kitfox.svg.animation.TrackManager;
+import com.kitfox.svg.pathcmd.Arc;
+import com.kitfox.svg.pathcmd.BuildHistory;
+import com.kitfox.svg.pathcmd.Cubic;
+import com.kitfox.svg.pathcmd.CubicSmooth;
+import com.kitfox.svg.pathcmd.Horizontal;
+import com.kitfox.svg.pathcmd.LineTo;
+import com.kitfox.svg.pathcmd.MoveTo;
+import com.kitfox.svg.pathcmd.PathCommand;
+import com.kitfox.svg.pathcmd.Quadratic;
+import com.kitfox.svg.pathcmd.QuadraticSmooth;
+import com.kitfox.svg.pathcmd.Terminal;
+import com.kitfox.svg.pathcmd.Vertical;
+import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.StyleSheet;
-import java.util.*;
-import java.util.regex.*;
-import java.net.*;
-import java.awt.geom.*;
-
-import org.xml.sax.*;
-import com.kitfox.svg.animation.*;
-import com.kitfox.svg.pathcmd.*;
-import com.kitfox.svg.xml.*;
+import com.kitfox.svg.xml.XMLParseUtil;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
 import java.io.Serializable;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+
 
 /**
  * @author Mark McKay
@@ -571,7 +595,7 @@ abstract public class SVGElement implements Serializable
         String styName = attrib.getName();
 
         //Check for local inline styles
-        StyleAttribute styAttr = (StyleAttribute) inlineStyles.get(styName);
+        StyleAttribute styAttr = (StyleAttribute)inlineStyles.get(styName);
 
         attrib.setStringValue(styAttr == null ? "" : styAttr.getStringValue());
 
@@ -590,11 +614,8 @@ abstract public class SVGElement implements Serializable
         }
 
 
-
-        //Implement style sheet lookup later
-
         //Check for presentation attribute
-        StyleAttribute presAttr = (StyleAttribute) presAttribs.get(styName);
+        StyleAttribute presAttr = (StyleAttribute)presAttribs.get(styName);
 
         attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
 

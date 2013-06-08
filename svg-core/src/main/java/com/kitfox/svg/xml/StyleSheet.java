@@ -4,7 +4,10 @@
  */
 package com.kitfox.svg.xml;
 
+import com.kitfox.svg.SVGConst;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,6 +17,14 @@ public class StyleSheet
 {
     HashMap ruleMap = new HashMap();
 
+    public static StyleSheet parseSheet(String src)
+    {
+        //Implement CS parser later
+        Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
+            "CSS parser not implemented yet");
+        return null;
+    }
+    
     public void addStyleRule(StyleSheetRule rule, String value)
     {
         ruleMap.put(rule, value);
