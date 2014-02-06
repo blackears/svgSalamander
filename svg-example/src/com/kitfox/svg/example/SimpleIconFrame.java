@@ -61,7 +61,7 @@ public class SimpleIconFrame extends javax.swing.JFrame
 
         getContentPane().add(panel, BorderLayout.CENTER);
         panel.setAntiAlias(true);
-        panel.setAutosize(SVGPanel.AUTOSIZE_STRETCH);
+        panel.setAutosize(SVGPanel.AUTOSIZE_NONE);
         
         try {
             panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
