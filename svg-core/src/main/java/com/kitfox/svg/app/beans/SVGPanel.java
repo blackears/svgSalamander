@@ -49,7 +49,7 @@ import javax.swing.*;
 public class SVGPanel extends JPanel
 {
     public static final long serialVersionUID = 1;
-
+    public static final String PROP_AUTOSIZE = "PROP_AUTOSIZE";
 
     SVGUniverse svgUniverse = SVGCache.getSVGUniverse();
     
@@ -58,8 +58,15 @@ public class SVGPanel extends JPanel
 //    private String svgPath;
     URI svgURI;
 
-    private boolean scaleToFit;
+//    private boolean scaleToFit;
     AffineTransform scaleXform = new AffineTransform();
+
+    public static final int AUTOSIZE_NONE = 0;
+    public static final int AUTOSIZE_HORIZ = 1;
+    public static final int AUTOSIZE_VERT = 2;
+    public static final int AUTOSIZE_BESTFIT = 3;
+    public static final int AUTOSIZE_STRETCH = 4;
+    private int autosize = AUTOSIZE_NONE;
     
     /** Creates new form SVGIcon */
     public SVGPanel()
@@ -69,7 +76,8 @@ public class SVGPanel extends JPanel
         
     public int getSVGHeight()
     {
-        if (scaleToFit)
+        if (autosize == AUTOSIZE_VERT || autosize == AUTOSIZE_STRETCH 
+                || autosize == AUTOSIZE_BESTFIT)
         {
             return getPreferredSize().height;
         }
@@ -84,7 +92,8 @@ public class SVGPanel extends JPanel
     
     public int getSVGWidth()
     {
-        if (scaleToFit)
+        if (autosize == AUTOSIZE_HORIZ || autosize == AUTOSIZE_STRETCH 
+                || autosize == AUTOSIZE_BESTFIT)
         {
             return getPreferredSize().width;
         }
@@ -118,7 +127,7 @@ public class SVGPanel extends JPanel
             return;
         }
         
-        if (!scaleToFit)
+        if (autosize == AUTOSIZE_NONE)
         {
             try
             {
@@ -136,10 +145,33 @@ public class SVGPanel extends JPanel
         final int width = dim.width;
         final int height = dim.height;
             
-        final Rectangle2D.Double rect = new Rectangle2D.Double();
-        diagram.getViewRect(rect);
+//        final Rectangle2D.Double rect = new Rectangle2D.Double();
+//        diagram.getViewRect(rect);
         
-        scaleXform.setToScale(width / rect.width, height / rect.height);
+        double diaWidth = diagram.getWidth();
+        double diaHeight = diagram.getHeight();
+        
+        double scaleW = 1;
+        double scaleH = 1;
+        if (autosize == AUTOSIZE_BESTFIT)
+        {
+            scaleW = scaleH = (height / diaHeight < width / diaWidth) 
+                    ? height / diaHeight : width / diaWidth;
+        }
+        else if (autosize == AUTOSIZE_HORIZ)
+        {
+            scaleW = scaleH = width / diaWidth;
+        }
+        else if (autosize == AUTOSIZE_VERT)
+        {
+            scaleW = scaleH = height / diaHeight;
+        }
+        else if (autosize == AUTOSIZE_STRETCH)
+        {
+            scaleW = width / diaWidth;
+            scaleH = height / diaHeight;
+        }
+        scaleXform.setToScale(scaleW, scaleH);
         
         AffineTransform oldXform = g.getTransform();
         g.transform(scaleXform);
@@ -207,16 +239,27 @@ public class SVGPanel extends JPanel
         }
     }
     
+    /**
+     * If this SVG document has a viewbox, if scaleToFit is set, will scale the viewbox to match the
+     * preferred size of this icon
+     * @deprecated 
+     * @return 
+     */
     public boolean isScaleToFit()
     {
-        return scaleToFit;
+        return autosize == AUTOSIZE_STRETCH;
     }
-
+    
+    /**
+     * @deprecated 
+     * @return 
+     */
     public void setScaleToFit(boolean scaleToFit)
     {
-        boolean old = this.scaleToFit;
-        this.scaleToFit = scaleToFit;
-        firePropertyChange("scaleToFit", old, scaleToFit);
+        setAutosize(AUTOSIZE_STRETCH);
+//        boolean old = this.scaleToFit;
+//        this.scaleToFit = scaleToFit;
+//        firePropertyChange("scaleToFit", old, scaleToFit);
     }
     
     /**
@@ -254,6 +297,24 @@ public class SVGPanel extends JPanel
         this.antiAlias = antiAlias;
         firePropertyChange("antiAlias", old, antiAlias);
     }
+
+    /**
+     * @return the autosize
+     */
+    public int getAutosize()
+    {
+        return autosize;
+    }
+
+    /**
+     * @param autosize the autosize to set
+     */
+    public void setAutosize(int autosize)
+    {
+        int oldAutosize = this.autosize;
+        this.autosize = autosize;
+        firePropertyChange(PROP_AUTOSIZE, oldAutosize, autosize);
+    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -272,5 +333,6 @@ public class SVGPanel extends JPanel
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
     
 }

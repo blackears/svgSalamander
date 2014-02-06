@@ -50,6 +50,8 @@ import javax.swing.*;
 public class SVGIcon implements Icon
 {
     public static final long serialVersionUID = 1;
+
+    public static final String PROP_AUTOSIZE = "PROP_AUTOSIZE";
     
     private PropertyChangeSupport changes = new PropertyChangeSupport(this);
     
@@ -65,8 +67,15 @@ public class SVGIcon implements Icon
 //    private String svgPath;
     URI svgURI;
     
-    private boolean scaleToFit;
+//    private boolean scaleToFit;
     AffineTransform scaleXform = new AffineTransform();
+
+    public static final int AUTOSIZE_NONE = 0;
+    public static final int AUTOSIZE_HORIZ = 1;
+    public static final int AUTOSIZE_VERT = 2;
+    public static final int AUTOSIZE_BESTFIT = 3;
+    public static final int AUTOSIZE_STRETCH = 4;
+    private int autosize = AUTOSIZE_NONE;
     
 //    Dimension preferredSize = new Dimension(100, 100);
     Dimension preferredSize;
@@ -91,7 +100,9 @@ public class SVGIcon implements Icon
      */
     public int getIconHeight()
     {
-        if (scaleToFit && preferredSize != null)
+        if (preferredSize != null &&
+                (autosize == AUTOSIZE_VERT || autosize == AUTOSIZE_STRETCH 
+                || autosize == AUTOSIZE_BESTFIT))
         {
             return preferredSize.height;
         }
@@ -109,7 +120,9 @@ public class SVGIcon implements Icon
      */
     public int getIconWidth()
     {
-        if (scaleToFit && preferredSize != null)
+        if (preferredSize != null &&
+                (autosize == AUTOSIZE_HORIZ || autosize == AUTOSIZE_STRETCH 
+                || autosize == AUTOSIZE_BESTFIT))
         {
             return preferredSize.width;
         }
@@ -172,7 +185,7 @@ public class SVGIcon implements Icon
         
         
         
-        if (!scaleToFit)
+        if (autosize == AUTOSIZE_NONE)
         {
             try
             {
@@ -209,10 +222,34 @@ public class SVGIcon implements Icon
 //        g.setClip(0, 0, width, height);
         
         
-        final Rectangle2D.Double rect = new Rectangle2D.Double();
-        diagram.getViewRect(rect);
+//        final Rectangle2D.Double rect = new Rectangle2D.Double();
+//        diagram.getViewRect(rect);
+//        
+//        scaleXform.setToScale(width / rect.width, height / rect.height);
+        double diaWidth = diagram.getWidth();
+        double diaHeight = diagram.getHeight();
         
-        scaleXform.setToScale(width / rect.width, height / rect.height);
+        double scaleW = 1;
+        double scaleH = 1;
+        if (autosize == AUTOSIZE_BESTFIT)
+        {
+            scaleW = scaleH = (height / diaHeight < width / diaWidth) 
+                    ? height / diaHeight : width / diaWidth;
+        }
+        else if (autosize == AUTOSIZE_HORIZ)
+        {
+            scaleW = scaleH = width / diaWidth;
+        }
+        else if (autosize == AUTOSIZE_VERT)
+        {
+            scaleW = scaleH = height / diaHeight;
+        }
+        else if (autosize == AUTOSIZE_STRETCH)
+        {
+            scaleW = width / diaWidth;
+            scaleH = height / diaHeight;
+        }
+        scaleXform.setToScale(scaleW, scaleH);
         
         AffineTransform oldXform = g.getTransform();
         g.transform(scaleXform);
@@ -314,17 +351,24 @@ public class SVGIcon implements Icon
     /**
      * If this SVG document has a viewbox, if scaleToFit is set, will scale the viewbox to match the
      * preferred size of this icon
+     * @deprecated 
+     * @return 
      */
     public boolean isScaleToFit()
     {
-        return scaleToFit;
+        return autosize == AUTOSIZE_STRETCH;
     }
     
+    /**
+     * @deprecated 
+     * @return 
+     */
     public void setScaleToFit(boolean scaleToFit)
     {
-        boolean old = this.scaleToFit;
-        this.scaleToFit = scaleToFit;
-        changes.firePropertyChange("scaleToFit", old, scaleToFit);
+        setAutosize(AUTOSIZE_STRETCH);
+//        boolean old = this.scaleToFit;
+//        this.scaleToFit = scaleToFit;
+//        firePropertyChange("scaleToFit", old, scaleToFit);
     }
     
     public Dimension getPreferredSize()
@@ -428,5 +472,23 @@ public class SVGIcon implements Icon
     {
         this.clipToViewbox = clipToViewbox;
     }
-    
+
+    /**
+     * @return the autosize
+     */
+    public int getAutosize()
+    {
+        return autosize;
+    }
+
+    /**
+     * @param autosize the autosize to set
+     */
+    public void setAutosize(int autosize)
+    {
+        int oldAutosize = this.autosize;
+        this.autosize = autosize;
+        changes.firePropertyChange(PROP_AUTOSIZE, oldAutosize, autosize);
+    }
+        
 }

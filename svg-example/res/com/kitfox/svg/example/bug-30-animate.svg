@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+					 "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="1052.3622" id="svg2" version="1.1" width="744.09448"
+	xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs id="defs4">
+		<linearGradient id="linearGradient3044">
+			<stop id="stop3046" offset="0" style="stop-color:#000000;stop-opacity:1"/>
+			<stop id="stop3048" offset="1" style="stop-color:#000000;stop-opacity:0">
+				<animate attributeName="stop-opacity"
+					attributeType="CSS" begin="0s" dur="5s"
+					fill="freeze" to="1"/>
+			</stop>
+		</linearGradient>
+		<linearGradient gradientUnits="userSpaceOnUse"
+			id="linearGradient3050" x1="396" x2="244"
+			xlink:href="#linearGradient3044" y1="145.36218" y2="208.36218"/>
+	</defs>
+	<path
+		d="m 99,154.36218 c 254,7 207,-127.999997 207,-127.999997 L 523,160.36218 c -233,33.66667 23,97.33333 -186,149 z"
+		id="path2985" style="stroke:#000000;stroke-linecap:butt;fill:url(#linearGradient3050);fill-opacity:1;stroke-linejoin:miter;stroke-opacity:1;stroke-width:1px"/>
+</svg>
+
