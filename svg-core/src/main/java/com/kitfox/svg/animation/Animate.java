@@ -36,6 +36,7 @@
 
 package com.kitfox.svg.animation;
 
+import com.kitfox.svg.SVGConst;
 import com.kitfox.svg.SVGElement;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGLoaderHelper;
@@ -47,6 +48,8 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
@@ -196,6 +199,21 @@ public class Animate extends AnimateBase implements AnimateColorIface
         else if (byExists)
         {
             return byValue * interp;
+        }
+        else if (toExists)
+        {
+            StyleAttribute style = new StyleAttribute(getAttribName());
+            try
+            {
+                getParent().getStyle(style, true, false);
+            }
+            catch (SVGException ex)
+            {
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                    "Could not get from value", ex);
+            }
+            double from = style.getDoubleValue();
+            return toValue * interp + from * (1.0 - interp);
         }
   
         //Should not reach this line

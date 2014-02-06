@@ -579,6 +579,11 @@ abstract public class SVGElement implements Serializable
         styAttr.setStringValue(value);
     }
 
+    public boolean getStyle(StyleAttribute attrib, boolean recursive) throws SVGException
+    {
+        return getStyle(attrib, recursive, true);
+    }
+    
     /**
      * Copies the current style into the passed style attribute. Checks for
      * inline styles first, then internal and extranal style sheets, and finally
@@ -590,7 +595,8 @@ abstract public class SVGElement implements Serializable
      * style attribute, checks attributes of parents back to root until one
      * found.
      */
-    public boolean getStyle(StyleAttribute attrib, boolean recursive) throws SVGException
+    public boolean getStyle(StyleAttribute attrib, boolean recursive, boolean evalAnimation)
+            throws SVGException
     {
         String styName = attrib.getName();
 
@@ -600,11 +606,14 @@ abstract public class SVGElement implements Serializable
         attrib.setStringValue(styAttr == null ? "" : styAttr.getStringValue());
 
         //Evalutate coresponding track, if one exists
-        TrackBase track = trackManager.getTrack(styName, AnimationElement.AT_CSS);
-        if (track != null)
+        if (evalAnimation)
         {
-            track.getValue(attrib, diagram.getUniverse().getCurTime());
-            return true;
+            TrackBase track = trackManager.getTrack(styName, AnimationElement.AT_CSS);
+            if (track != null)
+            {
+                track.getValue(attrib, diagram.getUniverse().getCurTime());
+                return true;
+            }
         }
 
         //Return if we've found a non animated style
@@ -620,11 +629,14 @@ abstract public class SVGElement implements Serializable
         attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
 
         //Evalutate coresponding track, if one exists
-        track = trackManager.getTrack(styName, AnimationElement.AT_XML);
-        if (track != null)
+        if (evalAnimation)
         {
-            track.getValue(attrib, diagram.getUniverse().getCurTime());
-            return true;
+            TrackBase track = trackManager.getTrack(styName, AnimationElement.AT_XML);
+            if (track != null)
+            {
+                track.getValue(attrib, diagram.getUniverse().getCurTime());
+                return true;
+            }
         }
 
         //Return if we've found a presentation attribute instead
