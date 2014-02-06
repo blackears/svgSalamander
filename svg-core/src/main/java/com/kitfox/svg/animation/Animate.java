@@ -308,7 +308,7 @@ public class Animate extends AnimateBase implements AnimateColorIface
             float[] coordsFrom = new float[6];
             float[] coordsTo = new float[6];
             
-            for (; !itFrom.isDone(); itFrom.next())
+            for (; !itFrom.isDone(); itFrom.next(), itTo.next())
             {
                 int segFrom = itFrom.currentSegment(coordsFrom);
                 int segTo = itTo.currentSegment(coordsTo);
