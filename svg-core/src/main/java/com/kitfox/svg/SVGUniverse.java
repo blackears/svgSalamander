@@ -54,6 +54,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -624,45 +625,24 @@ public class SVGUniverse implements Serializable
         return null;
     }
 
-//    public static void main(String argv[])
-//    {
-//        try
-//        {
-//            URL url = new URL("svgSalamander", "localhost", -1, "abc.svg",
-//                    new URLStreamHandler()
-//            {
-//                protected URLConnection openConnection(URL u)
-//                {
-//                    return null;
-//                }
-//            }
-//            );
-////            URL url2 = new URL("svgSalamander", "localhost", -1, "abc.svg");
-//            
-//            //Investigate URI resolution
-//            URI uriA, uriB, uriC, uriD, uriE;
-//            
-//            uriA = new URI("svgSalamander", "/names/mySpecialName", null);
-////            uriA = new URI("http://www.kitfox.com/salamander");
-////            uriA = new URI("svgSalamander://mySpecialName/grape");
-//            System.err.println(uriA.toString());
-//            System.err.println(uriA.getScheme());
-//            
-//            uriB = uriA.resolve("#begin");
-//            System.err.println(uriB.toString());
-//            
-//            uriC = uriA.resolve("tree#boing");
-//            System.err.println(uriC.toString());
-//            
-//            uriC = uriA.resolve("../tree#boing");
-//            System.err.println(uriC.toString());
-//        }
-//        catch (Exception e)
-//        {
-//            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
-//                "Could not parse", e);
-//        }
-//    }
+    /**
+     * Get list of uris of all loaded documents and subdocuments.
+     * @return 
+     */
+    public ArrayList getLoadedDocumentURIs()
+    {
+        return new ArrayList(loadedDocs.keySet());
+    }
+    
+    /**
+     * Remove loaded document from cache.
+     * @param uri 
+     */
+    public void removeDocument(URI uri)
+    {
+        loadedDocs.remove(uri);
+    }
+    
     public boolean isVerbose()
     {
         return verbose;
