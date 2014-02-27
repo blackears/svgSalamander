@@ -43,7 +43,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * The root element of an SVG tree.
@@ -261,6 +264,34 @@ public class SVGRoot extends Group
         super.render(g);
         
         g.setTransform(cachedXform);
+    }
+
+    public void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List retVec) throws SVGException
+    {
+        if (viewXform != null)
+        {
+            ltw = new AffineTransform(ltw);
+            ltw.concatenate(viewXform);
+        }
+        
+        super.pick(pickArea, ltw, boundingBox, retVec);
+    }
+    
+    public void pick(Point2D point, boolean boundingBox, List retVec) throws SVGException
+    {
+        Point2D xPoint = new Point2D.Double(point.getX(), point.getY());
+        if (viewXform != null)
+        {
+            try
+            {
+                viewXform.inverseTransform(point, xPoint);
+            } catch (NoninvertibleTransformException ex)
+            {
+                throw new SVGException(ex);
+            }
+        }
+        
+        super.pick(xPoint, boundingBox, retVec);
     }
 
     public Shape getShape()

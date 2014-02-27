@@ -37,12 +37,15 @@
 package com.kitfox.svg.example;
 
 import com.kitfox.svg.SVGDiagram;
-import com.kitfox.svg.SVGRoot;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGUniverse;
+import com.kitfox.svg.ShapeElement;
 import com.kitfox.svg.app.beans.SVGPanel;
-import com.kitfox.svg.xml.StyleSheet;
-import com.kitfox.svg.xml.StyleSheetRule;
 import java.awt.BorderLayout;
+import java.awt.geom.Point2D;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,7 +67,8 @@ public class SimpleIconFrame extends javax.swing.JFrame
         panel.setAutosize(SVGPanel.AUTOSIZE_NONE);
         
         try {
-            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("bug-31-path.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("100x100-mm.svg").toURI());
@@ -99,6 +103,13 @@ public class SimpleIconFrame extends javax.swing.JFrame
             Logger.getLogger(SimpleIconFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        panel.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
+                panelMousePressed(evt);
+            }
+        });
         
         setSize(640, 480);
     }
@@ -110,13 +121,41 @@ public class SimpleIconFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void panelMousePressed(java.awt.event.MouseEvent evt)                                  
+    {                                      
+        SVGUniverse uni = panel.getSvgUniverse();
+        SVGDiagram dia = uni.getDiagram(panel.getSvgURI());
+        
+        ArrayList result = new ArrayList();
+        try
+        {
+            dia.pick(new Point2D.Float(evt.getX(), evt.getY()), result);
+
+            System.out.println("---");
+            for (int i = 0; i < result.size(); ++i)
+            {
+                List path = (List)result.get(i);
+
+                ShapeElement ele = (ShapeElement)path.get(path.size() - 1);
+//                    ele.getParent().removeChild(ele);
+                repaint();
+                System.out.println(ele.getId());
+            }
+        }
+        catch (SVGException ex)
+        {
+            Logger.getLogger(SimpleIconFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }                                 
+    
     /**
     * @param args the command line arguments
     */
