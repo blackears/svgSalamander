@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" contentScriptType="text/ecmascript" width="100%" baseProfile="basic" zoomAndPan="magnify" contentStyleType="text/css" viewBox="0 0 800 331" height="100%" preserveAspectRatio="xMidYMid meet" xml:space="preserve" version="1.1">
+  <defs/>
+  <g id="Background">
+    <rect width="800" fill="#000000" x="0" height="331" y="0" style="fill:#000000"/>
+  </g>
+  <g id="Timestamp">
+    <text style="fill:white;stroke:white;font-weight:normal;font-size:25;font-family:arial;" x="5" y="30">17:15</text>
+  </g>
+  <g id="Foreground"/>
+  <g id="Water"/>
+  <g id="Mark1"/>
+  <g id="RoadSign"/>
+  <g id="Road">
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R13">
+      <line x1="586.2019" links="42532040207" x2="619.0701" y1="213.0561" style="stroke:yellow" y2="180.1879" id="42532040207"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R12">
+      <line x1="234.7649" links="42521740183" x2="273.4321" y1="259.1969" style="stroke:red" y2="297.8641" id="42521740183"/>
+      <line x1="272.0179" links="42521740184" x2="296.7751" y1="296.4499" style="stroke:lime" y2="321.2071" id="42521740184"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R11">
+      <line x1="554.455" links="42532030248" x2="619.363" y1="184.395" style="stroke:lime" y2="184.395" id="42532030248"/>
+      <line x1="617.363" links="42532030249" x2="639.596" y1="184.395" style="stroke:lime" y2="184.395" id="42532030249"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R11">
+      <line x1="639.596" links="42532030252" x2="617.363" y1="177.395" style="stroke:red" y2="177.395" id="42532030252"/>
+      <line x1="619.363" links="42532030252" x2="554.455" y1="177.395" style="stroke:red" y2="177.395" id="42532030252"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R11_CL">
+      <polyline points="555.455,180.895 555.455,180.895 618.363,180.895 638.596,180.895 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R10">
+      <line x1="590.409" links="42531040042" x2="590.409" y1="247.437" style="stroke:lime" y2="237.6961" id="42531040042"/>
+      <line x1="590.409" links="42531040043" x2="590.409" y1="238.6961" style="stroke:lime" y2="222.4458" id="42531040043"/>
+      <line x1="590.409" links="42532040364" x2="590.409" y1="223.4458" style="stroke:lime" y2="209.8993" id="42532040364"/>
+      <line x1="591.1161" links="42532040365" x2="558.2479" y1="211.6064" style="stroke:yellow" y2="178.7382" id="42532040365"/>
+      <line x1="558.955" links="42532040002" x2="558.955" y1="180.4453" style="stroke:yellow" y2="109.289" id="42532040002"/>
+      <line x1="558.955" links="42532040003" x2="558.955" y1="111.289" style="stroke:lime" y2="29.3935" id="42532040003"/>
+      <line x1="558.955" links="42532040004" x2="558.955" y1="31.3935" style="stroke:lime" y2="9.9052" id="42532040004"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R10">
+      <line x1="551.955" links="42532040007" x2="551.955" y1="9.9052" style="stroke:lime" y2="31.3935" id="42532040007"/>
+      <line x1="551.955" links="42532040008" x2="551.955" y1="29.3935" style="stroke:lime" y2="111.289" id="42532040008"/>
+      <line x1="551.955" links="42532040009" x2="551.955" y1="109.289" style="stroke:yellow" y2="183.3447" id="42532040009"/>
+      <line x1="551.2479" links="42532040366" x2="584.1161" y1="181.6376" style="stroke:lime" y2="214.5058" id="42532040366"/>
+      <line x1="583.409" links="42532040367" x2="583.409" y1="212.7987" style="stroke:lime" y2="227.9365" id="42532040367"/>
+      <line x1="583.409" links="42531040044" x2="583.409" y1="226.9365" style="stroke:lime" y2="243.1937" id="42531040044"/>
+      <line x1="583.409" links="42531040045" x2="583.409" y1="242.1937" style="stroke:lime" y2="247.437" id="42531040045"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R10_CL">
+      <polyline points="586.909,246.437 586.909,246.437 586.909,212.349 586.909,212.349 555.455,180.895 555.455,180.895 555.455,110.289 555.455,30.3935 555.455,10.9052 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R9">
+      <line x1="302.6808" links="42522740364" x2="392.7141" y1="201.065" style="stroke:lime" y2="111.0317" id="42522740364"/>
+      <line x1="392.007" links="42522740365" x2="392.007" y1="112.7388" style="stroke:yellow" y2="29.3935" id="42522740365"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R9">
+      <line x1="385.007" links="42522740366" x2="385.007" y1="29.3935" style="stroke:lime" y2="109.8392" id="42522740366"/>
+      <line x1="385.7141" links="42522740367" x2="297.731" y1="108.1321" style="stroke:yellow" y2="196.1152" id="42522740367"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R9_CL">
+      <polyline points="300.913,197.883 300.913,197.883 388.507,110.289 388.507,110.289 388.507,30.3935 388.507,30.3935 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R8">
+      <line x1="607.138" links="42531040122" x2="557.0854" y1="293.657" style="stroke:lime" y2="293.657" id="42531040122"/>
+      <line x1="558.0854" links="42521740131" x2="457.069" y1="293.657" style="stroke:lime" y2="293.657" id="42521740131"/>
+      <line x1="459.069" links="42521740187" x2="271.725" y1="293.657" style="stroke:lime" y2="293.657" id="42521740187"/>
+      <line x1="273.725" links="42521740188" x2="234.472" y1="293.657" style="stroke:lime" y2="293.657" id="42521740188"/>
+      <polyline id="42521740133" style="stroke:lime" links="42521740133" points="236.472,293.657 188.162,293.657 188.162,240.415 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R8">
+      <polyline id="42521740128" style="stroke:lime" links="42521740128" points="181.162,240.415 181.162,300.657 236.472,300.657 "/>
+      <line x1="234.472" links="42521740185" x2="273.725" y1="300.657" style="stroke:red" y2="300.657" id="42521740185"/>
+      <line x1="271.725" links="42521740186" x2="459.069" y1="300.657" style="stroke:lime" y2="300.657" id="42521740186"/>
+      <line x1="457.069" links="42521740130" x2="559.846" y1="300.657" style="stroke:lime" y2="300.657" id="42521740130"/>
+      <line x1="558.846" links="42531040121" x2="607.138" y1="300.657" style="stroke:lime" y2="300.657" id="42531040121"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R8_CL">
+      <polyline points="606.138,297.157 606.138,297.157 458.069,297.157 272.725,297.157 235.472,297.157 184.662,297.157 184.662,241.415 184.662,241.415 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R7">
+      <line x1="609.638" links="42531040123" x2="609.638" y1="321.095" style="stroke:lime" y2="296.157" id="42531040123"/>
+      <line x1="609.638" links="42531040124" x2="609.638" y1="298.157" style="stroke:yellow" y2="264.666" id="42531040124"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R7">
+      <line x1="602.638" links="42531040125" x2="602.638" y1="264.666" style="stroke:lime" y2="298.157" id="42531040125"/>
+      <line x1="602.638" links="42531040126" x2="602.638" y1="296.157" style="stroke:lime" y2="321.095" id="42531040126"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R7_CL">
+      <polyline points="606.138,320.095 606.138,297.157 606.138,265.666 606.138,265.666 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R6">
+      <line x1="160.404" links="42521740122" x2="185.662" y1="244.915" style="stroke:lime" y2="244.915" id="42521740122"/>
+      <line x1="183.662" links="42521740123" x2="236.472" y1="244.915" style="stroke:lime" y2="244.915" id="42521740123"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R6">
+      <line x1="236.472" links="42521740272" x2="183.662" y1="237.915" style="stroke:lime" y2="237.915" id="42521740272"/>
+      <line x1="185.662" links="42521740272" x2="160.404" y1="237.915" style="stroke:lime" y2="237.915" id="42521740272"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R6_CL">
+      <polyline points="161.404,241.415 184.662,241.415 235.472,241.415 235.472,241.415 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R5">
+      <line x1="160.404" links="42522740273" x2="236.472" y1="201.383" style="stroke:yellow" y2="201.383" id="42522740273"/>
+      <line x1="234.472" links="42522740275,42522740276" x2="301.913" y1="201.383" style="stroke:yellow" y2="201.383" id="42522740276"/>
+      <line x1="299.913" links="42522740276" x2="459.069" y1="201.383" style="stroke:yellow" y2="201.383" id="42522740276"/>
+      <polyline id="42522740278" style="stroke:lime" links="42522740277,42522740278" points="457.069,201.383 536.9053,201.383 540.1241,204.6019 "/>
+      <line x1="539.4171" links="42521740091,42531040048" x2="574.3394" y1="203.8948" style="stroke:lime" y2="238.8172" id="42531040048"/>
+      <line x1="573.6323" links="42531040049" x2="585.1412" y1="238.1101" style="stroke:lime" y2="249.619" id="42531040049"/>
+      <line x1="583.7271" links="42531040050" x2="604.3702" y1="248.2048" style="stroke:lime" y2="268.848" id="42531040050"/>
+      <line x1="602.9561" links="42531040138" x2="630.6793" y1="267.4338" style="stroke:lime" y2="295.157" id="42531040138"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R5">
+      <line x1="635.629" links="42531040059" x2="607.9058" y1="290.2072" style="stroke:lime" y2="262.484" id="42531040059"/>
+      <line x1="609.3199" links="42531040060" x2="588.6768" y1="263.8982" style="stroke:yellow" y2="243.255" id="42531040060"/>
+      <line x1="590.0909" links="42531040061" x2="579.1707" y1="244.6692" style="stroke:lime" y2="233.749" id="42531040061"/>
+      <line x1="579.8778" links="42531040062" x2="543.7881" y1="234.4561" style="stroke:lime" y2="198.3665" id="42531040062"/>
+      <polyline id="42522740580" style="stroke:yellow" links="42532040074,42522740580" points="544.4952,199.0736 539.8047,194.383 458.4299,194.383 "/>
+      <line x1="459.4299" links="42522740581" x2="457.069" y1="194.383" style="stroke:yellow" y2="194.383" id="42522740581"/>
+      <line x1="459.069" links="42522740282" x2="450.0198" y1="194.383" style="stroke:yellow" y2="194.383" id="42522740282"/>
+      <line x1="451.0198" links="42522740283" x2="299.913" y1="194.383" style="stroke:yellow" y2="194.383" id="42522740283"/>
+      <line x1="301.913" links="42522740480" x2="293.727" y1="194.383" style="stroke:red" y2="194.383" id="42522740480"/>
+      <line x1="294.727" links="42522740284" x2="249.4253" y1="194.383" style="stroke:red" y2="194.383" id="42522740284"/>
+      <line x1="250.4253" links="42522740285" x2="234.472" y1="194.383" style="stroke:lime" y2="194.383" id="42522740285"/>
+      <line x1="236.472" links="42522740287" x2="160.404" y1="194.383" style="stroke:lime" y2="194.383" id="42522740287"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R5_CL">
+      <polyline points="161.404,197.883 235.472,197.883 300.913,197.883 458.069,197.883 538.355,197.883 586.909,246.437 606.138,265.666 632.447,291.975 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R4">
+      <line x1="461.569" links="42521730145" x2="461.569" y1="321.095" style="stroke:lime" y2="296.157" id="42521730145"/>
+      <line x1="461.569" links="42521730146" x2="461.569" y1="298.157" style="stroke:yellow" y2="253.9029" id="42521730146"/>
+      <line x1="461.569" links="42521730047,42522730095" x2="461.569" y1="254.9029" style="stroke:lime" y2="196.883" id="42522730095"/>
+      <line x1="461.569" links="42522730096" x2="461.569" y1="198.883" style="stroke:red" y2="109.289" id="42522730096"/>
+      <line x1="461.569" links="42522730097" x2="461.569" y1="111.289" style="stroke:lime" y2="29.3935" id="42522730097"/>
+      <line x1="461.569" links="42522730098" x2="461.569" y1="31.3935" style="stroke:lime" y2="9.905206" id="42522730098"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R4">
+      <line x1="454.569" links="42522730105" x2="454.569" y1="9.905194" style="stroke:lime" y2="31.3935" id="42522730105"/>
+      <line x1="454.569" links="42522730106" x2="454.569" y1="29.3935" style="stroke:lime" y2="111.289" id="42522730106"/>
+      <line x1="454.569" links="42522730107" x2="454.569" y1="109.289" style="stroke:lime" y2="198.883" id="42522730107"/>
+      <line x1="454.569" links="42522730108" x2="454.569" y1="196.883" style="stroke:lime" y2="256.6667" id="42522730108"/>
+      <line x1="454.569" links="42521730048,42521730147" x2="454.569" y1="255.6667" style="stroke:yellow" y2="298.157" id="42521730147"/>
+      <line x1="454.569" links="42521730148" x2="454.569" y1="296.157" style="stroke:red" y2="321.095" id="42521730148"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R4_CL">
+      <polyline points="458.069,320.095 458.069,297.157 458.069,197.883 458.069,110.289 458.069,30.3935 458.069,10.9052 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R3">
+      <line x1="238.972" links="42521730131" x2="238.972" y1="321.095" style="stroke:red" y2="296.157" id="42521730131"/>
+      <line x1="238.972" links="42521730168" x2="238.972" y1="298.157" style="stroke:yellow" y2="258.904" id="42521730168"/>
+      <line x1="238.972" links="42521730169" x2="238.972" y1="260.904" style="stroke:yellow" y2="240.415" id="42521730169"/>
+      <line x1="238.972" links="42521730029,42522730053" x2="238.972" y1="242.415" style="stroke:lime" y2="222.4297" id="42522730053"/>
+      <line x1="238.972" links="42522730054" x2="238.972" y1="223.4297" style="stroke:lime" y2="196.883" id="42522730054"/>
+      <line x1="238.972" links="42522730191" x2="238.972" y1="198.883" style="stroke:yellow" y2="119.0452" id="42522730191"/>
+      <line x1="238.972" links="42522730192" x2="238.972" y1="120.0452" style="stroke:yellow" y2="109.289" id="42522730192"/>
+      <line x1="238.972" links="42522730193" x2="238.972" y1="111.289" style="stroke:yellow" y2="98.95211" id="42522730193"/>
+      <line x1="238.972" links="42522730194" x2="238.972" y1="99.95211" style="stroke:red" y2="29.3935" id="42522730194"/>
+      <line x1="238.972" links="42522730057" x2="238.972" y1="31.3935" style="stroke:red" y2="9.905203" id="42522730057"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R3">
+      <line x1="231.972" links="42522730203" x2="231.972" y1="9.905197" style="stroke:red" y2="31.3935" id="42522730203"/>
+      <line x1="231.972" links="42522730204" x2="231.972" y1="29.3935" style="stroke:red" y2="96.86342" id="42522730204"/>
+      <line x1="231.972" links="42522730205" x2="231.972" y1="95.86342" style="stroke:red" y2="111.289" id="42522730205"/>
+      <line x1="231.972" links="42522730206,42522730207" x2="231.972" y1="109.289" style="stroke:lime" y2="198.883" id="42522730207"/>
+      <line x1="231.972" links="42522730077" x2="231.972" y1="196.883" style="stroke:lime" y2="224.5185" id="42522730077"/>
+      <line x1="231.972" links="42522730078" x2="231.972" y1="223.5185" style="stroke:lime" y2="240.0732" id="42522730078"/>
+      <line x1="231.972" links="42521730030" x2="231.972" y1="239.0732" style="stroke:yellow" y2="242.415" id="42521730030"/>
+      <line x1="231.972" links="42521730206" x2="231.972" y1="240.415" style="stroke:yellow" y2="260.904" id="42521730206"/>
+      <line x1="231.972" links="42521730207" x2="231.972" y1="258.904" style="stroke:yellow" y2="298.157" id="42521730207"/>
+      <line x1="231.972" links="42521730134" x2="231.972" y1="296.157" style="stroke:" y2="321.095" id="42521730134"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R3_CL">
+      <polyline points="235.472,320.095 235.472,297.157 235.472,259.904 235.472,241.415 235.472,197.883 235.472,110.289 235.472,30.3935 235.472,10.9052 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R2">
+      <line x1="160.404" links="42522740291" x2="236.472" y1="113.789" style="stroke:lime" y2="113.789" id="42522740291"/>
+      <line x1="234.472" links="42522740295" x2="244.1013" y1="113.789" style="stroke:lime" y2="113.789" id="42522740295"/>
+      <line x1="243.1013" links="42522740296" x2="284.295" y1="113.789" style="stroke:lime" y2="113.789" id="42522740296"/>
+      <line x1="283.295" links="42522740478" x2="389.507" y1="113.789" style="stroke:red" y2="113.789" id="42522740478"/>
+      <line x1="387.507" links="42522740478" x2="454.9229" y1="113.789" style="stroke:red" y2="113.789" id="42522740478"/>
+      <line x1="453.9229" links="42522740479" x2="459.069" y1="113.789" style="stroke:red" y2="113.789" id="42522740479"/>
+      <line x1="457.069" links="42522740128" x2="531.6618" y1="113.789" style="stroke:lime" y2="113.789" id="42522740128"/>
+      <line x1="530.6618" links="42532040079" x2="556.455" y1="113.789" style="stroke:yellow" y2="113.789" id="42532040079"/>
+      <line x1="554.455" links="42532040080" x2="639.596" y1="113.789" style="stroke:yellow" y2="113.789" id="42532040080"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R2">
+      <line x1="639.596" links="42532040081" x2="554.455" y1="106.789" style="stroke:lime" y2="106.789" id="42532040081"/>
+      <line x1="556.455" links="42532040082" x2="528.9438" y1="106.789" style="stroke:lime" y2="106.789" id="42532040082"/>
+      <line x1="529.9438" links="42522740129" x2="457.069" y1="106.789" style="stroke:yellow" y2="106.789" id="42522740129"/>
+      <line x1="459.069" links="42522740298,42522740299" x2="387.507" y1="106.789" style="stroke:lime" y2="106.789" id="42522740299"/>
+      <line x1="389.507" links="42522740299" x2="282.146" y1="106.789" style="stroke:lime" y2="106.789" id="42522740299"/>
+      <line x1="283.146" links="42522740300" x2="239.7488" y1="106.789" style="stroke:lime" y2="106.789" id="42522740300"/>
+      <line x1="240.7488" links="42522740301" x2="234.472" y1="106.789" style="stroke:yellow" y2="106.789" id="42522740301"/>
+      <line x1="236.472" links="42522740305" x2="160.404" y1="106.789" style="stroke:yellow" y2="106.789" id="42522740305"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R2_CL">
+      <polyline points="161.404,110.289 235.472,110.289 388.507,110.289 458.069,110.289 555.455,110.289 638.596,110.289 "/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R1">
+      <line x1="160.404" links="42522730280" x2="236.472" y1="33.8935" style="stroke:yellow" y2="33.8935" id="42522730280"/>
+      <line x1="234.472" links="42522730281" x2="389.507" y1="33.8935" style="stroke:yellow" y2="33.8935" id="42522730281"/>
+      <line x1="387.507" links="42522730282" x2="459.069" y1="33.8935" style="stroke:red" y2="33.8935" id="42522730282"/>
+      <line x1="457.069" links="42522730283" x2="508.1836" y1="33.8935" style="stroke:red" y2="33.8935" id="42522730283"/>
+      <line x1="507.1836" links="42532030258" x2="556.455" y1="33.8935" style="stroke:red" y2="33.8935" id="42532030258"/>
+      <line x1="554.455" links="42532030259" x2="639.596" y1="33.8935" style="stroke:red" y2="33.8935" id="42532030259"/>
+    </g>
+    <g style="stroke-width:5;stroke:lime;fill:none;" name="0731_105_002_R1">
+      <line x1="639.596" links="42532030284" x2="554.455" y1="26.8935" style="stroke:red" y2="26.8935" id="42532030284"/>
+      <line x1="556.455" links="42532030285" x2="506.5014" y1="26.8935" style="stroke:lime" y2="26.8935" id="42532030285"/>
+      <line x1="507.5014" links="42522730284" x2="457.069" y1="26.8935" style="stroke:red" y2="26.8935" id="42522730284"/>
+      <line x1="459.069" links="42522730285" x2="387.507" y1="26.8935" style="stroke:yellow" y2="26.8935" id="42522730285"/>
+      <line x1="389.507" links="42522730286" x2="234.472" y1="26.8935" style="stroke:red" y2="26.8935" id="42522730286"/>
+      <line x1="236.472" links="42522730287" x2="160.404" y1="26.8935" style="stroke:yellow" y2="26.8935" id="42522730287"/>
+    </g>
+    <g style="stroke-width:2;stroke:black;fill:none;" name="0731_105_002_R1_CL">
+      <polyline points="161.404,30.3935 235.472,30.3935 388.507,30.3935 458.069,30.3935 555.455,30.3935 638.596,30.3935 "/>
+    </g>
+  </g>
+  <g id="Text">
+    <g transform="matrix(0.97975 0 0 1 -38.5914 20.3733)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">劳</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">动</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">西</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="467.522" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -123.353 -67.2325)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">城</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">南</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">中</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="467.522" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -51.38 -146.625)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">人</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">民</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">中</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="467.522" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -65.7428 118.896)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">黄</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">土</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">岭</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="467.522" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -229.042 64.9739)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">南</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">湖</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -63.8887 -27.0461)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -185.035 -32.502)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">芙</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -185.14 -13.6633)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">蓉</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -184.935 5.2803)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">中</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -184.9 24.3255)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 75.6916 -32.3418)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">韶</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 75.9672 -13.8236)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">山</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 75.1837 5.1984)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">北</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 75.1437 24.3255)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 135.19 -32.6623)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">曙</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 135.345 -13.7025)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">光</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 136.012 5.2803)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">中</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 134.993 24.3255)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 177.557 4.2915)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">桂</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">花</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 96.8727 119.538)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">砂</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="422.507" y="165.5">子</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="445.014" y="165.5">塘</text>
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="467.522" y="165.5">路</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -84.1953 -6.2557)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">园</text>
+    </g>
+    <g transform="matrix(0.97975 0 0 1 -104.5 14.3978)">
+      <text style="fill:white;font-size:20;font-family:黑体;font-weight:normal;" x="400" y="165.5">梓</text>
+    </g>
+  </g>
+  <g id="Point"/>
+  <g id="Mark">
+    <g id="Mark_1">
+      <polygon fill="white" stroke-width="0.0762" points="253.807,268.529 267.906,282.629 267.906,272.166 265.291,274.782 256.384,265.952 " stroke="white"/>
+    </g>
+    <g id="Mark_2">
+      <polygon fill="white" stroke-width="0.0762" points="600.542,208.235 614.641,194.135 614.641,204.597 612.025,201.982 603.118,210.812 " stroke="white"/>
+    </g>
+  </g>
+  <g id="Shadow"/>
+</svg>

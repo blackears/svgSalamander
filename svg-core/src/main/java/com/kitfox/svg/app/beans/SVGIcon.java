@@ -53,7 +53,7 @@ public class SVGIcon implements Icon
 
     public static final String PROP_AUTOSIZE = "PROP_AUTOSIZE";
     
-    private PropertyChangeSupport changes = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport changes = new PropertyChangeSupport(this);
     
     SVGUniverse svgUniverse = SVGCache.getSVGUniverse();
     public static final int INTERP_NEAREST_NEIGHBOR = 0;
@@ -64,7 +64,6 @@ public class SVGIcon implements Icon
     private int interpolation = INTERP_NEAREST_NEIGHBOR;
     private boolean clipToViewbox;
     
-//    private String svgPath;
     URI svgURI;
     
 //    private boolean scaleToFit;
@@ -77,7 +76,6 @@ public class SVGIcon implements Icon
     public static final int AUTOSIZE_STRETCH = 4;
     private int autosize = AUTOSIZE_NONE;
     
-//    Dimension preferredSize = new Dimension(100, 100);
     Dimension preferredSize;
     
     /** Creates a new instance of SVGIcon */
@@ -182,7 +180,6 @@ public class SVGIcon implements Icon
         {
             g.setClip(new Rectangle2D.Float(0, 0, diagram.getWidth(), diagram.getHeight()));
         }
-        
         
         
         if (autosize == AUTOSIZE_NONE)
