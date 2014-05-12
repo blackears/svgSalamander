@@ -1,0 +1,19 @@
+<svg>
+
+    <defs>
+    </defs>
+
+        <clipPath id="clipStuff">
+            <rect x="50" y="50" width="100" height="100"/>
+        </clipPath>
+
+    <g clip-path="url(#clipStuff)">
+
+        <circle cx="40" cy="60" r="30" style="stroke:black; fill:yellow"/>
+
+    </g>
+
+    <!-- Insert here other shapes -->
+    <circle cx="110" cy="60" r="30" style="stroke:black; fill:purple"/>
+
+</svg>
