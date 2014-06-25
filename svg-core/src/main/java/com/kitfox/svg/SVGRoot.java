@@ -241,22 +241,43 @@ public class SVGRoot extends Group
 
         clipRect.setRect(xx, yy, ww, hh);
 
+//        if (viewBox == null)
+//        {
+//            viewXform.setToIdentity();
+//        }
+//        else
+//        {
+//            //If viewport window is set, we are drawing to entire viewport
+//            clipRect.setRect(deviceViewport);
+//            
+//            viewXform.setToIdentity();
+//            viewXform.setToTranslation(deviceViewport.x, deviceViewport.y);
+//            viewXform.scale(deviceViewport.width, deviceViewport.height);
+//            viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
+//            viewXform.translate(-viewBox.x, -viewBox.y);
+//        }
+    }
+
+    public void render(Graphics2D g) throws SVGException
+    {
+        prepareViewport();
+
         if (viewBox == null)
         {
             viewXform.setToIdentity();
         }
         else
         {
-            viewXform.setToTranslation(clipRect.x, clipRect.y);
-            viewXform.scale(clipRect.width, clipRect.height);
+            Rectangle deviceViewport = g.getClipBounds();
+            //If viewport window is set, we are drawing to entire viewport
+            clipRect.setRect(deviceViewport);
+            
+            viewXform.setToIdentity();
+            viewXform.setToTranslation(deviceViewport.x, deviceViewport.y);
+            viewXform.scale(deviceViewport.width, deviceViewport.height);
             viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
             viewXform.translate(-viewBox.x, -viewBox.y);
         }
-    }
-
-    public void render(Graphics2D g) throws SVGException
-    {
-        prepareViewport();
         
         AffineTransform cachedXform = g.getTransform();
         g.transform(viewXform);

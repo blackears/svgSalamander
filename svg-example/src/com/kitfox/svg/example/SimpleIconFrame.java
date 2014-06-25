@@ -68,6 +68,7 @@ public class SimpleIconFrame extends javax.swing.JFrame
         
         try {
             panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("viewboxTest.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("issue.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("intro_flash.svg").toURI());
