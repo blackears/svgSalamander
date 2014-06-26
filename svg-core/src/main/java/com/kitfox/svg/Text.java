@@ -208,7 +208,7 @@ public class Text extends ShapeElement
             }
         } else
         {
-            fontWeight = TXWE_BOLD;
+            fontWeight = TXWE_NORMAL;
         }
 
         if (getStyle(sty.setName("text-anchor")))
