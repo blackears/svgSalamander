@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg contentScriptType="text/ecmascript" zoomAndPan="magnify" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" id="svg" version="1.0" width="400" preserveAspectRatio="xMidYMid meet" viewBox="0 0 400 400" height="400" xmlns="http://www.w3.org/2000/svg">
+<rect x="100" y="100" transform="matrix( 1, 0, 0, 1, 0, 0)" width="100" style="fill:#ccccff;" id="rect0" height="100"/>
+</svg>

@@ -258,7 +258,7 @@ public class SVGRoot extends Group
 //        }
     }
 
-    public void render(Graphics2D g) throws SVGException
+    public void renderToViewport(Graphics2D g) throws SVGException
     {
         prepareViewport();
 

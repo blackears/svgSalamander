@@ -67,14 +67,15 @@ public class SimpleIconFrame extends javax.swing.JFrame
         panel.setAutosize(SVGPanel.AUTOSIZE_NONE);
         
         try {
-            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("jt11.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("viewboxTest.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("issue.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("intro_flash.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("clipIssue.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("bug-31-path.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
+            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("100x100-mm.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("gradient.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("map2.svg").toURI());
