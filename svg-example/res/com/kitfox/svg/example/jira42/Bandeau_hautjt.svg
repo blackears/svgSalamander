@@ -1,0 +1,11 @@
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg contentScriptType="text/ecmascript" zoomAndPan="magnify" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" id="svg" version="1.0" width="1920" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1920 130" height="130" xmlns="http://www.w3.org/2000/svg">
+    <rect x="15" y="3" width="519" style="stroke:#000000;fill:#000000;" height="87" id="rect1"/>
+    <line x1="950" x2="1050" y1="25" y2="75" style="stroke:#000000;" id="line0">
+        <animateTransform dur="10s" attributeName="transform" from="0 1000 50" repeatCount="indefinite" type="rotate" to="360 1000 50"/>
+    </line>
+    <circle style="fill:#000000;" r="33" cx="1797" id="circle0" cy="53" />
+    <rect x="0" y="125" width="1920.0" style="fill:#000000;" id="rect0" height="5.0" />
+    <use id="use0" transform="matrix( 0.3149606534604473, 0, 0, 0.5137254901960784, 1054.960623565679, 39.87450985020743)" xlink:show="embed" xlink:type="simple" preserveAspectRatio="none meet" x="270" y="-48" xlink:href="Bandeau_hautjt2.svg#svg" xlink:actuate="onLoad"/>
+</svg>

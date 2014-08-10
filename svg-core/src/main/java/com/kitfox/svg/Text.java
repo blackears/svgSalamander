@@ -41,6 +41,7 @@ import java.awt.Shape;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -415,12 +416,15 @@ public class Text extends ShapeElement
                  */
 
 
-                Tspan tspan = (Tspan) obj;
-                tspan.setCursorX(cursorX);
-                tspan.setCursorY(cursorY);
-                tspan.addShape(textPath);
-                cursorX = tspan.getCursorX();
-                cursorY = tspan.getCursorY();
+                Tspan tspan = (Tspan)obj;
+                Point2D cursor = new Point2D.Float(cursorX, cursorY);
+//                tspan.setCursorX(cursorX);
+//                tspan.setCursorY(cursorY);
+                tspan.appendToShape(textPath, cursor);
+//                cursorX = tspan.getCursorX();
+//                cursorY = tspan.getCursorY();
+                cursorX = (float)cursor.getX();
+                cursorY = (float)cursor.getY();
 
             }
         }

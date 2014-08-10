@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg contentScriptType="text/ecmascript" zoomAndPan="magnify" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     contentStyleType="text/css" id="svg" version="1.0" width="1920" preserveAspectRatio="xMidYMid meet" 
+     height="1080" xmlns="http://www.w3.org/2000/svg">
+    <use id="use0" xlink:show="embed" xlink:type="simple" preserveAspectRatio="none meet" x="0" y="2" xlink:href="Bandeau_hautjt.svg#svg" xlink:actuate="onLoad"/>
+    <use id="use1" xlink:show="embed" xlink:type="simple" preserveAspectRatio="none meet" x="470" y="230" xlink:href="Bandeau_hautjt2.svg#svg" xlink:actuate="onLoad"/>
+</svg>

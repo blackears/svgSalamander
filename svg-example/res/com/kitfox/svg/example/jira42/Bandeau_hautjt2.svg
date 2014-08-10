@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg contentScriptType="text/ecmascript" zoomAndPan="magnify" xmlns:xlink="http://www.w3.org/1999/xlink" 
+     contentStyleType="text/css" id="svg" version="1.0" width="1300" preserveAspectRatio="xMidYMid meet"
+     viewBox="0 0 1300 130" height="130" xmlns="http://www.w3.org/2000/svg">
+    <rect x="15" y="3" width="519" style="stroke:#000000;fill:#000000;" id="rect1" height="87" />
+    <line x1="950" x2="1050" y1="25" y2="75" style="stroke:#000000;" id="line0">
+        <animateTransform dur="10s" from="0 1000 50" attributeName="transform" repeatCount="indefinite" type="rotate" to="360 1000 50"/>
+    </line>
+    <circle style="fill:#000000;" r="33" cx="1237" cy="43" id="circle0" />
+    <rect x="0" y="125" width="500" style="fill:#000000;" height="5.0" id="rect0"/>
+</svg>

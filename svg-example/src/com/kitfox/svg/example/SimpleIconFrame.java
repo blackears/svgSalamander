@@ -67,8 +67,8 @@ public class SimpleIconFrame extends javax.swing.JFrame
         panel.setAutosize(SVGPanel.AUTOSIZE_NONE);
         
         try {
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
-            panel.setSvgURI(SimpleIconFrame.class.getResource("jira40-textAnchor.svg").toURI());
+            panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("jira43-tspanVariableX.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("jt11.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("viewboxTest.svg").toURI());
