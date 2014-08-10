@@ -351,14 +351,14 @@ public class Text extends ShapeElement
             case TXAN_MIDDLE:
             {
                 AffineTransform at = new AffineTransform();
-                at.translate(-textPath.getBounds2D().getWidth() / 2, 0);
+                at.translate(-textPath.getBounds().getWidth() / 2, 0);
                 textPath.transform(at);
                 break;
             }
             case TXAN_END:
             {
                 AffineTransform at = new AffineTransform();
-                at.translate(-textPath.getBounds2D().getWidth(), 0);
+                at.translate(-textPath.getBounds().getWidth(), 0);
                 textPath.transform(at);
                 break;
             }
@@ -389,7 +389,8 @@ public class Text extends ShapeElement
 
             if (obj instanceof String)
             {
-                String text = (String) obj;
+                String text = (String)obj;
+                text = text.trim();
 
                 Shape textShape = font.createGlyphVector(frc, text).getOutline(cursorX, cursorY);
                 textPath.append(textShape, false);
@@ -429,14 +430,14 @@ public class Text extends ShapeElement
             case TXAN_MIDDLE:
             {
                 AffineTransform at = new AffineTransform();
-                at.translate(-textPath.getBounds2D().getWidth() / 2, 0);
+                at.translate(-textPath.getBounds().getWidth() / 2, 0);
                 textPath.transform(at);
                 break;
             }
             case TXAN_END:
             {
                 AffineTransform at = new AffineTransform();
-                at.translate(-textPath.getBounds2D().getWidth(), 0);
+                at.translate(-Math.ceil(textPath.getBounds().getWidth()), 0);
                 textPath.transform(at);
                 break;
             }

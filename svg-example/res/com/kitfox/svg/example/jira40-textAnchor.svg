@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+
+<svg contentScriptType="text/ecmascript" zoomAndPan="magnify" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" id="svg" version="1.0" width="500" preserveAspectRatio="xMidYMid meet" 
+     height="150" xmlns="http://www.w3.org/2000/svg">
+    <line x1="250" x2="250" y1="10" y2="100" style="stroke:#000000;fill:#000000;" id="line0" />
+    <text x="250" y="15" style="fill:#000000;font-size:12pt;text-anchor:start;" id="text1" >
+        123456789
+    </text>
+    <text x="250" y="45" style="fill:#000000;font-size:12pt;text-anchor:middle;" id="text2" >
+        123456789
+    </text>
+    <text x="250" y="75" style="fill:#000000;font-size:12pt;text-anchor:end;" id="text3" >
+        123456789
+    </text>
+</svg>
