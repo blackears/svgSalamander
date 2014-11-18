@@ -195,6 +195,8 @@ public class Marker extends Group
     {
         boolean changeState = super.updateTime(curTime);
 
+        build();
+        
         //Marker properties do not change
         return changeState;
     }
