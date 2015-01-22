@@ -213,7 +213,7 @@ public class ImageSVG extends RenderableElement
 
         if (getStyle(styleAttrib.setName("display")))
         {
-            if (!styleAttrib.getStringValue().equals("none"))
+            if (styleAttrib.getStringValue().equals("none"))
             {
                 return;
             }

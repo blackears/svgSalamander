@@ -153,7 +153,7 @@ public class Group extends ShapeElement
 
         if (getStyle(styleAttrib.setName("display")))
         {
-            if (!styleAttrib.getStringValue().equals("none"))
+            if (styleAttrib.getStringValue().equals("none"))
             {
                 return;
             }
