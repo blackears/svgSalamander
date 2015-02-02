@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="210mm" height="270mm">
+<text x="1cm" y="7.6cm" font-family="Arial" font-size="10" font-weight="normal" textLength="12cm">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum 
+	</text>
+        
+        
+        <g style="font-size: 14pt;">
+<path d="M 20 10 20 70 M 220 10 220 70" style="stroke: gray;"/>
+<text x="20" y="30" 
+    textLength="200" lengthAdjust="spacing">Two words</text>
+<text x="20" y="60" 
+    textLength="200" lengthAdjust="spacingAndGlyphs">Two words</text>
+    
+<text x="20" y="90">Two words 
+    <tspan style="font-size: 10pt;">(normal length)</tspan></text>
+
+<path d="M 20 100 20 170 M 100 100 100 170" style="stroke: gray;"/>
+<text x="20" y="120" 
+    textLength="80" lengthAdjust="spacing">Two words</text>
+<text x="20" y="160" 
+    textLength="80" lengthAdjust="spacingAndGlyphs">Two words</text>
+</g>
+</svg>
