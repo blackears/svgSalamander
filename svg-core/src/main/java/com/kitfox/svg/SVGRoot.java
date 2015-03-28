@@ -39,9 +39,11 @@ package com.kitfox.svg;
 import com.kitfox.svg.xml.NumberWithUnits;
 import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.StyleSheet;
+import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
@@ -269,7 +271,11 @@ public class SVGRoot extends Group
         else
         {
             Rectangle deviceViewport = g.getClipBounds();
-            //If viewport window is set, we are drawing to entire viewport
+            if (deviceViewport == null)
+            {
+                Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+                deviceViewport = new Rectangle(0, 0, size.width, size.height);
+            }
             clipRect.setRect(deviceViewport);
             
             viewXform.setToIdentity();
