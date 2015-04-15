@@ -64,10 +64,10 @@ public abstract class AnimationElement extends SVGElement
     public static final int AT_XML = 1;
     public static final int AT_AUTO = 2;  //Check CSS first, then XML
 
-    protected TimeBase beginTime;
-    protected TimeBase durTime;
-    protected TimeBase endTime;
-    protected int fillType = FT_AUTO;
+    private TimeBase beginTime;
+    private TimeBase durTime;
+    private TimeBase endTime;
+    private int fillType = FT_AUTO;
 
     /** <a href="http://www.w3.org/TR/smil20/smil-timing.html#adef-fill">More about the <b>fill</b> attribute</a> */
     public static final int FT_REMOVE = 0;
@@ -81,13 +81,13 @@ public abstract class AnimationElement extends SVGElement
     public static final int AD_REPLACE = 0;
     public static final int AD_SUM = 1;
 
-    int additiveType = AD_REPLACE;
+    private int additiveType = AD_REPLACE;
     
     /** Accumlative state */
     public static final int AC_REPLACE = 0;
     public static final int AC_SUM = 1;
 
-    int accumulateType = AC_REPLACE;
+    private int accumulateType = AC_REPLACE;
 
     /** Creates a new instance of AnimateEle */
     public AnimationElement()
@@ -426,5 +426,85 @@ public abstract class AnimationElement extends SVGElement
             if (newVal.equals("sum")) this.accumulateType = AC_SUM;
         }
 
+    }
+
+    /**
+     * @return the beginTime
+     */
+    public TimeBase getBeginTime()
+    {
+        return beginTime;
+    }
+
+    /**
+     * @param beginTime the beginTime to set
+     */
+    public void setBeginTime(TimeBase beginTime)
+    {
+        this.beginTime = beginTime;
+    }
+
+    /**
+     * @return the durTime
+     */
+    public TimeBase getDurTime()
+    {
+        return durTime;
+    }
+
+    /**
+     * @param durTime the durTime to set
+     */
+    public void setDurTime(TimeBase durTime)
+    {
+        this.durTime = durTime;
+    }
+
+    /**
+     * @return the endTime
+     */
+    public TimeBase getEndTime()
+    {
+        return endTime;
+    }
+
+    /**
+     * @param endTime the endTime to set
+     */
+    public void setEndTime(TimeBase endTime)
+    {
+        this.endTime = endTime;
+    }
+
+    /**
+     * @return the fillType
+     */
+    public int getFillType()
+    {
+        return fillType;
+    }
+
+    /**
+     * @param fillType the fillType to set
+     */
+    public void setFillType(int fillType)
+    {
+        this.fillType = fillType;
+    }
+
+    /**
+     * @param additiveType the additiveType to set
+     */
+    public void setAdditiveType(int additiveType)
+    {
+        this.additiveType = additiveType;
+    }
+
+    /**
+     * @param accumulateType the accumulateType to set
+     */
+    public void setAccumulateType(int accumulateType)
+    {
+        this.accumulateType = accumulateType;
     }
 }

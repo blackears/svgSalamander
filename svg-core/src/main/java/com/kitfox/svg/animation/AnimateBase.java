@@ -55,8 +55,8 @@ import org.xml.sax.SAXException;
  */
 abstract public class AnimateBase extends AnimationElement
 {
-    protected double repeatCount = Double.NaN;
-    protected TimeBase repeatDur;
+    private double repeatCount = Double.NaN;
+    private TimeBase repeatDur;
     
     /** Creates a new instance of Animate */
     public AnimateBase()
@@ -146,5 +146,37 @@ abstract public class AnimateBase extends AnimationElement
                 catch (Exception e) { repeatCount = Double.NaN; }
             }
         }
+    }
+
+    /**
+     * @return the repeatCount
+     */
+    public double getRepeatCount()
+    {
+        return repeatCount;
+    }
+
+    /**
+     * @param repeatCount the repeatCount to set
+     */
+    public void setRepeatCount(double repeatCount)
+    {
+        this.repeatCount = repeatCount;
+    }
+
+    /**
+     * @return the repeatDur
+     */
+    public TimeBase getRepeatDur()
+    {
+        return repeatDur;
+    }
+
+    /**
+     * @param repeatDur the repeatDur to set
+     */
+    public void setRepeatDur(TimeBase repeatDur)
+    {
+        this.repeatDur = repeatDur;
     }
 }

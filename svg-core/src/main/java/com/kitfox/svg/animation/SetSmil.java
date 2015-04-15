@@ -55,7 +55,7 @@ public class SetSmil extends AnimationElement
 {
     public static final String TAG_NAME = "set";
     
-    String toValue;
+    private String toValue;
     
     /** Creates a new instance of Set */
     public SetSmil()
@@ -86,5 +86,21 @@ public class SetSmil extends AnimationElement
             String newVal = sty.getStringValue();
             toValue = newVal;
         }
+    }
+
+    /**
+     * @return the toValue
+     */
+    public String getToValue()
+    {
+        return toValue;
+    }
+
+    /**
+     * @param toValue the toValue to set
+     */
+    public void setToValue(String toValue)
+    {
+        this.toValue = toValue;
     }
 }

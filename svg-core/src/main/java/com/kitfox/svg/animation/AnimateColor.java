@@ -56,8 +56,8 @@ public class AnimateColor extends AnimateBase implements AnimateColorIface
     public static final String TAG_NAME = "animateColor";
     
     
-    protected Color fromValue;
-    protected Color toValue;
+    private Color fromValue;
+    private Color toValue;
     
     /** Creates a new instance of Animate */
     public AnimateColor()
@@ -118,5 +118,37 @@ public class AnimateColor extends AnimateBase implements AnimateColorIface
             String strn = sty.getStringValue();
             toValue = ColorTable.parseColor(strn);
         }
+    }
+
+    /**
+     * @return the fromValue
+     */
+    public Color getFromValue()
+    {
+        return fromValue;
+    }
+
+    /**
+     * @param fromValue the fromValue to set
+     */
+    public void setFromValue(Color fromValue)
+    {
+        this.fromValue = fromValue;
+    }
+
+    /**
+     * @return the toValue
+     */
+    public Color getToValue()
+    {
+        return toValue;
+    }
+
+    /**
+     * @param toValue the toValue to set
+     */
+    public void setToValue(Color toValue)
+    {
+        this.toValue = toValue;
     }
 }

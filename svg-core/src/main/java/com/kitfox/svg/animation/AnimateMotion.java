@@ -65,9 +65,9 @@ public class AnimateMotion extends AnimateXform
     
 //    protected double fromValue;
 //    protected double toValue;
-    GeneralPath path;
-    int rotateType = RT_ANGLE;
-    double rotate;  //Static angle to rotate by
+    private GeneralPath path;
+    private int rotateType = RT_ANGLE;
+    private double rotate;  //Static angle to rotate by
     
     public static final int RT_ANGLE = 0;  //Rotate by constant 'rotate' degrees
     public static final int RT_AUTO = 1;  //Rotate to reflect tangent of position on path
@@ -95,7 +95,7 @@ public class AnimateMotion extends AnimateXform
         {
             attribName = "transform";
             attribType = AT_AUTO;
-            additiveType = AD_SUM;
+            setAdditiveType(AD_SUM);
         }
         
 
@@ -295,5 +295,53 @@ public class AnimateMotion extends AnimateXform
         }
         
         buildPath(from, to);
+    }
+
+    /**
+     * @return the path
+     */
+    public GeneralPath getPath()
+    {
+        return path;
+    }
+
+    /**
+     * @param path the path to set
+     */
+    public void setPath(GeneralPath path)
+    {
+        this.path = path;
+    }
+
+    /**
+     * @return the rotateType
+     */
+    public int getRotateType()
+    {
+        return rotateType;
+    }
+
+    /**
+     * @param rotateType the rotateType to set
+     */
+    public void setRotateType(int rotateType)
+    {
+        this.rotateType = rotateType;
+    }
+
+    /**
+     * @return the rotate
+     */
+    public double getRotate()
+    {
+        return rotate;
+    }
+
+    /**
+     * @param rotate the rotate to set
+     */
+    public void setRotate(double rotate)
+    {
+        this.rotate = rotate;
     }
 }

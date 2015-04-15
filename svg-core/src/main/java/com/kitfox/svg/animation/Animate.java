@@ -71,16 +71,16 @@ public class Animate extends AnimateBase implements AnimateColorIface
     public static final int DT_PATH = 2;
     int dataType = DT_REAL;
     
-    protected double fromValue = Double.NaN;
-    protected double toValue = Double.NaN;
-    protected double byValue = Double.NaN;
-    protected double[] valuesValue;
+    private double fromValue = Double.NaN;
+    private double toValue = Double.NaN;
+    private double byValue = Double.NaN;
+    private double[] valuesValue;
     
-    protected Color fromColor = null;
-    protected Color toColor = null;
+    private Color fromColor = null;
+    private Color toColor = null;
 
-    protected GeneralPath fromPath = null;
-    protected GeneralPath toPath = null;
+    private GeneralPath fromPath = null;
+    private GeneralPath toPath = null;
 
     /** Creates a new instance of Animate */
     public Animate()
@@ -449,6 +449,134 @@ public class Animate extends AnimateBase implements AnimateColorIface
             String strn = sty.getStringValue();
             if (strn != null) valuesValue = XMLParseUtil.parseDoubleList(strn);
         }
+    }
+
+    /**
+     * @return the fromValue
+     */
+    public double getFromValue()
+    {
+        return fromValue;
+    }
+
+    /**
+     * @param fromValue the fromValue to set
+     */
+    public void setFromValue(double fromValue)
+    {
+        this.fromValue = fromValue;
+    }
+
+    /**
+     * @return the toValue
+     */
+    public double getToValue()
+    {
+        return toValue;
+    }
+
+    /**
+     * @param toValue the toValue to set
+     */
+    public void setToValue(double toValue)
+    {
+        this.toValue = toValue;
+    }
+
+    /**
+     * @return the byValue
+     */
+    public double getByValue()
+    {
+        return byValue;
+    }
+
+    /**
+     * @param byValue the byValue to set
+     */
+    public void setByValue(double byValue)
+    {
+        this.byValue = byValue;
+    }
+
+    /**
+     * @return the valuesValue
+     */
+    public double[] getValuesValue()
+    {
+        return valuesValue;
+    }
+
+    /**
+     * @param valuesValue the valuesValue to set
+     */
+    public void setValuesValue(double[] valuesValue)
+    {
+        this.valuesValue = valuesValue;
+    }
+
+    /**
+     * @return the fromColor
+     */
+    public Color getFromColor()
+    {
+        return fromColor;
+    }
+
+    /**
+     * @param fromColor the fromColor to set
+     */
+    public void setFromColor(Color fromColor)
+    {
+        this.fromColor = fromColor;
+    }
+
+    /**
+     * @return the toColor
+     */
+    public Color getToColor()
+    {
+        return toColor;
+    }
+
+    /**
+     * @param toColor the toColor to set
+     */
+    public void setToColor(Color toColor)
+    {
+        this.toColor = toColor;
+    }
+
+    /**
+     * @return the fromPath
+     */
+    public GeneralPath getFromPath()
+    {
+        return fromPath;
+    }
+
+    /**
+     * @param fromPath the fromPath to set
+     */
+    public void setFromPath(GeneralPath fromPath)
+    {
+        this.fromPath = fromPath;
+    }
+
+    /**
+     * @return the toPath
+     */
+    public GeneralPath getToPath()
+    {
+        return toPath;
+    }
+
+    /**
+     * @param toPath the toPath to set
+     */
+    public void setToPath(GeneralPath toPath)
+    {
+        this.toPath = toPath;
     }
     
 }

@@ -60,13 +60,13 @@ public class AnimateTransform extends AnimateXform
 //    protected AffineTransform toValue;
 //    protected double[] fromValue;  //Transform parameters
 //    protected double[] toValue;
-    protected double[][] values;
-    protected double[] keyTimes;
+    private double[][] values;
+    private double[] keyTimes;
 
     public static final int AT_REPLACE = 0;
     public static final int AT_SUM = 1;
 
-    protected int additive = AT_REPLACE;
+    private int additive = AT_REPLACE;
 
     public static final int TR_TRANSLATE = 0;
     public static final int TR_ROTATE = 1;
@@ -75,7 +75,7 @@ public class AnimateTransform extends AnimateXform
     public static final int TR_SKEWX = 4;
     public static final int TR_INVALID = 5;
 
-    protected int xformType = TR_INVALID;
+    private int xformType = TR_INVALID;
 
     /** Creates a new instance of Animate */
     public AnimateTransform()
@@ -326,5 +326,69 @@ public class AnimateTransform extends AnimateXform
             String strn = sty.getStringValue().toLowerCase();
             if (strn.equals("sum")) this.additive = AT_SUM;
         }
+    }
+
+    /**
+     * @return the values
+     */
+    public double[][] getValues()
+    {
+        return values;
+    }
+
+    /**
+     * @param values the values to set
+     */
+    public void setValues(double[][] values)
+    {
+        this.values = values;
+    }
+
+    /**
+     * @return the keyTimes
+     */
+    public double[] getKeyTimes()
+    {
+        return keyTimes;
+    }
+
+    /**
+     * @param keyTimes the keyTimes to set
+     */
+    public void setKeyTimes(double[] keyTimes)
+    {
+        this.keyTimes = keyTimes;
+    }
+
+    /**
+     * @return the additive
+     */
+    public int getAdditive()
+    {
+        return additive;
+    }
+
+    /**
+     * @param additive the additive to set
+     */
+    public void setAdditive(int additive)
+    {
+        this.additive = additive;
+    }
+
+    /**
+     * @return the xformType
+     */
+    public int getXformType()
+    {
+        return xformType;
+    }
+
+    /**
+     * @param xformType the xformType to set
+     */
+    public void setXformType(int xformType)
+    {
+        this.xformType = xformType;
     }
 }
