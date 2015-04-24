@@ -235,12 +235,12 @@ public class Tspan extends ShapeElement
         }
 
         FontFace fontFace = font.getFontFace();
-        int ascent = fontFace.getAscent();
-        float fontScale = fontSize / (float) ascent;
+//        int ascent = fontFace.getAscent();
+//        float fontScale = fontSize / (float) ascent;
 
         AffineTransform xform = new AffineTransform();
 
-        strokeWidthScalar = 1f / fontScale;
+//        strokeWidthScalar = 1f / fontScale;
 
         float cursorX = (float)cursor.getX();
         float cursorY = (float)cursor.getY();
@@ -270,7 +270,7 @@ public class Tspan extends ShapeElement
             
             xform.setToIdentity();
             xform.setToTranslation(cursorX, cursorY);
-            xform.scale(fontScale, fontScale);
+//            xform.scale(fontScale, fontScale);
             if (rotate != null)
             {
                 xform.rotate(rotate[i]);
@@ -286,7 +286,8 @@ public class Tspan extends ShapeElement
                 addShape.append(path, false);
             }
 
-            cursorX += fontScale * glyph.getHorizAdvX() + letterSpacing;
+//            cursorX += fontScale * glyph.getHorizAdvX() + letterSpacing;
+            cursorX += glyph.getHorizAdvX() + letterSpacing;
         }
 
         //Save final draw point so calling method knows where to begin next

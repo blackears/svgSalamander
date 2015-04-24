@@ -287,8 +287,8 @@ public class Text extends ShapeElement
 
         FontFace fontFace = font.getFontFace();
         //int unitsPerEm = fontFace.getUnitsPerEm();
-        int ascent = fontFace.getAscent();
-        float fontScale = fontSize / (float) ascent;
+//        int ascent = fontFace.getAscent();
+//        float fontScale = fontSize / (float) ascent;
 
 //        AffineTransform oldXform = g.getTransform();
 //        TextBuilder builder = new TextBuilder();
@@ -343,13 +343,13 @@ public class Text extends ShapeElement
                     text = text.trim();
                 }
 
-                strokeWidthScalar = 1f / fontScale;
+//                strokeWidthScalar = 1f / fontScale;
 
                 for (int i = 0; i < text.length(); i++)
                 {
                     xform.setToIdentity();
                     xform.setToTranslation(cursorX, cursorY);
-                    xform.scale(fontScale, fontScale);
+//                    xform.scale(fontScale, fontScale);
 //                    g.transform(xform);
 
                     String unicode = text.substring(i, i + 1);
@@ -363,7 +363,8 @@ public class Text extends ShapeElement
                     }
 //                    else glyph.render(g);
 
-                    cursorX += fontScale * glyph.getHorizAdvX();
+//                    cursorX += fontScale * glyph.getHorizAdvX();
+                    cursorX += glyph.getHorizAdvX();
 
 //                    g.setTransform(oldXform);
                 }

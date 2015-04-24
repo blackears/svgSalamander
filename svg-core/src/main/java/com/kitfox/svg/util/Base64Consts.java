@@ -31,15 +31,18 @@
  * Mark McKay can be contacted at mark@kitfox.com.  Salamander and other
  * projects can be found at http://www.kitfox.com
  *
- * Created on April 24, 2015
+ * Created on July 23, 2007
  */
+
 package com.kitfox.svg.util;
 
 /**
  *
  * @author kitfox
  */
-public class TextBuilder
+public interface Base64Consts
 {
+    final String BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    
     
 }

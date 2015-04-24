@@ -35,7 +35,9 @@
 package com.kitfox.svg.app.data;
 
 import com.kitfox.svg.SVGConst;
+import com.kitfox.svg.util.Base64InputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -69,7 +71,19 @@ public class Handler extends URLStreamHandler
                 content = content.substring(7);
                 try
                 {
-                    buf = new sun.misc.BASE64Decoder().decodeBuffer(content);
+//byte[] buf2 = new sun.misc.BASE64Decoder().decodeBuffer(content);
+//buf = new sun.misc.BASE64Decoder().decodeBuffer(content);
+                    
+                    ByteArrayInputStream bis = new ByteArrayInputStream(content.getBytes());
+                    Base64InputStream b64is = new Base64InputStream(bis);
+                    
+                    ByteArrayOutputStream bout = new ByteArrayOutputStream();
+                    byte[] tmp = new byte[2056];
+                    for (int size = b64is.read(tmp); size != -1; size = b64is.read(tmp))
+                    {
+                        bout.write(tmp, 0, size);
+                    }
+                    buf = bout.toByteArray();
                 }
                 catch (IOException e)
                 {
