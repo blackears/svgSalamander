@@ -11,12 +11,12 @@
 	<!-- TODO Mark: replace with com.kitfox -->
 	<groupId>com.kitfox</groupId>
 	<artifactId>kitfox-svg-salamander</artifactId>
-	<version>1.0.8</version>
+	<version>1.0.39</version>
 	<packaging>jar</packaging>
 
 	<name>${project.artifactId}</name>
 
-	<description>${project.name} SVGSalamander is a popular, small and fast
+	<description>${project.name} SVGSalamander is a light weight
 		SVG renderer and animator for Java.</description>
 
 	<!-- TODO Mark: set actual year -->
@@ -31,9 +31,9 @@
 
 	<!-- TODO Mark: replace with your repo url paths -->
 	<scm>
-		<url>http://svgsalamander.java.net/tags/kitfox-svg-salamander-1.0.8</url>
-		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.8</connection>
-		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.8</developerConnection>
+		<url>http://svgsalamander.java.net/tags/kitfox-svg-salamander-1.0.39</url>
+		<connection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.39</connection>
+		<developerConnection>scm:svn:https://svn.java.net/svn/svgsalamander~svn/tags/kitfox-svg-salamander-1.0.39</developerConnection>
 	</scm>
 
 	<!-- TODO Mark: replace with your license -->
