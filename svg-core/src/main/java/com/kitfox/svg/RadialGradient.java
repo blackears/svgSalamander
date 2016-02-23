@@ -52,8 +52,9 @@ public class RadialGradient extends Gradient
 
     float cx = 0.5f;
     float cy = 0.5f;
-    float fx = 0.5f;
-    float fy = 0.5f;
+    boolean hasFocus = false;
+    float fx = 0f;
+    float fy = 0f;
     float r = 0.5f;
 
     /**
@@ -84,14 +85,17 @@ public class RadialGradient extends Gradient
             cy = sty.getFloatValueWithUnits();
         }
 
+        hasFocus = false;
         if (getPres(sty.setName("fx")))
         {
             fx = sty.getFloatValueWithUnits();
+            hasFocus = true;
         }
 
         if (getPres(sty.setName("fy")))
         {
             fy = sty.getFloatValueWithUnits();
+            hasFocus = true;
         }
 
         if (getPres(sty.setName("r")))
@@ -119,7 +123,7 @@ public class RadialGradient extends Gradient
 
         Paint paint;
         Point2D.Float pt1 = new Point2D.Float(cx, cy);
-        Point2D.Float pt2 = new Point2D.Float(fx, fy);
+        Point2D.Float pt2 = hasFocus ? new Point2D.Float(fx, fy) : pt1;
         if (gradientUnits == GU_USER_SPACE_ON_USE)
         {
             paint = new com.kitfox.svg.batik.RadialGradientPaint(
