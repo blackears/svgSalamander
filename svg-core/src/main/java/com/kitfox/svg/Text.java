@@ -264,9 +264,18 @@ public class Text extends ShapeElement
 
     protected void buildText() throws SVGException
     {
-
         //Get font
-        Font font = diagram.getUniverse().getFont(fontFamily);
+        String[] families = fontFamily.split(",");
+        Font font = null;
+        for (int i = 0; i < families.length; ++i)
+        {
+            font = diagram.getUniverse().getFont(fontFamily);
+            if (font != null)
+            {
+                break;
+            }
+        }
+        
         if (font == null)
         {
 //            System.err.println("Could not load font");
