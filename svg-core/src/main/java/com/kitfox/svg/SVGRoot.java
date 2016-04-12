@@ -263,6 +263,51 @@ public class SVGRoot extends Group
     public void renderToViewport(Graphics2D g) throws SVGException
     {
         prepareViewport();
+        
+        Rectangle targetViewport = g.getClipBounds();
+//
+//        if (targetViewport == null)
+//        {
+//            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+//            targetViewport = new Rectangle(0, 0, size.width, size.height);
+//        }
+//        clipRect.setRect(targetViewport);
+
+        
+        Rectangle deviceViewport = diagram.getDeviceViewport();
+        if (width != null && height != null)
+        {
+            float xx, yy, ww, hh;
+            
+            xx = (x == null) ? 0 : StyleAttribute.convertUnitsToPixels(x.getUnits(), x.getValue());
+            if (width.getUnits() == NumberWithUnits.UT_PERCENT)
+            {
+                ww = width.getValue() * deviceViewport.width;
+            }
+            else
+            {
+                ww = StyleAttribute.convertUnitsToPixels(width.getUnits(), width.getValue());
+            }
+            
+            yy = (y == null) ? 0 : StyleAttribute.convertUnitsToPixels(y.getUnits(), y.getValue());
+            if (height.getUnits() == NumberWithUnits.UT_PERCENT)
+            {
+                hh = height.getValue() * deviceViewport.height;
+            }
+            else
+            {
+                hh = StyleAttribute.convertUnitsToPixels(height.getUnits(), height.getValue());
+            }
+            
+            targetViewport = new Rectangle((int)xx, (int)yy, (int)ww, (int)hh);
+        }
+        else
+        {
+//            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+//            targetViewport = new Rectangle(0, 0, size.width, size.height);
+            targetViewport = new Rectangle(deviceViewport);
+        }
+        clipRect.setRect(targetViewport);
 
         if (viewBox == null)
         {
@@ -270,17 +315,9 @@ public class SVGRoot extends Group
         }
         else
         {
-            Rectangle deviceViewport = g.getClipBounds();
-            if (deviceViewport == null)
-            {
-                Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-                deviceViewport = new Rectangle(0, 0, size.width, size.height);
-            }
-            clipRect.setRect(deviceViewport);
-            
             viewXform.setToIdentity();
-            viewXform.setToTranslation(deviceViewport.x, deviceViewport.y);
-            viewXform.scale(deviceViewport.width, deviceViewport.height);
+            viewXform.setToTranslation(targetViewport.x, targetViewport.y);
+            viewXform.scale(targetViewport.width, targetViewport.height);
             viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
             viewXform.translate(-viewBox.x, -viewBox.y);
         }
