@@ -27,6 +27,7 @@ Projects using SVG Salamander
 * [Power Line](http://suchanek.name/programs/powerline/index.html) - A slide editor for SVG.
 * [Tygron](http://www.tygron.com/) - Serious games illustrating urban planning and climate change.
 * [NeoLogica](http://www.neologica.it/eng/Home.php) - Medical imaging.
+* [JOSM](https://josm.openstreetmap.de/) - Java OpenStreetMap Editor.
 
 License
 -------
