@@ -36,11 +36,9 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.util.FontSystem;
-import com.kitfox.svg.util.TextBuilder;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
@@ -50,7 +48,6 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//import org.apache.batik.ext.awt.geom.ExtendedGeneralPath;
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
