@@ -36,8 +36,9 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.Color;
+import java.awt.MultipleGradientPaint;
 import java.awt.Paint;
+import java.awt.RadialGradientPaint;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -106,18 +107,18 @@ public class RadialGradient extends Gradient
 
     public Paint getPaint(Rectangle2D bounds, AffineTransform xform)
     {
-        com.kitfox.svg.batik.MultipleGradientPaint.CycleMethodEnum method;
+        MultipleGradientPaint.CycleMethod method;
         switch (spreadMethod)
         {
             default:
             case SM_PAD:
-                method = com.kitfox.svg.batik.MultipleGradientPaint.NO_CYCLE;
+                method = MultipleGradientPaint.CycleMethod.NO_CYCLE;
                 break;
             case SM_REPEAT:
-                method = com.kitfox.svg.batik.MultipleGradientPaint.REPEAT;
+                method = MultipleGradientPaint.CycleMethod.REPEAT;
                 break;
             case SM_REFLECT:
-                method = com.kitfox.svg.batik.MultipleGradientPaint.REFLECT;
+                method = MultipleGradientPaint.CycleMethod.REFLECT;
                 break;
         }
 
@@ -126,14 +127,14 @@ public class RadialGradient extends Gradient
         Point2D.Float pt2 = hasFocus ? new Point2D.Float(fx, fy) : pt1;
         if (gradientUnits == GU_USER_SPACE_ON_USE)
         {
-            paint = new com.kitfox.svg.batik.RadialGradientPaint(
+            paint = new RadialGradientPaint(
                 pt1,
                 r,
                 pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,
-                com.kitfox.svg.batik.MultipleGradientPaint.SRGB,
+                MultipleGradientPaint.ColorSpaceType.SRGB,
                 gradientTransform);
         } else
         {
@@ -143,14 +144,14 @@ public class RadialGradient extends Gradient
 
             viewXform.concatenate(gradientTransform);
 
-            paint = new com.kitfox.svg.batik.RadialGradientPaint(
+            paint = new RadialGradientPaint(
                 pt1,
                 r,
                 pt2,
                 getStopFractions(),
                 getStopColors(),
                 method,
-                com.kitfox.svg.batik.MultipleGradientPaint.SRGB,
+                MultipleGradientPaint.ColorSpaceType.SRGB,
                 viewXform);
         }
 
