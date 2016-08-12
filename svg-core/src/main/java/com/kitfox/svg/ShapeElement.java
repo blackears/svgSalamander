@@ -160,7 +160,11 @@ abstract public class ShapeElement extends RenderableElement
                         SVGElement ele = diagram.getUniverse().getElement(uri);
                         if (ele != null)
                         {
-                            fillPaint = ((FillElement)ele).getPaint(bounds, xform);
+                            try {
+                                fillPaint = ((FillElement)ele).getPaint(bounds, xform);
+                            } catch (IllegalArgumentException e) {
+                                throw new SVGException(e);
+                            }
                         }
                     }
                 }
