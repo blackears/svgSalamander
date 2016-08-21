@@ -51,6 +51,7 @@ abstract public class FeLight extends FilterEffects
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;

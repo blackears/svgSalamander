@@ -113,6 +113,7 @@ public class SVGDisplayPanel extends javax.swing.JPanel implements Scrollable
         diagram.updateTime(curTime);
     }
     
+    @Override
     public void paintComponent(Graphics gg)
     {
         Graphics2D g = (Graphics2D)gg;
@@ -153,6 +154,7 @@ public class SVGDisplayPanel extends javax.swing.JPanel implements Scrollable
 
         addComponentListener(new java.awt.event.ComponentAdapter()
         {
+            @Override
             public void componentResized(java.awt.event.ComponentEvent evt)
             {
                 formComponentResized(evt);

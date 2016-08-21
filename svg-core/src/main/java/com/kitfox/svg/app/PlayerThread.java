@@ -45,7 +45,7 @@ import java.util.*;
  */
 public class PlayerThread implements Runnable
 {
-    HashSet listeners = new HashSet();
+    HashSet<PlayerThreadListener> listeners = new HashSet<PlayerThreadListener>();
     
     double curTime = 0;
     double timeStep = .2;
@@ -129,9 +129,7 @@ public class PlayerThread implements Runnable
     
     private void fireTimeUpdateEvent()
     {
-        for (Iterator it = listeners.iterator(); it.hasNext();)
-        {
-            PlayerThreadListener listener = (PlayerThreadListener)it.next();
+        for (PlayerThreadListener listener : listeners) {
             listener.updateTime(curTime, timeStep, playState);
         }
     }

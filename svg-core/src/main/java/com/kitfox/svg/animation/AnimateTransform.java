@@ -82,11 +82,13 @@ public class AnimateTransform extends AnimateXform
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
     }
 
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -174,6 +176,7 @@ public class AnimateTransform extends AnimateXform
      * Evaluates this animation element for the passed interpolation time.  Interp
      * must be on [0..1].
      */
+    @Override
     public AffineTransform eval(AffineTransform xform, double interp)
     {
         int idx = 0;
@@ -255,6 +258,7 @@ public class AnimateTransform extends AnimateXform
         return xform;
     }
 
+    @Override
     protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
         super.rebuild(animTimeParser);

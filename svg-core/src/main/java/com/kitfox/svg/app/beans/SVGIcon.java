@@ -106,6 +106,7 @@ public class SVGIcon extends ImageIcon
         changes.removePropertyChangeListener(p);
     }
     
+    @Override
     public Image getImage()
     {
         BufferedImage bi = new BufferedImage(getIconWidth(), getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -116,6 +117,7 @@ public class SVGIcon extends ImageIcon
     /**
      * @return height of this icon
      */
+    @Override
     public int getIconHeight()
     {
         if (preferredSize != null &&
@@ -136,6 +138,7 @@ public class SVGIcon extends ImageIcon
     /**
      * @return width of this icon
      */
+    @Override
     public int getIconWidth()
     {
         if (preferredSize != null &&
@@ -160,6 +163,7 @@ public class SVGIcon extends ImageIcon
      * @param x - X coordinate to draw icon
      * @param y - Y coordinate to draw icon
      */
+    @Override
     public void paintIcon(Component comp, Graphics gg, int x, int y)
     {
         //Copy graphics object so that 

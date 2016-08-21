@@ -65,11 +65,13 @@ public class RadialGradient extends Gradient
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
     }
 
+    @Override
     protected void build() throws SVGException
     {
         super.build();
@@ -105,6 +107,7 @@ public class RadialGradient extends Gradient
         }
     }
 
+    @Override
     public Paint getPaint(Rectangle2D bounds, AffineTransform xform)
     {
         MultipleGradientPaint.CycleMethod method;
@@ -165,6 +168,7 @@ public class RadialGradient extends Gradient
      * @return - true if this node has changed state as a result of the time
      * update
      */
+    @Override
     public boolean updateTime(double curTime) throws SVGException
     {
 //        if (trackManager.getNumTracks() == 0) return false;

@@ -52,11 +52,11 @@ import java.util.logging.Logger;
  */
 public class SVGLoader extends DefaultHandler
 {
-    final HashMap nodeClasses = new HashMap();
+    final HashMap<String, Class<?>> nodeClasses = new HashMap<String, Class<?>>();
     //final HashMap attribClasses = new HashMap();
-    final LinkedList buildStack = new LinkedList();
+    final LinkedList<SVGElement> buildStack = new LinkedList<SVGElement>();
 
-    final HashSet ignoreClasses = new HashSet();
+    final HashSet<String> ignoreClasses = new HashSet<String>();
 
     final SVGLoaderHelper helper;
 
@@ -144,6 +144,7 @@ public class SVGLoader extends DefaultHandler
         return sb.toString();
     }
     
+    @Override
     public void startDocument() throws SAXException
     {
 //        System.err.println("Start doc");
@@ -151,11 +152,13 @@ public class SVGLoader extends DefaultHandler
 //        buildStack.clear();
     }
 
+    @Override
     public void endDocument() throws SAXException
     {
 //        System.err.println("End doc");
     }
 
+    @Override
     public void startElement(String namespaceURI, String sName, String qName, Attributes attrs) throws SAXException
     {
         if (verbose)
@@ -192,7 +195,7 @@ public class SVGLoader extends DefaultHandler
 //System.err.println("+" + sName);
 
         try {
-            Class cls = (Class)obj;
+            Class<?> cls = (Class<?>)obj;
             SVGElement svgEle = (SVGElement)cls.newInstance();
 
             SVGElement parent = null;
@@ -210,6 +213,7 @@ public class SVGLoader extends DefaultHandler
 
     }
 
+    @Override
     public void endElement(String namespaceURI, String sName, String qName)
         throws SAXException
     {
@@ -264,6 +268,7 @@ public class SVGLoader extends DefaultHandler
         }
     }
 
+    @Override
     public void characters(char buf[], int offset, int len)
         throws SAXException
     {
@@ -280,6 +285,7 @@ public class SVGLoader extends DefaultHandler
         }
     }
 
+    @Override
     public void processingInstruction(String target, String data)
         throws SAXException
     {

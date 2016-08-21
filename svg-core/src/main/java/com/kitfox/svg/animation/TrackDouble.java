@@ -40,7 +40,6 @@ import com.kitfox.svg.xml.StyleAttribute;
 import java.util.*;
 
 import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
 
 /**
  * A track holds the animation events for a single parameter of a single SVG
@@ -57,6 +56,7 @@ public class TrackDouble extends TrackBase
         super(ele.getParent(), ele);
     }
 
+    @Override
     public boolean getValue(StyleAttribute attrib, double curTime)
     {
         double val = getValue(curTime);
@@ -93,9 +93,8 @@ public class TrackDouble extends TrackBase
         AnimationTimeEval state = new AnimationTimeEval();
 //        boolean pastEnd = true;
 
-        for (Iterator it = animEvents.iterator(); it.hasNext();)
-        {
-            Animate ele = (Animate)it.next();
+        for (AnimationElement animationElement : animEvents) {
+            Animate ele = (Animate)animationElement;
             ele.evalParametric(state, curTime);
 
             //Go to next element if this one does not affect processing

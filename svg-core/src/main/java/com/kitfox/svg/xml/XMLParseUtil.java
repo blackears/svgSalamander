@@ -105,7 +105,7 @@ public class XMLParseUtil
         final Matcher matchWs = Pattern.compile("[^\\s]+").matcher("");
         matchWs.reset(list);
 
-        LinkedList matchList = new LinkedList();
+        LinkedList<String> matchList = new LinkedList<String>();
         while (matchWs.find())
         {
             matchList.add(matchWs.group());
@@ -214,7 +214,7 @@ public class XMLParseUtil
 
         fpMatch.reset(list);
 
-        LinkedList doubList = new LinkedList();
+        LinkedList<Double> doubList = new LinkedList<Double>();
         while (fpMatch.find())
         {
             String val = fpMatch.group(1);
@@ -222,7 +222,7 @@ public class XMLParseUtil
         }
 
         double[] retArr = new double[doubList.size()];
-        Iterator it = doubList.iterator();
+        Iterator<Double> it = doubList.iterator();
         int idx = 0;
         while (it.hasNext())
         {
@@ -279,7 +279,7 @@ public class XMLParseUtil
 
         fpMatch.reset(list);
 
-        LinkedList floatList = new LinkedList();
+        LinkedList<Float> floatList = new LinkedList<Float>();
         while (fpMatch.find())
         {
             String val = fpMatch.group(1);
@@ -287,7 +287,7 @@ public class XMLParseUtil
         }
 
         float[] retArr = new float[floatList.size()];
-        Iterator it = floatList.iterator();
+        Iterator<Float> it = floatList.iterator();
         int idx = 0;
         while (it.hasNext())
         {
@@ -337,7 +337,7 @@ public class XMLParseUtil
 
         intMatch.reset(list);
 
-        LinkedList intList = new LinkedList();
+        LinkedList<Integer> intList = new LinkedList<Integer>();
         while (intMatch.find())
         {
             String val = intMatch.group();
@@ -345,7 +345,7 @@ public class XMLParseUtil
         }
 
         int[] retArr = new int[intList.size()];
-        Iterator it = intList.iterator();
+        Iterator<Integer> it = intList.iterator();
         int idx = 0;
         while (it.hasNext())
         {
@@ -514,7 +514,6 @@ public class XMLParseUtil
     {
         String sval = ele.getAttribute(name);
 
-        URL url;
         try
         {
             return new URL(docRoot, sval);
@@ -528,7 +527,7 @@ public class XMLParseUtil
     /**
      * Returns the first ReadableXMLElement with the given name
      */
-    public static ReadableXMLElement getElement(Class classType, Element root, String name, URL docRoot)
+    public static ReadableXMLElement getElement(Class<?> classType, Element root, String name, URL docRoot)
     {
         if (root == null) return null;
 
@@ -573,7 +572,7 @@ public class XMLParseUtil
      * an attribute of tag 'name' who's string value will be used as the key
      * in the HashMap
      */
-    public static HashMap getElementHashMap(Class classType, Element root, String name, String key, URL docRoot)
+    public static HashMap<String, ReadableXMLElement> getElementHashMap(Class<?> classType, Element root, String name, String key, URL docRoot)
     {
         if (root == null) return null;
 
@@ -583,7 +582,7 @@ public class XMLParseUtil
             return null;
         }
 
-        HashMap retMap = new HashMap();
+        HashMap<String, ReadableXMLElement> retMap = new HashMap<String, ReadableXMLElement>();
 
         NodeList nl = root.getChildNodes();
         int size = nl.getLength();
@@ -615,7 +614,7 @@ public class XMLParseUtil
         return retMap;
     }
 
-    public static HashSet getElementHashSet(Class classType, Element root, String name, URL docRoot)
+    public static HashSet<ReadableXMLElement> getElementHashSet(Class<?> classType, Element root, String name, URL docRoot)
     {
         if (root == null) return null;
 
@@ -625,7 +624,7 @@ public class XMLParseUtil
             return null;
         }
 
-        HashSet retSet = new HashSet();
+        HashSet<ReadableXMLElement> retSet = new HashSet<ReadableXMLElement>();
 
         NodeList nl = root.getChildNodes();
         int size = nl.getLength();
@@ -660,7 +659,7 @@ public class XMLParseUtil
     }
 
 
-    public static LinkedList getElementLinkedList(Class classType, Element root, String name, URL docRoot)
+    public static LinkedList<ReadableXMLElement> getElementLinkedList(Class<?> classType, Element root, String name, URL docRoot)
     {
         if (root == null) return null;
 
@@ -671,7 +670,7 @@ public class XMLParseUtil
         }
 
         NodeList nl = root.getChildNodes();
-        LinkedList elementCache = new LinkedList();
+        LinkedList<ReadableXMLElement> elementCache = new LinkedList<ReadableXMLElement>();
         int size = nl.getLength();
         for (int i = 0; i < size; i++)
         {
@@ -698,7 +697,7 @@ public class XMLParseUtil
         return elementCache;
     }
 
-    public static Object[] getElementArray(Class classType, Element root, String name, URL docRoot)
+    public static Object[] getElementArray(Class<?> classType, Element root, String name, URL docRoot)
     {
         if (root == null) return null;
 
@@ -708,7 +707,7 @@ public class XMLParseUtil
             return null;
         }
 
-        LinkedList elementCache = getElementLinkedList(classType, root, name, docRoot);
+        LinkedList<ReadableXMLElement> elementCache = getElementLinkedList(classType, root, name, docRoot);
 
         Object[] retArr = (Object[])Array.newInstance(classType, elementCache.size());
         return elementCache.toArray(retArr);
@@ -724,7 +723,7 @@ public class XMLParseUtil
         if (root == null) return null;
 
         NodeList nl = root.getChildNodes();
-        LinkedList elementCache = new LinkedList();
+        LinkedList<Integer> elementCache = new LinkedList<Integer>();
         int size = nl.getLength();
 
         for (int i = 0; i < size; i++)
@@ -743,11 +742,11 @@ public class XMLParseUtil
         }
 
         int[] retArr = new int[elementCache.size()];
-        Iterator it = elementCache.iterator();
+        Iterator<Integer> it = elementCache.iterator();
         int idx = 0;
         while (it.hasNext())
         {
-            retArr[idx++] = ((Integer)it.next()).intValue();
+            retArr[idx++] = it.next().intValue();
         }
 
         return retArr;
@@ -763,7 +762,7 @@ public class XMLParseUtil
         if (root == null) return null;
 
         NodeList nl = root.getChildNodes();
-        LinkedList elementCache = new LinkedList();
+        LinkedList<String> elementCache = new LinkedList<String>();
         int size = nl.getLength();
 
         for (int i = 0; i < size; i++)
@@ -779,11 +778,11 @@ public class XMLParseUtil
         }
 
         String[] retArr = new String[elementCache.size()];
-        Iterator it = elementCache.iterator();
+        Iterator<String> it = elementCache.iterator();
         int idx = 0;
         while (it.hasNext())
         {
-            retArr[idx++] = (String)it.next();
+            retArr[idx++] = it.next();
         }
 
         return retArr;
@@ -794,8 +793,8 @@ public class XMLParseUtil
      * @param styleString - A CSS formatted string of styles.  Eg,
      *     "font-size:12;fill:#d32c27;fill-rule:evenodd;stroke-width:1pt;"
      */
-    public static HashMap parseStyle(String styleString) {
-        return parseStyle(styleString, new HashMap());
+    public static HashMap<String, StyleAttribute> parseStyle(String styleString) {
+        return parseStyle(styleString, new HashMap<String, StyleAttribute>());
     }
 
     /**
@@ -804,7 +803,7 @@ public class XMLParseUtil
      *     "font-size:12;fill:#d32c27;fill-rule:evenodd;stroke-width:1pt;"
      * @param map - A map to which these styles will be added
      */
-    public static HashMap parseStyle(String styleString, HashMap map) {
+    public static HashMap<String, StyleAttribute> parseStyle(String styleString, HashMap<String, StyleAttribute> map) {
         final Pattern patSemi = Pattern.compile(";");
 
         String[] styles = patSemi.split(styleString);

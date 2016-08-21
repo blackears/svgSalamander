@@ -109,6 +109,7 @@ public abstract class AnimationElement extends SVGElement
         }
     }
     
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -348,6 +349,7 @@ public abstract class AnimationElement extends SVGElement
      * @return - true if this node has changed state as a result of the time
      * update
      */
+    @Override
     public boolean updateTime(double curTime)
     {
         //Animation elements to not change with time

@@ -53,7 +53,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.AccessControlException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,6 +84,7 @@ public class SVGViewer extends javax.swing.JFrame
                 new javax.swing.filechooser.FileFilter() {
                     final Matcher matchLevelFile = Pattern.compile(".*\\.svg[z]?").matcher("");
 
+                    @Override
                     public boolean accept(File file)
                     {
                         if (file.isDirectory()) return true;
@@ -93,6 +93,7 @@ public class SVGViewer extends javax.swing.JFrame
                         return matchLevelFile.matches();
                     }
 
+                    @Override
                     public String getDescription() { return "SVG file (*.svg, *.svgz)"; }
                 }
             );
@@ -208,6 +209,7 @@ is.close();
         setTitle("SVG Viewer - Salamander Project");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
                 exitForm(evt);
@@ -218,10 +220,12 @@ is.close();
 
         panel_svgArea.addMouseListener(new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt)
             {
                 panel_svgAreaMousePressed(evt);
             }
+            @Override
             public void mouseReleased(java.awt.event.MouseEvent evt)
             {
                 panel_svgAreaMouseReleased(evt);
@@ -326,7 +330,7 @@ is.close();
     private void panel_svgAreaMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_panel_svgAreaMouseReleased
     {//GEN-HEADEREND:event_panel_svgAreaMouseReleased
         SVGDiagram diagram = svgDisplayPanel.getDiagram();
-        List pickedElements;
+        List<List<SVGElement>> pickedElements;
         try
         {
             pickedElements = diagram.pick(new Point(evt.getX(), evt.getY()), null);
@@ -338,16 +342,10 @@ is.close();
         }
         
         System.out.println("Pick results:");
-        for (Iterator it = pickedElements.iterator(); it.hasNext();)
-        {
-            ArrayList path = (ArrayList)it.next();
-            
+        for (List<SVGElement> path : pickedElements) {
             System.out.print("  Path: ");
             
-            for (Iterator it2 = path.iterator(); it2.hasNext();)
-            {
-                SVGElement ele = (SVGElement)it2.next();
-
+            for (SVGElement ele : path) {
                 System.out.print("" + ele.getId() + "(" + ele.getClass().getName() + ") ");
             }
             System.out.println();

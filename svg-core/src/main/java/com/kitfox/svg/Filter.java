@@ -61,7 +61,7 @@ public class Filter extends SVGElement
     float height = 1f;
     Point2D filterRes = new Point2D.Double();
     URL href = null;
-    final ArrayList filterEffects = new ArrayList();
+    final ArrayList<SVGElement> filterEffects = new ArrayList<SVGElement>();
 
     /**
      * Creates a new instance of FillElement
@@ -70,6 +70,7 @@ public class Filter extends SVGElement
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
@@ -79,6 +80,7 @@ public class Filter extends SVGElement
      * Called after the start element but before the end element to indicate
      * each child tag that has been processed
      */
+    @Override
     public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
     {
         super.loaderAddChild(helper, child);
@@ -89,6 +91,7 @@ public class Filter extends SVGElement
         }
     }
 
+    @Override
     protected void build() throws SVGException
     {
         super.build();
@@ -174,6 +177,7 @@ public class Filter extends SVGElement
         return height;
     }
 
+    @Override
     public boolean updateTime(double curTime) throws SVGException
     {
 //        if (trackManager.getNumTracks() == 0) return false;

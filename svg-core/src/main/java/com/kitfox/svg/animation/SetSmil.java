@@ -62,11 +62,13 @@ public class SetSmil extends AnimationElement
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
     }
 
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -75,6 +77,7 @@ public class SetSmil extends AnimationElement
         toValue = attrs.getValue("to");
     }
 
+    @Override
     protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
         super.rebuild(animTimeParser);

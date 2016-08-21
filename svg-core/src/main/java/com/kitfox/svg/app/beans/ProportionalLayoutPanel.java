@@ -37,7 +37,6 @@
 package com.kitfox.svg.app.beans;
 
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -63,6 +62,7 @@ public class ProportionalLayoutPanel extends javax.swing.JPanel
         initComponents();
     }
     
+    @Override
     public void addNotify()
     {
         super.addNotify();
@@ -86,10 +86,12 @@ public class ProportionalLayoutPanel extends javax.swing.JPanel
 
         addComponentListener(new java.awt.event.ComponentAdapter()
         {
+            @Override
             public void componentResized(java.awt.event.ComponentEvent evt)
             {
                 formComponentResized(evt);
             }
+            @Override
             public void componentShown(java.awt.event.ComponentEvent evt)
             {
                 formComponentShown(evt);

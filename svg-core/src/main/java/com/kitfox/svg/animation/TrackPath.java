@@ -37,13 +37,11 @@
 package com.kitfox.svg.animation;
 
 import com.kitfox.svg.xml.StyleAttribute;
-import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
 
 import com.kitfox.svg.pathcmd.*;
 import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
 
 /**
  * A track holds the animation events for a single parameter of a single SVG
@@ -61,6 +59,7 @@ public class TrackPath extends TrackBase
         super(ele.getParent(), ele);
     }
 
+    @Override
     public boolean getValue(StyleAttribute attrib, double curTime)
     {
         GeneralPath path = getValue(curTime);
@@ -75,9 +74,8 @@ public class TrackPath extends TrackBase
         GeneralPath retVal = null;
         AnimationTimeEval state = new AnimationTimeEval();
 
-        for (Iterator it = animEvents.iterator(); it.hasNext();)
-        {
-            AnimateBase ele = (AnimateBase)it.next();
+        for (AnimationElement animationElement : animEvents) {
+            AnimateBase ele = (AnimateBase)animationElement;
             Animate eleAnim = (Animate)ele;
             ele.evalParametric(state, curTime);
 

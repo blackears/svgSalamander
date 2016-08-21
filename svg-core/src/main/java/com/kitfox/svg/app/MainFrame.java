@@ -66,6 +66,7 @@ public class MainFrame extends javax.swing.JFrame
         setTitle("SVG Salamander - Application Launcher");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
                 exitForm(evt);

@@ -47,7 +47,7 @@ import java.util.HashMap;
  */
 public class Base64InputStream extends FilterInputStream implements Base64Consts
 {
-    static final HashMap lookup64 = new HashMap();
+    static final HashMap<Byte, Integer> lookup64 = new HashMap<Byte, Integer>();
     static {
         byte[] ch = BASE64_CHARS.getBytes();
         for (int i = 0; i < ch.length; i++)
@@ -65,6 +65,7 @@ public class Base64InputStream extends FilterInputStream implements Base64Consts
         super(in);
     }
 
+    @Override
     public int read(byte[] b, int off, int len) throws IOException
     {
         for (int i = 0; i < len; ++i)
@@ -80,6 +81,7 @@ public class Base64InputStream extends FilterInputStream implements Base64Consts
     }
 
 
+    @Override
     public int read() throws IOException
     {
         if (charsInBuf == 0)

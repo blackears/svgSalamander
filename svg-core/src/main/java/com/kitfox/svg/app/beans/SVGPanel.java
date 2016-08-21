@@ -106,6 +106,7 @@ public class SVGPanel extends JPanel
         return (int)diagram.getWidth();
     }
     
+    @Override
     public void paintComponent(Graphics gg)
     {
         super.paintComponent(gg);

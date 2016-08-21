@@ -57,7 +57,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
@@ -88,9 +87,9 @@ public class SVGUniverse implements Serializable
      * documents loaded from URLs will reflect their URLs and URIs for documents
      * initiated from streams will have the scheme <i>svgSalamander</i>.
      */
-    final HashMap loadedDocs = new HashMap();
-    final HashMap loadedFonts = new HashMap();
-    final HashMap loadedImages = new HashMap();
+    final HashMap<URI, SVGDiagram> loadedDocs = new HashMap<URI, SVGDiagram>();
+    final HashMap<String, Font> loadedFonts = new HashMap<String, Font>();
+    final HashMap<URL, SoftReference<BufferedImage>> loadedImages = new HashMap<URL, SoftReference<BufferedImage>>();
     public static final String INPUTSTREAM_SCHEME = "svgSalamander";
     /**
      * Current time in this universe. Used for resolving attributes that are
@@ -150,9 +149,7 @@ public class SVGUniverse implements Serializable
      */
     public void updateTime() throws SVGException
     {
-        for (Iterator it = loadedDocs.values().iterator(); it.hasNext();)
-        {
-            SVGDiagram dia = (SVGDiagram) it.next();
+        for (SVGDiagram dia : loadedDocs.values()) {
             dia.updateTime(curTime);
         }
     }
@@ -168,9 +165,8 @@ public class SVGUniverse implements Serializable
 
     public Font getDefaultFont()
     {
-        for (Iterator it = loadedFonts.values().iterator(); it.hasNext();)
-        {
-            return (Font) it.next();
+        for (Font font : loadedFonts.values()) {
+            return font;
         }
         return null;
     }
@@ -214,7 +210,7 @@ public class SVGUniverse implements Serializable
                         urlIdx++;
                     }
 
-                    SoftReference ref = new SoftReference(img);
+                    SoftReference<BufferedImage> ref = new SoftReference<BufferedImage>(img);
                     loadedImages.put(url, ref);
 
                     return url;
@@ -248,7 +244,7 @@ public class SVGUniverse implements Serializable
             return;
         }
 
-        SoftReference ref;
+        SoftReference<BufferedImage> ref;
         try
         {
             String fileName = imageURL.getFile();
@@ -261,11 +257,11 @@ public class SVGUniverse implements Serializable
                 Graphics2D g = img.createGraphics();
                 icon.paintIcon(null, g, 0, 0);
                 g.dispose();
-                ref = new SoftReference(img);
+                ref = new SoftReference<BufferedImage>(img);
             } else
             {
                 BufferedImage img = ImageIO.read(imageURL);
-                ref = new SoftReference(img);
+                ref = new SoftReference<BufferedImage>(img);
             }
             loadedImages.put(imageURL, ref);
         } catch (Exception e)
@@ -277,7 +273,7 @@ public class SVGUniverse implements Serializable
 
     BufferedImage getImage(URL imageURL)
     {
-        SoftReference ref = (SoftReference) loadedImages.get(imageURL);
+        SoftReference<BufferedImage> ref = (SoftReference<BufferedImage>) loadedImages.get(imageURL);
         if (ref == null)
         {
             return null;
@@ -295,7 +291,7 @@ public class SVGUniverse implements Serializable
                 Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
                     "Could not load image", e);
             }
-            ref = new SoftReference(img);
+            ref = new SoftReference<BufferedImage>(img);
             loadedImages.put(imageURL, ref);
         }
 
@@ -636,9 +632,9 @@ public class SVGUniverse implements Serializable
      * Get list of uris of all loaded documents and subdocuments.
      * @return 
      */
-    public ArrayList getLoadedDocumentURIs()
+    public ArrayList<URI> getLoadedDocumentURIs()
     {
-        return new ArrayList(loadedDocs.keySet());
+        return new ArrayList<URI>(loadedDocs.keySet());
     }
     
     /**

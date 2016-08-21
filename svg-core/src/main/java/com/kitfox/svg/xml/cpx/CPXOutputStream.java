@@ -67,6 +67,7 @@ public class CPXOutputStream extends FilterOutputStream implements CPXConsts {
      * @param      b   the <code>byte</code>.
      * @exception  IOException  if an I/O error occurs.
      */
+    @Override
     public void write(int b) throws IOException {
         final byte[] buf = new byte[1];
         buf[0] = (byte)b;
@@ -89,6 +90,7 @@ public class CPXOutputStream extends FilterOutputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterOutputStream#write(byte[], int, int)
      */
+    @Override
     public void write(byte b[]) throws IOException {
 	write(b, 0, b.length);
     }
@@ -115,6 +117,7 @@ public class CPXOutputStream extends FilterOutputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterOutputStream#write(int)
      */
+    @Override
     public void write(byte b[], int off, int len) throws IOException
     {
         deflater.setInput(b, off, len);
@@ -152,6 +155,7 @@ out.write(deflateBuffer, 0, numDeflatedBytes);
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterOutputStream#out
      */
+    @Override
     public void flush() throws IOException {
 	out.flush();
     }
@@ -168,6 +172,7 @@ out.write(deflateBuffer, 0, numDeflatedBytes);
      * @see        java.io.FilterOutputStream#flush()
      * @see        java.io.FilterOutputStream#out
      */
+    @Override
     public void close() throws IOException {
         deflater.finish();
         processAllData();

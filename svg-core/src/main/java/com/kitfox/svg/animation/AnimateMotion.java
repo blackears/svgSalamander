@@ -46,7 +46,6 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.xml.sax.Attributes;
@@ -72,7 +71,7 @@ public class AnimateMotion extends AnimateXform
     public static final int RT_ANGLE = 0;  //Rotate by constant 'rotate' degrees
     public static final int RT_AUTO = 1;  //Rotate to reflect tangent of position on path
     
-    final ArrayList bezierSegs = new ArrayList();
+    final ArrayList<Bezier> bezierSegs = new ArrayList<Bezier>();
     double curveLength;
     
     /** Creates a new instance of Animate */
@@ -80,11 +79,13 @@ public class AnimateMotion extends AnimateXform
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
     }
 
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -223,6 +224,7 @@ public class AnimateMotion extends AnimateXform
      * Evaluates this animation element for the passed interpolation time.  Interp
      * must be on [0..1].
      */
+    @Override
     public AffineTransform eval(AffineTransform xform, double interp)
     {
         Point2D.Double point = new Point2D.Double();
@@ -236,10 +238,7 @@ public class AnimateMotion extends AnimateXform
         }
         
         double curLength = curveLength * interp;
-        for (Iterator it = bezierSegs.iterator(); it.hasNext();)
-        {
-            Bezier bez = (Bezier)it.next();
-            
+        for (Bezier bez : bezierSegs) {
             double bezLength = bez.getLength();
             if (curLength < bezLength)
             {
@@ -257,6 +256,7 @@ public class AnimateMotion extends AnimateXform
     }
     
 
+    @Override
     protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
         super.rebuild(animTimeParser);
