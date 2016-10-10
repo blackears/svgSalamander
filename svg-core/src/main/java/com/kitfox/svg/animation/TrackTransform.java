@@ -41,7 +41,6 @@ import java.awt.geom.*;
 import java.util.*;
 
 import com.kitfox.svg.*;
-import com.kitfox.svg.xml.*;
 
 /**
  * A track holds the animation events for a single parameter of a single SVG
@@ -58,6 +57,7 @@ public class TrackTransform extends TrackBase
         super(ele.getParent(), ele);
     }
 
+    @Override
     public boolean getValue(StyleAttribute attrib, double curTime) throws SVGException
     {
         AffineTransform retVal = new AffineTransform();
@@ -97,9 +97,8 @@ public class TrackTransform extends TrackBase
         AnimationTimeEval state = new AnimationTimeEval();
         AffineTransform xform = new AffineTransform();
 
-        for (Iterator it = animEvents.iterator(); it.hasNext();)
-        {
-            AnimateXform ele = (AnimateXform)it.next();
+        for (AnimationElement animationElement : animEvents) {
+            AnimateXform ele = (AnimateXform)animationElement;
             ele.evalParametric(state, curTime);
 
             //Go to next element if this one does not affect processing

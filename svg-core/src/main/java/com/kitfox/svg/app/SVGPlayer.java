@@ -55,7 +55,6 @@ import java.net.URLEncoder;
 import java.security.AccessControlException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -89,6 +88,7 @@ public class SVGPlayer extends javax.swing.JFrame
                 new javax.swing.filechooser.FileFilter() {
                     final Matcher matchLevelFile = Pattern.compile(".*\\.svg[z]?").matcher("");
 
+                    @Override
                     public boolean accept(File file)
                     {
                         if (file.isDirectory()) return true;
@@ -97,6 +97,7 @@ public class SVGPlayer extends javax.swing.JFrame
                         return matchLevelFile.matches();
                     }
 
+                    @Override
                     public String getDescription() { return "SVG file (*.svg, *.svgz)"; }
                 }
             );
@@ -132,6 +133,7 @@ public class SVGPlayer extends javax.swing.JFrame
         svgDisplayPanel.setBgColor(Color.white);
         svgDisplayPanel.addMouseListener(new MouseAdapter()
         {
+            @Override
             public void mouseClicked(MouseEvent evt)
             {
                 SVGDiagram diagram = svgDisplayPanel.getDiagram();
@@ -140,11 +142,10 @@ public class SVGPlayer extends javax.swing.JFrame
                 System.out.println("Picking at cursor (" + evt.getX() + ", " + evt.getY() + ")");
                 try
                 {
-                    List paths = diagram.pick(new Point2D.Float(evt.getX(), evt.getY()), null);
+                    List<List<SVGElement>> paths = diagram.pick(new Point2D.Float(evt.getX(), evt.getY()), null);
                     for (int i = 0; i < paths.size(); i++)
                     {
-                        ArrayList path = (ArrayList)paths.get(i);
-                        System.out.println(pathToString(path));
+                        System.out.println(pathToString(paths.get(i)));
                     }
                 }
                 catch (SVGException ex)
@@ -162,7 +163,7 @@ public class SVGPlayer extends javax.swing.JFrame
         playerDialog = new PlayerDialog(this);
     }
     
-    private String pathToString(List path)
+    private String pathToString(List<SVGElement> path)
     {
         if (path.size() == 0) return "";
         
@@ -171,7 +172,7 @@ public class SVGPlayer extends javax.swing.JFrame
         for (int i = 1; i < path.size(); i++)
         {
             sb.append("/");
-            sb.append(((SVGElement)path.get(i)).getId());
+            sb.append(path.get(i).getId());
         }
         return sb.toString();
     }
@@ -258,6 +259,7 @@ public class SVGPlayer extends javax.swing.JFrame
         setTitle("SVG Player - Salamander Project");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
                 exitForm(evt);

@@ -87,6 +87,7 @@ public class Animate extends AnimateBase implements AnimateColorIface
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
@@ -97,6 +98,7 @@ public class Animate extends AnimateBase implements AnimateColorIface
         return dataType;
     }
     
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -392,6 +394,7 @@ public class Animate extends AnimateBase implements AnimateColorIface
         return 0;
     }
 
+    @Override
     protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
         super.rebuild(animTimeParser);

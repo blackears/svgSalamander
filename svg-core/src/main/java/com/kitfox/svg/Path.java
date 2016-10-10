@@ -41,7 +41,6 @@ import java.awt.Shape;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 
-//import org.apache.batik.ext.awt.geom.ExtendedGeneralPath;
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
@@ -63,11 +62,13 @@ public class Path extends ShapeElement
     {
     }
 
+    @Override
     public String getTagName()
     {
         return TAG_NAME;
     }
 
+    @Override
     protected void build() throws SVGException
     {
         super.build();
@@ -86,6 +87,7 @@ public class Path extends ShapeElement
         path = buildPath(d, fillRule);
     }
 
+    @Override
     public void render(Graphics2D g) throws SVGException
     {
         beginLayer(g);
@@ -93,11 +95,13 @@ public class Path extends ShapeElement
         finishLayer(g);
     }
 
+    @Override
     public Shape getShape()
     {
         return shapeToParent(path);
     }
 
+    @Override
     public Rectangle2D getBoundingBox() throws SVGException
     {
         return boundsToParent(includeStrokeInBounds(path.getBounds2D()));
@@ -110,6 +114,7 @@ public class Path extends ShapeElement
      * @return - true if this node has changed state as a result of the time
      * update
      */
+    @Override
     public boolean updateTime(double curTime) throws SVGException
     {
 //        if (trackManager.getNumTracks() == 0) return false;

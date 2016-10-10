@@ -100,7 +100,7 @@ import com.kitfox.svg.xml.ColorTable;
  */
 public class SVGToImageAntTask extends Task
 {
-    private ArrayList filesets = new ArrayList();
+    private ArrayList<FileSet> filesets = new ArrayList<FileSet>();
     boolean verbose = false;
     File destDir;
     private String format = "png";
@@ -183,13 +183,12 @@ public class SVGToImageAntTask extends Task
     
     
     
+    @Override
     public void execute()
     {
         if (verbose) log("Building SVG images");
         
-        for (Iterator it = filesets.iterator(); it.hasNext();)
-        {
-            FileSet fs = (FileSet)it.next();
+        for (FileSet fs : filesets) {
             FileScanner scanner = fs.getDirectoryScanner(getProject());
             String[] files = scanner.getIncludedFiles();
             

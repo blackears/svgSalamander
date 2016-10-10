@@ -39,13 +39,8 @@ package com.kitfox.svg.app;
 import com.kitfox.svg.SVGConst;
 import java.net.*;
 import java.io.*;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.event.*;
-import javax.swing.*;
-import javax.swing.text.html.*;
-
 
 /**
  *

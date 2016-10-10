@@ -56,12 +56,14 @@ public class Base64OutputStream extends FilterOutputStream implements Base64Cons
         super(out);
     }
 
+    @Override
     public void close() throws IOException
     {
         writeBits();
         super.close();
     }
     
+    @Override
     public void write(int b) throws IOException
     {
         buf = buf << 8 | (b & 0xff);

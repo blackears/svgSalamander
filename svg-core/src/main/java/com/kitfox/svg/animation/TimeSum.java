@@ -57,11 +57,13 @@ public class TimeSum extends TimeBase
         this.add = add;
     }
     
+    @Override
     public double evalTime()
     {
         return add ? t1.evalTime() + t2.evalTime() : t1.evalTime() - t2.evalTime();
     }
     
+    @Override
     public void setParentElement(AnimationElement ele)
     {
         t1.setParentElement(ele);

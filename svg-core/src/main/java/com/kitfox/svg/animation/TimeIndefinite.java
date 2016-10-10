@@ -50,6 +50,7 @@ public class TimeIndefinite extends TimeBase
     {
     }
     
+    @Override
     public double evalTime()
     {
         return Double.POSITIVE_INFINITY;

@@ -53,6 +53,7 @@ public class TimeDiscrete extends TimeBase
         this.secs = secs;
     }
     
+    @Override
     public double evalTime()
     {
         return secs;

@@ -54,6 +54,7 @@ abstract public class AnimateXform extends AnimateBase
     {
     }
     
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
         super.loaderStartElement(helper, attrs, parent);

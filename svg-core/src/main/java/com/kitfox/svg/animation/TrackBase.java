@@ -59,7 +59,7 @@ abstract public class TrackBase
     
     //It doesn't make sense to sort this, since some events will depend on
     // other events - in many cases, there will be no meaningful sorted order.
-    final ArrayList animEvents = new ArrayList();
+    final ArrayList<AnimationElement> animEvents = new ArrayList<AnimationElement>();
     
     /** Creates a new instance of TrackManager */
 //    public TrackBase(SVGElement parent)

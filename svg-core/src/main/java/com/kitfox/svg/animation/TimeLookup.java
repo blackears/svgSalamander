@@ -73,11 +73,13 @@ public class TimeLookup extends TimeBase
         this.paramList = paramList;
     }
     
+    @Override
     public double evalTime()
     {
         return 0.0;
     }
     
+    @Override
     public void setParentElement(AnimationElement ele)
     {
         parent = ele;

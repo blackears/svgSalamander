@@ -63,11 +63,13 @@ abstract public class AnimateBase extends AnimationElement
     {
     }
     
+    @Override
     public void evalParametric(AnimationTimeEval state, double curTime)
     {
         evalParametric(state, curTime, repeatCount, repeatDur == null ? Double.NaN : repeatDur.evalTime());
     }
     
+    @Override
     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent) throws SAXException
     {
 		//Load style string
@@ -105,6 +107,7 @@ abstract public class AnimateBase extends AnimationElement
         }
     }
 
+    @Override
     protected void rebuild(AnimTimeParser animTimeParser) throws SVGException
     {
         super.rebuild(animTimeParser);

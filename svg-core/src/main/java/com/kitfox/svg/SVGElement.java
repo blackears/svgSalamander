@@ -81,7 +81,7 @@ abstract public class SVGElement implements Serializable
     public static final long serialVersionUID = 0;
     public static final String SVG_NS = "http://www.w3.org/2000/svg";
     protected SVGElement parent = null;
-    protected final ArrayList children = new ArrayList();
+    protected final ArrayList<SVGElement> children = new ArrayList<SVGElement>();
     protected String id = null;
     /**
      * CSS class. Used for applying style sheet information.
@@ -90,21 +90,21 @@ abstract public class SVGElement implements Serializable
     /**
      * Styles defined for this elemnt via the <b>style</b> attribute.
      */
-    protected final HashMap inlineStyles = new HashMap();
+    protected final HashMap<String, StyleAttribute> inlineStyles = new HashMap<String, StyleAttribute>();
     /**
      * Presentation attributes set for this element. Ie, any attribute other
      * than the <b>style</b> attribute.
      */
-    protected final HashMap presAttribs = new HashMap();
+    protected final HashMap<String, StyleAttribute> presAttribs = new HashMap<String, StyleAttribute>();
     /**
      * A list of presentation attributes to not include in the presentation
      * attribute set.
      */
-    protected static final Set ignorePresAttrib;
+    protected static final Set<String> ignorePresAttrib;
 
     static
     {
-        HashSet set = new HashSet();
+        HashSet<String> set = new HashSet<String>();
 //        set.add("id");
 //        set.add("class");
 //        set.add("style");
@@ -163,11 +163,11 @@ abstract public class SVGElement implements Serializable
     /**
      * @return an ordered list of nodes from the root of the tree to this node
      */
-    public List getPath(List retVec)
+    public List<SVGElement> getPath(List<SVGElement> retVec)
     {
         if (retVec == null)
         {
-            retVec = new ArrayList();
+            retVec = new ArrayList<SVGElement>();
         }
 
         if (parent != null)
@@ -185,11 +185,11 @@ abstract public class SVGElement implements Serializable
      *
      * @return The list containing the children of this group
      */
-    public List getChildren(List retVec)
+    public List<SVGElement> getChildren(List<SVGElement> retVec)
     {
         if (retVec == null)
         {
-            retVec = new ArrayList();
+            retVec = new ArrayList<SVGElement>();
         }
 
         retVec.addAll(children);
@@ -203,9 +203,7 @@ abstract public class SVGElement implements Serializable
      */
     public SVGElement getChild(String id)
     {
-        for (Iterator it = children.iterator(); it.hasNext();)
-        {
-            SVGElement ele = (SVGElement) it.next();
+        for (SVGElement ele : children) {
             String eleId = ele.getId();
             if (eleId != null && eleId.equals(id))
             {
@@ -240,7 +238,7 @@ abstract public class SVGElement implements Serializable
             return;
         }
 
-        Object temp = children.get(i);
+        SVGElement temp = children.get(i);
         children.set(i, children.get(j));
         children.set(j, temp);
         build();
@@ -275,7 +273,7 @@ abstract public class SVGElement implements Serializable
         String style = attrs.getValue("style");
         if (style != null)
         {
-            HashMap map = XMLParseUtil.parseStyle(style, inlineStyles);
+            HashMap<?, ?> map = XMLParseUtil.parseStyle(style, inlineStyles);
         }
 
         String base = attrs.getValue("xml:base");
@@ -367,7 +365,7 @@ abstract public class SVGElement implements Serializable
     /**
      * @return a set of Strings that corespond to CSS attributes on this element
      */
-    public Set getInlineAttributes()
+    public Set<String> getInlineAttributes()
     {
         return inlineStyles.keySet();
     }
@@ -375,7 +373,7 @@ abstract public class SVGElement implements Serializable
     /**
      * @return a set of Strings that corespond to XML attributes on this element
      */
-    public Set getPresentationAttributes()
+    public Set<String> getPresentationAttributes()
     {
         return presAttribs.keySet();
     }
@@ -401,9 +399,7 @@ abstract public class SVGElement implements Serializable
     {
         this.diagram = diagram;
         diagram.setElement(id, this);
-        for (Iterator it = children.iterator(); it.hasNext();)
-        {
-            SVGElement ele = (SVGElement) it.next();
+        for (SVGElement ele : children) {
             ele.setDiagram(diagram);
         }
     }
@@ -489,7 +485,7 @@ abstract public class SVGElement implements Serializable
     {
         return id;
     }
-    LinkedList contexts = new LinkedList();
+    LinkedList<SVGElement> contexts = new LinkedList<SVGElement>();
 
     /**
      * Hack to allow nodes to temporarily change their parents. The Use tag will
@@ -758,7 +754,7 @@ abstract public class SVGElement implements Serializable
 
         String function = matchWord.group().toLowerCase();
 
-        LinkedList termList = new LinkedList();
+        LinkedList<String> termList = new LinkedList<String>();
         while (matchWord.find())
         {
             termList.add(matchWord.group());
@@ -766,11 +762,11 @@ abstract public class SVGElement implements Serializable
 
 
         double[] terms = new double[termList.size()];
-        Iterator it = termList.iterator();
+        Iterator<String> it = termList.iterator();
         int count = 0;
         while (it.hasNext())
         {
-            terms[count++] = XMLParseUtil.parseDouble((String) it.next());
+            terms[count++] = XMLParseUtil.parseDouble(it.next());
         }
 
         //Calculate transformation
@@ -818,7 +814,7 @@ abstract public class SVGElement implements Serializable
         return retXform;
     }
 
-    static protected float nextFloat(LinkedList l)
+    static protected float nextFloat(LinkedList<String> l)
     {
         String s = (String) l.removeFirst();
         return Float.parseFloat(s);
@@ -829,7 +825,7 @@ abstract public class SVGElement implements Serializable
         final Matcher matchPathCmd = Pattern.compile("([MmLlHhVvAaQqTtCcSsZz])|([-+]?((\\d*\\.\\d+)|(\\d+))([eE][-+]?\\d+)?)").matcher(list);
 
         //Tokenize
-        LinkedList tokens = new LinkedList();
+        LinkedList<String> tokens = new LinkedList<String>();
         while (matchPathCmd.find())
         {
             tokens.addLast(matchPathCmd.group());
@@ -837,7 +833,7 @@ abstract public class SVGElement implements Serializable
 
 
         boolean defaultRelative = false;
-        LinkedList cmdList = new LinkedList();
+        LinkedList<PathCommand> cmdList = new LinkedList<PathCommand>();
         char curCmd = 'Z';
         while (tokens.size() != 0)
         {

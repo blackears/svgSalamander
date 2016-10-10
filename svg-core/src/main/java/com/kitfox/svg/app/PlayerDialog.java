@@ -96,6 +96,7 @@ public class PlayerDialog extends javax.swing.JDialog implements PlayerThreadLis
         setTitle("Player");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
+            @Override
             public void windowClosed(java.awt.event.WindowEvent evt)
             {
                 formWindowClosed(evt);
@@ -157,6 +158,7 @@ public class PlayerDialog extends javax.swing.JDialog implements PlayerThreadLis
         });
         text_curTime.addFocusListener(new java.awt.event.FocusAdapter()
         {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt)
             {
                 text_curTimeFocusLost(evt);
@@ -194,6 +196,7 @@ public class PlayerDialog extends javax.swing.JDialog implements PlayerThreadLis
         });
         text_timeStep.addFocusListener(new java.awt.event.FocusAdapter()
         {
+            @Override
             public void focusLost(java.awt.event.FocusEvent evt)
             {
                 text_timeStepFocusLost(evt);

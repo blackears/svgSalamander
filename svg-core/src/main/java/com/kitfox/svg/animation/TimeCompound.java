@@ -37,7 +37,6 @@
 package com.kitfox.svg.animation;
 
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -57,23 +56,22 @@ public class TimeCompound extends TimeBase
      * This is a list of times.  This element's time is calculated as the greatest
      * member that is less than the current time.
     */
-    final List componentTimes;
+    final List<TimeBase> componentTimes;
 
     private AnimationElement parent;
     
     /** Creates a new instance of TimeDiscrete */
-    public TimeCompound(List timeBases)
+    public TimeCompound(List<TimeBase> timeBases)
     {
         componentTimes = Collections.unmodifiableList(timeBases);
     }
     
+    @Override
     public double evalTime()
     {
         double agg = 0.0;
         
-        for (Iterator it = componentTimes.iterator(); it.hasNext();)
-        {
-            TimeBase timeEle = (TimeBase)it.next();
+        for (TimeBase timeEle : componentTimes) {
             double time = timeEle.evalTime();
             agg += time;
         }
@@ -81,13 +79,12 @@ public class TimeCompound extends TimeBase
         return agg;
     }
     
+    @Override
     public void setParentElement(AnimationElement ele)
     {
         this.parent = ele;
         
-        for (Iterator it = componentTimes.iterator(); it.hasNext();)
-        {
-            TimeBase timeEle = (TimeBase)it.next();
+        for (TimeBase timeEle : componentTimes) {
             timeEle.setParentElement(ele);
         }
     }

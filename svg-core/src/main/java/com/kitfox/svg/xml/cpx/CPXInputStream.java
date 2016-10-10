@@ -97,6 +97,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
     /**
      * We do not allow marking
      */
+    @Override
     public boolean markSupported() { return false; }
 
     /**
@@ -108,6 +109,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterInputStream#in
      */
+    @Override
     public void close() throws IOException {
         reachedEOF = true;
         in.close();
@@ -130,6 +132,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterInputStream#in
      */
+    @Override
     public int read() throws IOException
     {
         final byte[] b = new byte[1];
@@ -158,6 +161,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterInputStream#read(byte[], int, int)
      */
+    @Override
     public int read(byte[] b) throws IOException
     {
         return read(b, 0, b.length);
@@ -180,6 +184,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
      * @exception  IOException  if an I/O error occurs.
      * @see        java.io.FilterInputStream#in
      */
+    @Override
     public int read(byte[] b, int off, int len) throws IOException
     {
         if (reachedEOF) return -1;
@@ -259,11 +264,13 @@ inflater.setInput(inBuffer, 0, numInBytes);
      * should not rely on this to determine the number of bytes that can be
      * read without blocking.
      */
+    @Override
     public int available() { return reachedEOF ? 0 : 1; }
 
     /**
      * Skips bytes by reading them into a cached buffer
      */
+    @Override
     public long skip(long n) throws IOException
     {
         int skipSize = (int)n;

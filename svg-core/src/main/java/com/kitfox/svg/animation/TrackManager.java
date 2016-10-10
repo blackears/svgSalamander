@@ -39,6 +39,7 @@ package com.kitfox.svg.animation;
 import java.util.*;
 
 import com.kitfox.svg.*;
+
 import java.io.Serializable;
 
 /**
@@ -69,6 +70,7 @@ public class TrackManager implements Serializable
             this.type = type;
         }
         
+        @Override
         public int hashCode()
         {
             int hash = name == null ? 0 : name.hashCode();
@@ -76,6 +78,7 @@ public class TrackManager implements Serializable
             return hash;
         }
 
+        @Override
         public boolean equals(Object obj) 
         {
             if (!(obj instanceof TrackKey)) return false;
@@ -84,7 +87,7 @@ public class TrackManager implements Serializable
         }
     }
     
-    HashMap tracks = new HashMap();
+    HashMap<TrackKey, TrackBase> tracks = new HashMap<TrackKey, TrackBase>();
     
     /** Creates a new instance of TrackManager */
     public TrackManager()
@@ -162,7 +165,7 @@ public class TrackManager implements Serializable
         return tracks.size();
     }
     
-    public Iterator iterator()
+    public Iterator<TrackBase> iterator()
     {
         return tracks.values().iterator();
     }
