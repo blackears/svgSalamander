@@ -28,6 +28,7 @@ Projects using SVG Salamander
 * [Tygron](http://www.tygron.com/) - Serious games illustrating urban planning and climate change.
 * [NeoLogica](http://www.neologica.it/eng/Home.php) - Medical imaging.
 * [JOSM](https://josm.openstreetmap.de/) - Java OpenStreetMap Editor.
+* [Freeplane](http://freeplane.org) - Java program for working with Mind Maps
 
 License
 -------
