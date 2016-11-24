@@ -117,8 +117,7 @@ public class SVGIcon extends ImageIcon
     /**
      * @return height of this icon
      */
-    @Override
-    public int getIconHeight()
+    public int getIconHeightIgnoreAutosize()
     {
         if (preferredSize != null &&
                 (autosize == AUTOSIZE_VERT || autosize == AUTOSIZE_STRETCH 
@@ -138,8 +137,8 @@ public class SVGIcon extends ImageIcon
     /**
      * @return width of this icon
      */
-    @Override
-    public int getIconWidth()
+
+    public int getIconWidthIgnoreAutosize()
     {
         if (preferredSize != null &&
                 (autosize == AUTOSIZE_HORIZ || autosize == AUTOSIZE_STRETCH 
@@ -155,6 +154,49 @@ public class SVGIcon extends ImageIcon
         }
         return (int)diagram.getWidth();
     }
+    
+    private boolean isAutoSizeBestFitUseFixedHeight(final int iconWidthIgnoreAutosize, final int iconHeightIgnoreAutosize,
+    		final SVGDiagram diagram)
+    {
+    	return iconHeightIgnoreAutosize/diagram.getHeight() < iconWidthIgnoreAutosize/diagram.getWidth();
+    }
+    
+    @Override
+    public int getIconWidth()
+    {
+    	final int iconWidthIgnoreAutosize = getIconWidthIgnoreAutosize();
+    	final int iconHeightIgnoreAutosize = getIconHeightIgnoreAutosize();
+		final SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
+    	if (preferredSize != null && (autosize == AUTOSIZE_VERT ||
+    			                     (autosize == AUTOSIZE_BESTFIT && isAutoSizeBestFitUseFixedHeight(iconWidthIgnoreAutosize, iconHeightIgnoreAutosize, diagram))))
+    	{
+    		final double aspectRatio = diagram.getHeight()/diagram.getWidth();
+    		return (int)(iconHeightIgnoreAutosize / aspectRatio);
+    	}
+    	else
+    	{
+    		return iconWidthIgnoreAutosize;
+    	}
+    }
+    
+    @Override
+    public int getIconHeight()
+    {
+    	final int iconWidthIgnoreAutosize = getIconWidthIgnoreAutosize();
+    	final int iconHeightIgnoreAutosize = getIconHeightIgnoreAutosize();
+		final SVGDiagram diagram = svgUniverse.getDiagram(svgURI);
+    	if (preferredSize != null && (autosize == AUTOSIZE_HORIZ ||
+    	                              (autosize == AUTOSIZE_BESTFIT && !isAutoSizeBestFitUseFixedHeight(iconWidthIgnoreAutosize, iconHeightIgnoreAutosize, diagram))))
+    	{
+    		final double aspectRatio = diagram.getHeight()/diagram.getWidth();
+    		return (int)(iconWidthIgnoreAutosize * aspectRatio);
+    	}
+    	else
+    	{
+    		return iconHeightIgnoreAutosize;
+    	}
+    }
+
     
     /**
      * Draws the icon to the specified component.
@@ -221,8 +263,8 @@ public class SVGIcon extends ImageIcon
             return;
         }
         
-        final int width = getIconWidth();
-        final int height = getIconHeight();
+        final int width = getIconWidthIgnoreAutosize();
+        final int height = getIconHeightIgnoreAutosize();
 //        int width = getWidth();
 //        int height = getHeight();
         
