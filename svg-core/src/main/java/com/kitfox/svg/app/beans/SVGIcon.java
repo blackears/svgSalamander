@@ -424,7 +424,6 @@ public class SVGIcon extends ImageIcon
     
     /**
      * @deprecated 
-     * @return 
      */
     public void setScaleToFit(boolean scaleToFit)
     {

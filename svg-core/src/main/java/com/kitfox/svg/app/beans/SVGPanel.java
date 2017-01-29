@@ -253,7 +253,6 @@ public class SVGPanel extends JPanel
     
     /**
      * @deprecated 
-     * @return 
      */
     public void setScaleToFit(boolean scaleToFit)
     {

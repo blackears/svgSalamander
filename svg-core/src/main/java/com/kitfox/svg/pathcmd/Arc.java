@@ -103,6 +103,8 @@ public class Arc extends PathCommand
      * indicate if we increase or decrease the angles and the final
      * point of the arc.
      *
+     * @param path The path that the arc will be appended to.
+     * 
      * @param rx the x radius of the ellipse
      * @param ry the y radius of the ellipse
      *

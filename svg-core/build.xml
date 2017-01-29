@@ -7,9 +7,9 @@
     <import file="nbproject/build-impl.xml"/>
     <!--
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
+    There exist several targets which are by default empty and which can be
+    used for execution of your tasks. These targets are usually executed
+    before and after some main targets. They are:
 
       -pre-init:                 called before initialization of project properties
       -post-init:                called after initialization of project properties
@@ -35,12 +35,12 @@
             </obfuscate>
         </target>
 
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
+    For list of available properties check the imported
+    nbproject/build-impl.xml file.
 
 
     Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
+    The targets of interest are:
 
       -init-macrodef-javac:     defines macro for javac compilation
       -init-macrodef-junit:     defines macro for junit execution
@@ -48,7 +48,7 @@
       -init-macrodef-java:      defines macro for class execution
       -do-jar-with-manifest:    JAR building (if you are using a manifest)
       -do-jar-without-manifest: JAR building (if you are not using a manifest)
-      run:                      execution of project 
+      run:                      execution of project
       -javadoc-build:           Javadoc generation
       test-report:              JUnit report generation
 
@@ -60,14 +60,16 @@
             </exec>
         </target>
 
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
+    Notice that the overridden target depends on the jar target and not only on
+    the compile target as the regular run target does. Again, for a list of available
     properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
+    nbproject/build-impl.xml file.
 
     -->
 
-    <property name="version" value="0.0.1"/>
+    <property name="version" value="1.1.2"/>
+    <property name="maven.dist.dir" location="dist/maven"/>
+
     <property name="javacc.home" location="../libraries"/>
     <property name="gen.main.src.dir" location="src/gen/java"/>
     <property name="gen.main.res.dir" location="src/gen/res"/>
@@ -79,20 +81,109 @@
     <property name="www.dir" location="../www"/>
     <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
     <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
+
+
+
+    <!--target name="maven-publish" depends="jar,javadoc"-->
+    <target name="maven-publish" depends="">
+    <!--
+    	<delete includeEmptyDirs="true">
+    		<fileset dir="${maven.dist.dir}"/>
+    	</delete>
+    	-->
+    	<mkdir dir="${maven.dist.dir}"/>
+
+        <jar destfile="${maven.dist.dir}/svgSalamander-${version}-javadoc.jar" update="false">
+            <manifest>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${TODAY}"/>
+            </manifest>
+
+            <fileset dir="dist/javadoc">
+            </fileset>
+        </jar>
+
+        <jar destfile="${maven.dist.dir}/svgSalamander-${version}-sources.jar" update="false">
+            <manifest>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${TODAY}"/>
+            </manifest>
+
+            <fileset dir="src">
+            </fileset>
+        </jar>
+
+        <jar destfile="${maven.dist.dir}/svgSalamander-${version}.jar" update="true">
+            <manifest>
+                <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
+                <attribute name="Version" value="${version}"/>
+                <attribute name="Date" value="${TODAY}"/>
+            </manifest>
+
+            <fileset dir="build/classes">
+                <include name="**/*.class"/>
+            </fileset>
+            <fileset dir="build/classes/res">
+            </fileset>
+        </jar>
+
+        <copy file="pom-template.xml" tofile="${maven.dist.dir}/svgSalamander-${version}.pom"/>
+        <replace file="${maven.dist.dir}/svgSalamander-${version}.pom">
+                <replacefilter token="__VERSION__" value="${version}"/>
+        </replace>
+<!--
+        <exec executable="gpg.exe">
+        </exec>
+
+        <foreach target="-signFile" param="filename">
+            <fileset dir="${maven.dist.dir}">
+                <exclude name="**/*.asc"/>
+            </fileset>
+        </foreach>
+-->
+    	<delete>
+            <fileset dir="${maven.dist.dir}">
+                <include name="**/*.asc"/>
+                <include name="bundle.jar"/>
+            </fileset>
+    	</delete>
         
+        <apply executable="gpg.exe">
+            <arg line="-ab --passphrase 3J:t=WzX]/p\3RLv"/>
+            <fileset dir="${maven.dist.dir}">
+                <exclude name="**/*.asc"/>
+            </fileset>
+        </apply>
+        
+        <jar destfile="${maven.dist.dir}/bundle.jar">
+            <fileset dir="${maven.dist.dir}">
+                <include name="**/*.jar"/>
+                <include name="**/*.pom"/>
+                <include name="**/*.asc"/>
+            </fileset>
+        </jar>
+
+    </target>
+
+    <target name="-signFile">
+        <echo message="Siging file: ${filename}"/>
+    </target>
+
     <target name="-pre-compile">
         <mkdir dir="${animtime.outdir}"/>
+        <mkdir dir="${gen.main.res.dir}"/>
+        <mkdir dir="${gen.main.src.dir}"/>
         <!--jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}" outputfile="${animtime.outfile}"/-->
         <jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
         <javacc target="${animtime.outdir}/AnimTimeParser.jj" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
     </target>
-    
+
     <target name="-post-clean">
         <delete includeEmptyDirs="true">
             <fileset dir="${gen.main.src.dir}" includes="**/*"/>
         </delete>
     </target>
-    
+
     <target name="-post-jar">
         <tstamp/>
 
@@ -109,7 +200,7 @@
             <fileset dir="build/classes/res">
             </fileset>
         </jar>
-        
+
         <delete file="${key.location}"/>
         <genkey alias="${key.user}" storepass="${key.password}" keystore="${key.location}" validity="1000" verbose="true">
             <dname>
@@ -121,11 +212,11 @@
                 <param name="C"  value="CA"/>
             </dname>
         </genkey>
-        
+
         <copy file="${dist.jar}" toFile="${project.www.jar}"/>
-        <signjar jar="${project.www.jar}" 
-                 alias="${key.user}" 
-                 storepass="${key.password}" 
+        <signjar jar="${project.www.jar}"
+                 alias="${key.user}"
+                 storepass="${key.password}"
                  keystore="${key.location}"/>
 
         <delete file="${project.tiny.jar}"/>
@@ -133,7 +224,7 @@
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
             </manifest>
-            
+
             <fileset dir="build/classes">
                 <include name="**/*.class"/>
             </fileset>
@@ -143,5 +234,5 @@
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-    
+
 </project>

@@ -52,6 +52,9 @@ public class PathUtil
     
     /**
      * Converts a GeneralPath into an SVG representation
+     * 
+     * @param path The shape to be encoded
+     * @return A string encoding the path using the SVG path notation
      */
     public static String buildPathString(GeneralPath path)
     {

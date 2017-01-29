@@ -111,6 +111,8 @@ abstract public class RenderableElement extends TransformableElement
     /**
      * Pushes transform stack, transforms to local coordinates and sets up
      * clipping mask.
+     * 
+     * @param g Graphics context
      */
     protected void beginLayer(Graphics2D g) throws SVGException
     {

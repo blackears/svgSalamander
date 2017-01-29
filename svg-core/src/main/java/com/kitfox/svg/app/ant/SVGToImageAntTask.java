@@ -57,32 +57,32 @@ import com.kitfox.svg.xml.ColorTable;
  * <p>Translates a group of SVG files into images.</p>
  * 
  * <p>Parameters:</p>
- * <p><ul>
- * <li/>destDir - If present, specifices a directory to write SVG files to.  Otherwise
+ * <ul>
+ * <li>destDir - If present, specifies a directory to write SVG files to.  Otherwise
  * writes images to directory SVG file was found in
- * verbose - If true, prints processing information to the console
- * <li/>format - File format for output images.  The java core javax.imageio.ImageIO
+ * verbose - If true, prints processing information to the console</li>
+ * <li>format - File format for output images.  The java core javax.imageio.ImageIO
  * class is used for creating images, so format strings will depend on what
  * files your system is configured to handle.  By default, "gif", "jpg" and "png"
- * files are guaranteed to be present.  If omitted, "png" is used by default.
- * <li/>backgroundColor - Optional background color.  Color can be specified as a standard 
+ * files are guaranteed to be present.  If omitted, "png" is used by default.</li>
+ * <li>backgroundColor - Optional background color.  Color can be specified as a standard 
  * HTML color.  That is, as the name of a standard color such as "blue" or 
- * "limegreen", using the # notaion as in #ff00ff for magenta, or in rgb format
+ * "limegreen", using the # notation as in #ff00ff for magenta, or in rgb format
  * listing the components as in rgb(255, 192, 192) for pink.  If omitted,
- * background is transparent.
- * <li/>antiAlias - If set, shapes are drawn using antialiasing.  Defaults to true.
- * <li/>interpolation - String describing image interpolation alrogithm.  Can
- * be one of "nearest neighbor", "bilinear" or "bicubic".  Defaults to "bicubic".
- * <li/>width - If greater than 0, determines the width of the written image.  Otherwise,
- * the width is obtained from the SVG document.  Defaults to -1;
- * <li/>height - If greater than 0, determines the height of the written image.  Otherwise,
- * the height is obtained from the SVG document.  Defaults to -1.
- * <li/>sizeToFit - If true and the width and height of the output image differ
+ * background is transparent.</li>
+ * <li>antiAlias - If set, shapes are drawn using anti-aliasing.  Defaults to true.</li>
+ * <li>interpolation - String describing image interpolation algorithm.  Can
+ * be one of "nearest neighbor", "bilinear" or "bicubic".  Defaults to "bicubic".</li>
+ * <li>width - If greater than 0, determines the width of the written image.  Otherwise,
+ * the width is obtained from the SVG document.  Defaults to -1;</li>
+ * <li>height - If greater than 0, determines the height of the written image.  Otherwise,
+ * the height is obtained from the SVG document.  Defaults to -1.</li>
+ * <li>sizeToFit - If true and the width and height of the output image differ
  * from that of the SVG image, the valid area of the SVG image will be resized 
- * to fit the specified size.
- * <li/>verbose - IF true, prints out diagnostic infromation about processing.  
- * Defaults to false.
- * </ul></p>
+ * to fit the specified size.</li>
+ * <li>verbose - If true, prints out diagnostic information about processing.  
+ * Defaults to false.</li>
+ * </ul>
  * 
  * Example:
  * &lt;SVGToImage destDir="${index.java}" format="jpg" verbose="true"&gt;

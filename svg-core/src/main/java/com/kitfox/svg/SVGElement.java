@@ -226,10 +226,8 @@ abstract public class SVGElement implements Serializable
     /**
      * Swaps 2 elements in children.
      *
-     * @i index of first
-     * @j index of second
-     *
-     * @return true if successful, false otherwise
+     * @param i index of first child
+     * @param j index of second child
      */
     public void swapChildren(int i, int j) throws SVGException
     {

@@ -55,7 +55,9 @@ public class AdobeComposite implements Composite
     final int compositeType;
     final float extraAlpha;
 
-    /** Creates a new instance of AdobeComposite */
+    /**
+     * Creates a new instance of AdobeComposite
+     */
     public AdobeComposite(int compositeType, float extraAlpha)
     {
         this.compositeType = compositeType;
