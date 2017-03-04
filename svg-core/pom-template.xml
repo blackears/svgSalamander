@@ -4,12 +4,12 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.kitfox.svgSalamander</groupId>
-  <artifactId>core</artifactId>
+  <groupId>com.kitfox</groupId>
+  <artifactId>svgSalamander</artifactId>
   <version>__VERSION__</version>
   <packaging>jar</packaging>
 
-  <name>com.kitfox.svgSalamander:core</name>
+  <name>com.kitfox:svgSalamander</name>
   <description>A tool for displaying and playing SVG content using the Java2D.</description>
   <url>https://github.com/blackears/svgSalamander</url>
 

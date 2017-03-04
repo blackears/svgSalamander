@@ -93,7 +93,7 @@
     	-->
     	<mkdir dir="${maven.dist.dir}"/>
 
-        <jar destfile="${maven.dist.dir}/svgSalamander-${version}-javadoc.jar" update="false">
+        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}-javadoc.jar" update="false">
             <manifest>
                 <attribute name="Version" value="${version}"/>
                 <attribute name="Date" value="${TODAY}"/>
@@ -103,17 +103,20 @@
             </fileset>
         </jar>
 
-        <jar destfile="${maven.dist.dir}/svgSalamander-${version}-sources.jar" update="false">
+        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}-sources.jar" update="false">
             <manifest>
                 <attribute name="Version" value="${version}"/>
                 <attribute name="Date" value="${TODAY}"/>
             </manifest>
 
-            <fileset dir="src">
+            <fileset dir="src/main/java">
+            </fileset>
+            
+            <fileset dir="src/gen/java">
             </fileset>
         </jar>
 
-        <jar destfile="${maven.dist.dir}/svgSalamander-${version}.jar" update="true">
+        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.jar" update="true">
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
                 <attribute name="Version" value="${version}"/>
@@ -127,8 +130,8 @@
             </fileset>
         </jar>
 
-        <copy file="pom-template.xml" tofile="${maven.dist.dir}/svgSalamander-${version}.pom"/>
-        <replace file="${maven.dist.dir}/svgSalamander-${version}.pom">
+        <copy file="pom-template.xml" tofile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.pom"/>
+        <replace file="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.pom">
                 <replacefilter token="__VERSION__" value="${version}"/>
         </replace>
 <!--
@@ -151,6 +154,7 @@
         <apply executable="gpg.exe">
             <arg line="-ab --passphrase 3J:t=WzX]/p\3RLv"/>
             <fileset dir="${maven.dist.dir}">
+                <include name="**/*"/>
                 <exclude name="**/*.asc"/>
             </fileset>
         </apply>
