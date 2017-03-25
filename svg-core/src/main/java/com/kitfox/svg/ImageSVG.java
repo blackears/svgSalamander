@@ -113,21 +113,28 @@ public class ImageSVG extends RenderableElement
         {
             if (getPres(sty.setName("xlink:href")))
             {
+                
+                
                 URI src = sty.getURIValue(getXMLBase());
                 if ("data".equals(src.getScheme()))
                 {
                     imageSrc = new URL(null, src.toASCIIString(), new Handler());
-                } else
+                }
+                else 
                 {
-                    try
+                    
+                    if (!diagram.getUniverse().isImageDataInlineOnly())
                     {
-                        imageSrc = src.toURL();
-                    } catch (Exception e)
-                    {
-                        Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
-                            "Could not parse xlink:href " + src, e);
-//                        e.printStackTrace();
-                        imageSrc = null;
+                        try
+                        {
+                            imageSrc = src.toURL();
+                        } catch (Exception e)
+                        {
+                            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
+                                "Could not parse xlink:href " + src, e);
+    //                        e.printStackTrace();
+                            imageSrc = null;
+                        }
                     }
                 }
             }

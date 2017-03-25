@@ -100,7 +100,10 @@ public class SVGUniverse implements Serializable
     private boolean verbose = false;
     //Cache reader for efficiency
     XMLReader cachedReader;
-
+    
+    //If true, <imageSVG> elements will only load image data that is included using inline data: uris
+    private boolean imageDataInlineOnly = false;
+    
     /**
      * Creates a new instance of SVGUniverse
      */
@@ -672,5 +675,21 @@ public class SVGUniverse implements Serializable
         is.close();
 
         return universe;
+    }
+
+    /**
+     * @return the imageDataInlineOnly
+     */
+    public boolean isImageDataInlineOnly()
+    {
+        return imageDataInlineOnly;
+    }
+
+    /**
+     * @param imageDataInlineOnly the imageDataInlineOnly to set
+     */
+    public void setImageDataInlineOnly(boolean imageDataInlineOnly)
+    {
+        this.imageDataInlineOnly = imageDataInlineOnly;
     }
 }
