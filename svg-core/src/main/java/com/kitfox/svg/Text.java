@@ -37,6 +37,7 @@ package com.kitfox.svg;
 
 import com.kitfox.svg.util.FontSystem;
 import com.kitfox.svg.xml.StyleAttribute;
+import com.sun.media.jfxmedia.logging.Logger;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
@@ -271,7 +272,7 @@ public class Text extends ShapeElement
         Font font = null;
         for (int i = 0; i < families.length; ++i)
         {
-            font = diagram.getUniverse().getFont(fontFamily);
+            font = diagram.getUniverse().getFont(families[i]);
             if (font != null)
             {
                 break;
@@ -280,64 +281,20 @@ public class Text extends ShapeElement
         
         if (font == null)
         {
-//            System.err.println("Could not load font");
-
-            font = new FontSystem(fontFamily, fontStyle, fontWeight, (int)fontSize);
-//            java.awt.Font sysFont = new java.awt.Font(fontFamily, style | weight, (int)fontSize);
-//            buildSysFont(sysFont);
-//            return;
+            //Check system fonts
+            font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, (int)fontSize);
         }
 
-//        font = new java.awt.Font(font.getFamily(), style | weight, font.getSize());
-
-//        Area textArea = new Area();
+        if (font == null)
+        {
+            Logger.logMsg(Logger.WARNING, "Could not create font " + fontFamily);
+            font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontStyle);
+        }
+        
         GeneralPath textPath = new GeneralPath();
         textShape = textPath;
 
         float cursorX = x, cursorY = y;
-
-        //FontFace fontFace = font.getFontFace();
-        //int unitsPerEm = fontFace.getUnitsPerEm();
-//        int ascent = fontFace.getAscent();
-//        float fontScale = fontSize / (float) ascent;
-
-//        AffineTransform oldXform = g.getTransform();
-//        TextBuilder builder = new TextBuilder();
-//        
-//        for (Iterator it = content.iterator(); it.hasNext();)
-//        {
-//            Object obj = it.next();
-//
-//            if (obj instanceof String)
-//            {
-//                String text = (String) obj;
-//                if (text != null)
-//                {
-//                    text = text.trim();
-//                }
-//                
-//                for (int i = 0; i < text.length(); i++)
-//                {
-//                    String unicode = text.substring(i, i + 1);
-//                    MissingGlyph glyph = font.getGlyph(unicode);
-//                    
-//                    builder.appendGlyph(glyph);
-//                }
-//            }
-//            else if (obj instanceof Tspan)
-//            {
-//                Tspan tspan = (Tspan)obj;
-//                tspan.buildGlyphs(builder);
-//            }
-//        }
-//
-//        builder.formatGlyphs();
-        
-        
-
-                
-                
-        
         
         
         AffineTransform xform = new AffineTransform();

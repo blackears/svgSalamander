@@ -41,10 +41,14 @@ import com.kitfox.svg.Glyph;
 import com.kitfox.svg.MissingGlyph;
 import java.awt.Canvas;
 import java.awt.FontMetrics;
+import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -57,7 +61,36 @@ public class FontSystem extends Font
 
     HashMap<String, Glyph> glyphCache = new HashMap<String, Glyph>();
     
-    public FontSystem(String fontFamily, int fontStyle, int fontWeight, int fontSize)
+    static HashSet<String> sysFontNames = new HashSet<String>();
+    
+    public static boolean checkIfSystemFontExists(String fontName)
+    {
+        if (sysFontNames.isEmpty())
+        {
+            for (String name: GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames())
+            {
+                sysFontNames.add(name);
+            }
+        }
+        
+        return sysFontNames.contains(fontName);
+    }
+    
+    public static FontSystem createFont(String fontFamily, int fontStyle, int fontWeight, int fontSize)
+    {
+        String[] families = fontFamily.split(",");
+        for (String fontName: families)
+        {
+            if (checkIfSystemFontExists(fontName))
+            {
+                return new FontSystem(fontName, fontStyle, fontWeight, (int) fontSize);
+            }
+        }
+        
+        return null;
+    }
+    
+    private FontSystem(String fontFamily, int fontStyle, int fontWeight, int fontSize)
     {
         int style;
         switch (fontStyle)
@@ -81,6 +114,7 @@ public class FontSystem extends Font
                 weight = java.awt.Font.PLAIN;
                 break;
         }
+        
         sysFont = new java.awt.Font(fontFamily, style | weight, (int) fontSize);
         
         Canvas c = new Canvas();
