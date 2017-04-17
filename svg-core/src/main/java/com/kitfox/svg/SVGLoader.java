@@ -74,7 +74,11 @@ public class SVGLoader extends DefaultHandler
 
     final boolean verbose;
     
-    /** Creates a new instance of SVGLoader */
+    /**
+     * Creates a new instance of SVGLoader
+     * @param xmlBase
+     * @param universe
+     */
     public SVGLoader(URI xmlBase, SVGUniverse universe)
     {
         this(xmlBase, universe, false);

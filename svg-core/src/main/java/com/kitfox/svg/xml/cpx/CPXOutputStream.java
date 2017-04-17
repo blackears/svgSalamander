@@ -47,7 +47,11 @@ public class CPXOutputStream extends FilterOutputStream implements CPXConsts {
 
     Deflater deflater = new Deflater(Deflater.BEST_COMPRESSION);
 
-    /** Creates a new instance of CPXOutputStream */
+    /** 
+     * Creates a new instance of CPXOutputStream
+     * @param os
+     * @throws java.io.IOException
+     */
     public CPXOutputStream(OutputStream os) throws IOException {
         super(os);
 

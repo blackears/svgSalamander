@@ -113,6 +113,7 @@ abstract public class RenderableElement extends TransformableElement
      * clipping mask.
      * 
      * @param g Graphics context
+     * @throws com.kitfox.svg.SVGException
      */
     protected void beginLayer(Graphics2D g) throws SVGException
     {
@@ -167,6 +168,7 @@ abstract public class RenderableElement extends TransformableElement
     /**
      * Restores transform and clipping values to the way they were before this
      * layer was drawn.
+     * @param g
      */
     protected void finishLayer(Graphics2D g)
     {

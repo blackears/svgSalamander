@@ -52,7 +52,10 @@ public class AdobeCompositeContext implements CompositeContext
     float[] rgba_dstIn = new float[4];
     float[] rgba_dstOut = new float[4];
 
-    /** Creates a new instance of AdobeCompositeContext */
+    /** Creates a new instance of AdobeCompositeContext
+     * @param compositeType
+     * @param extraAlpha
+     */
     public AdobeCompositeContext(int compositeType, float extraAlpha)
     {
         this.compositeType = compositeType;

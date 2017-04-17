@@ -57,6 +57,8 @@ public class AdobeComposite implements Composite
 
     /**
      * Creates a new instance of AdobeComposite
+     * @param compositeType
+     * @param extraAlpha
      */
     public AdobeComposite(int compositeType, float extraAlpha)
     {

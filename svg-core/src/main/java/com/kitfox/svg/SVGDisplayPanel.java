@@ -105,6 +105,8 @@ public class SVGDisplayPanel extends javax.swing.JPanel implements Scrollable
 
     /**
      * Update this image to reflect the passed time
+     * @param curTime
+     * @throws com.kitfox.svg.SVGException
      */
     public void updateTime(double curTime) throws SVGException
     {

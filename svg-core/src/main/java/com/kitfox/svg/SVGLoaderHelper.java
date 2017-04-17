@@ -64,7 +64,12 @@ public class SVGLoaderHelper
      */
     public final AnimTimeParser animTimeParser = new AnimTimeParser(new StringReader(""));
     
-    /** Creates a new instance of SVGLoaderHelper */
+    /**
+     * Creates a new instance of SVGLoaderHelper
+     * @param xmlBase
+     * @param universe
+     * @param diagram
+     */
     public SVGLoaderHelper(URI xmlBase, SVGUniverse universe, SVGDiagram diagram)
     {
         this.xmlBase = xmlBase;

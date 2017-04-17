@@ -74,7 +74,11 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
     byte[] inBuffer = new byte[2048];
     byte[] decryptBuffer = new byte[2048];
 
-    /** Creates a new instance of CPXInputStream */
+    /** 
+     * Creates a new instance of CPXInputStream
+     * @param in
+     * @throws java.io.IOException
+     */
     public CPXInputStream(InputStream in) throws IOException {
         super(in);
 
@@ -244,6 +248,7 @@ public class CPXInputStream extends FilterInputStream implements CPXConsts {
      * Call when inflater indicates that it needs more bytes.
      * @return - true if we decrypted more bytes to deflate, false if we
      * encountered the end of stream
+     * @throws java.io.IOException
      */
     protected boolean decryptChunk() throws IOException
     {

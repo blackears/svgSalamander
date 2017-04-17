@@ -161,6 +161,18 @@ public class Arc extends PathCommand
      * 
      * AffineTransform.getRotateInstance
      *     (angle, arc.getX()+arc.getWidth()/2, arc.getY()+arc.getHeight()/2);
+     * 
+     * @param x0 origin of arc in x
+     * @param y0 origin of arc in y
+     * @param rx radius of arc in x
+     * @param ry radius of arc in y
+     * @param angle number of radians in arc
+     * @param largeArcFlag
+     * @param sweepFlag
+     * @param x ending coordinate of arc in x
+     * @param y ending coordinate of arc in y
+     * @return arc shape
+     * 
      */
     public static Arc2D computeArc(double x0, double y0,
                                    double rx, double ry,
