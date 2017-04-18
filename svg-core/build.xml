@@ -177,6 +177,8 @@
         <mkdir dir="${animtime.outdir}"/>
         <mkdir dir="${gen.main.res.dir}"/>
         <mkdir dir="${gen.main.src.dir}"/>
+        <mkdir dir="src/test/java"/>
+        
         <!--jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}" outputfile="${animtime.outfile}"/-->
         <jjtree target="${animtime.jjtree}" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
         <javacc target="${animtime.outdir}/AnimTimeParser.jj" javacchome="${javacc.home}" outputdirectory="${animtime.outdir}"/>
