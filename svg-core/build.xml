@@ -82,10 +82,16 @@
     <property name="project.www.jar" value="${www.dir}/binaries/svgSalamander.jar"/>
     <property name="project.tiny.jar" value="${www.dir}/binaries/svgSalamander-tiny.jar"/>
 
-
-
     <!--target name="maven-publish" depends="jar,javadoc"-->
     <target name="maven-publish" depends="">
+        <!-- define Maven coordinates -->
+        <property name="groupId" value="com.kitfox" />
+        <property name="artifactId" value="svgSalamander" />
+        <!-- define artifacts' name, which follows the convention of Maven -->
+        <property name="maven-jar" value="${maven.dist.dir}/lib/${artifactId}-${version}.jar" />
+        <property name="maven-javadoc-jar" value="${maven.dist.dir}/lib/${artifactId}-${version}-javadoc.jar" />
+        <property name="maven-sources-jar" value="${maven.dist.dir}/lib/${artifactId}-${version}-sources.jar" />
+        
     <!--
     	<delete includeEmptyDirs="true">
     		<fileset dir="${maven.dist.dir}"/>
@@ -93,7 +99,7 @@
     	-->
     	<mkdir dir="${maven.dist.dir}"/>
 
-        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}-javadoc.jar" update="false">
+        <jar destfile="${maven-javadoc-jar}" update="false">
             <manifest>
                 <attribute name="Version" value="${version}"/>
                 <attribute name="Date" value="${TODAY}"/>
@@ -103,7 +109,7 @@
             </fileset>
         </jar>
 
-        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}-sources.jar" update="false">
+        <jar destfile="${maven-sources-jar}" update="false">
             <manifest>
                 <attribute name="Version" value="${version}"/>
                 <attribute name="Date" value="${TODAY}"/>
@@ -116,7 +122,7 @@
             </fileset>
         </jar>
 
-        <jar destfile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.jar" update="true">
+        <jar destfile="${maven-jar}" update="true">
             <manifest>
                 <attribute name="Main-Class" value="com.kitfox.svg.app.SVGPlayer"/>
                 <attribute name="Version" value="${version}"/>
@@ -130,8 +136,8 @@
             </fileset>
         </jar>
 
-        <copy file="pom-template.xml" tofile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.pom"/>
-        <replace file="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/svgSalamander-${version}.pom">
+        <copy file="pom-template.xml" tofile="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/${artifactId}-${version}.pom"/>
+        <replace file="${maven.dist.dir}/com/kitfox/svgSalamander/${version}/${artifactId}-${version}.pom">
                 <replacefilter token="__VERSION__" value="${version}"/>
         </replace>
 <!--
