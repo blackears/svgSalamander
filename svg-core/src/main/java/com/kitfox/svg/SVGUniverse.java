@@ -340,8 +340,6 @@ public class SVGUniverse implements Serializable
             SVGDiagram dia = (SVGDiagram) loadedDocs.get(xmlBase);
             if (dia == null && loadIfAbsent)
             {
-//System.err.println("SVGUnivserse: " + xmlBase.toString());
-//javax.swing.JOptionPane.showMessageDialog(null, xmlBase.toString());
                 URL url = xmlBase.toURL();
 
                 loadSVG(url, false);
