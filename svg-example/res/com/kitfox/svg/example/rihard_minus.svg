@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg6760"
+   viewBox="0 0 232.36991 231.99999"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="rihard_minus.svg"
+   width="232.36992"
+   height="232">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1770"
+     inkscape:window-height="1058"
+     id="namedview4305"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.55017102"
+     inkscape:cx="-8.583227"
+     inkscape:cy="-307.42052"
+     inkscape:window-x="1502"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6760" />
+  <defs
+     id="defs6762">
+    <linearGradient
+       id="linearGradient10743">
+      <stop
+         id="stop10745"
+         stop-color="#fff"
+         stop-opacity=".7037"
+         offset="0" />
+      <stop
+         id="stop10747"
+         stop-color="#fff"
+         stop-opacity=".18981"
+         offset=".50851" />
+      <stop
+         id="stop10749"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset=".51143" />
+      <stop
+         id="stop10751"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10803">
+      <stop
+         id="stop10805"
+         stop-color="#fff"
+         stop-opacity=".88889"
+         offset="0" />
+      <stop
+         id="stop10807"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset=".5" />
+      <stop
+         id="stop10809"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset=".51143" />
+      <stop
+         id="stop10811"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter6030">
+      <feGaussianBlur
+         id="feGaussianBlur6032"
+         stdDeviation="0.45504926" />
+    </filter>
+    <linearGradient
+       id="linearGradient5675">
+      <stop
+         id="stop5677"
+         stop-color="#a50006"
+         offset="0" />
+      <stop
+         id="stop5679"
+         stop-color="#af3a3c"
+         stop-opacity="0"
+         offset=".51143" />
+      <stop
+         id="stop5681"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset=".51143" />
+      <stop
+         id="stop5683"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5553">
+      <stop
+         id="stop5555"
+         stop-color="#9b3538"
+         offset="0" />
+      <stop
+         id="stop5557"
+         stop-color="#cc3235"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient7965"
+       x1="394.25"
+       xlink:href="#linearGradient5553"
+       gradientUnits="userSpaceOnUse"
+       y1="195.88"
+       gradientTransform="translate(-76.25,144.99)"
+       x2="394.25"
+       y2="252.88" />
+    <radialGradient
+       id="radialGradient7967"
+       xlink:href="#linearGradient10803"
+       gradientUnits="userSpaceOnUse"
+       cy="132.92"
+       cx="418"
+       gradientTransform="matrix(3.6752,-3.6752,1.0447,1.0447,-1265.2,1743.3)"
+       r="4.5949998" />
+    <radialGradient
+       id="radialGradient7969"
+       xlink:href="#linearGradient5675"
+       gradientUnits="userSpaceOnUse"
+       cy="247.83"
+       cx="485.76001"
+       gradientTransform="matrix(2.4488,2.4488,-1.3185,1.3185,-453.29,-1123.5)"
+       r="4.7539001" />
+    <radialGradient
+       id="radialGradient7971"
+       xlink:href="#linearGradient5675"
+       gradientUnits="userSpaceOnUse"
+       cy="247.83"
+       cx="485.76001"
+       gradientTransform="matrix(-2.4488,2.4488,-1.0019,-1.0019,1664.2,-548.62)"
+       r="4.7539001" />
+    <radialGradient
+       id="radialGradient7973"
+       xlink:href="#linearGradient10803"
+       gradientUnits="userSpaceOnUse"
+       cy="132.92"
+       cx="418"
+       gradientTransform="matrix(-3.6752,-3.6752,1.0053,-1.0053,1628.8,2015.3)"
+       r="4.5949998" />
+    <linearGradient
+       id="linearGradient7975"
+       x1="394.25"
+       gradientUnits="userSpaceOnUse"
+       y1="200.07001"
+       gradientTransform="translate(-76.25,144.99)"
+       x2="394.25"
+       y2="248.67999">
+      <stop
+         id="stop5539"
+         stop-color="#dc2a27"
+         offset="0" />
+      <stop
+         id="stop5541"
+         stop-color="#ff6f74"
+         offset="1" />
+    </linearGradient>
+    <radialGradient
+       id="radialGradient7977"
+       xlink:href="#linearGradient10743"
+       gradientUnits="userSpaceOnUse"
+       cy="192.82001"
+       cx="360.57001"
+       gradientTransform="matrix(4.2028,0,0,2.17,-1288.9,-130.18)"
+       r="91.5" />
+  </defs>
+  <g
+     transform="matrix(1.0524,0,0,1.0524,-218.47824,-272.78261)"
+     id="g7952">
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#linearGradient7965)"
+       d="m 228.31,340.86 c -3.91,0 -7.06,3.12 -7.06,7.03 l 0,42.91 c 0,3.91 3.15,7.06 7.06,7.06 l 179.38,0 c 3.91,0 7.06,-3.15 7.06,-7.06 l 0,-42.91 c 0,-3.91 -3.15,-7.03 -7.06,-7.03 l -179.38,0 z"
+       id="rect5520" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#radialGradient7967)"
+       d="m 409.7,340.98 -4.42,5.26 c 2.14,0.67 3.81,2.32 4.5,4.73 l 4.69,-4.78 c -0.55,-2.67 -2.68,-4.59 -4.77,-5.21 z"
+       id="path5902" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#radialGradient7969)"
+       d="m 414.27,393.34 -4.91,-5.3 c -0.67,2.14 -2.18,3.81 -4.6,4.5 l 4.83,5.04 c 2.67,-0.58 4.41,-3.12 4.68,-4.24 z"
+       id="path5980" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#radialGradient7971)"
+       d="m 225.85,397.39 5.3,-4.91 c -2.14,-0.67 -3.81,-2.18 -4.5,-4.6 l -5.05,4.83 c 0.59,2.67 3.12,4.41 4.25,4.68 z"
+       id="path6022" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#radialGradient7973)"
+       d="m 221.56,345.66 4.9,4.42 c 0.77,-2.23 2.06,-3.41 3.98,-4.24 l -4.21,-5.22 c -2.66,0.55 -4.05,2.95 -4.67,5.04 z"
+       id="path5976" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#linearGradient7975);stroke:#ffb6b7;filter:url(#filter6030)"
+       d="m 232.64,345.56 c -3.67,0 -6.64,2.93 -6.64,6.61 l 0,34.36 c 0,3.67 2.97,6.64 6.64,6.64 l 170.72,0 c 3.67,0 6.64,-2.97 6.64,-6.64 l 0,-34.36 c 0,-3.68 -2.97,-6.61 -6.64,-6.61 l -170.72,0 z"
+       id="path5535" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:url(#radialGradient7977)"
+       d="m 232.64,345.56 c -3.67,0 -6.64,2.93 -6.64,6.61 l 0,34.36 c 0,3.67 2.97,6.64 6.64,6.64 l 170.72,0 c 3.67,0 6.64,-2.97 6.64,-6.64 l 0,-34.36 c 0,-3.68 -2.97,-6.61 -6.64,-6.61 l -170.72,0 z"
+       id="path5559" />
+  </g>
+  <metadata
+     id="metadata4303">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title></dc:title>
+        <dc:date>2007-01-31T04:05:06</dc:date>
+        <dc:description />
+        <dc:source>https://openclipart.org/detail/176152/Clipart-by-rihard</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>rihard</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>arithmetic</rdf:li>
+            <rdf:li>symbols</rdf:li>
+            <rdf:li>plus</rdf:li>
+            <rdf:li>minus</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
