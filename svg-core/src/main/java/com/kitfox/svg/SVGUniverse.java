@@ -340,8 +340,6 @@ public class SVGUniverse implements Serializable
             SVGDiagram dia = (SVGDiagram) loadedDocs.get(xmlBase);
             if (dia == null && loadIfAbsent)
             {
-//System.err.println("SVGUnivserse: " + xmlBase.toString());
-//javax.swing.JOptionPane.showMessageDialog(null, xmlBase.toString());
                 URL url = xmlBase.toURL();
 
                 loadSVG(url, false);
@@ -617,9 +615,8 @@ public class SVGUniverse implements Serializable
             return xmlBase;
         } catch (SAXParseException sex)
         {
-            System.err.println("Error processing " + xmlBase);
-            System.err.println(sex.getMessage());
-
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
+                "Error processing " + xmlBase, sex);
             loadedDocs.remove(xmlBase);
             return null;
         } catch (Throwable e)

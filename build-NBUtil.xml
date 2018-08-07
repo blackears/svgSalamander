@@ -4,9 +4,9 @@
 	Collection of common tasks used by many other projects.
 	</description-->
 
-    <property name="jvm.debug" location="C:\bin\jdk1.6.0\fastdebug\bin\java.exe"/>
+    <property name="jvm.debug" location="C:\Program Files\Java\jdk1.8.0_144\bin\java.exe"/>
 
-    <taskdef resource="proguard/ant/task.properties" classpath="C:\java\proguard4.0beta\lib\proguard.jar" />
+    <taskdef resource="proguard/ant/task.properties" classpath="D:\DEV\lib\proguard-4.4.jar" />
 
     <target name="compile-selected-files" depends="init">
         <fail unless="files">Must set property 'files'</fail>
