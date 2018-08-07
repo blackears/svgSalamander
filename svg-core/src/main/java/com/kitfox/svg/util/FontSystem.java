@@ -140,8 +140,8 @@ public class FontSystem extends Font
             glyph.setPath(vec.getGlyphOutline(0));
 
             GlyphMetrics gm = vec.getGlyphMetrics(0);
-            glyph.setHorizAdvX((int)gm.getAdvanceX());
-            glyph.setVertAdvY((int)gm.getAdvanceY());
+            glyph.setHorizAdvX(gm.getAdvanceX());
+            glyph.setVertAdvY(gm.getAdvanceY());
             glyph.setVertOriginX(0);
             glyph.setVertOriginY(0);
             
