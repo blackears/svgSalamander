@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://www.w3.org/1999/xlink" uri="www.w3.org/1999/xlink"/>
-    <system systemId="http://www.w3.org/2000/svg" uri="www.w3.org/2000/svg.xml"/>
-    <system systemId="http://creativecommons.org/ns" uri="creativecommons.org/ns.xml"/>
-    <system systemId="http://www.w3.org/1999/02/22-rdf-syntax-ns" uri="www.w3.org/1999/02/22-rdf-syntax-ns.xml"/>
-    <system systemId="http://purl.org/dc/elements/1.1/" uri="dublincore.org/2012/06/14/dcelements"/>
-</catalog>

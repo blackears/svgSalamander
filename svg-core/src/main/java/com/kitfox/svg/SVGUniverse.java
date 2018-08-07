@@ -617,8 +617,8 @@ public class SVGUniverse implements Serializable
             return xmlBase;
         } catch (SAXParseException sex)
         {
-            System.err.println("Error processing " + xmlBase);
-            System.err.println(sex.getMessage());
+            Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
+                "Error processing " + xmlBase, sex);
 
             loadedDocs.remove(xmlBase);
             return null;
