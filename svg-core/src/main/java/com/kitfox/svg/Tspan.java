@@ -235,6 +235,11 @@ public class Tspan extends ShapeElement
 //            return;
         }
 
+        if (font == null)
+        {
+            font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontStyle);
+        }
+
 //        FontFace fontFace = font.getFontFace();
 //        int ascent = fontFace.getAscent();
 //        float fontScale = fontSize / (float) ascent;
