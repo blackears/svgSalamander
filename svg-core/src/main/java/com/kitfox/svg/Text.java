@@ -178,7 +178,7 @@ public class Text extends ShapeElement
         }
         else
         {
-            fontFamily = "Sans Serif";
+            fontFamily = "SansSerif";
         }
 
         if (getStyle(sty.setName("font-size")))
