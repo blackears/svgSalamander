@@ -228,7 +228,7 @@ public class Tspan extends ShapeElement
 
         //Get font
         Font font = diagram.getUniverse().getFont(fontFamily);
-        if (font == null)
+        if (font == null && fontFamily != null)
         {
             font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, (int)fontSize);
 //            addShapeSysFont(addShape, font, fontFamily, fontSize, letterSpacing, cursor);
