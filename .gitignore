@@ -8,3 +8,5 @@
 /libraries/nblibraries.properties
 /svg-core/tempKeystore
 /svg-example/nbproject
+/svg-core/target/
+/svg-example/target/

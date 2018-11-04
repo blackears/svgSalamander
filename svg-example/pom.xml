@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kitfox</groupId>
+    <artifactId>svgSalamander-examples</artifactId>
+    <version>1.1.3-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>com.kitfox:svgSalamander Examples</name>
+    <description>Examples for displaying and playing SVG content using the Java2D.</description>
+    <url>https://github.com/blackears/svgSalamander</url>
+
+    <licenses>
+        <license>
+            <name>BSD License</name>
+            <url>https://opensource.org/licenses/BSD-2-Clause</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Mark McKay</name>
+            <email>mark@kitfox.com</email>
+            <organization>kitfox.com</organization>
+            <organizationUrl>http://www.kitfox.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/blackears/svgSalamander.git</connection>
+        <developerConnection>scm:git:ssh://github.com:blackears/svgSalamander.git</developerConnection>
+        <url>https://github.com/blackears/svgSalamander/tree/master/svg-examples</url>
+    </scm>
+
+    <properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.kitfox</groupId>
+            <artifactId>svgSalamander</artifactId>
+            <version>1.1.3-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>res</directory>
+            </resource>
+        </resources>
+        <testSourceDirectory>test</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>res</directory>
+            </testResource>
+        </testResources>
+    </build>
+</project>
