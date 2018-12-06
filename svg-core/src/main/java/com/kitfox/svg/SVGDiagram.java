@@ -36,8 +36,7 @@
 
 package com.kitfox.svg;
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -46,6 +45,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,6 +59,8 @@ import java.util.logging.Logger;
 public class SVGDiagram implements Serializable
 {
     public static final long serialVersionUID = 0;
+
+    private HashMap<Component, Rectangle> repaintListComponents = new HashMap<Component, Rectangle>();
     
     //Indexes elements within this SVG diagram
     final HashMap<String, SVGElement> idMap = new HashMap<String, SVGElement>();
@@ -241,6 +243,15 @@ public class SVGDiagram implements Serializable
     {
         if (root == null) return;
         root.updateTime(curTime);
+
+        for(Map.Entry<Component, Rectangle> entry : repaintListComponents.entrySet()){
+            entry.getKey().repaint(
+                    entry.getValue().x,
+                    entry.getValue().y,
+                    entry.getValue().width,
+                    entry.getValue().height
+            );
+        }
     }
 
     public Rectangle getDeviceViewport()
@@ -267,6 +278,20 @@ public class SVGDiagram implements Serializable
                 Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
                     "Could not build document", ex);
             }
+        }
+    }
+
+    public void setParentComponent(Component parentComponent) {
+        repaintListComponents.put(parentComponent, new Rectangle(0,0,0,0));
+    }
+
+    public void setRepaintParentComponent(Component parentComponent, int x, int y, int width, int height) {
+        Rectangle rec = repaintListComponents.get(parentComponent);
+        if(rec != null){
+            rec.x = x;
+            rec.y = y;
+            rec.width = width;
+            rec.height = height;
         }
     }
 }
