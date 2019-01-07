@@ -36,7 +36,8 @@
 
 package com.kitfox.svg;
 
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -59,7 +60,7 @@ import java.util.logging.Logger;
 public class SVGDiagram implements Serializable
 {
     public static final long serialVersionUID = 0;
-
+    
     private HashMap<Component, Rectangle> repaintListComponents = new HashMap<Component, Rectangle>();
     
     //Indexes elements within this SVG diagram
@@ -243,7 +244,7 @@ public class SVGDiagram implements Serializable
     {
         if (root == null) return;
         root.updateTime(curTime);
-
+        
         for(Map.Entry<Component, Rectangle> entry : repaintListComponents.entrySet()){
             entry.getKey().repaint(
                     entry.getValue().x,
@@ -280,7 +281,7 @@ public class SVGDiagram implements Serializable
             }
         }
     }
-
+    
     public void setParentComponent(Component parentComponent) {
         repaintListComponents.put(parentComponent, new Rectangle(0,0,0,0));
     }
