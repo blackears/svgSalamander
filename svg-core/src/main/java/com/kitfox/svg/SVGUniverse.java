@@ -98,9 +98,7 @@ public class SVGUniverse implements Serializable
      */
     protected double curTime = 0.0;
     private boolean verbose = false;
-    //Cache reader for efficiency
-    XMLReader cachedReader;
-    
+
     //If true, <imageSVG> elements will only load image data that is included using inline data: uris
     private boolean imageDataInlineOnly = false;
     
