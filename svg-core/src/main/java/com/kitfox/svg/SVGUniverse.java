@@ -576,15 +576,11 @@ public class SVGUniverse implements Serializable
         }
     }
 
-    private XMLReader getXMLReaderCached() throws SAXException, ParserConfigurationException
+    private XMLReader getXMLReader() throws SAXException, ParserConfigurationException
     {
-        if (cachedReader == null)
-        {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            factory.setNamespaceAware(true);
-            cachedReader = factory.newSAXParser().getXMLReader();
-        }
-        return cachedReader;
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        return factory.newSAXParser().getXMLReader();
     }
 
     protected URI loadSVG(URI xmlBase, InputSource is)
@@ -600,7 +596,7 @@ public class SVGUniverse implements Serializable
         try
         {
             // Parse the input
-            XMLReader reader = getXMLReaderCached();
+            XMLReader reader = getXMLReader();
             reader.setEntityResolver(
                 new EntityResolver()
                 {
