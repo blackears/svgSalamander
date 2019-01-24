@@ -98,9 +98,7 @@ public class SVGUniverse implements Serializable
      */
     protected double curTime = 0.0;
     private boolean verbose = false;
-    //Cache reader for efficiency
-    XMLReader cachedReader;
-    
+
     //If true, <imageSVG> elements will only load image data that is included using inline data: uris
     private boolean imageDataInlineOnly = false;
     
@@ -576,15 +574,11 @@ public class SVGUniverse implements Serializable
         }
     }
 
-    private XMLReader getXMLReaderCached() throws SAXException, ParserConfigurationException
+    private XMLReader getXMLReader() throws SAXException, ParserConfigurationException
     {
-        if (cachedReader == null)
-        {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            factory.setNamespaceAware(true);
-            cachedReader = factory.newSAXParser().getXMLReader();
-        }
-        return cachedReader;
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        return factory.newSAXParser().getXMLReader();
     }
 
     protected URI loadSVG(URI xmlBase, InputSource is)
@@ -600,7 +594,7 @@ public class SVGUniverse implements Serializable
         try
         {
             // Parse the input
-            XMLReader reader = getXMLReaderCached();
+            XMLReader reader = getXMLReader();
             reader.setEntityResolver(
                 new EntityResolver()
                 {
