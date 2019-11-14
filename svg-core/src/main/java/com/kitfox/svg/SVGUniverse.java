@@ -390,7 +390,7 @@ public class SVGUniverse implements Serializable
             {
                 //Workaround for resources stored in jars loaded by Webstart.
                 //http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6753651
-                url = SVGUniverse.class.getResource("xmlBase.getPath()");
+                url = SVGUniverse.class.getResource(xmlBase.getPath());
             }
             else
             {
