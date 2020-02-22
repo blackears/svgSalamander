@@ -35,13 +35,6 @@
         <url>https://github.com/blackears/svgSalamander/tree/master/svg-core</url>
     </scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
@@ -83,4 +76,3 @@
         </plugins>
     </build>
 </project>
-
