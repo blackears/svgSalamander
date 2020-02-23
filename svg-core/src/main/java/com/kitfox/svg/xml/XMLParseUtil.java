@@ -794,8 +794,8 @@ public class XMLParseUtil
      * @param styleString - A CSS formatted string of styles.  Eg,
      *     "font-size:12;fill:#d32c27;fill-rule:evenodd;stroke-width:1pt;"
      */
-    public static HashMap<String, StyleAttribute> parseStyle(String styleString) {
-        return parseStyle(styleString, new HashMap<String, StyleAttribute>());
+    public static HashMap<String, String> parseStyle(String styleString) {
+        return parseStyle(styleString, new HashMap<String, String>());
     }
 
     /**
@@ -804,7 +804,7 @@ public class XMLParseUtil
      *     "font-size:12;fill:#d32c27;fill-rule:evenodd;stroke-width:1pt;"
      * @param map - A map to which these styles will be added
      */
-    public static HashMap<String, StyleAttribute> parseStyle(String styleString, HashMap<String, StyleAttribute> map) {
+    public static HashMap<String, String> parseStyle(String styleString, HashMap<String, String> map) {
         final Pattern patSemi = Pattern.compile(";");
 
         String[] styles = patSemi.split(styleString);
@@ -825,7 +825,7 @@ public class XMLParseUtil
             String key = styles[i].substring(0, colon).trim();
             String value = quoteMatch.reset(styles[i].substring(colon + 1).trim()).replaceAll("");
 
-            map.put(key, new StyleAttribute(key, value));
+            map.put(key, value);
         }
 
         return map;

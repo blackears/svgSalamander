@@ -90,12 +90,12 @@ abstract public class SVGElement implements Serializable
     /**
      * Styles defined for this elemnt via the <b>style</b> attribute.
      */
-    protected final HashMap<String, StyleAttribute> inlineStyles = new HashMap<String, StyleAttribute>();
+    protected final HashMap<String, String> inlineStyles = new HashMap<String, String>();
     /**
      * Presentation attributes set for this element. Ie, any attribute other
      * than the <b>style</b> attribute.
      */
-    protected final HashMap<String, StyleAttribute> presAttribs = new HashMap<String, StyleAttribute>();
+    protected final HashMap<String, String> presAttribs = new HashMap<String, String>();
     /**
      * A list of presentation attributes to not include in the presentation
      * attribute set.
@@ -303,7 +303,7 @@ abstract public class SVGElement implements Serializable
             }
             String value = attrs.getValue(i);
 
-            presAttribs.put(name, new StyleAttribute(name, value));
+            presAttribs.put(name, value);
         }
     }
 
@@ -341,10 +341,10 @@ abstract public class SVGElement implements Serializable
         switch (attribType)
         {
             case AnimationElement.AT_CSS:
-                inlineStyles.put(name, new StyleAttribute(name, value));
+                inlineStyles.put(name, value);
                 return;
             case AnimationElement.AT_XML:
-                presAttribs.put(name, new StyleAttribute(name, value));
+                presAttribs.put(name, value);
                 return;
         }
 
@@ -538,56 +538,6 @@ abstract public class SVGElement implements Serializable
         return getStyle(attrib, true);
     }
 
-    public void setAttribute(String name, int attribType, String value) throws SVGElementException
-    {
-        StyleAttribute styAttr;
-
-
-        switch (attribType)
-        {
-            case AnimationElement.AT_CSS:
-            {
-                styAttr = (StyleAttribute) inlineStyles.get(name);
-                break;
-            }
-            case AnimationElement.AT_XML:
-            {
-                styAttr = (StyleAttribute) presAttribs.get(name);
-                break;
-            }
-            case AnimationElement.AT_AUTO:
-            {
-                styAttr = (StyleAttribute) inlineStyles.get(name);
-
-                if (styAttr == null)
-                {
-                    styAttr = (StyleAttribute) presAttribs.get(name);
-                }
-                break;
-            }
-            default:
-                throw new SVGElementException(this, "Invalid attribute type " + attribType);
-        }
-
-        if (styAttr == null)
-        {
-            throw new SVGElementException(this, "Could not find attribute " + name + "(" + AnimationElement.animationElementToString(attribType) + ").  Make sure to create attribute before setting it.");
-        }
-
-        //Alter layout for relevant attributes
-        if ("id".equals(styAttr.getName()))
-        {
-            if (diagram != null)
-            {
-                diagram.removeElement(this.id);
-                diagram.setElement(value, this);
-            }
-            this.id = value;
-        }
-
-        styAttr.setStringValue(value);
-    }
-
     public boolean getStyle(StyleAttribute attrib, boolean recursive) throws SVGException
     {
         return getStyle(attrib, recursive, true);
@@ -612,9 +562,9 @@ abstract public class SVGElement implements Serializable
         String styName = attrib.getName();
 
         //Check for local inline styles
-        StyleAttribute styAttr = (StyleAttribute)inlineStyles.get(styName);
+        String styAttr = inlineStyles.get(styName);
 
-        attrib.setStringValue(styAttr == null ? "" : styAttr.getStringValue());
+        attrib.setStringValue(styAttr == null ? "" : styAttr);
 
         //Evalutate coresponding track, if one exists
         if (evalAnimation)
@@ -635,9 +585,9 @@ abstract public class SVGElement implements Serializable
 
 
         //Check for presentation attribute
-        StyleAttribute presAttr = (StyleAttribute)presAttribs.get(styName);
+        String presAttr = presAttribs.get(styName);
 
-        attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
+        attrib.setStringValue(presAttr == null ? "" : presAttr);
 
         //Evalutate coresponding track, if one exists
         if (evalAnimation)
@@ -694,7 +644,9 @@ abstract public class SVGElement implements Serializable
     public StyleAttribute getStyleAbsolute(String styName)
     {
         //Check for local inline styles
-        return (StyleAttribute) inlineStyles.get(styName);
+        final String value = inlineStyles.get(styName);
+
+        return value != null ? new StyleAttribute(styName, value) : null;
     }
 
     /**
@@ -709,10 +661,10 @@ abstract public class SVGElement implements Serializable
         String presName = attrib.getName();
 
         //Make sure we have a coresponding presentation attribute
-        StyleAttribute presAttr = (StyleAttribute) presAttribs.get(presName);
+        String presAttr = presAttribs.get(presName);
 
         //Copy presentation value directly
-        attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
+        attrib.setStringValue(presAttr == null ? "" : presAttr);
 
         //Evalutate coresponding track, if one exists
         TrackBase track = trackManager.getTrack(presName, AnimationElement.AT_XML);
@@ -740,7 +692,9 @@ abstract public class SVGElement implements Serializable
     public StyleAttribute getPresAbsolute(String styName)
     {
         //Check for local inline styles
-        return (StyleAttribute) presAttribs.get(styName);
+        final String value = presAttribs.get(styName);
+
+        return value != null ? new StyleAttribute(styName, value) : null;
     }
 
     private static final Pattern TRANSFORM_PATTERN = Pattern.compile("\\w+\\([^)]*\\)");
