@@ -94,7 +94,7 @@ public class SVGUniverse implements Serializable
     /**
      * Current time in this universe. Used for resolving attributes that are
      * influenced by track information. Time is in milliseconds. Time 0
-     * coresponds to the time of 0 in each member diagram.
+     * corresponds to the time of 0 in each member diagram.
      */
     protected double curTime = 0.0;
     private boolean verbose = false;
@@ -325,8 +325,8 @@ public class SVGUniverse implements Serializable
     /**
      * Looks up a href within our universe. If the href refers to a document
      * that is not loaded, it will be loaded. The URL #target will then be
-     * checked against the SVG diagram's index and the coresponding element
-     * returned. If there is no coresponding index, null is returned.
+     * checked against the SVG diagram's index and the corresponding element
+     * returned. If there is no corresponding index, null is returned.
      */
     public SVGElement getElement(URI path, boolean loadIfAbsent)
     {
