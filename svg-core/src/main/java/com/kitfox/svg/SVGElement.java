@@ -367,7 +367,7 @@ abstract public class SVGElement implements Serializable
     }
 
     /**
-     * @return a set of Strings that corespond to CSS attributes on this element
+     * @return a set of Strings that correspond to CSS attributes on this element
      */
     public Set<String> getInlineAttributes()
     {
@@ -375,7 +375,7 @@ abstract public class SVGElement implements Serializable
     }
 
     /**
-     * @return a set of Strings that corespond to XML attributes on this element
+     * @return a set of Strings that correspond to XML attributes on this element
      */
     public Set<String> getPresentationAttributes()
     {
@@ -616,7 +616,7 @@ abstract public class SVGElement implements Serializable
 
         attrib.setStringValue(styAttr == null ? "" : styAttr.getStringValue());
 
-        //Evalutate coresponding track, if one exists
+        //Evalutate corresponding track, if one exists
         if (evalAnimation)
         {
             TrackBase track = trackManager.getTrack(styName, AnimationElement.AT_CSS);
@@ -639,7 +639,7 @@ abstract public class SVGElement implements Serializable
 
         attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
 
-        //Evalutate coresponding track, if one exists
+        //Evalutate corresponding track, if one exists
         if (evalAnimation)
         {
             TrackBase track = trackManager.getTrack(styName, AnimationElement.AT_XML);
@@ -708,13 +708,13 @@ abstract public class SVGElement implements Serializable
     {
         String presName = attrib.getName();
 
-        //Make sure we have a coresponding presentation attribute
+        //Make sure we have a corresponding presentation attribute
         StyleAttribute presAttr = (StyleAttribute) presAttribs.get(presName);
 
         //Copy presentation value directly
         attrib.setStringValue(presAttr == null ? "" : presAttr.getStringValue());
 
-        //Evalutate coresponding track, if one exists
+        //Evalutate corresponding track, if one exists
         TrackBase track = trackManager.getTrack(presName, AnimationElement.AT_XML);
         if (track != null)
         {

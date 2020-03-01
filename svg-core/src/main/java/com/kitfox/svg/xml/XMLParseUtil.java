@@ -82,7 +82,7 @@ public class XMLParseUtil
     }
 
     /**
-     * Returns the first node that is a direct child of root with the coresponding
+     * Returns the first node that is a direct child of root with the corresponding
      * name.  Does not search children of children.
      */
     public static Element getFirstChild(Element root, String name)
