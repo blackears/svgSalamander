@@ -283,13 +283,13 @@ public class Text extends ShapeElement
         if (font == null)
         {
             //Check system fonts
-            font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, (int)fontSize);
+            font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, fontSize);
         }
 
         if (font == null)
         {
             Logger.getLogger(Text.class.getName()).log(Level.WARNING, "Could not create font " + fontFamily);
-            font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontStyle);
+            font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontSize);
         }
         
         GeneralPath textPath = new GeneralPath();

@@ -77,7 +77,7 @@ public class FontSystem extends Font
         return sysFontNames.contains(fontName);
     }
     
-    public static FontSystem createFont(String fontFamily, int fontStyle, int fontWeight, int fontSize)
+    public static FontSystem createFont(String fontFamily, int fontStyle, int fontWeight, float fontSize)
     {
         String[] families = fontFamily.split(",");
         for (String fontName: families)
@@ -85,7 +85,7 @@ public class FontSystem extends Font
             String javaFontName = mapJavaFontName(fontName);
             if (checkIfSystemFontExists(javaFontName))
             {
-                return new FontSystem(javaFontName, fontStyle, fontWeight, (int) fontSize);
+                return new FontSystem(javaFontName, fontStyle, fontWeight, fontSize);
             }
         }
         
@@ -109,7 +109,7 @@ public class FontSystem extends Font
         return fontName;
     }
 
-    private FontSystem(String fontFamily, int fontStyle, int fontWeight, int fontSize)
+    private FontSystem(String fontFamily, int fontStyle, int fontWeight, float fontSize)
     {
         int style;
         switch (fontStyle)
@@ -134,7 +134,7 @@ public class FontSystem extends Font
                 break;
         }
         
-        sysFont = new java.awt.Font(fontFamily, style | weight, (int) fontSize);
+        sysFont = new java.awt.Font(fontFamily, style | weight, 1).deriveFont(fontSize);
         
         Canvas c = new Canvas();
         fm = c.getFontMetrics(sysFont);
