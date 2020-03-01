@@ -97,22 +97,6 @@ abstract public class SVGElement implements Serializable
      */
     protected final HashMap<String, StyleAttribute> presAttribs = new HashMap<String, StyleAttribute>();
     /**
-     * A list of presentation attributes to not include in the presentation
-     * attribute set.
-     */
-    protected static final Set<String> ignorePresAttrib;
-
-    static
-    {
-        HashSet<String> set = new HashSet<String>();
-//        set.add("id");
-//        set.add("class");
-//        set.add("style");
-//        set.add("xml:base");
-
-        ignorePresAttrib = Collections.unmodifiableSet(set);
-    }
-    /**
      * This element may override the URI we resolve against with an xml:base
      * attribute. If so, a copy is placed here. Otherwise, we defer to our
      * parent for the reolution base
@@ -297,10 +281,6 @@ abstract public class SVGElement implements Serializable
         for (int i = 0; i < numAttrs; i++)
         {
             String name = attrs.getQName(i);
-            if (ignorePresAttrib.contains(name))
-            {
-                continue;
-            }
             String value = attrs.getValue(i);
 
             presAttribs.put(name, new StyleAttribute(name, value));
