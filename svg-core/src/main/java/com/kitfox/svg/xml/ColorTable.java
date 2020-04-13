@@ -214,10 +214,7 @@ public class ColorTable
     static public ColorTable instance() { return singleton; }
 
     public Color lookupColor(String name) {
-        Object obj = colorTable.get(name.toLowerCase());
-        if (obj == null) return null;
-
-        return (Color)obj;
+        return colorTable.get(name.toLowerCase());
     }
 
     public static Color parseColor(String val)
