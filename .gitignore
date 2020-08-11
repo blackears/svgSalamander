@@ -11,3 +11,9 @@
 /svg-core/target/
 /svg-example/target/
 /svg-example/dist
+/svg-core/.settings
+/svg-core/.classpath
+/svg-core/.project
+/svg-example/.classpath
+/svg-example/.project
+/svg-example/.settings

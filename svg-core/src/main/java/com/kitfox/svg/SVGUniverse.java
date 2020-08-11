@@ -62,6 +62,7 @@ import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
@@ -463,7 +464,9 @@ public class SVGUniverse implements Serializable
             }
 
             InputStream is = docRoot.openStream();
-            return loadSVG(uri, new InputSource(createDocumentInputStream(is)));
+            URI result = loadSVG(uri, new InputSource(createDocumentInputStream(is)));
+            is.close();
+            return result;
         } catch (URISyntaxException ex)
         {
             Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
@@ -574,11 +577,17 @@ public class SVGUniverse implements Serializable
         }
     }
 
+    static SAXParser saxParser;
+    
     private XMLReader getXMLReader() throws SAXException, ParserConfigurationException
     {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setNamespaceAware(true);
-        return factory.newSAXParser().getXMLReader();
+        if (saxParser == null)
+        {
+            SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+            saxParserFactory.setNamespaceAware(true);
+            saxParser = saxParserFactory.newSAXParser();
+        }
+        return saxParser.getXMLReader();
     }
 
     protected URI loadSVG(URI xmlBase, InputSource is)
