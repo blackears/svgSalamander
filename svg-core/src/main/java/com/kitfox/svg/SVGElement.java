@@ -249,11 +249,12 @@ abstract public class SVGElement implements Serializable
         this.id = attrs.getValue("id");
         if (this.id != null && !this.id.equals(""))
         {
+            this.id = this.id.intern();
             diagram.setElement(this.id, this);
         }
 
         String className = attrs.getValue("class");
-        this.cssClass = (className == null || className.equals("")) ? null : className;
+        this.cssClass = (className == null || className.equals("")) ? null : className.intern();
         //docRoot = helper.docRoot;
         //universe = helper.universe;
 
@@ -280,10 +281,10 @@ abstract public class SVGElement implements Serializable
         int numAttrs = attrs.getLength();
         for (int i = 0; i < numAttrs; i++)
         {
-            String name = attrs.getQName(i);
+            String name = attrs.getQName(i).intern();
             String value = attrs.getValue(i);
 
-            presAttribs.put(name, new StyleAttribute(name, value));
+            presAttribs.put(name, new StyleAttribute(name, value == null ? null : value.intern()));
         }
     }
 
