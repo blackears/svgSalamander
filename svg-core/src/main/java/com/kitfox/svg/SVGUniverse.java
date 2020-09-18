@@ -577,15 +577,17 @@ public class SVGUniverse implements Serializable
         }
     }
 
-    static SAXParser saxParser;
+    static ThreadLocal<SAXParser> threadSAXParser = new ThreadLocal<SAXParser>();
     
     private XMLReader getXMLReader() throws SAXException, ParserConfigurationException
     {
+        SAXParser saxParser = threadSAXParser.get();
         if (saxParser == null)
         {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
             saxParserFactory.setNamespaceAware(true);
             saxParser = saxParserFactory.newSAXParser();
+            threadSAXParser.set(saxParser);
         }
         return saxParser.getXMLReader();
     }
