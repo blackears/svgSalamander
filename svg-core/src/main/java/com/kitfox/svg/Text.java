@@ -106,6 +106,14 @@ public class Text extends ShapeElement
         return TAG_NAME;
     }
 
+    /**
+     * Removes all strings and Tspan elements that are children of this element.
+     */
+    public void clearContent()
+    {
+        content.clear();
+    }
+    
     public void appendText(String text)
     {
         content.addLast(text);
