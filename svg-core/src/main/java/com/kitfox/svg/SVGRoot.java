@@ -243,22 +243,6 @@ public class SVGRoot extends Group
         }
 
         clipRect.setRect(xx, yy, ww, hh);
-
-//        if (viewBox == null)
-//        {
-//            viewXform.setToIdentity();
-//        }
-//        else
-//        {
-//            //If viewport window is set, we are drawing to entire viewport
-//            clipRect.setRect(deviceViewport);
-//            
-//            viewXform.setToIdentity();
-//            viewXform.setToTranslation(deviceViewport.x, deviceViewport.y);
-//            viewXform.scale(deviceViewport.width, deviceViewport.height);
-//            viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
-//            viewXform.translate(-viewBox.x, -viewBox.y);
-//        }
     }
 
     public void renderToViewport(Graphics2D g) throws SVGException
@@ -310,24 +294,11 @@ public class SVGRoot extends Group
         }
         else
         {
-//            Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-//            targetViewport = new Rectangle(0, 0, size.width, size.height);
             targetViewport = new Rectangle(deviceViewport);
         }
         clipRect.setRect(targetViewport);
 
-        if (viewBox == null)
-        {
-            viewXform.setToIdentity();
-        }
-        else
-        {
-            viewXform.setToIdentity();
-            viewXform.setToTranslation(targetViewport.x, targetViewport.y);
-            viewXform.scale(targetViewport.width, targetViewport.height);
-            viewXform.scale(1 / viewBox.width, 1 / viewBox.height);
-            viewXform.translate(-viewBox.x, -viewBox.y);
-        }
+        viewXform.setTransform(calcViewportTransform(targetViewport));
         
         AffineTransform cachedXform = g.getTransform();
         g.transform(viewXform);
@@ -337,6 +308,26 @@ public class SVGRoot extends Group
         g.setTransform(cachedXform);
     }
 
+    public AffineTransform calcViewportTransform(Rectangle targetViewport)
+    {
+        AffineTransform xform = new AffineTransform();
+        
+        if (viewBox == null)
+        {
+            xform.setToIdentity();
+        }
+        else
+        {
+            xform.setToIdentity();
+            xform.setToTranslation(targetViewport.x, targetViewport.y);
+            xform.scale(targetViewport.width, targetViewport.height);
+            xform.scale(1 / viewBox.width, 1 / viewBox.height);
+            xform.translate(-viewBox.x, -viewBox.y);
+        }
+        
+        return xform;
+    }
+    
     @Override
     public void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {

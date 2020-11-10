@@ -143,7 +143,7 @@ abstract public class SVGElement implements Serializable
     {
         this.parent = parent;
     }
-
+    
     /**
      * @param retVec
      * @return an ordered list of nodes from the root of the tree to this node
