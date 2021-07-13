@@ -43,6 +43,8 @@ import com.kitfox.svg.ShapeElement;
 import com.kitfox.svg.app.beans.SVGPanel;
 import java.awt.BorderLayout;
 import java.awt.geom.Point2D;
+import java.io.File;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,57 +67,66 @@ public class SimpleIconFrame extends javax.swing.JFrame
         getContentPane().add(panel, BorderLayout.CENTER);
         panel.setAntiAlias(true);
         panel.setAutosize(SVGPanel.AUTOSIZE_NONE);
+
+//URI uri = new File("D:\\dev\\github.com\\svgSalamander\\svg-example\\res\\DemoSVG\\Gnome_All.svg").toURI();
+//panel.setSvgURI(uri);
+
         
         try {
+//panel.setSvgURI(SimpleIconFrame.class.getResource("diylc.svg").toURI());
+//panel.setSvgURI(SimpleIconFrame.class.getResource("pcb.svg").toURI());
             panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("rihard_minus.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("dor-32-gradient.svg").toURI());
-
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("bulb.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("notes.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("jira51-textLength.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("jira50-display.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("bigMarkers.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("radialGradient.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("jira43-tspanVariableX.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("textOnPath.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("jt11.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("viewboxTest.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("issue.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("intro_flash.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("clipIssue.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("bug-31-path.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("100x100-mm.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("gradient.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("map2.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("imageClip.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("markerEnd.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("casing2.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("casing2-opt.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("PseudoColor.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("degrade.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("Z.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("test-brd.svg").toURI());
-//              panel.setSvgURI(SimpleIconFrame.class.getResource("nonScalingStroke.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("areaCrash.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("use.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("data-uri-scheme-test-image.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("marker.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("markerTest.svg").toURI());
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
-
-//            panel.setSvgURI(SimpleIconFrame.class.getResource("class.svg").toURI());
-//            SVGDiagram diagram = panel.getSvgUniverse().getDiagram(SimpleIconFrame.class.getResource("class.svg").toURI());
-//            SVGRoot root = diagram.getRoot();
-//            StyleSheet ss = new StyleSheet();
-//            root.setStyleSheet(ss);
-//            ss.addStyleRule(new StyleSheetRule("stroke-width", "rect", null), "5");
-//            ss.addStyleRule(new StyleSheetRule("fill", "rect", null), "none");
-//            ss.addStyleRule(new StyleSheetRule("stroke", "rect", "alpha"), "red");
-//            ss.addStyleRule(new StyleSheetRule("stroke", "rect", null), "green");
-            
+//
+//
+//
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("rihard_minus.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("dor-32-gradient.svg").toURI());
+//
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("bulb.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("notes.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("jira51-textLength.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("jira50-display.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("bigMarkers.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("radialGradient.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("jira43-tspanVariableX.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("textOnPath.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("tree.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("jt11.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("viewboxTest.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("issue.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("intro_flash.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("clipIssue.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("bug-31-path.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("100x100-mm.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("gradient.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("map2.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("imageClip.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("markerEnd.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("casing2.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("casing2-opt.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("PseudoColor.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("degrade.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("Z.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("test-brd.svg").toURI());
+////              panel.setSvgURI(SimpleIconFrame.class.getResource("nonScalingStroke.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("areaCrash.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("use.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("data-uri-scheme-test-image.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("marker.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("markerTest.svg").toURI());
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("boundingBoxPicking.svg").toURI());
+//
+////            panel.setSvgURI(SimpleIconFrame.class.getResource("class.svg").toURI());
+////            SVGDiagram diagram = panel.getSvgUniverse().getDiagram(SimpleIconFrame.class.getResource("class.svg").toURI());
+////            SVGRoot root = diagram.getRoot();
+////            StyleSheet ss = new StyleSheet();
+////            root.setStyleSheet(ss);
+////            ss.addStyleRule(new StyleSheetRule("stroke-width", "rect", null), "5");
+////            ss.addStyleRule(new StyleSheetRule("fill", "rect", null), "none");
+////            ss.addStyleRule(new StyleSheetRule("stroke", "rect", "alpha"), "red");
+////            ss.addStyleRule(new StyleSheetRule("stroke", "rect", null), "green");
+//            
         } catch (URISyntaxException ex) {
             Logger.getLogger(SimpleIconFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

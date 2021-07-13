@@ -317,14 +317,10 @@ public class Text extends ShapeElement
                     text = text.trim();
                 }
 
-//                strokeWidthScalar = 1f / fontScale;
-
                 for (int i = 0; i < text.length(); i++)
                 {
                     xform.setToIdentity();
                     xform.setToTranslation(cursorX, cursorY);
-//                    xform.scale(fontScale, fontScale);
-//                    g.transform(xform);
 
                     String unicode = text.substring(i, i + 1);
                     MissingGlyph glyph = font.getGlyph(unicode);
@@ -335,41 +331,17 @@ public class Text extends ShapeElement
                         path = xform.createTransformedShape(path);
                         textPath.append(path, false);
                     }
-//                    else glyph.render(g);
 
-//                    cursorX += fontScale * glyph.getHorizAdvX();
                     cursorX += glyph.getHorizAdvX();
-
-//                    g.setTransform(oldXform);
                 }
 
                 strokeWidthScalar = 1f;
             }
             else if (obj instanceof Tspan)
             {
-//                Tspan tspan = (Tspan) obj;
-//
-//                xform.setToIdentity();
-//                xform.setToTranslation(cursorX, cursorY);
-//                xform.scale(fontScale, fontScale);
-////                tspan.setCursorX(cursorX);
-////                tspan.setCursorY(cursorY);
-//
-//                Shape tspanShape = tspan.getShape();
-//                tspanShape = xform.createTransformedShape(tspanShape);
-//                textPath.append(tspanShape, false);
-////                tspan.render(g);
-////                cursorX = tspan.getCursorX();
-////                cursorY = tspan.getCursorY();
-                
-                
                 Tspan tspan = (Tspan)obj;
                 Point2D cursor = new Point2D.Float(cursorX, cursorY);
-//                tspan.setCursorX(cursorX);
-//                tspan.setCursorY(cursorY);
                 tspan.appendToShape(textPath, cursor);
-//                cursorX = tspan.getCursorX();
-//                cursorY = tspan.getCursorY();
                 cursorX = (float)cursor.getX();
                 cursorY = (float)cursor.getY();
                 

@@ -59,10 +59,7 @@ public class Tspan extends ShapeElement
     float[] dy = null;
     float[] rotate = null;
     private String text = "";
-//    float cursorX;
-//    float cursorY;
 
-//    Shape tspanShape;
     /**
      * Creates a new instance of Stop
      */
@@ -75,50 +72,6 @@ public class Tspan extends ShapeElement
     {
         return TAG_NAME;
     }
-
-//    public float getCursorX()
-//    {
-//        return cursorX;
-//    }
-//
-//    public float getCursorY()
-//    {
-//        return cursorY;
-//    }
-//
-//    public void setCursorX(float cursorX)
-//    {
-//        this.cursorX = cursorX;
-//    }
-//
-//    public void setCursorY(float cursorY)
-//    {
-//        this.cursorY = cursorY;
-//    }
-    /*
-     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-     {
-     //Load style string
-     super.loaderStartElement(helper, attrs, parent);
-
-     String x = attrs.getValue("x");
-     String y = attrs.getValue("y");
-     String dx = attrs.getValue("dx");
-     String dy = attrs.getValue("dy");
-     String rotate = attrs.getValue("rotate");
-
-     if (x != null) this.x = XMLParseUtil.parseFloatList(x);
-     if (y != null) this.y = XMLParseUtil.parseFloatList(y);
-     if (dx != null) this.dx = XMLParseUtil.parseFloatList(dx);
-     if (dy != null) this.dy = XMLParseUtil.parseFloatList(dy);
-     if (rotate != null)
-     {
-     this.rotate = XMLParseUtil.parseFloatList(rotate);
-     for (int i = 0; i < this.rotate.length; i++)
-     this.rotate[i] = (float)Math.toRadians(this.rotate[i]);
-     }
-     }
-     */
 
     /**
      * Called during load process to add text scanned within a tag
@@ -231,8 +184,6 @@ public class Tspan extends ShapeElement
         if (font == null && fontFamily != null)
         {
             font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, fontSize);
-//            addShapeSysFont(addShape, font, fontFamily, fontSize, letterSpacing, cursor);
-//            return;
         }
 
         if (font == null)
@@ -240,18 +191,10 @@ public class Tspan extends ShapeElement
             font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontSize);
         }
 
-//        FontFace fontFace = font.getFontFace();
-//        int ascent = fontFace.getAscent();
-//        float fontScale = fontSize / (float) ascent;
-
         AffineTransform xform = new AffineTransform();
-
-//        strokeWidthScalar = 1f / fontScale;
 
         float cursorX = (float)cursor.getX();
         float cursorY = (float)cursor.getY();
-    
-//        int i = 0;
 
         String drawText = this.text;
         drawText = drawText.trim();
@@ -272,11 +215,9 @@ public class Tspan extends ShapeElement
             {
                 cursorY += dy[i];
             }
-  //          i++;
             
             xform.setToIdentity();
             xform.setToTranslation(cursorX, cursorY);
-//            xform.scale(fontScale, fontScale);
             if (rotate != null)
             {
                 xform.rotate(rotate[i]);
@@ -292,7 +233,6 @@ public class Tspan extends ShapeElement
                 addShape.append(path, false);
             }
 
-//            cursorX += fontScale * glyph.getHorizAdvX() + letterSpacing;
             cursorX += glyph.getHorizAdvX() + letterSpacing;
         }
 

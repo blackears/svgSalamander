@@ -35,6 +35,8 @@
  */
 package com.kitfox.svg;
 
+import com.kitfox.svg.xml.StyleSheet;
+
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
@@ -78,5 +80,18 @@ public class Defs extends TransformableElement
         }
 
         return super.updateTime(curTime) || stateChange;
+    }
+    
+    public StyleSheet getStyleSheet()
+    {
+        for (int i = 0; i < getNumChildren(); ++i)
+        {
+            SVGElement ele = getChild(i);
+            if (ele instanceof Style)
+            {
+                return ((Style)ele).getStyleSheet();
+            }
+        }
+        return null;
     }
 }

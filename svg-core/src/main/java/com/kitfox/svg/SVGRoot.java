@@ -475,6 +475,10 @@ public class SVGRoot extends Group
                 {
                     return ((Style)ele).getStyleSheet();
                 }
+                else if (ele instanceof Defs)
+                {
+                    return ((Defs)ele).getStyleSheet();
+                }
             }
         }
         
