@@ -323,6 +323,33 @@ public class SVGUniverse implements Serializable
         return null;
     }
 
+    public URI cleanUri(URI uri)
+    {
+        String scheme = uri.getScheme();
+        String schemeSpecific = uri.getSchemeSpecificPart();
+        String frag = uri.getFragment();
+        
+        if (schemeSpecific.startsWith("file:///"))
+        {
+            //Work around for URIs of resources obtained by Class.getResource()
+            schemeSpecific = "file:/" + schemeSpecific.substring(8);
+        }
+        else
+        {
+            return uri;
+        }
+        
+        try
+        {
+            return new URI(scheme, schemeSpecific, frag);
+        }
+        catch (URISyntaxException ex)
+        {
+            Logger.getLogger(SVGUniverse.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     /**
      * Looks up a href within our universe. If the href refers to a document
      * that is not loaded, it will be loaded. The URL #target will then be
@@ -333,16 +360,10 @@ public class SVGUniverse implements Serializable
     {
         try
         {
-            String schemeSpecific = path.getSchemeSpecificPart();
-            if (schemeSpecific.startsWith("file:///"))
-            {
-                //Work around for URIs of resources obtained by Class.getResource()
-                schemeSpecific = "file:/" + schemeSpecific.substring(8);
-            }
-            
+            path = cleanUri(path);
             
             //Strip fragment from URI
-            URI xmlBase = new URI(path.getScheme(), schemeSpecific, null);
+            URI xmlBase = new URI(path.getScheme(), path.getSchemeSpecificPart(), null);
 
             SVGDiagram dia = (SVGDiagram) loadedDocs.get(xmlBase);
             if (dia == null && loadIfAbsent)
@@ -602,6 +623,9 @@ public class SVGUniverse implements Serializable
 
     protected URI loadSVG(URI xmlBase, InputSource is)
     {
+        xmlBase = cleanUri(xmlBase);
+        
+        
         // Use an instance of ourselves as the SAX event handler
         SVGLoader handler = new SVGLoader(xmlBase, this, verbose);
 
@@ -659,6 +683,7 @@ public class SVGUniverse implements Serializable
      */
     public void removeDocument(URI uri)
     {
+        uri = cleanUri(uri);
         loadedDocs.remove(uri);
     }
     
