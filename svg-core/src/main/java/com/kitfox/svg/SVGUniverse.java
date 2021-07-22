@@ -333,8 +333,16 @@ public class SVGUniverse implements Serializable
     {
         try
         {
+            String schemeSpecific = path.getSchemeSpecificPart();
+            if (schemeSpecific.startsWith("file:///"))
+            {
+                //Work around for URIs of resources obtained by Class.getResource()
+                schemeSpecific = "file:/" + schemeSpecific.substring(8);
+            }
+            
+            
             //Strip fragment from URI
-            URI xmlBase = new URI(path.getScheme(), path.getSchemeSpecificPart(), null);
+            URI xmlBase = new URI(path.getScheme(), schemeSpecific, null);
 
             SVGDiagram dia = (SVGDiagram) loadedDocs.get(xmlBase);
             if (dia == null && loadIfAbsent)
