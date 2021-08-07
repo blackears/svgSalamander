@@ -146,7 +146,7 @@ public class Group extends ShapeElement
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         //Don't process if not visible
         StyleAttribute styleAttrib = new StyleAttribute();

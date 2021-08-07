@@ -251,7 +251,7 @@ public class SVGRoot extends Group
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         prepareViewport();
         
@@ -303,7 +303,7 @@ public class SVGRoot extends Group
         AffineTransform cachedXform = g.getTransform();
         g.transform(viewXform);
         
-        super.render(g);
+        super.doRender(g);
         
         g.setTransform(cachedXform);
     }

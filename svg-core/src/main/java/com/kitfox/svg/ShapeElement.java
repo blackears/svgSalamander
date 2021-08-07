@@ -76,7 +76,7 @@ abstract public class ShapeElement extends RenderableElement
     }
 
     @Override
-    abstract public void render(java.awt.Graphics2D g) throws SVGException;
+    abstract protected void doRender(java.awt.Graphics2D g) throws SVGException;
 
     /*
     protected void setStrokeWidthScalar(float strokeWidthScalar)

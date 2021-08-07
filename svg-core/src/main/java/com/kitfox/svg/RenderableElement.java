@@ -94,7 +94,12 @@ abstract public class RenderableElement extends TransformableElement
         }
     }
 
-    abstract public void render(Graphics2D g) throws SVGException;
+    public void render(Graphics2D g) throws SVGException
+    {
+        doRender(g);
+    }
+
+    abstract protected void doRender(Graphics2D g) throws SVGException;
 
     abstract void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
 

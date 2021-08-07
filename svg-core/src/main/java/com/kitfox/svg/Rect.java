@@ -202,7 +202,7 @@ public class Rect extends ShapeElement
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         beginLayer(g);
         renderShape(g, rect);

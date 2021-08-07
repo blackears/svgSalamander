@@ -206,7 +206,7 @@ public class ImageSVG extends RenderableElement
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
         if (getStyle(styleAttrib.setName("visibility")))

@@ -147,12 +147,12 @@ public class Marker extends Group
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         AffineTransform oldXform = g.getTransform();
         g.transform(markerXform);
 
-        super.render(g);
+        super.doRender(g);
 
         g.setTransform(oldXform);
     }
@@ -171,7 +171,7 @@ public class Marker extends Group
 
         g.transform(markerXform);
 
-        super.render(g);
+        super.doRender(g);
 
         g.setTransform(cacheXform);
     }
