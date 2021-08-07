@@ -100,7 +100,7 @@ public class Group extends ShapeElement
     }
 
     @Override
-    void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    protected void doPick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         Point2D xPoint = new Point2D.Double(point.getX(), point.getY());
         if (xform != null)
@@ -126,7 +126,7 @@ public class Group extends ShapeElement
     }
 
     @Override
-    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    protected void doPick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (xform != null)
         {

@@ -329,7 +329,7 @@ public class SVGRoot extends Group
     }
     
     @Override
-    public void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    public void doPick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (viewXform != null)
         {
@@ -337,11 +337,11 @@ public class SVGRoot extends Group
             ltw.concatenate(viewXform);
         }
         
-        super.pick(pickArea, ltw, boundingBox, retVec);
+        super.doPick(pickArea, ltw, boundingBox, retVec);
     }
     
     @Override
-    public void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    public void doPick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         Point2D xPoint = new Point2D.Double(point.getX(), point.getY());
         if (viewXform != null)
@@ -355,7 +355,7 @@ public class SVGRoot extends Group
             }
         }
         
-        super.pick(xPoint, boundingBox, retVec);
+        super.doPick(xPoint, boundingBox, retVec);
     }
 
     @Override
