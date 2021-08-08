@@ -822,7 +822,7 @@ abstract public class SVGElement implements Serializable
         return Float.parseFloat(s);
     }
 
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("([MmLlHhVvAaQqTtCcSsZz])|([-+]?((\\d*\\.\\d+)|(\\d+))([eE][-+]?\\d+)?)");
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("([MmLlHhVvAaQqTtCcSsZz0])|([-+]?((\\d*\\.\\d+)|(\\d+))([eE][-+]?\\d+)?)");
     static protected PathCommand[] parsePathList(String list)
     {
         final Matcher matchPathCmd = COMMAND_PATTERN.matcher(list);
