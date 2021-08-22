@@ -89,9 +89,19 @@ public class Mask extends Group
         elementGraphics.drawImage(maskImage, 0, 0, null);
         elementGraphics.dispose();
 
-        AffineTransform imgTransform = AffineTransform.getTranslateInstance(elementBounds.x, elementBounds.y);
-        imgTransform.scale(1 / scaleX, 1 / scaleY);
-        gg.drawImage(elementImage, imgTransform, null);
+        // Instead of scaling the current graphics object by (1 / scaleX, 1 / scaleY)
+        // we manually set the scale to (1.0, 1.0). Because we ensured that elementImage has
+        // the correct size it won't have to be rescaled while painting. This avoids introducing
+        // unnecessary blurring.
+        AffineTransform imgTransform = new AffineTransform(
+                1.0, transform.getShearY(),
+                transform.getShearX(), 1.0,
+                transform.getTranslateX(), transform.getTranslateY());
+        gg.setTransform(imgTransform);
+        int destX = (int) (elementBounds.x * scaleX);
+        int destY = (int) (elementBounds.y * scaleY);
+        gg.drawImage(elementImage, destX, destY, null);
+        gg.setTransform(transform);
     }
 
     private BufferedImage paintToBuffer(Graphics2D g, double scaleX, double scaleY,
