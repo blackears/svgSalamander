@@ -42,6 +42,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -57,6 +58,7 @@ import java.util.List;
  */
 public class Mask extends Group
 {
+    public static final boolean DEBUG_PAINT = false;
     public static final String TAG_NAME = "mask";
 
     @Override
@@ -66,22 +68,23 @@ public class Mask extends Group
 
     @Override
     public void render(Graphics2D g)
-    { }
+    {
+    }
 
     public void renderElement(Graphics2D g, RenderableElement element) throws SVGException
     {
         AffineTransform transform = g.getTransform();
-        double scaleX = transform.getScaleX();
-        double scaleY = transform.getScaleY();
 
         Graphics2D gg = (Graphics2D) g.create();
         Rectangle elementBounds = element.getBoundingBox().getBounds();
+        Rectangle transformedBounds = transform.createTransformedShape(elementBounds).getBounds();
 
-        BufferedImage elementImage = paintToBuffer(gg, scaleX, scaleY, elementBounds, element, null);
+        BufferedImage elementImage = paintToBuffer(gg, transform, transformedBounds, element, null);
+
         // Draw the mask image. Implicitly the mask is empty i.e. has a completely black background.
         // We can't draw the mask directly to the elementImage using the mask composite as
         // masks may change the mask value a location at any time during mask realization.
-        BufferedImage maskImage = paintToBuffer(gg, scaleX, scaleY, elementBounds, this, Color.BLACK);
+        BufferedImage maskImage = paintToBuffer(gg, transform, transformedBounds, this, Color.BLACK);
 
         Graphics2D elementGraphics = (Graphics2D) elementImage.getGraphics();
         elementGraphics.setRenderingHints(gg.getRenderingHints());
@@ -89,44 +92,25 @@ public class Mask extends Group
         elementGraphics.drawImage(maskImage, 0, 0, null);
         elementGraphics.dispose();
 
-        // Instead of scaling the current graphics object by (1 / scaleX, 1 / scaleY)
-        // we manually set the scale to (1.0, 1.0). Because we ensured that elementImage has
-        // the correct size it won't have to be rescaled while painting. This avoids introducing
-        // unnecessary blurring.
-        AffineTransform imgTransform = new AffineTransform(
-                1.0, transform.getShearY(),
-                transform.getShearX(), 1.0,
-                transform.getTranslateX(), transform.getTranslateY());
-        gg.setTransform(imgTransform);
-        int destX = (int) (elementBounds.x * scaleX);
-        int destY = (int) (elementBounds.y * scaleY);
-        gg.drawImage(elementImage, destX, destY, null);
-        gg.setTransform(transform);
+        // Reset the transform. We already accounted for it in the buffer image.
+        gg.setTransform(new AffineTransform());
+        gg.drawImage(elementImage, transformedBounds.x, transformedBounds.y, null);
+        if (DEBUG_PAINT)
+        {
+            gg.setXORMode(Color.BLACK);
+            gg.drawRect(transformedBounds.x, transformedBounds.y, transformedBounds.width, transformedBounds.height);
+        }
+        gg.dispose();
     }
 
-    private BufferedImage paintToBuffer(Graphics2D g, double scaleX, double scaleY,
+    /*
+     * The srcBounds parameter is expected to be pre-transformed by the given transform.
+     */
+    private BufferedImage paintToBuffer(Graphics2D g, AffineTransform transform,
                                         Rectangle srcBounds, RenderableElement element,
                                         Color bgColor) throws SVGException
     {
-        return paintToBuffer(g, scaleX, scaleY, srcBounds, element, bgColor, false);
-    }
-
-    private BufferedImage paintToBuffer(Graphics2D g, double scaleX, double scaleY,
-                                        Rectangle srcBounds, RenderableElement element,
-                                        Color bgColor, boolean preScaledBounds) throws SVGException
-    {
-        int buffX = srcBounds.x;
-        int buffY = srcBounds.y;
-        int buffWidth = srcBounds.width;
-        int buffHeight = srcBounds.height;
-        if (!preScaledBounds)
-        {
-            buffX *= scaleX;
-            buffY *= scaleY;
-            buffWidth *= scaleX;
-            buffHeight *= scaleY;
-        }
-        BufferedImage img = new BufferedImage(buffWidth, buffHeight, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage img = new BufferedImage(srcBounds.width, srcBounds.height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D imgGraphics = (Graphics2D) img.getGraphics();
         if (g != null)
         {
@@ -137,8 +121,10 @@ public class Mask extends Group
             imgGraphics.setColor(bgColor);
             imgGraphics.fillRect(0,0, img.getWidth(), img.getHeight());
         }
-        imgGraphics.translate(-buffX, -buffY);
-        imgGraphics.scale(scaleX, scaleY);
+        // Because we blit the image at the transformed location we have to compensate for the
+        // element location.
+        imgGraphics.translate(-srcBounds.x, -srcBounds.y);
+        imgGraphics.transform(transform);
         element.doRender(imgGraphics);
         imgGraphics.dispose();
         return img;
@@ -168,7 +154,7 @@ public class Mask extends Group
         } else
         {
             Rectangle pickPoint = new Rectangle((int) point.getX(), (int) point.getY(), 1, 1);
-            BufferedImage img = paintToBuffer(null, 1f, 1f, pickPoint, this, Color.BLACK);
+            BufferedImage img = paintToBuffer(null, new AffineTransform(), pickPoint, this, Color.BLACK);
             // Only try picking the element if the picked point is visible.
             if (luminanceToAlpha(img.getRGB(0, 0)) > 0)
             {
@@ -180,42 +166,52 @@ public class Mask extends Group
     public void pickElement(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox,
                             List<List<SVGElement>> retVec, RenderableElement element) throws SVGException
     {
+        // If at any point the considered picking area becomes empty we break out early.
+        if (pickArea.isEmpty()) return;
         if (boundingBox)
         {
             element.doPick(pickArea, ltw,true, retVec);
         } else
         {
-            // TODO: Properly handle rotation and shear transforms.
-            //       This works fine for translation and scale though.
-            Rectangle pickRect = pickArea.getBounds();
-            pickRect.x -= ltw.getTranslateX();
-            pickRect.y -= ltw.getTranslateY();
-            BufferedImage img = paintToBuffer(null, ltw.getScaleX(), ltw.getScaleY(), pickRect,
-                                              this, Color.BLACK, true);
-            Raster raster = img.getRaster();
-            int x = raster.getMinX();
-            int w = raster.getWidth();
-            int y = raster.getMinY();
-            int h = raster.getHeight();
-            int[] srcPix = raster.getPixels(x, y, w, h, (int[]) null);
-            boolean hasVisiblePixel = false;
-            for (int i = 0; i < srcPix.length; i += 4)
-            {
-                int sr = srcPix[i];
-                int sg = srcPix[i + 1];
-                int sb = srcPix[i + 2];
-                if (luminanceToAlpha(sr, sg, sb) > 0)
-                {
-                    hasVisiblePixel = true;
-                    break;
-                }
-            }
+            // Clip with the element bounds to avoid creating a larger buffer than needed.
+            Area transformedBounds = new Area(ltw.createTransformedShape(element.getBoundingBox()));
+            transformedBounds.intersect(new Area(pickArea));
+            if (transformedBounds.isEmpty()) return;
+
+            Rectangle pickRect = transformedBounds.getBounds();
+            if (pickRect.isEmpty()) return;
+
+            BufferedImage maskArea = paintToBuffer(null, ltw, pickRect,this, Color.BLACK);
+
             // Pick if any pixel in the pick area is visible.
-            if (hasVisiblePixel)
+            if (hasVisiblePixel(maskArea))
             {
                 element.doPick(pickArea, ltw, false, retVec);
             }
         }
+    }
+
+    private boolean hasVisiblePixel(BufferedImage img)
+    {
+        Raster raster = img.getRaster();
+        int x = raster.getMinX();
+        int w = raster.getWidth();
+        int y = raster.getMinY();
+        int h = raster.getHeight();
+        int[] srcPix = raster.getPixels(x, y, w, h, (int[]) null);
+        boolean hasVisiblePixel = false;
+        for (int i = 0; i < srcPix.length; i += 4)
+        {
+            int sr = srcPix[i];
+            int sg = srcPix[i + 1];
+            int sb = srcPix[i + 2];
+            if (luminanceToAlpha(sr, sg, sb) > 0)
+            {
+                hasVisiblePixel = true;
+                break;
+            }
+        }
+        return hasVisiblePixel;
     }
 
     private static double luminanceToAlpha(int rgb)
