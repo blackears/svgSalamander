@@ -55,6 +55,7 @@ abstract public class RenderableElement extends TransformableElement
 {
     AffineTransform cachedXform = null;
 
+    Mask cachedMask;
     Shape cachedClip = null;
     public static final int VECTOR_EFFECT_NONE = 0;
     public static final int VECTOR_EFFECT_NON_SCALING_STROKE = 1;
@@ -92,23 +93,23 @@ abstract public class RenderableElement extends TransformableElement
         {
             vectorEffect = VECTOR_EFFECT_NONE;
         }
+
+        cachedMask = getMask(sty);
     }
 
     public void render(Graphics2D g) throws SVGException
     {
-        Mask mask = getMask();
-        if (mask != null)
+        if (cachedMask != null)
         {
-            mask.renderElement(g, this);
+            cachedMask.renderElement(g, this);
         } else
         {
             doRender(g);
         }
     }
 
-    private Mask getMask() throws SVGException
+    private Mask getMask(StyleAttribute styleAttrib) throws SVGException
     {
-        StyleAttribute styleAttrib = new StyleAttribute();
         if (getStyle(styleAttrib.setName("mask"), false)
             && !"none".equals(styleAttrib.getStringValue())) {
             URI uri = styleAttrib.getURIValue(getXMLBase());
@@ -124,10 +125,9 @@ abstract public class RenderableElement extends TransformableElement
 
     void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
-        Mask mask = getMask();
-        if (mask != null)
+        if (cachedMask != null)
         {
-            mask.pickElement(point, boundingBox, retVec, this);
+            cachedMask.pickElement(point, boundingBox, retVec, this);
         } else
         {
             doPick(point, boundingBox, retVec);
@@ -138,10 +138,9 @@ abstract public class RenderableElement extends TransformableElement
 
     void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
-        Mask mask = getMask();
-        if (mask != null)
+        if (cachedMask != null)
         {
-            mask.pickElement(pickArea, ltw, boundingBox, retVec, this);
+            cachedMask.pickElement(pickArea, ltw, boundingBox, retVec, this);
         } else
         {
             doPick(pickArea, ltw, boundingBox, retVec);
