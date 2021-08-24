@@ -111,12 +111,12 @@ public class Symbol extends Group
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         AffineTransform oldXform = g.getTransform();
         g.transform(viewXform);
 
-        super.render(g);
+        super.doRender(g);
 
         g.setTransform(oldXform);
     }

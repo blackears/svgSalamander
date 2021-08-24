@@ -111,6 +111,7 @@ public class SVGLoader extends DefaultHandler
         nodeClasses.put("line", Line.class);
         nodeClasses.put("lineargradient", LinearGradient.class);
         nodeClasses.put("marker", Marker.class);
+        nodeClasses.put("mask", Mask.class);
         nodeClasses.put("metadata", Metadata.class);
         nodeClasses.put("missing-glyph", MissingGlyph.class);
         nodeClasses.put("path", Path.class);

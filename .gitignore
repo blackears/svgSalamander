@@ -17,3 +17,5 @@
 /svg-example/.classpath
 /svg-example/.project
 /svg-example/.settings
+**/*.iml
+**/.idea/

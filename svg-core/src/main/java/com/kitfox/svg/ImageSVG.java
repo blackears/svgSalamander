@@ -188,7 +188,7 @@ public class ImageSVG extends RenderableElement
     }
 
     @Override
-    void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    protected void doPick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (getBoundingBox().contains(point))
         {
@@ -197,7 +197,7 @@ public class ImageSVG extends RenderableElement
     }
 
     @Override
-    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    protected void doPick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (ltw.createTransformedShape(getBoundingBox()).intersects(pickArea))
         {
@@ -206,7 +206,7 @@ public class ImageSVG extends RenderableElement
     }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         StyleAttribute styleAttrib = new StyleAttribute();
         if (getStyle(styleAttrib.setName("visibility")))

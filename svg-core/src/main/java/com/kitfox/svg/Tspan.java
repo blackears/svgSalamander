@@ -299,7 +299,7 @@ public class Tspan extends ShapeElement
 //    }
 
     @Override
-    public void render(Graphics2D g) throws SVGException
+    protected void doRender(Graphics2D g) throws SVGException
     {
         float cursorX = 0;
         float cursorY = 0;

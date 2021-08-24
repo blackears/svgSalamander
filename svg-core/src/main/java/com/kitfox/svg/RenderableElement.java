@@ -3,16 +3,16 @@
  * Copyright (c) 2004, Mark McKay
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or 
+ * Redistribution and use in source and binary forms, with or
  * without modification, are permitted provided that the following
  * conditions are met:
  *
- *   - Redistributions of source code must retain the above 
+ *   - Redistributions of source code must retain the above
  *     copyright notice, this list of conditions and the following
  *     disclaimer.
  *   - Redistributions in binary form must reproduce the above
  *     copyright notice, this list of conditions and the following
- *     disclaimer in the documentation and/or other materials 
+ *     disclaimer in the documentation and/or other materials
  *     provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -26,8 +26,8 @@
  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- * 
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  * Mark McKay can be contacted at mark@kitfox.com.  Salamander and other
  * projects can be found at http://www.kitfox.com
  *
@@ -54,7 +54,8 @@ import java.util.List;
 abstract public class RenderableElement extends TransformableElement
 {
     AffineTransform cachedXform = null;
-    
+
+    Mask cachedMask;
     Shape cachedClip = null;
     public static final int VECTOR_EFFECT_NONE = 0;
     public static final int VECTOR_EFFECT_NON_SCALING_STROKE = 1;
@@ -92,13 +93,61 @@ abstract public class RenderableElement extends TransformableElement
         {
             vectorEffect = VECTOR_EFFECT_NONE;
         }
+
+        cachedMask = getMask(sty);
     }
 
-    abstract public void render(Graphics2D g) throws SVGException;
+    public void render(Graphics2D g) throws SVGException
+    {
+        if (cachedMask != null)
+        {
+            cachedMask.renderElement(g, this);
+        } else
+        {
+            doRender(g);
+        }
+    }
 
-    abstract void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
+    private Mask getMask(StyleAttribute styleAttrib) throws SVGException
+    {
+        if (getStyle(styleAttrib.setName("mask"), false)
+            && !"none".equals(styleAttrib.getStringValue())) {
+            URI uri = styleAttrib.getURIValue(getXMLBase());
+            if (uri == null) {
+                return null;
+            }
+            return  (Mask) diagram.getUniverse().getElement(uri);
+        }
+        return null;
+    }
 
-    abstract void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
+    abstract protected void doRender(Graphics2D g) throws SVGException;
+
+    void pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    {
+        if (cachedMask != null)
+        {
+            cachedMask.pickElement(point, boundingBox, retVec, this);
+        } else
+        {
+            doPick(point, boundingBox, retVec);
+        }
+    }
+
+    protected abstract void doPick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
+
+    void pick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
+    {
+        if (cachedMask != null)
+        {
+            cachedMask.pickElement(pickArea, ltw, boundingBox, retVec, this);
+        } else
+        {
+            doPick(pickArea, ltw, boundingBox, retVec);
+        }
+    }
+
+    protected abstract void doPick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
 
     abstract public Rectangle2D getBoundingBox() throws SVGException;
     /*
@@ -111,7 +160,7 @@ abstract public class RenderableElement extends TransformableElement
     /**
      * Pushes transform stack, transforms to local coordinates and sets up
      * clipping mask.
-     * 
+     *
      * @param g Graphics context
      * @throws com.kitfox.svg.SVGException
      */
