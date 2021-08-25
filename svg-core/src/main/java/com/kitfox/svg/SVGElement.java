@@ -38,37 +38,27 @@ package com.kitfox.svg;
 import com.kitfox.svg.animation.AnimationElement;
 import com.kitfox.svg.animation.TrackBase;
 import com.kitfox.svg.animation.TrackManager;
-import com.kitfox.svg.pathcmd.Arc;
 import com.kitfox.svg.pathcmd.BuildHistory;
-import com.kitfox.svg.pathcmd.Cubic;
-import com.kitfox.svg.pathcmd.CubicSmooth;
-import com.kitfox.svg.pathcmd.Horizontal;
-import com.kitfox.svg.pathcmd.LineTo;
-import com.kitfox.svg.pathcmd.MoveTo;
 import com.kitfox.svg.pathcmd.PathCommand;
-import com.kitfox.svg.pathcmd.Quadratic;
-import com.kitfox.svg.pathcmd.QuadraticSmooth;
-import com.kitfox.svg.pathcmd.Terminal;
-import com.kitfox.svg.pathcmd.Vertical;
+import com.kitfox.svg.pathcmd.PathParser;
 import com.kitfox.svg.xml.StyleAttribute;
 import com.kitfox.svg.xml.StyleSheet;
 import com.kitfox.svg.xml.XMLParseUtil;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 
 
 /**
@@ -816,129 +806,9 @@ abstract public class SVGElement implements Serializable
         return retXform;
     }
 
-    static protected float nextFloat(LinkedList<String> l)
-    {
-        String s = (String) l.removeFirst();
-        return Float.parseFloat(s);
-    }
-
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("([MmLlHhVvAaQqTtCcSsZz0])|([-+]?((\\d*\\.\\d+)|(\\d+))([eE][-+]?\\d+)?)");
     static protected PathCommand[] parsePathList(String list)
     {
-        final Matcher matchPathCmd = COMMAND_PATTERN.matcher(list);
-
-        //Tokenize
-        LinkedList<String> tokens = new LinkedList<String>();
-        while (matchPathCmd.find())
-        {
-            tokens.addLast(matchPathCmd.group());
-        }
-
-
-        boolean defaultRelative = false;
-        LinkedList<PathCommand> cmdList = new LinkedList<PathCommand>();
-        char curCmd = 'Z';
-        while (tokens.size() != 0)
-        {
-            String curToken = (String) tokens.removeFirst();
-            char initChar = curToken.charAt(0);
-            if ((initChar >= 'A' && initChar <= 'Z') || (initChar >= 'a' && initChar <= 'z'))
-            {
-                curCmd = initChar;
-            } else
-            {
-                tokens.addFirst(curToken);
-            }
-
-            PathCommand cmd = null;
-
-            switch (curCmd)
-            {
-                case 'M':
-                    cmd = new MoveTo(false, nextFloat(tokens), nextFloat(tokens));
-                    curCmd = 'L';
-                    break;
-                case 'm':
-                    cmd = new MoveTo(true, nextFloat(tokens), nextFloat(tokens));
-                    curCmd = 'l';
-                    break;
-                case 'L':
-                    cmd = new LineTo(false, nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'l':
-                    cmd = new LineTo(true, nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'H':
-                    cmd = new Horizontal(false, nextFloat(tokens));
-                    break;
-                case 'h':
-                    cmd = new Horizontal(true, nextFloat(tokens));
-                    break;
-                case 'V':
-                    cmd = new Vertical(false, nextFloat(tokens));
-                    break;
-                case 'v':
-                    cmd = new Vertical(true, nextFloat(tokens));
-                    break;
-                case 'A':
-                    cmd = new Arc(false, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens),
-                        nextFloat(tokens) == 1f, nextFloat(tokens) == 1f,
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'a':
-                    cmd = new Arc(true, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens),
-                        nextFloat(tokens) == 1f, nextFloat(tokens) == 1f,
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'Q':
-                    cmd = new Quadratic(false, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'q':
-                    cmd = new Quadratic(true, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'T':
-                    cmd = new QuadraticSmooth(false, nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 't':
-                    cmd = new QuadraticSmooth(true, nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'C':
-                    cmd = new Cubic(false, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'c':
-                    cmd = new Cubic(true, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'S':
-                    cmd = new CubicSmooth(false, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 's':
-                    cmd = new CubicSmooth(true, nextFloat(tokens), nextFloat(tokens),
-                        nextFloat(tokens), nextFloat(tokens));
-                    break;
-                case 'Z':
-                case 'z':
-                    cmd = new Terminal();
-                    break;
-                default:
-                    throw new RuntimeException("Invalid path element");
-            }
-
-            cmdList.add(cmd);
-            defaultRelative = cmd.isRelative;
-        }
-
-        PathCommand[] retArr = new PathCommand[cmdList.size()];
-        cmdList.toArray(retArr);
-        return retArr;
+        return new PathParser(list).parsePathCommand();
     }
 
     static protected GeneralPath buildPath(String text, int windingRule)
