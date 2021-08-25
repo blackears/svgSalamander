@@ -39,19 +39,15 @@ import com.kitfox.svg.Font;
 import com.kitfox.svg.FontFace;
 import com.kitfox.svg.Glyph;
 import com.kitfox.svg.MissingGlyph;
-import java.awt.Canvas;
-import java.awt.FontMetrics;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
 import java.awt.font.LineMetrics;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -60,11 +56,10 @@ import java.util.regex.Pattern;
 public class FontSystem extends Font
 {
     java.awt.Font sysFont;
-    FontMetrics fm;
 
-    HashMap<String, Glyph> glyphCache = new HashMap<String, Glyph>();
+    HashMap<String, Glyph> glyphCache = new HashMap<>();
     
-    static HashSet<String> sysFontNames = new HashSet<String>();
+    static HashSet<String> sysFontNames = new HashSet<>();
     
     public static boolean checkIfSystemFontExists(String fontName)
     {
