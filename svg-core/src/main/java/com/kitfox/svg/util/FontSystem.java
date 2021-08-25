@@ -73,11 +73,10 @@ public class FontSystem extends Font
         
         return sysFontNames.contains(fontName);
     }
-    
-    public static FontSystem createFont(String fontFamily, int fontStyle, int fontWeight, float fontSize)
+
+    public static FontSystem createFont(String[] fontFamilies, int fontStyle, int fontWeight, float fontSize)
     {
-        String[] families = fontFamily.split(",");
-        for (String fontName: families)
+        for (String fontName: fontFamilies)
         {
             String javaFontName = mapJavaFontName(fontName);
             if (checkIfSystemFontExists(javaFontName))
@@ -85,7 +84,7 @@ public class FontSystem extends Font
                 return new FontSystem(javaFontName, fontStyle, fontWeight, fontSize);
             }
         }
-        
+
         return null;
     }
 
@@ -130,7 +129,7 @@ public class FontSystem extends Font
                 weight = java.awt.Font.PLAIN;
                 break;
         }
-        
+
         sysFont = new java.awt.Font(fontFamily, style | weight, 1).deriveFont(fontSize);
         
         FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
@@ -163,7 +162,7 @@ public class FontSystem extends Font
             
             glyphCache.put(unicode, glyph);
         }
-        
+
         return glyph;
     }
     
