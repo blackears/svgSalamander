@@ -45,6 +45,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
+import java.awt.font.LineMetrics;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -136,13 +138,13 @@ public class FontSystem extends Font
         
         sysFont = new java.awt.Font(fontFamily, style | weight, 1).deriveFont(fontSize);
         
-        Canvas c = new Canvas();
-        fm = c.getFontMetrics(sysFont);
-        
+        FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
+        LineMetrics lineMetrics = sysFont.getLineMetrics("M", fontRenderContext);
+
         FontFace face = new FontFace();
-        face.setAscent(fm.getAscent());
-        face.setDescent(fm.getDescent());
-        face.setUnitsPerEm(fm.charWidth('M'));
+        face.setAscent((int) lineMetrics.getAscent());
+        face.setDescent((int) lineMetrics.getDescent());
+        face.setUnitsPerEm((int) sysFont.getStringBounds("M", fontRenderContext).getWidth());
         setFontFace(face);
     }
 
