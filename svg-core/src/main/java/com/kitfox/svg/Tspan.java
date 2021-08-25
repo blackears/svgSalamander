@@ -35,15 +35,19 @@
  */
 package com.kitfox.svg;
 
-import com.kitfox.svg.util.FontSystem;
+import com.kitfox.svg.util.FontUtil;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Point2D;
+import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Mark McKay
@@ -58,10 +62,21 @@ public class Tspan extends ShapeElement
     float[] dx = null;
     float[] dy = null;
     float[] rotate = null;
-    private String text = "";
+
+    float textLength = -1;
+    String lengthAdjust = "spacing";
+
+    // List of strings and tspans containing the content of this node
+    private final List<Serializable> content = new ArrayList<>();
+    protected final ArrayList<TextSegment> segments = new ArrayList<>();
+    protected Rectangle2D textBounds;
+    protected Path2D fullPath;
+
+    protected FontUtil.FontInfo fontInfo;
+    private Font font;
 
     /**
-     * Creates a new instance of Stop
+     * Creates a new instance of Tspan
      */
     public Tspan()
     {
@@ -74,39 +89,74 @@ public class Tspan extends ShapeElement
     }
 
     /**
+     * Called after the start element but before the end element to indicate
+     * each child tag that has been processed
+     */
+    @Override
+    public void loaderAddChild(SVGLoaderHelper helper, SVGElement child) throws SVGElementException
+    {
+        super.loaderAddChild(helper, child);
+
+        content.add(child);
+    }
+
+    /**
      * Called during load process to add text scanned within a tag
      */
     @Override
     public void loaderAddText(SVGLoaderHelper helper, String text)
     {
-        this.text += text;
+        Matcher matchWs = Pattern.compile("\\s*").matcher(text);
+        if (!matchWs.matches())
+        {
+            content.add(text);
+        }
     }
 
-    @Override
-    protected void build() throws SVGException
+    public List<Serializable> getContent()
     {
-        super.build();
+        return content;
+    }
 
-        StyleAttribute sty = new StyleAttribute();
+    /**
+     * Removes all strings and Tspan elements that are children of this element.
+     */
+    public void clearContent()
+    {
+        content.clear();
+    }
 
+    public void appendText(String text)
+    {
+        content.add(text);
+    }
+
+    public void appendTspan(Tspan tspan) throws SVGElementException
+    {
+        super.loaderAddChild(null, tspan);
+        content.add(tspan);
+    }
+
+    protected void buildAttributes(StyleAttribute sty) throws SVGException
+    {
         if (getPres(sty.setName("x")))
         {
-            x = sty.getFloatList();
+            x = sty.getFloatListWithUnits();
         }
 
         if (getPres(sty.setName("y")))
         {
-            y = sty.getFloatList();
+            y = sty.getFloatListWithUnits();
         }
 
         if (getPres(sty.setName("dx")))
         {
-            dx = sty.getFloatList();
+            dx = sty.getFloatListWithUnits();
         }
 
         if (getPres(sty.setName("dy")))
         {
-            dy = sty.getFloatList();
+            dy = sty.getFloatListWithUnits();
         }
 
         if (getPres(sty.setName("rotate")))
@@ -116,246 +166,99 @@ public class Tspan extends ShapeElement
             {
                 rotate[i] = (float) Math.toRadians(this.rotate[i]);
             }
+        }
 
+        if (getStyle(sty.setName("textLength")))
+        {
+            textLength = sty.getFloatValueWithUnits();
+        }
+        else
+        {
+            textLength = -1;
+        }
+
+        if (getStyle(sty.setName("lengthAdjust")))
+        {
+            lengthAdjust = sty.getStringValue();
+        }
+        else
+        {
+            lengthAdjust = "spacing";
         }
     }
 
-    public void appendToShape(GeneralPath addShape, Point2D cursor) throws SVGException
+    protected void buildShapeInformation() throws SVGException
     {
         StyleAttribute sty = new StyleAttribute();
+        buildAttributes(sty);
 
-        String fontFamily = null;
-        if (getStyle(sty.setName("font-family")))
-        {
-            fontFamily = sty.getStringValue();
-        }
-
-
-        float fontSize = 12f;
-        if (getStyle(sty.setName("font-size")))
-        {
-            fontSize = sty.getFloatValueWithUnits();
-        }
-
-        float letterSpacing = 0;
-        if (getStyle(sty.setName("letter-spacing")))
-        {
-            letterSpacing = sty.getFloatValueWithUnits();
-        }
-
-        int fontStyle = 0;
-        if (getStyle(sty.setName("font-style")))
-        {
-            String s = sty.getStringValue();
-            if ("normal".equals(s))
-            {
-                fontStyle = Text.TXST_NORMAL;
-            } else if ("italic".equals(s))
-            {
-                fontStyle = Text.TXST_ITALIC;
-            } else if ("oblique".equals(s))
-            {
-                fontStyle = Text.TXST_OBLIQUE;
-            }
-        } else
-        {
-            fontStyle = Text.TXST_NORMAL;
-        }
-
-        int fontWeight = 0;
-        if (getStyle(sty.setName("font-weight")))
-        {
-            String s = sty.getStringValue();
-            if ("normal".equals(s))
-            {
-                fontWeight = Text.TXWE_NORMAL;
-            } else if ("bold".equals(s))
-            {
-                fontWeight = Text.TXWE_BOLD;
-            }
-        } else
-        {
-            fontWeight = Text.TXWE_NORMAL;
-        }
-
-
-        //Get font
-        Font font = diagram.getUniverse().getFont(fontFamily);
-        if (font == null && fontFamily != null)
-        {
-            font = FontSystem.createFont(fontFamily, fontStyle, fontWeight, fontSize);
-        }
-
-        if (font == null)
-        {
-            font = FontSystem.createFont("Serif", fontStyle, fontWeight, fontSize);
-        }
-
-        AffineTransform xform = new AffineTransform();
-
-        float cursorX = (float)cursor.getX();
-        float cursorY = (float)cursor.getY();
-
-        String drawText = this.text;
-        drawText = drawText.trim();
-        for (int i = 0; i < drawText.length(); i++)
-        {
-            if (x != null && i < x.length)
-            {
-                cursorX = x[i];
-            } else if (dx != null && i < dx.length)
-            {
-                cursorX += dx[i];
-            }
-            
-            if (y != null && i < y.length)
-            {
-                cursorY = y[i];
-            } else if (dy != null && i < dy.length)
-            {
-                cursorY += dy[i];
-            }
-            
-            xform.setToIdentity();
-            xform.setToTranslation(cursorX, cursorY);
-            if (rotate != null)
-            {
-                xform.rotate(rotate[i]);
-            }
-
-            String unicode = drawText.substring(i, i + 1);
-            MissingGlyph glyph = font.getGlyph(unicode);
-
-            Shape path = glyph.getPath();
-            if (path != null)
-            {
-                path = xform.createTransformedShape(path);
-                addShape.append(path, false);
-            }
-
-            cursorX += glyph.getHorizAdvX() + letterSpacing;
-        }
-
-        //Save final draw point so calling method knows where to begin next
-        // text draw
-        cursor.setLocation(cursorX, cursorY);
-        strokeWidthScalar = 1f;
+        fontInfo = FontUtil.parseFontInfo(this, sty);
+        font = FontUtil.getFont(fontInfo, diagram);
     }
 
-//    private void addShapeSysFont(GeneralPath addShape, Font font,
-//        String fontFamily, float fontSize, float letterSpacing, Point2D cursor)
-//    {
-//
-//        java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int) fontSize);
-//
-//        FontRenderContext frc = new FontRenderContext(null, true, true);
-//        String renderText = this.text.trim();
-//
-//        AffineTransform xform = new AffineTransform();
-//
-//        float cursorX = (float)cursor.getX();
-//        float cursorY = (float)cursor.getY();
-////        int i = 0;
-//        for (int i = 0; i < renderText.length(); i++)
-//        {
-//            if (x != null && i < x.length)
-//            {
-//                cursorX = x[i];
-//            } else if (dx != null && i < dx.length)
-//            {
-//                cursorX += dx[i];
-//            }
-//
-//            if (y != null && i < y.length)
-//            {
-//                cursorY = y[i];
-//            } else if (dy != null && i < dy.length)
-//            {
-//                cursorY += dy[i];
-//            }
-////            i++;
-//            
-//            xform.setToIdentity();
-//            xform.setToTranslation(cursorX, cursorY);
-//            if (rotate != null)
-//            {
-//                xform.rotate(rotate[Math.min(i, rotate.length - 1)]);
-//            }
-//
-////            String unicode = renderText.substring(i, i + 1);
-//            GlyphVector textVector = sysFont.createGlyphVector(frc, renderText.substring(i, i + 1));
-//            Shape glyphOutline = textVector.getGlyphOutline(0);
-//            GlyphMetrics glyphMetrics = textVector.getGlyphMetrics(0);
-//
-//            glyphOutline = xform.createTransformedShape(glyphOutline);
-//            addShape.append(glyphOutline, false);
-//
-//
-////            cursorX += fontScale * glyph.getHorizAdvX() + letterSpacing;
-//            cursorX += glyphMetrics.getAdvance() + letterSpacing;
-//        }
-//        
-//        cursor.setLocation(cursorX, cursorY);
-//    }
-
-    @Override
-    protected void doRender(Graphics2D g) throws SVGException
+    protected void buildTextShape(Cursor cursor) throws SVGException
     {
-        float cursorX = 0;
-        float cursorY = 0;
-    
-        if (x != null)
-        {
-            cursorX = x[0];
-            cursorY = y[0];
-        } else if (dx != null)
-        {
-            cursorX += dx[0];
-            cursorY += dy[0];
+        buildShapeInformation();
+
+        fullPath = new GeneralPath();
+
+        if (cursor == null) {
+            cursor = new Cursor(getXCursorForIndex(0, 0),
+                                getYCursorForIndex(0, 0));
         }
 
-        StyleAttribute sty = new StyleAttribute();
+        segments.clear();
+        segments.ensureCapacity(content.size());
+        int currentCursorOffset = cursor.offset;
+        cursor.offset = 0;
 
-        String fontFamily = null;
-        if (getPres(sty.setName("font-family")))
+        AffineTransform transform = new AffineTransform();
+
+        float spaceAdvance = font.getGlyph(" ").getHorizAdvX();
+
+        for (Serializable obj : content)
         {
-            fontFamily = sty.getStringValue();
+            if (obj instanceof String)
+            {
+                String text = ((String) obj);
+                String trimmed = text.trim();
+                if (!text.isEmpty() && text.charAt(0) <= ' ')
+                    cursor.x += font.getGlyph(" ").getHorizAdvX();
+                Path2D textPath = createStringSegmentPath(trimmed, font, cursor, transform);
+                if (!text.isEmpty() && text.charAt(text.length() - 1) <= ' ')
+                    cursor.x += spaceAdvance;
+
+                fullPath.append(textPath, false);
+                segments.add(new TextSegment(textPath, this));
+            } else if (obj instanceof Tspan)
+            {
+                Tspan tspan = (Tspan) obj;
+                tspan.buildTextShape(cursor);
+                fullPath.append(tspan.fullPath, false);
+                segments.add(new TextSegment(null, (Tspan) obj));
+            }
         }
 
+        textBounds = fullPath.getBounds2D();
+        cursor.offset += currentCursorOffset;
+    }
 
-        float fontSize = 12f;
-        if (getPres(sty.setName("font-size")))
-        {
-            fontSize = sty.getFloatValueWithUnits();
-        }
-
-        //Get font
-        Font font = diagram.getUniverse().getFont(fontFamily);
-        if (font == null)
-        {
-            System.err.println("Could not load font");
-            java.awt.Font sysFont = new java.awt.Font(fontFamily, java.awt.Font.PLAIN, (int) fontSize);
-            renderSysFont(g, sysFont);
-            return;
-        }
-
-
-        FontFace fontFace = font.getFontFace();
-        int ascent = fontFace.getAscent();
-        float fontScale = fontSize / (float) ascent;
-
-        AffineTransform oldXform = g.getTransform();
-        AffineTransform xform = new AffineTransform();
-
-        strokeWidthScalar = 1f / fontScale;
-
-        int posPtr = 1;
+    private Path2D createStringSegmentPath(String text, Font font, Cursor cursor, AffineTransform xform)
+    {
+        Path2D textPath = new GeneralPath();
 
         for (int i = 0; i < text.length(); i++)
         {
-            xform.setToTranslation(cursorX, cursorY);
-            xform.scale(fontScale, fontScale);
-            g.transform(xform);
+            // The positions are specified for the whole recursive content of a span.
+            // We need to account for any eventual text which occurred before.
+            cursor.x = getXCursorForIndex(cursor.x, cursor.offset + i);
+            cursor.y = getYCursorForIndex(cursor.y, cursor.offset + i);
+
+            xform.setToTranslation(cursor.x, cursor.y);
+            if (rotate != null && cursor.offset + i < rotate.length)
+            {
+                xform.rotate(rotate[cursor.offset + i]);
+            }
 
             String unicode = text.substring(i, i + 1);
             MissingGlyph glyph = font.getGlyph(unicode);
@@ -363,55 +266,67 @@ public class Tspan extends ShapeElement
             Shape path = glyph.getPath();
             if (path != null)
             {
-                renderShape(g, path);
-            } else
-            {
-                glyph.render(g);
+                path = xform.createTransformedShape(path);
+                textPath.append(path, false);
             }
-
-            if (x != null && posPtr < x.length)
-            {
-                cursorX = x[posPtr];
-                cursorY = y[posPtr++];
-            } else if (dx != null && posPtr < dx.length)
-            {
-                cursorX += dx[posPtr];
-                cursorY += dy[posPtr++];
-            }
-
-            cursorX += fontScale * glyph.getHorizAdvX();
-
-            g.setTransform(oldXform);
+            cursor.x += glyph.getHorizAdvX() + fontInfo.letterSpacing;
         }
+        cursor.offset += text.length();
 
         strokeWidthScalar = 1f;
+        return textPath;
     }
 
-    protected void renderSysFont(Graphics2D g, java.awt.Font font) throws SVGException
+    private float getXCursorForIndex(float current, int index)
     {
-        float cursorX = 0;
-        float cursorY = 0;
-    
-        FontRenderContext frc = g.getFontRenderContext();
+        return getCursorForIndex(current, index, x, dx);
+    }
 
-        Shape textShape = font.createGlyphVector(frc, text).getOutline(cursorX, cursorY);
-        renderShape(g, textShape);
-        Rectangle2D rect = font.getStringBounds(text, frc);
-        cursorX += (float) rect.getWidth();
+    private float getYCursorForIndex(float current, int index)
+    {
+        return getCursorForIndex(current, index, y, dy);
+    }
+
+    private float getCursorForIndex(float current, int index, float[] absolutes, float[] deltas)
+    {
+        if (absolutes != null && index < absolutes.length)
+        {
+            current = absolutes[index];
+        } else if (deltas != null && index < deltas.length)
+        {
+            current += deltas[index];
+        }
+        return current;
+    }
+
+    @Override
+    protected void doRender(Graphics2D g) throws SVGException
+    {
+        beginLayer(g);
+        for (TextSegment segment : segments) {
+            if (segment.textPath != null)
+            {
+                // Text portion of this span.
+                segment.element.renderShape(g, segment.textPath);
+            } else
+            {
+                // Child span.
+                segment.element.doRender(g);
+            }
+        }
+        finishLayer(g);
     }
 
     @Override
     public Shape getShape()
     {
-        return null;
-        //return shapeToParent(tspanShape);
+        return shapeToParent(fullPath);
     }
 
     @Override
     public Rectangle2D getBoundingBox()
     {
-        return null;
-        //return boundsToParent(tspanShape.getBounds2D());
+        return boundsToParent(textBounds);
     }
 
     /**
@@ -430,11 +345,50 @@ public class Tspan extends ShapeElement
 
     public String getText()
     {
-        return text;
+        return getText(new StringBuilder());
     }
 
-    public void setText(String text)
+    private String getText(StringBuilder builder)
     {
-        this.text = text;
+        for (Serializable serializable : content)
+        {
+            if (serializable instanceof Tspan)
+            {
+                ((Tspan) serializable).getText(builder);
+                builder.append(' ');
+            } else if (serializable != null)
+            {
+              builder.append(serializable).append(' ');
+            }
+        }
+        if (builder.length() > 0)
+        {
+            // Remove trailing space.
+            return builder.substring(0, builder.length() - 1);
+        } else
+        {
+            return "";
+        }
+    }
+
+    protected static class TextSegment {
+        final Path2D textPath;
+        final Tspan element;
+
+        private TextSegment(Path2D textPath, Tspan element) {
+            this.textPath = textPath;
+            this.element = element;
+        }
+    }
+
+    protected static class Cursor {
+        float x;
+        float y;
+        int offset;
+
+        public Cursor(float x, float y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }
