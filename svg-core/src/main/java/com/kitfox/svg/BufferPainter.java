@@ -46,11 +46,12 @@ public class BufferPainter
         Rectangle transformedBounds = transform.createTransformedShape(elementBounds).getBounds();
         Rectangle dstBounds = new Rectangle(transformedBounds);
 
+        ImageObserver observer = element.diagram.getCurrentRenderTarget();
         BufferedImage elementImage = renderToBuffer(gg, element, transform, transformedBounds, dstBounds);
 
         // Reset the transform. We already accounted for it in the buffer image.
         gg.setTransform(new AffineTransform());
-        gg.drawImage(elementImage, dstBounds.x, dstBounds.y, null);
+        gg.drawImage(elementImage, dstBounds.x, dstBounds.y, observer);
         if (DEBUG_PAINT)
         {
             gg.setColor(Color.GREEN);
@@ -117,7 +118,7 @@ public class BufferPainter
             Graphics2D elementGraphics = (Graphics2D) elementImage.getGraphics();
             elementGraphics.setRenderingHints(gg.getRenderingHints());
             elementGraphics.setComposite(element.cachedMask.createMaskComposite());
-            elementGraphics.drawImage(maskImage, 0, 0, null);
+            elementGraphics.drawImage(maskImage, 0, 0, element.diagram.getCurrentRenderTarget());
             elementGraphics.dispose();
         }
         return elementImage;
