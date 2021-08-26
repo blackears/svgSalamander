@@ -58,7 +58,6 @@ import java.util.List;
  */
 public class Mask extends Group
 {
-    public static final boolean DEBUG_PAINT = false;
     public static final String TAG_NAME = "mask";
 
     @Override
@@ -71,66 +70,7 @@ public class Mask extends Group
     {
     }
 
-    public void renderElement(Graphics2D g, RenderableElement element) throws SVGException
-    {
-        AffineTransform transform = g.getTransform();
-
-        Graphics2D gg = (Graphics2D) g.create();
-        Rectangle elementBounds = element.getBoundingBox().getBounds();
-        Rectangle transformedBounds = transform.createTransformedShape(elementBounds).getBounds();
-
-        BufferedImage elementImage = paintToBuffer(gg, transform, transformedBounds, element, null);
-
-        // Draw the mask image. Implicitly the mask is empty i.e. has a completely black background.
-        // We can't draw the mask directly to the elementImage using the mask composite as
-        // masks may change the mask value a location at any time during mask realization.
-        BufferedImage maskImage = paintToBuffer(gg, transform, transformedBounds, this, Color.BLACK);
-
-        Graphics2D elementGraphics = (Graphics2D) elementImage.getGraphics();
-        elementGraphics.setRenderingHints(gg.getRenderingHints());
-        elementGraphics.setComposite(createMaskComposite());
-        elementGraphics.drawImage(maskImage, 0, 0, null);
-        elementGraphics.dispose();
-
-        // Reset the transform. We already accounted for it in the buffer image.
-        gg.setTransform(new AffineTransform());
-        gg.drawImage(elementImage, transformedBounds.x, transformedBounds.y, null);
-        if (DEBUG_PAINT)
-        {
-            gg.setXORMode(Color.BLACK);
-            gg.drawRect(transformedBounds.x, transformedBounds.y, transformedBounds.width, transformedBounds.height);
-        }
-        gg.dispose();
-    }
-
-    /*
-     * The srcBounds parameter is expected to be pre-transformed by the given transform.
-     */
-    private BufferedImage paintToBuffer(Graphics2D g, AffineTransform transform,
-                                        Rectangle srcBounds, RenderableElement element,
-                                        Color bgColor) throws SVGException
-    {
-        BufferedImage img = new BufferedImage(srcBounds.width, srcBounds.height, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D imgGraphics = (Graphics2D) img.getGraphics();
-        if (g != null)
-        {
-            imgGraphics.setRenderingHints(g.getRenderingHints());
-        }
-        if (bgColor != null)
-        {
-            imgGraphics.setColor(bgColor);
-            imgGraphics.fillRect(0,0, img.getWidth(), img.getHeight());
-        }
-        // Because we blit the image at the transformed location we have to compensate for the
-        // element location.
-        imgGraphics.translate(-srcBounds.x, -srcBounds.y);
-        imgGraphics.transform(transform);
-        element.doRender(imgGraphics);
-        imgGraphics.dispose();
-        return img;
-    }
-
-    private Composite createMaskComposite()
+    public Composite createMaskComposite()
     {
         return new MaskComposite();
     }
@@ -154,7 +94,7 @@ public class Mask extends Group
         } else
         {
             Rectangle pickPoint = new Rectangle((int) point.getX(), (int) point.getY(), 1, 1);
-            BufferedImage img = paintToBuffer(null, new AffineTransform(), pickPoint, this, Color.BLACK);
+            BufferedImage img = BufferPainter.paintToBuffer(null, new AffineTransform(), pickPoint, this, Color.BLACK);
             // Only try picking the element if the picked point is visible.
             if (luminanceToAlpha(img.getRGB(0, 0)) > 0)
             {
@@ -181,7 +121,7 @@ public class Mask extends Group
             Rectangle pickRect = transformedBounds.getBounds();
             if (pickRect.isEmpty()) return;
 
-            BufferedImage maskArea = paintToBuffer(null, ltw, pickRect,this, Color.BLACK);
+            BufferedImage maskArea = BufferPainter.paintToBuffer(null, ltw, pickRect,this, Color.BLACK);
 
             // Pick if any pixel in the pick area is visible.
             if (hasVisiblePixel(maskArea))
