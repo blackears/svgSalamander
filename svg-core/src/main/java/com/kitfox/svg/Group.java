@@ -312,6 +312,11 @@ public class Group extends ShapeElement
             SVGElement ele = it.next();
             boolean updateVal = ele.updateTime(curTime);
 
+            if (updateVal && ele instanceof RenderableElement)
+            {
+                ((RenderableElement) ele).setBufferImage(null);
+            }
+
             changeState = changeState || updateVal;
 
             //Update our shape if shape aware children change
@@ -323,6 +328,11 @@ public class Group extends ShapeElement
             {
                 boundingBox = null;
             }
+        }
+
+        if (changeState)
+        {
+            setBufferImage(null);
         }
 
         return changeState;

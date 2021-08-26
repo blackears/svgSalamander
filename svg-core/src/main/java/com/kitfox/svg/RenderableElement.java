@@ -62,6 +62,8 @@ abstract public class RenderableElement extends TransformableElement
     public static final int VECTOR_EFFECT_NON_SCALING_STROKE = 1;
     int vectorEffect;
 
+    private BufferPainter.Cache bufferCache;
+
     /**
      * Creates a new instance of BoundedElement
      */
@@ -72,6 +74,16 @@ abstract public class RenderableElement extends TransformableElement
     public RenderableElement(String id, SVGElement parent)
     {
         super(id, parent);
+    }
+
+    BufferPainter.Cache getBufferCache()
+    {
+        return bufferCache;
+    }
+
+    void setBufferImage(BufferPainter.Cache bufferCache)
+    {
+        this.bufferCache = bufferCache;
     }
 
     @Override

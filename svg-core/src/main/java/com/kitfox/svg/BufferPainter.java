@@ -16,6 +16,36 @@ public class BufferPainter
 {
     public static final boolean DEBUG_PAINT = false;
 
+    public static class Cache
+    {
+        private final BufferedImage img;
+        private final Rectangle bounds;
+        private final AffineTransform transform;
+
+        public Cache(BufferedImage img, Rectangle bounds, AffineTransform transform)
+        {
+            this.img = img;
+            this.bounds = bounds;
+            this.transform = transform;
+        }
+
+        boolean isCompatible(AffineTransform tx)
+        {
+            return tx.getScaleX() == transform.getScaleX()
+                && tx.getScaleY() == transform.getScaleY()
+                && tx.getShearX() == transform.getShearX()
+                && tx.getShearY() == transform.getShearY();
+        }
+
+        Rectangle getBoundsForTransform(AffineTransform tx)
+        {
+            double dx = tx.getTranslateX() - transform.getTranslateX();
+            double dy = tx.getTranslateY() - transform.getTranslateY();
+            return new Rectangle((int) (bounds.x + dx), (int) (bounds.y + dy),
+                                 bounds.width, bounds.height);
+        }
+    }
+
     public static void paintElement(Graphics2D g, RenderableElement element) throws SVGException
     {
         if (element.cachedMask != null
@@ -47,7 +77,24 @@ public class BufferPainter
         Rectangle dstBounds = new Rectangle(transformedBounds);
 
         ImageObserver observer = element.diagram.getCurrentRenderTarget();
-        BufferedImage elementImage = renderToBuffer(gg, element, transform, transformedBounds, dstBounds);
+
+        Cache cache = element.getBufferCache();
+        BufferedImage elementImage;
+
+        if (cache == null || observer == null || !cache.isCompatible(transform))
+        {
+            elementImage = renderToBuffer(gg, element, transform, transformedBounds, dstBounds);
+            if (observer != null)
+            {
+                // Only do caching if we are painting to a component.
+                Cache cacheEntry = new Cache(elementImage, new Rectangle(dstBounds), transform);
+                element.setBufferImage(cacheEntry);
+            }
+        } else
+        {
+            elementImage = cache.img;
+            dstBounds.setBounds(cache.getBoundsForTransform(transform));
+        }
 
         // Reset the transform. We already accounted for it in the buffer image.
         gg.setTransform(new AffineTransform());
