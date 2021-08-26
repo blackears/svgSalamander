@@ -102,6 +102,7 @@ public class SVGLoader extends DefaultHandler
         nodeClasses.put("desc", Desc.class);
         nodeClasses.put("ellipse", Ellipse.class);
         nodeClasses.put("filter", Filter.class);
+        nodeClasses.put(FeGaussianBlur.TAG_NAME, FeGaussianBlur.class);
         nodeClasses.put("font", Font.class);
         nodeClasses.put("font-face", FontFace.class);
         nodeClasses.put("g", Group.class);
