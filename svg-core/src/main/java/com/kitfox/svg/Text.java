@@ -3,16 +3,16 @@
  * Copyright (c) 2004, Mark McKay
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or 
+ * Redistribution and use in source and binary forms, with or
  * without modification, are permitted provided that the following
  * conditions are met:
  *
- *   - Redistributions of source code must retain the above 
+ *   - Redistributions of source code must retain the above
  *     copyright notice, this list of conditions and the following
  *     disclaimer.
  *   - Redistributions in binary form must reproduce the above
  *     copyright notice, this list of conditions and the following
- *     disclaimer in the documentation and/or other materials 
+ *     disclaimer in the documentation and/or other materials
  *     provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -26,8 +26,8 @@
  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- * 
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  * Mark McKay can be contacted at mark@kitfox.com.  Salamander and other
  * projects can be found at http://www.kitfox.com
  *
@@ -40,6 +40,7 @@ import com.kitfox.svg.xml.StyleAttribute;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,7 +51,7 @@ import java.util.List;
 public class Text extends Tspan
 {
     public static final String TAG_NAME = "text";
-    
+
     public static final int TXAN_START = 0;
     public static final int TXAN_MIDDLE = 1;
     public static final int TXAN_END = 2;
@@ -95,7 +96,8 @@ public class Text extends Tspan
     }
 
     @Override
-    protected void build() throws SVGException {
+    protected void build() throws SVGException
+    {
         super.build();
         buildText();
     }
@@ -125,37 +127,53 @@ public class Text extends Tspan
 
     private void buildText() throws SVGException
     {
-        super.buildTextShape(null);
-        alignSegmentsAtAnchor(fullPath);
+        Cursor cursor = createInitialCursor();
+        float xInitial = cursor.x;
+        super.buildTextShape(cursor);
+        alignSegmentsAtAnchor(fullPath, xInitial);
     }
 
-    private void alignSegmentsAtAnchor(Path2D textPath)
+    private void alignSegmentsAtAnchor(Path2D textPath, float xInitial)
     {
+        AffineTransform tx;
+        Rectangle2D bounds;
         switch (textAnchor)
         {
             case TXAN_MIDDLE:
-                transformSegments(segments, AffineTransform.getTranslateInstance(
-                        -textPath.getBounds().getWidth() / 2, 0
-                ));
+                bounds = textPath.getBounds2D();
+                tx = AffineTransform.getTranslateInstance(
+                        -(bounds.getX() + bounds.getWidth() / 2.0 - xInitial), 0
+                );
                 break;
             case TXAN_END:
-                transformSegments(segments, AffineTransform.getTranslateInstance(
-                        -textPath.getBounds().getWidth(), 0
-                ));
+                bounds = textPath.getBounds2D();
+                tx = AffineTransform.getTranslateInstance(
+                        -(bounds.getX() + bounds.getWidth() - xInitial), 0
+                );
                 break;
             default:
+                tx = null;
                 break;
+        }
+        if (tx != null)
+        {
+            fullPath.transform(tx);
+            textBounds = fullPath.getBounds2D();
+            transformSegments(segments, tx);
         }
     }
 
     private void transformSegments(List<TextSegment> segments, AffineTransform transform)
     {
-        for (TextSegment segment : segments) {
+        for (TextSegment segment : segments)
+        {
             if (segment.textPath != null)
             {
                 segment.textPath.transform(transform);
             } else
             {
+                segment.element.fullPath.transform(transform);
+                segment.element.textBounds = segment.element.fullPath.getBounds2D();
                 transformSegments(segment.element.segments, transform);
             }
         }
@@ -169,7 +187,8 @@ public class Text extends Tspan
      * update
      */
     @Override
-    public boolean updateTime(double curTime) throws SVGException {
+    public boolean updateTime(double curTime) throws SVGException
+    {
         boolean changeState = super.updateTime(curTime);
 
         //Get current values for parameters

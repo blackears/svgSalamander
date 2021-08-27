@@ -202,11 +202,6 @@ public class Tspan extends ShapeElement
 
         fullPath = new GeneralPath();
 
-        if (cursor == null) {
-            cursor = new Cursor(getXCursorForIndex(0, 0),
-                                getYCursorForIndex(0, 0));
-        }
-
         segments.clear();
         segments.ensureCapacity(content.size());
         int currentCursorOffset = cursor.offset;
@@ -275,6 +270,12 @@ public class Tspan extends ShapeElement
 
         strokeWidthScalar = 1f;
         return textPath;
+    }
+
+    protected Cursor createInitialCursor()
+    {
+        return new Cursor(getXCursorForIndex(0, 0),
+                          getYCursorForIndex(0, 0));
     }
 
     private float getXCursorForIndex(float current, int index)
