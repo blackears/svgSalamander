@@ -43,8 +43,8 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -69,7 +69,7 @@
                             <goal>jjtree-javacc</goal>
                         </goals>
                         <configuration>
-                            <jdkVersion>1.6</jdkVersion>
+                            <jdkVersion>1.8</jdkVersion>
                             <javadocFriendlyComments>true</javadocFriendlyComments>
                             <packageName>org.javacc.parser</packageName>
                             <sourceDirectory>src/main/java/com/kitfox/svg/animation/parser</sourceDirectory>

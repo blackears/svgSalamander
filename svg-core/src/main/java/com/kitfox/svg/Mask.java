@@ -30,8 +30,6 @@
  *
  * Mark McKay can be contacted at mark@kitfox.com.  Salamander and other
  * projects can be found at http://www.kitfox.com
- *
- * Created on January 26, 2004, 1:56 AM
  */
 package com.kitfox.svg;
 
