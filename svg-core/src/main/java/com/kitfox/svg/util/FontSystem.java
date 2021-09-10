@@ -39,17 +39,15 @@ import com.kitfox.svg.Font;
 import com.kitfox.svg.FontFace;
 import com.kitfox.svg.Glyph;
 import com.kitfox.svg.MissingGlyph;
-import java.awt.Canvas;
-import java.awt.FontMetrics;
+
 import java.awt.GraphicsEnvironment;
 import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphMetrics;
 import java.awt.font.GlyphVector;
+import java.awt.font.LineMetrics;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -58,11 +56,10 @@ import java.util.regex.Pattern;
 public class FontSystem extends Font
 {
     java.awt.Font sysFont;
-    FontMetrics fm;
 
-    HashMap<String, Glyph> glyphCache = new HashMap<String, Glyph>();
+    HashMap<String, Glyph> glyphCache = new HashMap<>();
     
-    static HashSet<String> sysFontNames = new HashSet<String>();
+    static HashSet<String> sysFontNames = new HashSet<>();
     
     public static boolean checkIfSystemFontExists(String fontName)
     {
@@ -76,11 +73,10 @@ public class FontSystem extends Font
         
         return sysFontNames.contains(fontName);
     }
-    
-    public static FontSystem createFont(String fontFamily, int fontStyle, int fontWeight, float fontSize)
+
+    public static FontSystem createFont(String[] fontFamilies, int fontStyle, int fontWeight, float fontSize)
     {
-        String[] families = fontFamily.split(",");
-        for (String fontName: families)
+        for (String fontName: fontFamilies)
         {
             String javaFontName = mapJavaFontName(fontName);
             if (checkIfSystemFontExists(javaFontName))
@@ -88,7 +84,7 @@ public class FontSystem extends Font
                 return new FontSystem(javaFontName, fontStyle, fontWeight, fontSize);
             }
         }
-        
+
         return null;
     }
 
@@ -133,16 +129,16 @@ public class FontSystem extends Font
                 weight = java.awt.Font.PLAIN;
                 break;
         }
-        
+
         sysFont = new java.awt.Font(fontFamily, style | weight, 1).deriveFont(fontSize);
         
-        Canvas c = new Canvas();
-        fm = c.getFontMetrics(sysFont);
-        
+        FontRenderContext fontRenderContext = new FontRenderContext(null, true, true);
+        LineMetrics lineMetrics = sysFont.getLineMetrics("M", fontRenderContext);
+
         FontFace face = new FontFace();
-        face.setAscent(fm.getAscent());
-        face.setDescent(fm.getDescent());
-        face.setUnitsPerEm(fm.charWidth('M'));
+        face.setAscent((int) lineMetrics.getAscent());
+        face.setDescent((int) lineMetrics.getDescent());
+        face.setUnitsPerEm((int) sysFont.getStringBounds("M", fontRenderContext).getWidth());
         setFontFace(face);
     }
 
@@ -166,7 +162,7 @@ public class FontSystem extends Font
             
             glyphCache.put(unicode, glyph);
         }
-        
+
         return glyph;
     }
     

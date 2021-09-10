@@ -154,6 +154,18 @@ public class StyleAttribute implements Serializable
         NumberWithUnits number = getNumberWithUnits();
         return convertUnitsToPixels(number.getUnits(), number.getValue());
     }
+
+    public float[] getFloatListWithUnits()
+    {
+        String[] values = getStringList();
+        float[] result = new float[values.length];
+        for (int i = 0; i < result.length; i++)
+        {
+            NumberWithUnits number = XMLParseUtil.parseNumberWithUnits(stringValue);
+            result[i] = convertUnitsToPixels(number.getUnits(), number.getValue());
+        }
+        return result;
+    }
     
     static public float convertUnitsToPixels(int unitType, float value)
     {
