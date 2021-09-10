@@ -36,14 +36,18 @@
 package com.kitfox.svg;
 
 import com.kitfox.svg.xml.StyleAttribute;
+
+import java.awt.Rectangle;
+import java.awt.image.BufferedImageOp;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
 
 /**
  * @author Mark McKay
  * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
  */
-public class FilterEffects extends SVGElement
+public abstract class FilterEffects extends SVGElement
 {
     public static final String TAG_NAME = "filtereffects";
     
@@ -60,7 +64,6 @@ public class FilterEffects extends SVGElement
     float y = 0f;
     float width = 1f;
     float height = 1f;
-    String result = "defaultFilterName";
     URL href = null;
 
     /**
@@ -133,6 +136,10 @@ public class FilterEffects extends SVGElement
          throw new SVGException(e);
          }
          */
+    }
+
+    public List<FilterOp> getOperations(Rectangle bounds, float xScale, float yScale) {
+        return null;
     }
 
     public float getX()
@@ -252,5 +259,15 @@ public class FilterEffects extends SVGElement
          */
 
         return stateChange;
+    }
+
+    public static class FilterOp {
+        public final BufferedImageOp op;
+        public final Rectangle requiredImageBounds;
+
+        public FilterOp(BufferedImageOp op, Rectangle requiredImageBounds) {
+            this.op = op;
+            this.requiredImageBounds = requiredImageBounds;
+        }
     }
 }

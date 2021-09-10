@@ -256,7 +256,7 @@ public class ImageSVG extends RenderableElement
         AffineTransform curXform = g.getTransform();
         g.transform(xform);
 
-        g.drawImage(img, 0, 0, null);
+        g.drawImage(img, 0, 0, diagram.getCurrentRenderTarget());
 
         g.setTransform(curXform);
         if (oldComp != null)

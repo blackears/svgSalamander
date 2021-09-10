@@ -56,10 +56,13 @@ abstract public class RenderableElement extends TransformableElement
     AffineTransform cachedXform = null;
 
     Mask cachedMask;
+    Filter filter;
     Shape cachedClip = null;
     public static final int VECTOR_EFFECT_NONE = 0;
     public static final int VECTOR_EFFECT_NON_SCALING_STROKE = 1;
     int vectorEffect;
+
+    private BufferPainter.Cache bufferCache;
 
     /**
      * Creates a new instance of BoundedElement
@@ -71,6 +74,16 @@ abstract public class RenderableElement extends TransformableElement
     public RenderableElement(String id, SVGElement parent)
     {
         super(id, parent);
+    }
+
+    BufferPainter.Cache getBufferCache()
+    {
+        return bufferCache;
+    }
+
+    void setBufferImage(BufferPainter.Cache bufferCache)
+    {
+        this.bufferCache = bufferCache;
     }
 
     @Override
@@ -95,17 +108,12 @@ abstract public class RenderableElement extends TransformableElement
         }
 
         cachedMask = getMask(sty);
+        filter = getFilter(sty);
     }
 
     public void render(Graphics2D g) throws SVGException
     {
-        if (cachedMask != null)
-        {
-            cachedMask.renderElement(g, this);
-        } else
-        {
-            doRender(g);
-        }
+        BufferPainter.paintElement(g, this);
     }
 
     private Mask getMask(StyleAttribute styleAttrib) throws SVGException
@@ -117,6 +125,19 @@ abstract public class RenderableElement extends TransformableElement
                 return null;
             }
             return  (Mask) diagram.getUniverse().getElement(uri);
+        }
+        return null;
+    }
+
+    private Filter getFilter(StyleAttribute styleAttrib) throws SVGException
+    {
+        if (getStyle(styleAttrib.setName("filter"), false)
+            && !"none".equals(styleAttrib.getStringValue())) {
+            URI uri = styleAttrib.getURIValue(getXMLBase());
+            if (uri == null) {
+                return null;
+            }
+            return  (Filter) diagram.getUniverse().getElement(uri);
         }
         return null;
     }

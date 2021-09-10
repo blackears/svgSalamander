@@ -132,7 +132,7 @@ public class SVGPanel extends JPanel
         {
             try
             {
-                diagram.render(g);
+                diagram.render(this, g);
                 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAliasHint);
             }
             catch (SVGException e)

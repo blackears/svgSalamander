@@ -3,16 +3,16 @@
  * Copyright (c) 2004, Mark McKay
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or 
+ * Redistribution and use in source and binary forms, with or
  * without modification, are permitted provided that the following
  * conditions are met:
  *
- *   - Redistributions of source code must retain the above 
+ *   - Redistributions of source code must retain the above
  *     copyright notice, this list of conditions and the following
  *     disclaimer.
  *   - Redistributions in binary form must reproduce the above
  *     copyright notice, this list of conditions and the following
- *     disclaimer in the documentation and/or other materials 
+ *     disclaimer in the documentation and/or other materials
  *     provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
@@ -26,8 +26,8 @@
  * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
- * 
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  * Mark McKay can be contacted at mark@kitfox.com.  Salamander and other
  * projects can be found at http://www.kitfox.com
  *
@@ -36,6 +36,7 @@
 
 package com.kitfox.svg;
 
+import javax.swing.JComponent;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
@@ -59,15 +60,16 @@ import java.util.logging.Logger;
 public class SVGDiagram implements Serializable
 {
     public static final long serialVersionUID = 0;
-    
+
     //Indexes elements within this SVG diagram
     final HashMap<String, SVGElement> idMap = new HashMap<String, SVGElement>();
 
     SVGRoot root;
     final SVGUniverse universe;
+    private JComponent renderTarget;
 
     /**
-     * This is used by the SVGRoot to determine the width of the 
+     * This is used by the SVGRoot to determine the width of the
      */
     private Rectangle deviceViewport = new Rectangle(100, 100);
 
@@ -101,6 +103,18 @@ public class SVGDiagram implements Serializable
         this.xmlBase = xmlBase;
     }
 
+    JComponent getCurrentRenderTarget()
+    {
+        return renderTarget;
+    }
+
+    public void render(JComponent c, Graphics2D g) throws SVGException
+    {
+        renderTarget = c;
+        root.renderToViewport(g);
+        renderTarget = null;
+    }
+
     /**
      * Draws this diagram to the passed graphics context
      * @param g
@@ -108,13 +122,13 @@ public class SVGDiagram implements Serializable
      */
     public void render(Graphics2D g) throws SVGException
     {
-        root.renderToViewport(g);
+        render(null, g);
     }
-    
+
     /**
      * Searches thorough the scene graph for all RenderableElements that have
      * shapes that contain the passed point.
-     * 
+     *
      * For every shape which contains the pick point, a List containing the
      * path to the node is added to the return list.  That is, the result of
      * SVGElement.getPath() is added for each entry.
@@ -128,16 +142,16 @@ public class SVGDiagram implements Serializable
     {
         return pick(point, false, retVec);
     }
-    
+
     public List<List<SVGElement>> pick(Point2D point, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (retVec == null)
         {
             retVec = new ArrayList<List<SVGElement>>();
         }
-        
+
         root.pick(point, boundingBox, retVec);
-        
+
         return retVec;
     }
 
@@ -145,16 +159,16 @@ public class SVGDiagram implements Serializable
     {
         return pick(pickArea, false, retVec);
     }
-    
+
     public List<List<SVGElement>> pick(Rectangle2D pickArea, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException
     {
         if (retVec == null)
         {
             retVec = new ArrayList<List<SVGElement>>();
         }
-        
+
         root.pick(pickArea, new AffineTransform(), boundingBox, retVec);
-        
+
         return retVec;
     }
 
@@ -178,17 +192,17 @@ public class SVGDiagram implements Serializable
         if (root == null) return 0;
         return root.getDeviceWidth();
     }
-    
+
     public float getHeight()
     {
         if (root == null) return 0;
         return root.getDeviceHeight();
     }
-    
+
     /**
      * Returns the viewing rectangle of this diagram in device coordinates.
      * @param rect
-     * @return 
+     * @return
      */
     public Rectangle2D getViewRect(Rectangle2D rect)
     {
@@ -264,7 +278,7 @@ public class SVGDiagram implements Serializable
                 root.build();
             } catch (SVGException ex)
             {
-                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING, 
+                Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
                     "Could not build document", ex);
             }
         }

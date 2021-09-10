@@ -61,7 +61,7 @@ public class Filter extends SVGElement
     float height = 1f;
     Point2D filterRes = new Point2D.Double();
     URL href = null;
-    final ArrayList<SVGElement> filterEffects = new ArrayList<SVGElement>();
+    final ArrayList<FilterEffects> filterEffects = new ArrayList<>();
 
     /**
      * Creates a new instance of FillElement
@@ -87,7 +87,7 @@ public class Filter extends SVGElement
 
         if (child instanceof FilterEffects)
         {
-            filterEffects.add(child);
+            filterEffects.add((FilterEffects) child);
         }
     }
 
