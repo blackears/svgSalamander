@@ -172,7 +172,7 @@ abstract public class Gradient extends FillElement
         });
 
         //Remove doubles
-        for (int i = stopList.size() - 2; i > 0; --i)
+        for (int i = stopList.size() - 2; i >= 0; --i)
         {
             if (stopList.get(i + 1).offset == stopList.get(i).offset)
             {

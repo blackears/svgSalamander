@@ -73,13 +73,14 @@ public class SimpleIconFrame extends javax.swing.JFrame
 
         
         try {
-//panel.setSvgURI(SimpleIconFrame.class.getResource("diylc.svg").toURI());
-//panel.setSvgURI(SimpleIconFrame.class.getResource("pcb.svg").toURI());
             panel.setSvgURI(SimpleIconFrame.class.getResource("tux.svg").toURI());
+//            panel.setSvgURI(SimpleIconFrame.class.getResource("Ruby_logo.svg").toURI());
 //            panel.setSvgURI(SimpleIconFrame.class.getResource("triangle.svg").toURI());
 //
 //
 //
+//panel.setSvgURI(SimpleIconFrame.class.getResource("diylc.svg").toURI());
+//panel.setSvgURI(SimpleIconFrame.class.getResource("pcb.svg").toURI());
 ////            panel.setSvgURI(SimpleIconFrame.class.getResource("rihard_minus.svg").toURI());
 ////            panel.setSvgURI(SimpleIconFrame.class.getResource("dor-32-gradient.svg").toURI());
 //
