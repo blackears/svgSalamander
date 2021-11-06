@@ -50,8 +50,8 @@ public class PathParser
     private char currentCommand;
 
     public PathParser(String input) {
-        this.input = input;
-        this.inputLength = input.length();
+        this.input = input.trim();
+        this.inputLength = this.input.length();
     }
 
     private boolean isCommandChar(char c)
@@ -143,7 +143,7 @@ public class PathParser
     public PathCommand[] parsePathCommand()
     {
         List<PathCommand> commands = new ArrayList<>();
-
+        
         currentCommand = 'Z';
         while (hasNext())
         {
