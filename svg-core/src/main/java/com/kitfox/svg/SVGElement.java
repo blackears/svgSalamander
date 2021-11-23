@@ -730,7 +730,7 @@ abstract public class SVGElement implements Serializable
         return retXform;
     }
 
-    private static final Pattern WORD_PATTERN = Pattern.compile("([a-zA-Z]+|-?\\d+(\\.\\d+)?(e-?\\d+)?|-?\\.\\d+(e-?\\d+)?)");
+    private static final Pattern WORD_PATTERN = Pattern.compile("([a-zA-Z]+|-?\\d+(\\.\\d+)?([eE]-?\\d+)?|-?\\.\\d+([eE]-?\\d+)?)");
     static public AffineTransform parseSingleTransform(String val) throws SVGException
     {
         final Matcher matchWord = WORD_PATTERN.matcher("");
