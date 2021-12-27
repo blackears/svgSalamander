@@ -32,4 +32,4 @@ Projects using SVG Salamander
 
 License
 -------
-SVG Salamander is available both under the [LGPL](www/license/license-lgpl.txt) and [BSD](www/license/license-bsd.txt) licenses.
+SVG Salamander is available under two licenses.  You may choose to use either the [LGPL](www/license/license-lgpl.txt) license or the [BSD](www/license/license-bsd.txt) license - whichever is more appropriate for your project.
