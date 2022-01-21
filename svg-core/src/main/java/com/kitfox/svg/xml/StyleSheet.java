@@ -22,7 +22,7 @@ public class StyleSheet
         //Implement CS parser later
         Logger.getLogger(SVGConst.SVG_LOGGER).log(Level.WARNING,
             "CSS parser not implemented yet");
-        return null;
+        return new StyleSheet();
     }
     
     public void addStyleRule(StyleSheetRule rule, String value)
