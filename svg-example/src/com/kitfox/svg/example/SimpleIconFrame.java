@@ -40,6 +40,8 @@ import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGUniverse;
 import com.kitfox.svg.ShapeElement;
+import com.kitfox.svg.Text;
+import com.kitfox.svg.animation.AnimationElement;
 import com.kitfox.svg.app.beans.SVGPanel;
 import java.awt.BorderLayout;
 import java.awt.geom.Point2D;
@@ -50,6 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
 
 /**
  *
@@ -145,7 +148,6 @@ public class SimpleIconFrame extends javax.swing.JFrame
         
         setSize(640, 480);
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

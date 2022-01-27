@@ -127,6 +127,7 @@ public class Text extends Tspan
 
     private void buildText() throws SVGException
     {
+        buildShapeInformation();        
         Cursor cursor = createInitialCursor();
         float xInitial = cursor.x;
         super.buildTextShape(cursor);
