@@ -1,7 +1,7 @@
-#SVG Salamander
+# SVG Salamander
 SVG Salamander is an SVG engine for Java that's designed to be small, fast, and allow programmers to use it with a minimum of fuss. It's in particular targeted for making it easy to integrate SVG into Java games and making it much easier for artists to design 2D game content - from rich interactive menus to charts and graphics to complex animations.
 
-##Features
+## Features
 
 - Ant task to allow easy conversion from SVG to images from within Ant scripts
 - `SVGIcon` class greatly simplifies loading and drawing images to screen
@@ -14,15 +14,15 @@ SVG Salamander is an SVG engine for Java that's designed to be small, fast, and 
 - Internal and external links are implemented as URIs, which allows the engine to automatically import linked documents - even if they're stored on a remote server.
 - SVG can be read from an `InputStream`, so you can create documents dynamically from an in-program XSLT transformation.
 
-##Documentation
+## Documentation
 
 [An overview of how to use SVG Salamader in your project.](doc/usingSvgSalamander.md)
 
-##Current status
+## Current status
 
 SVG Salamander is part of the Salamander project hosted on http://www.kitfox.com
 
-##Projects using SVG Salamander
+## Projects using SVG Salamander
 - [Apache Pivot](http://pivot.apache.org/) - An alternate crossplatform GUI for Java.
 - [VisiCut](http://visicut.org/) - A tool for laser precision cutting.
 - [Xoetrope](http://www.xoetrope.com/) - An alternate crossplatform GUI for Java.
@@ -32,5 +32,5 @@ SVG Salamander is part of the Salamander project hosted on http://www.kitfox.com
 - [JOSM](https://josm.openstreetmap.de/) - Java OpenStreetMap Editor.
 - [Freeplane](http://freeplane.org) - Java program for working with Mind Maps
 
-##License
+## License
 SVG Salamander is available under two licenses.  You may choose to use either the [LGPL](www/license/license-lgpl.txt) license or the [BSD](www/license/license-bsd.txt) license - whichever is more appropriate for your project.
