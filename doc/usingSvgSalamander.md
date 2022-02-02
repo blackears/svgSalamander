@@ -1,4 +1,4 @@
-#Using SVG Salamander
+# Using SVG Salamander
 
 SVG Salamander uses Java2D for all rendering, so it should integrate nicely with Swing projects.
 
@@ -14,13 +14,13 @@ The basic process is:
 
 The `SVGDiagram` is the object you are going to be most concerned with.  It provides a way to access the root of the SVG document you loaded and a means to render it to a `Graphics2D`.
 
-##Accessing the document
+## Accessing the document
 
 All elements in an SVG document can be given an id that can be used to access the document in parts.  For example, you can create a circle with the code `<circle id="myCircle" cx="100" cy="100" r="50"/>`. This circle can be referenced later with the key word `myCircle`.
 
 SVG Salamander provides the ability to access document parts with SVGDiagram.getElement(String elementName).  You can then read and write the attributes of the element directly.
 
-##Using SVG in forms
+## Using SVG in forms
 
 The Salamander JAR contains some controls to let you use SVG easily in Swing forms.  They are:
 
@@ -38,15 +38,15 @@ A fast way to place an SVG element on your form:
 - Set SvgResourcePath to the path of your resource
 - Check ScaleToFit to force the graphic to scale to the fill size of the panel
     
-##Updating the SVG document
+## Updating the SVG document
 
 SVG Salamander parallels the DOM model internally, and can be interactively updated at runtime.  That is, you can change colors, positions and other aspects of a loaded SVGDiagram.
 
-###Tree Navigation
+### Tree Navigation
 
 Use `SVGDiagram.getRoot()` to get an instance of SVGRoot.  The SVGRoot corresponds to the <SVG> element of an SVG document.  You can then get a list of it's children by calling `SVGRoot.getChildren(null)`.  The tree can be further navigated at deeper depths by calling the `getChildren()` method.
 
-###Adding and Editing Attributes
+### Adding and Editing Attributes
 
 SVG Salamander stores attributes as strings and parses them into values at runtime to draw the SVG elements.  This allows for the rich variety of types of values that the SVG specification defines.  Attributes can also be either style attributes or presentation attributes. Style attributes are defined in the `style` attribute of an SVG element.  Presentation attributes are the attributes defined as attributes outside of the `style` attribute.  If both style and presentation attributes are present, the style attribute overrides the presentation attribute.  For example:
     
@@ -95,7 +95,7 @@ double value = attrib.getDoubleValue();
 
 Note that getting the value of a style attribute will first check to see if this attribute has a style set.  If not, it checks to find the closest ancestor that may have this style set.  If no ancestor has this attribute set, it then checks to see if a presentation attribute with the same name is set on this element.  This is in keeping with the SVG convention that style attributes override first ancestors and then presentation attributes.  To get the value of only the style attribute of this element, call `getStyleAbsolute()` instead.  `getPresAbsolute()` will check for the local presentation attribute.
 
-###Adding and removing children
+### Adding and removing children
 
 To add a new element, create an instance of the element you wish to add, set its attributes, and then add it to its parent element in the scene graph:
 
@@ -132,7 +132,7 @@ try {
 }
 ```
 
-##Picking
+## Picking
 
 To pick shapes within an SVGDiagram, use the `pick()` method:
 
@@ -144,7 +144,7 @@ Vector pickedElements = diagram.pick(pickPoint, null);
 
 The `pick` method will return a vector of vectors of `SVGElements`.  Each vector contains the path from the root of the diagram to the picked `RenderableElement`.
 
-##Ant Task
+## Ant Task
 
 The SVG Salamander Ant task allows you to easily convert SVG documents to images from an Ant script.  To use it, include the SVGSalamander.jar in your class path and write an Ant target similar to:
 
@@ -160,7 +160,7 @@ The SVG Salamander Ant task allows you to easily convert SVG documents to images
     </target>
 ```
 
-###Parameters:
+### Parameters:
 
 - destDir - If present, specifies a directory to write SVG files to.  Otherwise writes images to directory SVG file was found in
 - format - File format for output images.  The java core javax.imageio.ImageIO class is used for creating images, so format strings will depend on what files your system is configured to handle.  By default, "gif", "jpg" and "png" files are guaranteed to be present.  If omitted, "png" is used by default.
