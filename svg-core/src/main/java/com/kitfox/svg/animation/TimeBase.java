@@ -49,8 +49,8 @@ import java.util.regex.*;
  */
 abstract public class TimeBase
 {
-    static final Matcher matchIndefinite = Pattern.compile("\\s*indefinite\\s*").matcher("");
-    static final Matcher matchUnitTime = Pattern.compile("\\s*([-+]?((\\d*\\.\\d+)|(\\d+))([-+]?[eE]\\d+)?)\\s*(h|min|s|ms)?\\s*").matcher("");
+	static final Pattern patIndefinite = Pattern.compile("\\s*indefinite\\s*");
+	static final Pattern patUnitTime = Pattern.compile("\\s*([-+]?((\\d*\\.\\d+)|(\\d+))([-+]?[eE]\\d+)?)\\s*(h|min|s|ms)?\\s*");
     
     /*
     public static TimeBase parseTime(String text) 
@@ -68,10 +68,10 @@ abstract public class TimeBase
     
     protected static TimeBase parseTimeComponent(String text)
     {
-        matchIndefinite.reset(text);
+        Matcher matchIndefinite = patIndefinite.matcher(text);
         if (matchIndefinite.matches()) return new TimeIndefinite();
         
-        matchUnitTime.reset(text);
+        Matcher matchUnitTime = patUnitTime.matcher(text);
         if (matchUnitTime.matches())
         {
             String val = matchUnitTime.group(1);
