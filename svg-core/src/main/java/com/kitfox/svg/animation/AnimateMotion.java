@@ -60,7 +60,7 @@ public class AnimateMotion extends AnimateXform
 {
     public static final String TAG_NAME = "animateMotion";
     
-    static final Matcher matchPoint = Pattern.compile("\\s*(\\d+)[^\\d]+(\\d+)\\s*").matcher("");
+    static final Pattern patPoint = Pattern.compile("\\s*(\\d+)[^\\d]+(\\d+)\\s*");
     
 //    protected double fromValue;
 //    protected double toValue;
@@ -140,7 +140,7 @@ public class AnimateMotion extends AnimateXform
         {
             Point2D.Float ptFrom = new Point2D.Float(), ptTo = new Point2D.Float();
 
-            matchPoint.reset(from);
+            Matcher matchPoint = patPoint.matcher(from);
             if (matchPoint.matches())
             {
                 setPoint(ptFrom, matchPoint.group(1), matchPoint.group(2));

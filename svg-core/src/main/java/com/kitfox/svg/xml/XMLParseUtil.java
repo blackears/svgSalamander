@@ -52,9 +52,10 @@ import java.util.logging.Logger;
  */
 public class XMLParseUtil
 {
-    static final Matcher fpMatch = Pattern.compile("([-+]?((\\d*\\.\\d+)|(\\d+))([eE][+-]?\\d+)?)(\\%|in|cm|mm|pt|pc|px|em|ex)?").matcher("");
-    static final Matcher intMatch = Pattern.compile("[-+]?\\d+").matcher("");
-    static final Matcher quoteMatch = Pattern.compile("^'|'$").matcher("");
+    static final Pattern fpPat = Pattern.compile("([-+]?((\\d*\\.\\d+)|(\\d+))([eE][+-]?\\d+)?)(\\%|in|cm|mm|pt|pc|px|em|ex)?");
+    static final Pattern intPat = Pattern.compile("[-+]?\\d+");
+    static final Pattern quotePat = Pattern.compile("^'|'$");
+
 
     /** Creates a new instance of XMLParseUtil */
     private XMLParseUtil()
@@ -118,8 +119,8 @@ public class XMLParseUtil
 
     public static boolean isDouble(String val)
     {
-        fpMatch.reset(val);
-        return fpMatch.matches();
+        Matcher m = fpPat.matcher(val);
+        return m.matches();
     }
     
     public static double parseDouble(String val)
@@ -145,10 +146,10 @@ public class XMLParseUtil
     {
         if (val == null) return 0;
 
-        fpMatch.reset(val);
+        Matcher matcher = fpPat.matcher(val);
         try
         {
-            if (!fpMatch.find()) return 0;
+            if (!matcher.find()) return 0;
         }
         catch (StringIndexOutOfBoundsException e)
         {
@@ -156,7 +157,7 @@ public class XMLParseUtil
                 "XMLParseUtil: regex parse problem: '" + val + "'", e);
         }
 
-        val = fpMatch.group(1);
+        val = matcher.group(1);
         //System.err.println("Parsing " + val);
 
         double retVal = 0;
@@ -174,7 +175,7 @@ public class XMLParseUtil
                 pixPerInch = 72;
             }
             final float inchesPerCm = .3936f;
-            final String units = fpMatch.group(6);
+            final String units = matcher.group(6);
             
             if ("%".equals(units)) retVal /= 100;
             else if ("in".equals(units))
@@ -212,13 +213,12 @@ public class XMLParseUtil
     public synchronized static double[] parseDoubleList(String list)
     {
         if (list == null) return null;
-
-        fpMatch.reset(list);
+        Matcher matcher = fpPat.matcher(list);
 
         LinkedList<Double> doubList = new LinkedList<Double>();
-        while (fpMatch.find())
+        while (matcher.find())
         {
-            String val = fpMatch.group(1);
+            String val = matcher.group(1);
             doubList.add(Double.valueOf(val));
         }
 
@@ -255,18 +255,17 @@ public class XMLParseUtil
     public synchronized static float findFloat(String val)
     {
         if (val == null) return 0f;
+        Matcher matcher = fpPat.matcher(val);
+        if (!matcher.find()) return 0f;
 
-        fpMatch.reset(val);
-        if (!fpMatch.find()) return 0f;
-
-        val = fpMatch.group(1);
+        val = matcher.group(1);
         //System.err.println("Parsing " + val);
 
         float retVal = 0f;
         try
         {
             retVal = Float.parseFloat(val);
-            String units = fpMatch.group(6);
+            String units = matcher.group(6);
             if ("%".equals(units)) retVal /= 100;
         }
         catch (Exception e)
@@ -277,13 +276,12 @@ public class XMLParseUtil
     public synchronized static float[] parseFloatList(String list)
     {
         if (list == null) return null;
-
-        fpMatch.reset(list);
+        Matcher matcher = fpPat.matcher(list);
 
         LinkedList<Float> floatList = new LinkedList<Float>();
-        while (fpMatch.find())
+        while (matcher.find())
         {
-            String val = fpMatch.group(1);
+            String val = matcher.group(1);
             floatList.add(Float.valueOf(val));
         }
 
@@ -317,11 +315,10 @@ public class XMLParseUtil
     public static int findInt(String val)
     {
         if (val == null) return 0;
+        Matcher matcher = intPat.matcher(val);
+        if (!matcher.find()) return 0;
 
-        intMatch.reset(val);
-        if (!intMatch.find()) return 0;
-
-        val = intMatch.group();
+        val = matcher.group();
         //System.err.println("Parsing " + val);
 
         int retVal = 0;
@@ -335,13 +332,12 @@ public class XMLParseUtil
     public static int[] parseIntList(String list)
     {
         if (list == null) return null;
-
-        intMatch.reset(list);
+        Matcher matcher = intPat.matcher(list);
 
         LinkedList<Integer> intList = new LinkedList<Integer>();
-        while (intMatch.find())
+        while (matcher.find())
         {
-            String val = intMatch.group();
+            String val = matcher.group();
             intList.add(Integer.valueOf(val));
         }
 
@@ -821,9 +817,8 @@ public class XMLParseUtil
             {
                 continue;
             }
-
             String key = styles[i].substring(0, colon).trim().intern();
-            String value = quoteMatch.reset(styles[i].substring(colon + 1).trim()).replaceAll("").intern();
+            String value = quotePat.matcher(styles[i].substring(colon + 1).trim()).replaceAll("").intern();
 
             map.put(key, new StyleAttribute(key, value));
         }
