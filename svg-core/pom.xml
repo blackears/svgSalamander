@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kitfox</groupId>
+    <groupId>com.github.blackears</groupId>
     <artifactId>svgSalamander</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <packaging>jar</packaging>
 
-    <name>com.kitfox:svgSalamander</name>
+    <name>com.github.blackears:svgSalamander</name>
     <description>A tool for displaying and playing SVG content using the Java2D.</description>
     <url>https://github.com/blackears/svgSalamander</url>
 
@@ -36,10 +36,27 @@
     </scm>
 
     <distributionManagement>
+        <!--
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+            -->
+            
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
     </distributionManagement>
 
     <properties>
@@ -58,7 +75,42 @@
 
     <build>
         <plugins>
+            
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+            
+            
+            
+            <plugin>                
                 <groupId>com.helger.maven</groupId>
                 <artifactId>ph-javacc-maven-plugin</artifactId>
                 <version>4.1.0</version>
@@ -110,6 +162,7 @@
             </plugin>
         </plugins>
     </build>
+    
     <profiles>
         <profile>
             <id>deploy</id>
