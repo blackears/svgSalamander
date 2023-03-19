@@ -40,6 +40,7 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.awt.geom.GeneralPath;
 import java.awt.geom.NoninvertibleTransformException;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -224,7 +225,7 @@ public class Group extends ShapeElement
 
     public void calcShape()
     {
-        Area retShape = new Area();
+        GeneralPath retShape = new GeneralPath();
 
         for (SVGElement ele : children) {
             if (ele instanceof ShapeElement)
@@ -233,7 +234,7 @@ public class Group extends ShapeElement
                 Shape shape = shpEle.getShape();
                 if (shape != null)
                 {
-                    retShape.add(new Area(shape));
+                    retShape.append(shape, false);
                 }
             }
         }

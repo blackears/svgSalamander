@@ -55,10 +55,20 @@
         </testResources>
     </build>
     <dependencies>
+        <!--
+<dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>svgSalamander</artifactId>
+    <version>1.1.5</version>
+</dependency>
+        -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>svgSalamander</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../svg-core/target/svgSalamander-1.1.5.jar</systemPath>
         </dependency>
+                
     </dependencies>
 </project>
