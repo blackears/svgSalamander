@@ -147,7 +147,8 @@ public final class FontUtil
             }
         }
 
-        return new FontInfo(fontFamily.split(","), fontSize, fontStyle, fontWeight, letterSpacing);
+        String[] split = fontFamily.split("\\s*#\\s*");
+        return new FontInfo(split, fontSize, fontStyle, fontWeight, letterSpacing);
     }
 
     public static Font getFont(FontInfo info, SVGDiagram diagram)
