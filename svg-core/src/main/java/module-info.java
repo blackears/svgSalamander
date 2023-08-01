@@ -26,7 +26,6 @@
 
 module com.kitfox.svgSalamander {
     requires static ant;
-    requires static ant.launcher;
     requires java.desktop;
     requires java.xml;
     requires java.logging;
