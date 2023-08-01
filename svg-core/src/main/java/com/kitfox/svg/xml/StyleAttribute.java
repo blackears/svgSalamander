@@ -52,6 +52,8 @@ public class StyleAttribute implements Serializable
 {
     public static final long serialVersionUID = 0;
 
+    private static final Pattern PATTERN_WHITESPACE = Pattern.compile("\\s+");
+    private static final Pattern PATTERN_JDK_5_WORKAROUND = Pattern.compile("[a-zA-Z]:!\\\\.*");
     static final Pattern patternUrl = Pattern.compile("\\s*url\\((.*)\\)\\s*");
     static final Pattern patternFpNumUnits = Pattern.compile("\\s*([-+]?((\\d*\\.\\d+)|(\\d+))([-+]?[eE]\\d+)?)\\s*(px|cm|mm|in|pc|pt|em|ex)\\s*");
     String name;
@@ -262,13 +264,12 @@ public class StyleAttribute implements Serializable
     {
         try {
             String fragment = parseURLFn();
-            if (fragment == null) fragment = stringValue.replaceAll("\\s+", "");
+            if (fragment == null) fragment = PATTERN_WHITESPACE.matcher(stringValue).replaceAll("");
             if (fragment == null) return null;
             
             //======================
             //This gets around a bug in the 1.5.0 JDK
-            if (Pattern.matches("[a-zA-Z]:!\\\\.*", fragment))
-            {
+            if (PATTERN_JDK_5_WORKAROUND.matcher(fragment).matches()) {
                 File file = new File(fragment);
                 return file.toURI();
             }
