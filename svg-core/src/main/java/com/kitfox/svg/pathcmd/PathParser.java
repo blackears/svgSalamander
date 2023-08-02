@@ -44,6 +44,16 @@ import java.util.List;
  */
 public class PathParser
 {
+    /*
+     * This was part of NumberCharState. Unfortunately, it is not inlined as of Java 20. Maybe when Java has value
+     * classes this will change.
+     */
+    int iteration = 0;
+    boolean dotAllowed = true;
+    boolean signAllowed = true;
+    boolean exponentAllowed = true;
+    /* End NumberCharState class information */
+
     private final String input;
     private final int inputLength;
     private int index;
@@ -82,7 +92,7 @@ public class PathParser
     // This only checks for the rough structure of a number as we need to know
     // when to separate the next token.
     // Explicit parsing is done by Float#parseFloat.
-    private boolean isValidNumberChar(char c, NumberCharState state)
+    private boolean isValidNumberChar(char c, PathParser state)
     {
         boolean valid = '0' <= c && c <= '9';
         if (valid && state.iteration == 1 && input.charAt(index - 1) == '0')
@@ -121,7 +131,7 @@ public class PathParser
     private float nextFloat()
     {
         int start = index;
-        NumberCharState state = new NumberCharState();
+        PathParser state = this.resetNumberCharState();
         while (hasNext() && isValidNumberChar(peek(), state)) {
             consume();
         }
@@ -241,11 +251,15 @@ public class PathParser
         return commands.toArray(new PathCommand[0]);
     }
 
-    private static class NumberCharState
-    {
-        int iteration = 0;
-        boolean dotAllowed = true;
-        boolean signAllowed = true;
-        boolean exponentAllowed = true;
+    /**
+     * Reset the NumberCharState
+     * @return {this}, for ease of changing back to a NumberCharState class later.
+     */
+    private PathParser resetNumberCharState() {
+        this.iteration = 0;
+        this.dotAllowed = true;
+        this.signAllowed = true;
+        this.exponentAllowed = true;
+        return this;
     }
 }
