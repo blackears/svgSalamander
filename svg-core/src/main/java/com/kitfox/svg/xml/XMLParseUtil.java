@@ -52,6 +52,8 @@ import java.util.logging.Logger;
  */
 public class XMLParseUtil
 {
+    private static final Pattern PATTERN_WHITESPACE = Pattern.compile("[^\\s]+");
+    private static final Pattern PATTERN_SEMI_COLON = Pattern.compile(";");
     static final Pattern fpPat = Pattern.compile("([-+]?((\\d*\\.\\d+)|(\\d+))([eE][+-]?\\d+)?)(\\%|in|cm|mm|pt|pc|px|em|ex)?");
     static final Pattern intPat = Pattern.compile("[-+]?\\d+");
     static final Pattern quotePat = Pattern.compile("^'|'$");
@@ -103,9 +105,7 @@ public class XMLParseUtil
 
     public static String[] parseStringList(String list)
     {
-//        final Pattern patWs = Pattern.compile("\\s+");
-        final Matcher matchWs = Pattern.compile("[^\\s]+").matcher("");
-        matchWs.reset(list);
+        final Matcher matchWs = PATTERN_WHITESPACE.matcher(list);
 
         LinkedList<String> matchList = new LinkedList<String>();
         while (matchWs.find())
@@ -735,7 +735,7 @@ public class XMLParseUtil
             try { eleVal = Integer.parseInt(valS); }
             catch (Exception e) {}
 
-            elementCache.addLast(new Integer(eleVal));
+            elementCache.addLast(Integer.valueOf(eleVal));
         }
 
         int[] retArr = new int[elementCache.size()];
@@ -801,13 +801,12 @@ public class XMLParseUtil
      * @param map - A map to which these styles will be added
      */
     public static HashMap<String, StyleAttribute> parseStyle(String styleString, HashMap<String, StyleAttribute> map) {
-        final Pattern patSemi = Pattern.compile(";");
 
-        String[] styles = patSemi.split(styleString);
+        String[] styles = PATTERN_SEMI_COLON.split(styleString);
 
         for (int i = 0; i < styles.length; i++)
         {
-            if (styles[i].length() == 0)
+            if (styles[i].isEmpty())
             {
                 continue;
             }

@@ -48,6 +48,9 @@ import java.util.regex.Pattern;
 public class ColorTable 
 {
 
+    private static final String NUMBER_REGEX = "\\s*(((\\d+)(\\.\\d*)?)|(\\.\\d+))(%)?\\s*";
+    private static final Pattern PATTERN_RGB = Pattern.compile("rgb\\(" + NUMBER_REGEX + "," + NUMBER_REGEX + "," + NUMBER_REGEX + "\\)", Pattern.CASE_INSENSITIVE);
+
     static final Map<String, Color> colorTable;
     static {
         HashMap<String, Color> table = new HashMap<String, Color>();
@@ -240,10 +243,7 @@ public class ColorTable
         }
         else
         {
-            final String number = "\\s*(((\\d+)(\\.\\d*)?)|(\\.\\d+))(%)?\\s*";
-            final Matcher rgbMatch = Pattern.compile("rgb\\(" + number + "," + number + "," + number + "\\)", Pattern.CASE_INSENSITIVE).matcher("");
-
-            rgbMatch.reset(val);
+            final Matcher rgbMatch = PATTERN_RGB.matcher(val);
             if (rgbMatch.matches())
             {
                 float rr = Float.parseFloat(rgbMatch.group(1));
