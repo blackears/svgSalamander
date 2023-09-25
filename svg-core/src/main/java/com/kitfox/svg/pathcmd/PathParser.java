@@ -122,6 +122,10 @@ public class PathParser
         return valid;
     }
 
+    private boolean isValidFlagChar(char c) {
+        return '0' <= c && c <= '1';
+    }
+
     private void consumeWhiteSpaceOrSeparator() {
         while (hasNext() && isWhiteSpaceOrSeparator(peek())) {
             consume();
@@ -148,6 +152,22 @@ public class PathParser
                     + " (index=" + index + " in input=" + input + ")";
             throw new IllegalStateException(msg, e);
         }
+    }
+    private boolean nextFlag() {
+        int start = index;
+        if (hasNext() && isValidFlagChar(peek())) {
+            consume();
+        }
+        int end = index;
+        consumeWhiteSpaceOrSeparator();
+        String token = input.substring(start, end);
+        if (token.isEmpty()) {
+            String msg = "Unexpected element while parsing cmd '" + currentCommand
+                    + "' encountered empty flag. rest=" + input.substring(start, Math.min(input.length(), start + 10))
+                    + " (index=" + index + " in input=" + input + ")";
+            throw new IllegalStateException(msg);
+        }
+        return "1".equals(token);
     }
 
     public PathCommand[] parsePathCommand()
@@ -197,13 +217,13 @@ public class PathParser
                 case 'A':
                     cmd = new Arc(false, nextFloat(), nextFloat(),
                                   nextFloat(),
-                                  nextFloat() == 1f, nextFloat() == 1f,
+                                  nextFlag(), nextFlag(),
                                   nextFloat(), nextFloat());
                     break;
                 case 'a':
                     cmd = new Arc(true, nextFloat(), nextFloat(),
                                   nextFloat(),
-                                  nextFloat() == 1f, nextFloat() == 1f,
+                                  nextFlag(), nextFlag(),
                                   nextFloat(), nextFloat());
                     break;
                 case 'Q':
