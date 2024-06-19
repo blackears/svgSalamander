@@ -85,12 +85,13 @@ circle.updateTime(0f);
 
 At the moment, you can only set the text of `tspan` elements.  You can do this by calling `setText()` on the `tspan` element.  After doing this, you need to call `rebuild()` on the text element that contains the `tspan` element to update the caching data.
 
-To get the value of an attribute, you can create an empty attribute and pass it to `getStyle()`.  This will overwrite the value in the passed style attribute with the element's value of the attribute.
+To get the value of an attribute, you can create an attribute and call `getStyle()`.  This will overwrite the value in the passed style attribute with the element's value of the attribute.
 
 ```
-StyleAttribute attrib = new StyleAttribute(); 
-svgElement.getStyle("fill", attrib); 
-double value = attrib.getDoubleValue(); 
+StyleAttribute style = new StyleAttribute();
+style.setName("fill");
+svgElement.getStyle(style);
+double value = style.getDoubleValue();
 ```
 
 Note that getting the value of a style attribute will first check to see if this attribute has a style set.  If not, it checks to find the closest ancestor that may have this style set.  If no ancestor has this attribute set, it then checks to see if a presentation attribute with the same name is set on this element.  This is in keeping with the SVG convention that style attributes override first ancestors and then presentation attributes.  To get the value of only the style attribute of this element, call `getStyleAbsolute()` instead.  `getPresAbsolute()` will check for the local presentation attribute.
