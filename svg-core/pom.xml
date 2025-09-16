@@ -14,7 +14,7 @@
     <artifactId>svgSalamander</artifactId>
     <packaging>jar</packaging>
 
-    <name>${groupId}:${artifactId}</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>A tool for displaying and playing SVG content using the Java2D.</description>
     <url>https://github.com/blackears/svgSalamander</url>
 
