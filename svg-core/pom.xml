@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.github.blackears</groupId>
-        <artifactId>svgSalamanderParent</artifactId>
-        <version>1.1.5-SNAPSHOT</version>
+        <artifactId>svg-salamander-parent</artifactId>
+        <version>1.1.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>svgSalamander</artifactId>
+    <artifactId>svg-salamander</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -41,6 +41,11 @@
     </scm>
 
     <distributionManagement>
+    	<repository>
+    		<id>github</id>
+    		<name>Github Salamander SVG packages</name>
+    		<url>https://maven.pkg.github.com/blackears/svgSalamander/</url>
+    	</repository>
         <!--
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
@@ -53,7 +58,8 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
             -->
-            
+        
+        <!--    
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
@@ -62,6 +68,7 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
+        -->
     </distributionManagement>
 
     <properties>
@@ -149,6 +156,7 @@
                     </archive>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -160,6 +168,7 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

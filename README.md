@@ -14,6 +14,23 @@ SVG Salamander is an SVG engine for Java that's designed to be small, fast, and 
 - Internal and external links are implemented as URIs, which allows the engine to automatically import linked documents - even if they're stored on a remote server.
 - SVG can be read from an `InputStream`, so you can create documents dynamically from an in-program XSLT transformation.
 
+## Usage
+
+SVG Salamander is now distributed using Maven packages.  Add the `svg-salamander` artifact to your `pom.xml` file to include it:
+
+```
+	<dependency>
+	  <groupId>com.github.blackears</groupId>
+	  <artifactId>svg-salamander</artifactId>
+	  <version>1.1.5</version>
+	</dependency>
+```
+
+Starting with version 1.1.5, the artifact name is now `svg-salamander` instead of `svgSalamander`.  This is due to the package hosting swithing to Github from Sonotype, and my not being able to reuse the old artifact name on Github.
+
+[A list of all Maven releases is availble here.](https://github.com/blackears?tab=packages&repo_name=svgSalamander)
+
+
 ## Documentation
 
 [An overview of how to use SVG Salamader in your project.](doc/usingSvgSalamander.md)
