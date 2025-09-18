@@ -42,7 +42,7 @@ You may also need to include the repository in your `pom.xml` file:
 	</repositories>
 ```
 
-Starting with version 1.1.5, the artifact name is now `svg-salamander` instead of `svgSalamander`.  This is due to the package hosting swithing to Github from Sonotype, and my not being able to reuse the old artifact name on Github.
+Starting with version 1.1.5, the artifact name is now `svg-salamander` instead of `svgSalamander`.  This is due to the package hosting switching to Github from Sonotype, and my not being able to reuse the old artifact name on Github.
 
 [A list of all Maven releases is availble here.](https://github.com/blackears?tab=packages&repo_name=svgSalamander)
 
