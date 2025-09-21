@@ -6,12 +6,12 @@
 
     <parent>
         <groupId>com.github.blackears</groupId>
-        <artifactId>svg-salamander-parent</artifactId>
+        <artifactId>svgSalamanderParent</artifactId>
         <version>1.1.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>svg-salamander</artifactId>
+    <artifactId>svgSalamander</artifactId>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -35,9 +35,12 @@
     </developers>
 
     <scm>
+    <!--
         <connection>scm:git:git://github.com/blackears/svgSalamander.git</connection>
         <developerConnection>scm:git:ssh://github.com:blackears/svgSalamander.git</developerConnection>
         <url>https://github.com/blackears/svgSalamander/tree/master/svg-core</url>
+        -->
+        <url>https://github.com/sonatype/central-publishing-maven-plugin</url>
     </scm>
 
     <distributionManagement>
@@ -83,6 +86,12 @@
             <version>1.10.13</version>
             <optional>true</optional>
         </dependency>
+        
+		<dependency>
+			<groupId>org.sonatype.central</groupId>
+			<artifactId>central-publishing-maven-plugin</artifactId>
+			<version>0.8.0</version>
+		</dependency>
     </dependencies>
 
     <build>
@@ -156,6 +165,16 @@
                     </archive>
                 </configuration>
             </plugin>
+            
+			<plugin>
+				<groupId>org.sonatype.central</groupId>
+				<artifactId>central-publishing-maven-plugin</artifactId>
+				<version>0.8.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<publishingServerId>central</publishingServerId>
+				</configuration>
+			</plugin>
             <!--
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
