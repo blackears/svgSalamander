@@ -171,19 +171,13 @@ abstract public class RenderableElement extends TransformableElement
     protected abstract void doPick(Rectangle2D pickArea, AffineTransform ltw, boolean boundingBox, List<List<SVGElement>> retVec) throws SVGException;
 
     abstract public Rectangle2D getBoundingBox() throws SVGException;
-    /*
-     public void loaderStartElement(SVGLoaderHelper helper, Attributes attrs, SVGElement parent)
-     {
-     super.loaderStartElement(helper, attrs, parent);
-     }
-     */
 
     /**
      * Pushes transform stack, transforms to local coordinates and sets up
      * clipping mask.
      *
      * @param g Graphics context
-     * @throws com.kitfox.svg.SVGException
+     * @throws com.kitfox.svg.SVGException exception
      */
     protected void beginLayer(Graphics2D g) throws SVGException
     {
@@ -238,7 +232,6 @@ abstract public class RenderableElement extends TransformableElement
     /**
      * Restores transform and clipping values to the way they were before this
      * layer was drawn.
-     * @param g
      */
     protected void finishLayer(Graphics2D g)
     {

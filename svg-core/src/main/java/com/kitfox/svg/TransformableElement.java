@@ -66,7 +66,7 @@ abstract public class TransformableElement extends SVGElement
      * Fetches a copy of the cached AffineTransform. Note that this value will
      * only be valid after the node has been updated.
      *
-     * @return
+     * @return Copy of this node's cached AffineTransform
      */
     public AffineTransform getXForm()
     {

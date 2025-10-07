@@ -39,10 +39,6 @@ package com.kitfox.svg;
 import com.kitfox.svg.xml.StyleAttribute;
 import java.net.URI;
 
-/**
- * @author Mark McKay
- * @author <a href="mailto:mark@kitfox.com">Mark McKay</a>
- */
 public class A extends Group
 {
     public static final String TAG_NAME = "a";
