@@ -6,14 +6,14 @@
 
     <parent>
         <groupId>io.github.blackears</groupId>
-        <artifactId>svgSalamanderParent</artifactId>
-        <version>1.1.5</version>
+        <artifactId>svg-salamander-parent</artifactId>
+        <version>1.1.5.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>io.github.blackears</groupId>
-    <artifactId>svgSalamander</artifactId>
-    <version>1.1.5</version>
+    <artifactId>svg-salamander</artifactId>
+    <version>1.1.5.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -37,20 +37,22 @@
     </developers>
 
     <scm>
+        <url>https://github.com/blackears/svgSalamander/tree/master/svg-core</url>
     <!--
         <connection>scm:git:git://github.com/blackears/svgSalamander.git</connection>
         <developerConnection>scm:git:ssh://github.com:blackears/svgSalamander.git</developerConnection>
-        <url>https://github.com/blackears/svgSalamander/tree/master/svg-core</url>
-        -->
         <url>https://github.com/sonatype/central-publishing-maven-plugin</url>
+        -->
     </scm>
 
     <distributionManagement>
+    <!--
     	<repository>
     		<id>github</id>
     		<name>Github Salamander SVG packages</name>
     		<url>https://maven.pkg.github.com/blackears/svgSalamander/</url>
     	</repository>
+    	-->
         <!--
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
