@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.blackears</groupId>
+        <groupId>io.github.blackears</groupId>
         <artifactId>svgSalamanderParent</artifactId>
         <version>1.1.5</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <groupId>io.github.blackears</groupId>
     <artifactId>svgSalamander</artifactId>
+    <version>1.1.5</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -203,7 +205,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.4.2</version>
+                        <version>3.2.8</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
