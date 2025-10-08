@@ -15,7 +15,7 @@
     <version>1.1.5.1</version>
     <packaging>jar</packaging>
 
-    <name>com.kitfox:svgSalamander Examples</name>
+    <name>com.kitfox.svgSalamander Examples</name>
     <description>Examples for displaying and playing SVG content using the Java2D.</description>
     <url>https://github.com/blackears/svgSalamander</url>
 
@@ -63,7 +63,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>svgSalamander</artifactId>
+            <artifactId>svg-salamander</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
