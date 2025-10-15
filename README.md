@@ -20,31 +20,13 @@ SVG Salamander is now distributed using Maven packages.  Add the `svg-salamander
 
 ```
 	<dependency>
-	  <groupId>com.github.blackears</groupId>
+	  <groupId>io.github.blackears</groupId>
 	  <artifactId>svg-salamander</artifactId>
-	  <version>1.1.5</version>
+	  <version>1.1.5.1</version>
 	</dependency>
 ```
 
-You may also need to include the repository in your `pom.xml` file:
-
-```
-	<repositories>
-		...
-		
-		<repository>
-			<id>github</id>
-			<url>https://maven.pkg.github.com/blackears/svgSalamander</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		<repository>
-	</repositories>
-```
-
-Starting with version 1.1.5, the artifact name is now `svg-salamander` instead of `svgSalamander`.  This is due to the package hosting switching to Github from Sonotype, and my not being able to reuse the old artifact name on Github.
-
-[A list of all Maven releases is availble here.](https://github.com/blackears?tab=packages&repo_name=svgSalamander)
+Starting with version 1.1.5.1, the artifact name is now `svg-salamander` instead of `svgSalamander`.  This renaming is to bring the artifact name in line with community standards.
 
 
 ## Documentation
