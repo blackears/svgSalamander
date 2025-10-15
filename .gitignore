@@ -20,3 +20,4 @@
 **/*.iml
 **/.idea/
 /gpg
+/.project
