@@ -104,6 +104,9 @@ public class Path extends ShapeElement
     @Override
     public Rectangle2D getBoundingBox() throws SVGException
     {
+    	if (path == null)
+    		return null;
+    	
         return boundsToParent(includeStrokeInBounds(path.getBounds2D()));
     }
 
