@@ -4,16 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+<!--
     <parent>
         <groupId>io.github.blackears</groupId>
         <artifactId>svg-salamander-parent</artifactId>
-        <version>1.1.5.1-SNAPSHOT</version>
+        <version>1.1.5.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
+    -->
 
     <groupId>io.github.blackears</groupId>
     <artifactId>svg-salamander</artifactId>
-    <version>1.1.5.1-SNAPSHOT</version>
+    <version>1.1.5.2</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -203,6 +205,7 @@
         </plugins>
     </build>
     
+    <!--
     <profiles>
         <profile>
             <id>deploy</id>
@@ -249,5 +252,6 @@
             </build>
         </profile>
     </profiles>
+    -->
 </project>
 
