@@ -205,7 +205,6 @@
         </plugins>
     </build>
     
-    <!--
     <profiles>
         <profile>
             <id>deploy</id>
@@ -252,6 +251,6 @@
             </build>
         </profile>
     </profiles>
-    -->
+
 </project>
 
