@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.blackears</groupId>
     <artifactId>svg-salamander-parent</artifactId>
-    <version>1.1.5.4-SNAPSHOT</version>
+    <version>1.1.5.5</version>
     <packaging>pom</packaging>
     
     <licenses>
