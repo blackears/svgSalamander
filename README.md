@@ -22,7 +22,7 @@ SVG Salamander is now distributed using Maven packages.  Add the `svg-salamander
 	<dependency>
 	  <groupId>io.github.blackears</groupId>
 	  <artifactId>svg-salamander</artifactId>
-	  <version>1.1.5.3</version>
+	  <version>1.1.5.5</version>
 	</dependency>
 ```
 
